@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { NavItem } from '../nav-item/nav-item';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [],
+  imports: [NavItem],
   templateUrl: './nav-bar.html',
   styleUrl: './nav-bar.css',
 })
