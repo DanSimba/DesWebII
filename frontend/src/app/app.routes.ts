@@ -17,5 +17,8 @@ export const routes: Routes = [
         path:'autocadastro',
         component: AutocadastroView
     },
-    { path: 'maintenance-list', component: MaintenanceListView },
+    { 
+        path: 'maintenance-list',
+        component: MaintenanceListView
+    },
 ];
