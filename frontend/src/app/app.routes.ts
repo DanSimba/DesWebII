@@ -21,4 +21,8 @@ export const routes: Routes = [
         path: 'maintenance-list',
         component: MaintenanceListView
     },
+    { 
+        path: 'solicitation/:',
+        loadComponent: () => import('./views/solicitation-view/solicitation-view').then(m => m.SolicitationView)
+    },
 ];
