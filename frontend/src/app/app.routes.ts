@@ -3,6 +3,7 @@ import { HomeView } from './page/home-view/home-view';
 import { LoginView } from './page/login-view/login-view';
 import { AutocadastroView } from './page/autocadastro-view/autocadastro-view';
 import { MaintenanceListView } from './page/maintenance-list-view/maintenance-list-view';
+import { Client } from './page/client/client';
 
 export const routes: Routes = [
     {
@@ -23,6 +24,6 @@ export const routes: Routes = [
     },
     {
         path: 'client',
-        loadComponent: () => import ('./page/client/client').then(m => m.Client)
+        component: Client
     }
 ];
