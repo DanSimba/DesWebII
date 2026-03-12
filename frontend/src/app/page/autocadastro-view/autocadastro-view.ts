@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './autocadastro-view.css',
 })
 export class AutocadastroView {
+  //este é o signup????
+
 
 }

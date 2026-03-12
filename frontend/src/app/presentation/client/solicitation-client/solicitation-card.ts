@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, Route } from '@angular/router';
-import { Solicitation } from '../../models/solicitation-interface';
+import { Solicitation } from '../../../solicitation/models/solicitation-interface';
 
 @Component({
   selector: 'app-solicitation-card',
@@ -8,7 +8,7 @@ import { Solicitation } from '../../models/solicitation-interface';
   templateUrl: './solicitation-card.html',
   styleUrl: './solicitation-card.css',
 })
-export class SolicitationCard {
+export class SolicitationClient {
   router = inject(Router);
   solId = '01'; //trocar para o campo id da interface dps
 

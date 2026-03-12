@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaintenanceRequest } from '../../shared/models/maintenance-request.model';
+import { MaintenanceRequest } from '../../models/maintenance-request.model';
 
 @Component({
   selector: 'app-maintenance-list-view',
