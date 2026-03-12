@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, Route } from '@angular/router';
-import { Solicitation } from '../../../solicitation/models/solicitation-interface';
-
+import { Solicitation } from '../../../models/solicitation-interface';
 @Component({
   selector: 'app-solicitation-card',
   imports: [],
@@ -11,9 +10,10 @@ import { Solicitation } from '../../../solicitation/models/solicitation-interfac
 export class SolicitationClient {
   router = inject(Router);
   solId = '01'; //trocar para o campo id da interface dps
+  open = false;
 
-  //entrar na sol
-  viewSol(){
-    this.router.navigate(['solicitation/', this.solId]);
+  openSol(){
+    this.open = !this.open;
+    console.log('abriu a sol\n')
   }
 }

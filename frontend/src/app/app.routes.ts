@@ -21,4 +21,8 @@ export const routes: Routes = [
         path: 'maintenance-list',
         component: MaintenanceListView
     },
+    {
+        path: 'client',
+        loadComponent: () => import ('./page/client/client').then(m => m.Client)
+    }
 ];

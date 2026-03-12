@@ -1,9 +1,23 @@
-<div (click)="viewSol()" class="flex flex-col text-xl w-45 h-30 p-3 bg-cyan-500 border-solid border-2 border-grey-700 hover:curso-pointer hover:bg-cyan-700">
-    <div>
-        <h1>Solicitação</h1>
+<div class="flex flex-col text-lg w-[43vh] {{open? 'h-[50vh]' : 'h-[28vh]'}} p-2 bg-[#CA99AB] border-solid border-5 border-[#7B1D26] rounded-[22px] break-words font-semibold shadow-lg">
+    <div class="flex flex-row justify-around">
+        <div class="flex w-[13vh] h-[30px] text-sm bg-[#E4CDDD] justify-center items-center rounded-[10px]">
+            estado
+        </div>
+        <div class="flex w-[25vh] h-[32px] text-md bg-[#E4CDDD] justify-center items-center rounded-[10px]">
+            nome do bofe
+        </div>
     </div>
-    <div class="flex flex-col font-light text-sm">
-        <p>Data</p>
-        <p>Equipamento</p>
+
+    <div class="flex w-[48] m-2 h-[13vh] text-sm bg-[#E4CDDD] p-[4px] rounded-[10px] break-words overflow-y-auto">
+        descrição Lorem ipsum dolor sit amet, consectetur adipisicing elit dicta.
+    </div>
+
+        <div class="flex flex-row justify-around">
+        <div class="flex w-[18vh] h-[30px] text-sm bg-[#E4CDDD] justify-center items-center rounded-[10px]">
+            data/hora
+        </div>
+        <div (click)="openSol()" class="flex w-[18vh] h-[30px] text-md bg-[#E4CDDD] justify-center items-center rounded-[10px] hover:cursor-pointer hover:bg-pink-600">
+            orçar
+        </div>
     </div>
 </div>
