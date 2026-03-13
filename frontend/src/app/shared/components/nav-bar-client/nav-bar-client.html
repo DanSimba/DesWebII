@@ -1,1 +1,20 @@
-<p>nav-bar-client works!</p>
+
+
+<mat-drawer-container class="h-screen max-w-screen" autosize>
+  <mat-drawer #drawer mode="side">
+    <div class="flex flex-col bg-zinc-500 items-center justify-between">
+        <nav class="h-screen p-4 space-y-3">
+            <p class="text-white ">navbar cliente works!</p>
+            <app-nav-item label="Solicitar Manutenção" route="solicitation" (click)="drawer.toggle()"></app-nav-item>
+            <app-nav-item label="Logout" route="" ></app-nav-item>
+        </nav>
+    </div>
+  </mat-drawer>
+
+  <div class="">
+    <button class="p-1" type="button" (click)="drawer.toggle()">
+      <mat-icon class="rounded-full bg-zinc-300">menu</mat-icon>
+    </button>
+  </div>
+
+</mat-drawer-container>

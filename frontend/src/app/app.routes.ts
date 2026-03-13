@@ -4,6 +4,7 @@ import { LoginView } from './page/login-view/login-view';
 import { AutocadastroView } from './page/autocadastro-view/autocadastro-view';
 import { MaintenanceListView } from './page/maintenance-list-view/maintenance-list-view';
 import { Client } from './page/client/client';
+import { SolicitationFormClient } from './presentation/client/solicitation-form-client/solicitation-form-client';
 
 export const routes: Routes = [
     {
@@ -24,6 +25,9 @@ export const routes: Routes = [
     },
     {
         path: 'client',
-        component: Client
+        component: Client,
+        children: [
+            {path: 'solicitation', component:SolicitationFormClient}
+        ]
     }
 ];
