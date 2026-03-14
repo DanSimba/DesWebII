@@ -1,8 +1,10 @@
-<div class="flex flex-row">
-    <div>
-        <app-nav-bar-client></app-nav-bar-client>
+<body class="flex w-screen justify-center items-center">
+    <div class="flex flex-row w-[120vh] h-[80vh] justify-center items-center gap-8 bg-[#CA99AB] border-solid border-5 border-[#7B1D26] rounded-[22px]">
+        <div>
+            <app-nav-bar-client></app-nav-bar-client>
+        </div>
+        <div class="flex justify-center w-[80vh] h-[60vh] items-center p-6 bg-[#CA99AB] border-solid border-5 border-[#7B1D26] rounded-[22px]">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-    <div>
-        <router-outlet></router-outlet>
-    </div>
-</div>
+</body>

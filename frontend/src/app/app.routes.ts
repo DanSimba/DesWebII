@@ -27,7 +27,12 @@ export const routes: Routes = [
         path: 'client',
         component: Client,
         children: [
-            {path: 'solicitation', component:SolicitationFormClient}
+            {path: 'solicitation',
+                 component:SolicitationFormClient //lazy-loading??? que tal????
+            },
+            {path: 'visualization', 
+                loadComponent: () => import('./presentation/client/solicitation-panel/solicitation-panel').then(m => m.SolicitationPanel)
+            },
         ]
     }
 ];
