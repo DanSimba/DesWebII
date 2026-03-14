@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-nav-bar-client',
-  imports: [NavItem, MatIconModule, MatSidenavModule,MatButtonModule],
+  imports: [NavItem, MatIconModule, MatSidenavModule, MatButtonModule],
   templateUrl: './nav-bar-client.html',
   styleUrl: './nav-bar-client.css',
 })
