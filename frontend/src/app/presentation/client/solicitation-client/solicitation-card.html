@@ -1,23 +1,23 @@
-<div class="flex flex-col text-lg w-[43vh] {{open? 'h-[50vh]' : 'h-[28vh]'}} p-2 bg-[#CA99AB] border-solid border-5 border-[#7B1D26] rounded-[22px] break-words font-semibold shadow-lg">
+<div class="flex flex-col text-lg w-[53vh] h-[28vh] p-2 bg-[#CA99AB] border-solid border-5 border-[#7B1D26] rounded-[22px] break-words font-semibold shadow-lg">
     <div class="flex flex-row justify-around">
         <div class="flex w-[13vh] h-[30px] text-sm bg-[#E4CDDD] justify-center items-center rounded-[10px]">
-            estado
+            {{estado()}}
         </div>
         <div class="flex w-[25vh] h-[32px] text-md bg-[#E4CDDD] justify-center items-center rounded-[10px]">
-            nome do bofe
+            {{nome()}}
         </div>
     </div>
 
     <div class="flex w-[48] m-2 h-[13vh] text-sm bg-[#E4CDDD] p-[4px] rounded-[10px] break-words overflow-y-auto">
-        descrição Lorem ipsum dolor sit amet, consectetur adipisicing elit dicta.
+        {{desc()}}
     </div>
 
-        <div class="flex flex-row justify-around">
+    <div class="flex flex-row justify-around">
         <div class="flex w-[18vh] h-[30px] text-sm bg-[#E4CDDD] justify-center items-center rounded-[10px]">
-            data/hora
+            {{data()}}
         </div>
         <div (click)="openSol()" class="flex w-[18vh] h-[30px] text-md bg-[#E4CDDD] justify-center items-center rounded-[10px] hover:cursor-pointer hover:bg-pink-600">
-            orçar
+            Visualizar
         </div>
     </div>
 </div>
