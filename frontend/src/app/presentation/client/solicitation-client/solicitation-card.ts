@@ -18,6 +18,6 @@ export class SolicitationClient {
 
   openSol(){
     console.log('abriu a sol\n')
-    //this.router.navigate(`client/navigation/${solId}`); 
+    this.router.navigate(['client/view-solicitation/',this.solId()]); 
   }
 }

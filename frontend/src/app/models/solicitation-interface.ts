@@ -1,5 +1,5 @@
 
-export interface Solicitation{ //solicitation do FUNC
+export interface Solicitation{ 
     id: string;
     nomeCli: string
     equipamento: string;

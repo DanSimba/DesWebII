@@ -30,8 +30,11 @@ export const routes: Routes = [
             {path: 'solicitation',
                  component:SolicitationFormClient //lazy-loading??? que tal????
             },
-            {path: 'visualization', 
+            {path: 'panel', 
                 loadComponent: () => import('./presentation/client/solicitation-panel/solicitation-panel').then(m => m.SolicitationPanel)
+            },
+            {path: 'view-solicitation/:', 
+                loadComponent: () => import('./presentation/client/view-sol/view-sol').then(m => m.ViewSol)
             },
         ]
     }
