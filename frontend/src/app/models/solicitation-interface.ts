@@ -1,7 +1,9 @@
 
-export interface Solicitation{
+export interface Solicitation{ 
     id: string;
+    nomeCli: string
     equipamento: string;
-    dataHora: Date;
+    dataHora: string;
     estado: string;
+    desc: string;
 }

@@ -1,8 +1,17 @@
-  <div>
-    <app-solicitation-card 
-        solId="01"
-        estado="Aberto" nome="razerzão"
-        data="10/10" desc="Loremblabla blablablabal">
-    </app-solicitation-card> <!--ID 01 FIXO POR ENQUANTO (TROCAR PELO UUID QNDO VIER)-->
+  <div class="flex flex-col w-[82vh] h-[65vh] bg-pink-700/50 p-3 gap-2 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
+    <div class="flex font-bold w-[32vh] h-[16vh] p-2 justify-center items-center text-[22px] bg-(--queen-pink) rounded-[10px]">
+      Painel de Solicitações
+    </div>
+
+    <div class="flex flex-col w-full items-left gap-2">
+      @for (s of sols; track $index) {
+        <app-solicitation-card 
+          solId="{{s.id}}"
+          estado="{{s.estado}}" nome="{{s.nomeCli}}"
+          data="{{s.dataHora}}" desc="{{s.desc}}">
+        </app-solicitation-card> <!--ID 01 FIXO POR ENQUANTO (TROCAR PELO UUID QNDO VIER)-->
+      }
+    </div>
+    
   </div>
   

@@ -28,7 +28,19 @@ export const routes: Routes = [
         path: 'client',
         component: Client,
         children: [
-            {path: 'solicitation', component:SolicitationFormClient}
+            {path: 'solicitation',
+                 component:SolicitationFormClient //lazy-loading??? que tal????
+            },
+            {path: 'panel', 
+                loadComponent: () => import('./presentation/client/solicitation-panel/solicitation-panel').then(m => m.SolicitationPanel)
+            },
+            {path: 'view-solicitation/:', 
+                loadComponent: () => import('./presentation/client/view-sol/view-sol').then(m => m.ViewSol)
+            },
         ]
+    },
+    {
+        path:'funcionario/crud-cat',
+        component:CrudCat
     }
 ];
