@@ -3,9 +3,9 @@ import { HomeView } from './page/home-view/home-view';
 import { MaintenanceListView } from './page/maintenance-list-view/maintenance-list-view';
 import { Client } from './page/client/client';
 import { SolicitationFormClient } from './presentation/client/solicitation-form-client/solicitation-form-client';
-import { CrudCat } from './page/crud-cat/crud-cat';
-import { LoginView } from './page/auth/login-view/login-view';
-import { AutocadastroView } from './page/auth/autocadastro-view/autocadastro-view';
+import { Auth } from './page/auth/auth';
+import { LoginComponent } from './shared/auth-components/login-item/login-component';
+import { SignUpComponent } from './shared/auth-components/signUp-item/signUp-Component';
 
 export const routes: Routes = [
     {
@@ -13,12 +13,12 @@ export const routes: Routes = [
         component: HomeView
     },
     {
-        path:'login', 
-        component: LoginView
-    },
-    {
-        path:'autocadastro',
-        component: AutocadastroView
+        path:'auth', 
+        component: Auth,
+        children: [
+            {path: 'login', component: LoginComponent},
+            {path: 'signUp', component: SignUpComponent}
+        ]
     },
     { 
         path: 'maintenance-list',
