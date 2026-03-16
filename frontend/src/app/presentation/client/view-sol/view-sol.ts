@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './view-sol.css',
 })
 export class ViewSol {
-
+  est="orçado";
 }
