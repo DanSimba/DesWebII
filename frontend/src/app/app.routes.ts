@@ -6,6 +6,7 @@ import { SolicitationFormClient } from './presentation/client/solicitation-form-
 import { Auth } from './page/auth/auth';
 import { LoginComponent } from './shared/auth-components/login-item/login-component';
 import { SignUpComponent } from './shared/auth-components/signUp-item/signUp-Component';
+import { CrudCat } from './page/crud-cat/crud-cat';
 
 export const routes: Routes = [
     {
