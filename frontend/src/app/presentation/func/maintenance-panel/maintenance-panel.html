@@ -1,0 +1,35 @@
+<div class="p-4 border">
+  <div class="flex justify-between items-center mb-4 border-b pb-2">
+    <h1 class="font-bold uppercase">Painel de Visualização - Funcionário</h1>
+    
+    <div class="flex gap-2">
+      <button (click)="setFiltro('HOJE')" [class.font-bold]="filtroAtual === 'HOJE'" class="border px-2 py-1 text-xs">Hoje</button>
+      <button (click)="setFiltro('PERIODO')" [class.font-bold]="filtroAtual === 'PERIODO'" class="border px-2 py-1 text-xs">Período</button>
+      <button (click)="setFiltro('TODAS')" [class.font-bold]="filtroAtual === 'TODAS'" class="border px-2 py-1 text-xs">Todas</button>
+    </div>
+  </div>
+
+  <div *ngIf="filtroAtual === 'PERIODO'" class="mb-4 p-2 bg-gray-50 border flex gap-4">
+    <input type="date" [(ngModel)]="dataInicio" class="border p-1 text-xs">
+    <input type="date" [(ngModel)]="dataFim" class="border p-1 text-xs">
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div *ngFor="let req of requests" class="border p-4 rounded bg-white">
+      
+      <div class="flex justify-between items-start mb-2">
+        <span class="text-xs text-gray-400">#{{req.id}}</span>
+        <span [style.background-color]="getStatusColor(req.status)" class="text-[10px] text-white px-2 py-0.5 rounded uppercase font-bold">
+          {{req.status}}
+        </span>
+      </div>
+
+      <h3 class="font-bold text-sm">{{req.clientName}}</h3>
+      <p class="text-xs text-gray-600 mt-1">{{req.description}}</p>
+      
+      <div class="mt-4 text-[10px] text-gray-400 border-t pt-2 text-right">
+        {{req.dateTime | date:'dd/MM/yyyy'}}
+      </div>
+    </div>
+  </div>
+</div>
