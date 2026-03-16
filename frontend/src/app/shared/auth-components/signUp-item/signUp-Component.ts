@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { CepType } from '../../../services/CEP/cep.type';
-import { CepService } from '../../../services/CEP/cep.service';
-import { CepModel } from './cepModel';
-import { ReactiveFormsModule, FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+//import { CepType } from '../../../services/CEP/cep.type';
+//import { CepService } from '../../../services/CEP/cep.service';
+//import { CepModel } from './cepModel';
+//import { ReactiveFormsModule, FormGroup, FormBuilder, FormControl } from '@angular/forms';
+//import { CommonModule } from '@angular/common';
+import { CepForm } from '../forms/cepForm/cep-form';
+import { SignUpForm } from '../forms/signUpForm/signUp-form';
 
 @Component({
   selector: 'app-signUpComponent',
-  imports: [MatIconModule, ReactiveFormsModule, CommonModule],
+  imports: [MatIconModule,/* ReactiveFormsModule, CommonModule, */CepForm, SignUpForm],
   standalone: true,
   templateUrl: './signUp-Component.html',
 })
-export class SignUpComponent implements OnInit {
-  formCep: FormGroup;
+
+
+export class SignUpComponent /*implements OnInit*/ {
+ /* formCep: FormGroup;
   submittedCepForm: any;
   cepResponse: CepType = {
     CEP: '',
@@ -47,8 +51,6 @@ export class SignUpComponent implements OnInit {
       this.cepService.getCep(cep).subscribe((response)=>{
         this.cepResponse = response; 
       })
-    } catch (error) {
-      
-    }
-  }
+    } catch (error) {}
+  }*/
 }

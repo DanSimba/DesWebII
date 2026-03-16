@@ -23,51 +23,16 @@
     <div class="flex gap-2 w-full h-4/6 ">    
       <div class="p-6 w-4/5 content-center">
         <h3 class="text-(--french-puce) font-bold text-xl">Login:</h3>
-        <div class="p-4 flex flex-col gap-8">
-          <div class="flex items-center justify-center">
-            <div class="relative">
-              <input
-                id="email"
-                name="email"
-                type="text"
-                placeholder=""
-                class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit"
-              />
-              <label
-                for="email"
-                class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-              >
-                Email
-              </label>
-            </div>
-          </div>
-          <div class="flex items-center justify-center">
-            <div class="relative">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                placeholder=""
-                class="text-(--french-puce) border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit"
-              />
-              <label
-                for="password"
-                class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-              >
-                Senha
-              </label>
-            </div>
-          </div>
-        </div>
+        <login-form/>
       </div>
       <div class="border-3 border-(--parrot-pink) w-1/5 "></div>
     </div>
     <!--Botões de login-->
     <div class="w-full flex gap-2 h-1/6">
-      <div class="border-3 border-(--parrot-pink) w-4/5 content-center">
+      <div class="border-3 border-(--parrot-pink) w-4/6 content-center">
         <button class="hover:cursor-pointer p-2 font-bold text-(--french-puce) text-l">< CADASTRAR-SE</button>
       </div>
-      <button class="hover:cursor-pointer p-2 font-bold w-1/5 text-(--french-puce) text-xl">LOGIN></button>
+      <button class="hover:cursor-pointer p-2 font-bold w-2/6 text-(--french-puce) text-xl">LOGIN ></button>
     </div>
   </div>
 </div>
