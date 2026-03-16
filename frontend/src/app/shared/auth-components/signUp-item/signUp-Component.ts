@@ -5,10 +5,11 @@ import { CepService } from '../../../services/CEP/cep.service';
 import { CepModel } from './cepModel';
 import { ReactiveFormsModule, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signUpComponent',
-  imports: [MatIconModule, ReactiveFormsModule, CommonModule],
+  imports: [MatIconModule, ReactiveFormsModule, CommonModule, RouterLink],
   standalone: true,
   templateUrl: './signUp-Component.html',
 })
