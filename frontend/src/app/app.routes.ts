@@ -39,7 +39,7 @@ export const routes: Routes = [
         ]
     },
     {
-        path: 'employee',
+        path: 'func',
         component: Func,
         children: [
 {
