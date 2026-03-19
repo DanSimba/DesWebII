@@ -21,7 +21,7 @@
             </div>
     </div>
 
-    @if(this.est == "orçado"){
+    @if(this.est == "orçada"){
       <div class="flex flex-col font-bold w-[60vh] h-[25vh] p-2 text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby) overflow-y-auto">
         <div class="flex justify-center items-center">
           Orçamento
@@ -35,16 +35,15 @@
         </div>
         
         <div class="flex flex-row h-[10vh] justify-between pt-1">
-          <div class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-yellow-500 rounded-[28px] border-solid border-5 border-yellow-700 hover:cursor-pointer hover:bg-yellow-600">
-                Aceitar
+          <div (click)="openPopup('Aprovar este orçamento?', 'option')" 
+          class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-yellow-500 rounded-[28px] border-solid border-5 border-yellow-700 hover:cursor-pointer hover:bg-yellow-600">
+                Aprovar
           </div>
 
-          <div class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-red-500 rounded-[28px] border-solid border-5 border-red-700 hover:cursor-pointer hover:bg-red-800">
+          <div (click)="openPopup('Rejeitar este orçamento?', 'ok')"  class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-red-500 rounded-[28px] border-solid border-5 border-red-700 hover:cursor-pointer hover:bg-red-800">
                 Rejeitar
           </div>
         </div>
       </div>
     }
 </div>
-
-<app-popup #popup text="textaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaao" typePopUp="option"></app-popup>

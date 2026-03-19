@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, inject, signal } from '@angular/core';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-popup',
@@ -8,6 +8,12 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrl: './popup.css',
 })
 export class Popup {
-  readonly text = input.required<string>();
-  readonly typePopUp = input.required<'option' | 'ok'>(); //botões sim e não ou somente ok
+  private data = inject(DIALOG_DATA);
+  readonly text = signal(this.data.text);
+  readonly typePopUp = signal(this.data.typePopUp); //botões sim e não ou somente ok
+
+  public dialogRef = inject(DialogRef);
+  close(value: boolean) { //o SIM e o OK retornam true, o NÃO retorna false
+    this.dialogRef.close(value);
+  }
 }
