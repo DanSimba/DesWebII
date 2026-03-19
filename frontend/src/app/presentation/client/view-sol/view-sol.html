@@ -22,14 +22,27 @@
     </div>
 
     @if(this.est == "orçado"){
-    <div class="flex flex-col font-bold w-[60vh] h-[17vh] p-2 text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby)">
-      <div class="flex justify-center items-center">
-         Orçamento
+      <div class="flex flex-col font-bold w-[60vh] h-[25vh] p-2 text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby) overflow-y-auto">
+        <div class="flex justify-center items-center">
+          Orçamento
+        </div>
+        
+        <div class="flex justify-left text-[15px]">
+          Valor: R$xxx.xx
+        </div>
+        <div class="flex justify-left text-[15px]">
+          Descrição: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta illum iure, praesentium quo tempora minus consequuntur amet repellendus officia error!
+        </div>
+        
+        <div class="flex flex-row h-[10vh] justify-between pt-1">
+          <div class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-yellow-500 rounded-[28px] border-solid border-5 border-yellow-700 hover:cursor-pointer hover:bg-yellow-600">
+                Aceitar
+          </div>
+
+          <div class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-red-500 rounded-[28px] border-solid border-5 border-red-700 hover:cursor-pointer hover:bg-red-800">
+                Rejeitar
+          </div>
+        </div>
       </div>
-       
-      <div class="flex justify-left">
-        AAA
-      </div>
-    </div>
     }
 </div>
