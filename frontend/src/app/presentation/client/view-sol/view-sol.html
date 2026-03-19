@@ -1,1 +1,49 @@
-<p>view-sol works!</p>
+<div class="flex flex-col w-[82vh] h-[65vh] items-center bg-[image:var(--wallpaper-kitty)] bg-cover bg-center p-3 gap-2 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
+    <div class="flex font-bold w-[32vh] h-[7vh] p-2 justify-center items-center text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby)">
+      Painel de Visualização
+    </div>
+
+    <div class="flex font-bold w-[60vh] h-[17vh] p-2 justify-center items-center text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby)">
+      DADOS
+    </div>
+
+    <div class="flex flex-row font-bold w-[60vh] h-[10vh] p-2 justify-around items-center text-[20px] bg-(--queen-pink) rounded-[10px] border-dashed border-5 border-(--antique-ruby)">
+            <div class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[20px] bg-(--parrot-pink) rounded-[28px] border-solid border-5 border-pink-700">
+                Data/hora
+            </div>
+
+            <div class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[20px] bg-(--parrot-pink) rounded-[28px] border-solid border-5 border-pink-700">
+                Estado
+            </div>
+
+            <div class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[20px] bg-(--parrot-pink) rounded-[28px] border-solid border-5 border-pink-700">
+                reabrir/pagar
+            </div>
+    </div>
+
+    @if(this.est == "orçada"){
+      <div class="flex flex-col font-bold w-[60vh] h-[25vh] p-2 text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby) overflow-y-auto">
+        <div class="flex justify-center items-center">
+          Orçamento
+        </div>
+        
+        <div class="flex justify-left text-[15px]">
+          Valor: R$xxx.xx
+        </div>
+        <div class="flex justify-left text-[15px]">
+          Descrição: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta illum iure, praesentium quo tempora minus consequuntur amet repellendus officia error!
+        </div>
+        
+        <div class="flex flex-row h-[10vh] justify-between pt-1">
+          <div (click)="openPopup('Aprovar este orçamento?', 'option')" 
+          class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-yellow-500 rounded-[28px] border-solid border-5 border-yellow-700 hover:cursor-pointer hover:bg-yellow-600">
+                Aprovar
+          </div>
+
+          <div (click)="openPopup('Rejeitar este orçamento?', 'ok')"  class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-red-500 rounded-[28px] border-solid border-5 border-red-700 hover:cursor-pointer hover:bg-red-800">
+                Rejeitar
+          </div>
+        </div>
+      </div>
+    }
+</div>
