@@ -1,0 +1,21 @@
+<div class="flex flex-col justify-between text-[15px] items-center w-[63vh] h-[22vh] p-2 bg-(--queen-pink) border-solid border-5 border-[#7B1D26] rounded-[22px] break-all font-semibold shadow-lg">
+        <h1>Alerta</h1>
+        <div class="flex text-[18px] break-words">
+            {{text()}}
+        </div>
+        @if (typePopUp() == 'ok') {
+        <div (click)="close(false)" class="flex flex-row text-[17px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-(--parrot-pink) rounded-[28px] border-solid border-5 border-pink-700 hover:cursor-pointer hover:underline">
+                    OK
+            </div>
+        } @else {
+            <div class="flex flex-row  w-[38vh] h-[6vh] justify-between">
+            <div (click)="close(true)" class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-yellow-500 rounded-[28px] border-solid border-5 border-yellow-700 hover:cursor-pointer hover:bg-yellow-600">
+                    Sim
+            </div>
+
+            <div (click)="close(false)" class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-red-500 rounded-[28px] border-solid border-5 border-red-700 hover:cursor-pointer hover:bg-red-800">
+                    Não
+            </div>
+            </div>
+        }
+    </div>

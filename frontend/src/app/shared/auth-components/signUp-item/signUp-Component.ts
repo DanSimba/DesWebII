@@ -7,10 +7,11 @@ import { MatIconModule } from '@angular/material/icon';
 //import { CommonModule } from '@angular/common';
 import { CepForm } from '../forms/cepForm/cep-form';
 import { SignUpForm } from '../forms/signUpForm/signUp-form';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signUpComponent',
-  imports: [MatIconModule,/* ReactiveFormsModule, CommonModule, */CepForm, SignUpForm],
+  imports: [MatIconModule,/* ReactiveFormsModule, CommonModule, */CepForm, SignUpForm, RouterLink],
   standalone: true,
   templateUrl: './signUp-Component.html',
 })
