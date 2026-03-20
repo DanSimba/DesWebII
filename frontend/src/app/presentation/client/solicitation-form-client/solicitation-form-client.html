@@ -1,1 +1,25 @@
-<p>solicitation-form-client works!</p>
+<div class="flex flex-col w-xl" [formGroup]="form">
+
+  <mat-form-field class="">
+    <mat-label>Descrição do Equipamento</mat-label>
+    <input matInput formControlName="descEquip">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Categoria do Equipamento</mat-label>
+    <mat-select formControlName="catID">
+      <mat-option value="one">First option</mat-option>
+      <mat-option value="two">Second option</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Descrição do Defeito</mat-label>
+    <textarea matInput formControlName="descDefeito" rows="6"></textarea>
+  </mat-form-field>
+  <p>
+      <button (click)="onSubmit()"
+      class="items-end border-3 rounded-xl border-(--french-puce) hover:cursor-pointer p-2 font-bold text-(--french-puce) text-l">
+      SOLICITAR</button>
+  </p>
+</div>
+
+
