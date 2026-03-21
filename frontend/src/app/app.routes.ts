@@ -6,6 +6,7 @@ import { SolicitationFormClient } from './presentation/client/solicitation-form-
 import { CrudCat } from './page/crud-cat/crud-cat';
 import { LoginView } from './page/auth/login-view/login-view';
 import { AutocadastroView } from './page/auth/autocadastro-view/autocadastro-view';
+import { CrudFunc } from './page/crud-func/crud-func';
 
 export const routes: Routes = [
     {
@@ -42,5 +43,9 @@ export const routes: Routes = [
     {
         path:'funcionario/crud-cat',
         component:CrudCat
+    },
+    {
+        path: 'funcionario/crud-func',
+        component:CrudFunc
     }
 ];
