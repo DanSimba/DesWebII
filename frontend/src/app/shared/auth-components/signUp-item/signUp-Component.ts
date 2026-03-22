@@ -12,9 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 
 
-export class SignUpComponent implements OnInit {
-  constructor(){};
-  ngOnInit(): void {}
+export class SignUpComponent{
 
 }
 
