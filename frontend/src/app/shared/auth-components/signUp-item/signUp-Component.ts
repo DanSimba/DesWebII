@@ -1,23 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-//import { CepType } from '../../../services/CEP/cep.type';
-//import { CepService } from '../../../services/CEP/cep.service';
-//import { CepModel } from './cepModel';
-//import { ReactiveFormsModule, FormGroup, FormBuilder, FormControl } from '@angular/forms';
-//import { CommonModule } from '@angular/common';
 import { CepForm } from '../forms/cepForm/cep-form';
 import { SignUpForm } from '../forms/signUpForm/signUp-form';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signUpComponent',
-  imports: [MatIconModule,/* ReactiveFormsModule, CommonModule, */CepForm, SignUpForm, RouterLink],
+  imports: [MatIconModule,CepForm, SignUpForm, RouterLink],
   standalone: true,
   templateUrl: './signUp-Component.html',
 })
 
 
-export class SignUpComponent /*implements OnInit*/ {
+export class SignUpComponent implements OnInit {
+  constructor(){};
+  ngOnInit(): void {}
+
+}
+
+
+/* ReactiveFormsModule, CommonModule, */
+//import { CepType } from '../../../services/CEP/cep.type';
+//import { CepService } from '../../../services/CEP/cep.service';
+//import { CepModel } from './cepModel';
+//import { ReactiveFormsModule, FormGroup, FormBuilder, FormControl } from '@angular/forms';
+//import { CommonModule } from '@angular/common';
+
  /* formCep: FormGroup;
   submittedCepForm: any;
   cepResponse: CepType = {
@@ -54,4 +62,4 @@ export class SignUpComponent /*implements OnInit*/ {
       })
     } catch (error) {}
   }*/
-}
+
