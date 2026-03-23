@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CepForm } from '../forms/cepForm/cep-form';
 import { SignUpForm } from '../forms/signUpForm/signUp-form';
 import { RouterLink } from '@angular/router';
+import { ViewChild, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-signUpComponent',
@@ -12,10 +13,17 @@ import { RouterLink } from '@angular/router';
 })
 
 
-export class SignUpComponent implements OnInit {
-  constructor(){};
-  ngOnInit(): void {}
+export class SignUpComponent implements AfterViewInit{
+  @ViewChild(SignUpForm) signUpForm! : SignUpForm;
+  constructor(){}
 
+  botaoPai():void{
+    this.signUpForm.testeMaluco();
+  }
+
+  ngAfterViewInit(): void {
+    
+  }
 }
 
 
