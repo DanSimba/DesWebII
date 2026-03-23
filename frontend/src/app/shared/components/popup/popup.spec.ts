@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AutocadastroView } from './autocadastro-view';
+import { Popup } from './popup';
 
-describe('AutocadastroView', () => {
-  let component: AutocadastroView;
-  let fixture: ComponentFixture<AutocadastroView>;
+describe('Popup', () => {
+  let component: Popup;
+  let fixture: ComponentFixture<Popup>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AutocadastroView]
+      imports: [Popup]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AutocadastroView);
+    fixture = TestBed.createComponent(Popup);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
