@@ -2,8 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CepServiceService } from '../../../../services/CEP/cep-service.service';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
-import { CepType } from './cepType'
-
+import { CepType } from './cepType';
 
 @Component({
   selector: 'cep-form',
@@ -16,29 +15,42 @@ export class CepForm implements OnInit {
   ngOnInit(): void {}
   private cepService = inject(CepServiceService);
 
-  cepInfo: CepType ={
-    logradouro: "",
-    uf: "",
-    bairro: "",
-    complemento: ""
+  cepInfo: CepType = {
+    logradouro: '',
+    uf: '',
+    bairro: '',
+    complemento: '',
   };
 
   cepAlteration(cep: string) {
-    cep = cep.replace(/-/g, '');
+    //impede de gerar requisições falhas
+    if (cep == '' || cep.length < 9) {
+      console.log("===IMPEDIDO===");
+      return;
+    }
 
+    //Retira os caracteres da mascara
+    cep = cep.replace(/-/g, '');
+    let cepResponse: any;
+
+    //Iludindo o usuario
+    this.cepInfo.logradouro = "Buscando...";
+    this.cepInfo.uf = "...";
+    this.cepInfo.bairro = "Buscando...";
+    this.cepInfo.complemento = "Buscando...";
+
+    //Retira os caracteres da mascara
     this.cepService.getCep(cep).subscribe({
       next: (res) => {
-        console.log(res);
+        cepResponse = res;
+        this.cepInfo.logradouro = cepResponse.logradouro;
+        this.cepInfo.uf = cepResponse.uf;
+        this.cepInfo.bairro = cepResponse.bairro;
+        this.cepInfo.complemento = cepResponse.complemento;
       },
       error: (res) => {
-        console.log("+ ERRO NO VIA CEP +"+res);
+        console.log('+ ERRO NO VIA CEP +' + res);
       }
     });
-
-
-    /* 
-    get logradouro(){
-      return this.cepInfo.logradouro;
-    }*/
   }
 }
