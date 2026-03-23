@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AutocadastroView } from './autocadastro-view';
+import { CrudFunc } from './crud-func';
 
-describe('AutocadastroView', () => {
-  let component: AutocadastroView;
-  let fixture: ComponentFixture<AutocadastroView>;
+describe('CrudFunc', () => {
+  let component: CrudFunc;
+  let fixture: ComponentFixture<CrudFunc>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AutocadastroView]
+      imports: [CrudFunc]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AutocadastroView);
+    fixture = TestBed.createComponent(CrudFunc);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

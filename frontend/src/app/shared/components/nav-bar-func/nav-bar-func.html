@@ -1,5 +1,18 @@
 <div class="flex flex-col h-[75vh] w-[30vh] bg-(--parrot-pink) border-solid border-5 border-(--antique-ruby) rounded-[22px]">
-  <div class="text-xl m-2 p-1 text-center font-bold bg-(--queen-pink) rounded-[10px]">
-    <h1>NavBar Funcionario</h1>
+  
+  <div class="text-[20px] m-2 p-1 text-center font-bold bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby)">
+    <h1>Menu</h1>
   </div>
+
+  <div class="flex flex-col m-2 gap-2 p-2 h-[64vh] items-center rounded-[10px]">
+    
+    <app-nav-item label="Painel Geral" route="/func/panel"></app-nav-item>
+    <app-nav-item label="Solicitações Abertas" route="/func/list"></app-nav-item>
+    <app-nav-item label="Categorias (CRUD)" route="/func/crud-cat"></app-nav-item>
+    <app-nav-item label="Funcionario (CRUD)" route="/func/crud-func"></app-nav-item>
+    
+    <app-nav-item label="Sair" route="/"></app-nav-item>
+
+  </div>
+  
 </div>

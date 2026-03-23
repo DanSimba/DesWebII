@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { HomeView } from './page/home-view/home-view';
 import { Client } from './page/client/client';
 import { SolicitationFormClient } from './presentation/client/solicitation-form-client/solicitation-form-client';
+import { CrudCat } from './page/crud-cat/crud-cat';
+import { CrudFunc } from './page/crud-func/crud-func';
 import { Auth } from './page/auth/auth';
 import { LoginComponent } from './shared/auth-components/login-item/login-component';
 import { SignUpComponent } from './shared/auth-components/signUp-item/signUp-Component';
@@ -53,6 +55,10 @@ export const routes: Routes = [
             { 
                 path: 'crud-cat', 
                 loadComponent: () => import('./page/crud-cat/crud-cat').then(m => m.CrudCat) 
+            },
+            {
+                path: 'crud-func',
+                loadComponent: () => import('./page/crud-func/crud-func').then(m => m.CrudFunc)
             }
         ]
     }

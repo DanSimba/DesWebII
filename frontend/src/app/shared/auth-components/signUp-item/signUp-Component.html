@@ -21,82 +21,7 @@
     </div>
     <!--Campos formulario-->
     <div class="flex w-full h-full">
-      <div class="p-2 w-4/5 content-center">
-        <div class="p-4 flex flex-col h-full justify-around">
-          <!--CPF - id=name-->
-          <div class="flex items-center justify-center">
-            <div class="relative">
-              <input
-                id="cpf"
-                name="cpf"
-                type="text"
-                placeholder=""
-                class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit"
-              />
-              <label
-                for="cpf"
-                class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-              >
-                CPF
-              </label>
-            </div>
-          </div>
-          <!--Nome - id=name-->
-          <div class="flex items-center justify-center">
-            <div class="relative">
-              <input
-                id="name"
-                name="name"
-                type="text"
-                placeholder=""
-                class="text-(--french-puce) border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit"
-              />
-              <label
-                for="name"
-                class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-              >
-                Nome
-              </label>
-            </div>
-          </div>
-          <!--Email - id=email-->
-          <div class="flex items-center justify-center">
-            <div class="relative">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder=""
-                class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit"
-              />
-              <label
-                for="email"
-                class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-              >
-                Email
-              </label>
-            </div>
-          </div>
-          <!--Telefone - id=phone-->
-          <div class="flex items-center justify-center">
-            <div class="relative">
-              <input
-                id="phone"
-                name="phone"
-                type="phone"
-                placeholder=""
-                class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit"
-              />
-              <label
-                for="phone"
-                class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-              >
-                Telefone
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
+      <signUp-form class="w-4/5"/>
       <div class="border-3 border-(--parrot-pink) w-1/5"></div>
     </div>
     <!--Botões de Cadastro-->
@@ -106,7 +31,9 @@
            < LOGIN 
         </button>
       </div>
-      <button class="hover:cursor-pointer p-2 font-bold w-1/2 text-(--french-puce) text-xl">
+      <button class="hover:cursor-pointer p-2 font-bold w-1/2 text-(--french-puce) text-xl"
+      (click)="botaoPai()"
+      >
         CADASTRAR - SE >
       </button>
     </div>
@@ -119,116 +46,8 @@
       <h3>Endereço:</h3>
     </div>
     <div class="w-full h-full">
-      <form action="" [formGroup]="formCep" (ngSubmit)="onSubmitCepForm()">
-        <!--Campos-->
-        <div class="flex flex-col justify-around m-2 h-full">
-          <!--CEP - id=cep-->
-          <div class="relative w-full">
-            <input
-              id="cep"
-              name="cep"
-              type="text"
-              placeholder=""
-              class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
-            />
-            <label
-              for="cep"
-              class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-            >
-              CEP
-            </label>
-          </div>
-          <!--Logradouro - id=logradouro-->
-          <div class="relative w-full">
-            <input
-              id="logradouro"
-              name="logradouro"
-              type="text"
-              placeholder=""
-              value="{{cepResponse.Logradouro}}"
-              class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
-            />
-            <label
-              for="logradouro"
-              class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-            >
-              Logradouro
-            </label>
-          </div>
-          <!--Numero/UF - id=numero e id=uf-->
-          <div class="w-full flex gap-4">
-            <!--Numero-->
-            <div class="relative w-1/2">
-              <input
-                id="numero"
-                name="numero"
-                type="number"
-                placeholder=" "
-                min="0"
-                class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
-              />
-              <label
-                for="numero"
-                class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-              >
-                Numero
-              </label>
-            </div>
-            <!--UF-->
-            <div class="relative w-1/6">
-              <input
-                id="uf"
-                name="UF"
-                type="text"
-                placeholder=""
-                value="{{cepResponse.UF}}"
-                class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
-              />
-              <label
-                for="UF"
-                class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-              >
-                UF
-              </label>
-            </div>
-          </div>
-          <!--Bairro - id=bairro-->
-          <div class="relative w-full">
-            <input
-              id="bairro"
-              name="bairro"
-              type="text"
-              placeholder=""
-              value="{{cepResponse.Bairro}}"
-              class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
-            />
-            <label
-              for="bairro"
-              class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-            >
-              Bairro
-            </label>
-          </div>
-          <!--Complemento - id=complemento-->
-          <div class="relative w-full">
-            <input
-              id="complemento"
-              name="complemento"
-              type="text"
-              placeholder=""
-              value="{{cepResponse.Complemento}}"
-              class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
-            />
-            <label
-              for="complemento"
-              class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-            >
-              Complemento
-            </label>
-          </div>
-        </div>
-        <button type="submit">Enviar</button>
-      </form>
+      <!--Formulario-->
+      <cep-form/>
     </div>
   </div>
 </div>
