@@ -9,5 +9,7 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
   templateUrl: './signUp-form.html'
 })
 export class SignUpForm {
-
+  testeMaluco(): void{
+    console.log("ETCHA");
+  }
 }
