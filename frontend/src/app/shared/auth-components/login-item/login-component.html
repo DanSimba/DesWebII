@@ -32,7 +32,9 @@
       <div class="border-3 border-(--parrot-pink) w-4/5 content-center">
         <button class="hover:cursor-pointer p-2 font-bold text-(--french-puce) text-l" [routerLink]="'/auth/signup'"> CADASTRAR-SE</button>
       </div>
-      <button class="hover:cursor-pointer p-2 font-bold w-2/6 text-(--french-puce) text-xl">LOGIN ></button>
+      <button class="hover:cursor-pointer p-2 font-bold w-2/6 text-(--french-puce) text-xl"
+      (click)="botaoPai()";
+      >LOGIN ></button>
     </div>
   </div>
 </div>

@@ -9,4 +9,8 @@ import {MatIconModule} from '@angular/material/icon';
 })
 export class LoginForm {
 
+  testeMaluco(): void{
+    console.log("ETCHA");
+  }
+
 }
