@@ -1,35 +1,52 @@
-<div class="p-4 border">
-  <div class="flex justify-between items-center mb-4 border-b pb-2">
-    <h1 class="font-bold uppercase">Painel de Visualização - Funcionário</h1>
-    
-    <div class="flex gap-2">
-      <button (click)="setFiltro('HOJE')" [class.font-bold]="filtroAtual === 'HOJE'" class="border px-2 py-1 text-xs">Hoje</button>
-      <button (click)="setFiltro('PERIODO')" [class.font-bold]="filtroAtual === 'PERIODO'" class="border px-2 py-1 text-xs">Período</button>
-      <button (click)="setFiltro('TODAS')" [class.font-bold]="filtroAtual === 'TODAS'" class="border px-2 py-1 text-xs">Todas</button>
+<div class="flex flex-col w-[82vh] h-[65vh] bg-pink-700/50 p-3 gap-4 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
+
+  <div class="flex justify-between items-center gap-2">
+
+    <div class="flex font-bold w-[45vh] h-[10vh] p-2 items-center justify-center text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby) text-(--french-puce) uppercase tracking-tighter shadow-md">
+      Painel Geral
+    </div>
+
+    <div class="flex gap-1 bg-(--queen-pink) p-1 rounded-[10px] border-solid border-5 border-(--antique-ruby) shadow-md">
+      <button (click)="setFiltro('HOJE')" 
+              [ngClass]="filtroAtual === 'HOJE' ? 'bg-(--antique-ruby) text-white' : 'text-(--french-puce) hover:bg-pink-300'" 
+              class="px-4 py-2 text-xs font-bold uppercase rounded-md transition-all cursor-pointer">
+        Hoje
+      </button>
+      <button (click)="setFiltro('PERIODO')" 
+              [ngClass]="filtroAtual === 'PERIODO' ? 'bg-(--antique-ruby) text-white' : 'text-(--french-puce) hover:bg-pink-300'" 
+              class="px-4 py-2 text-xs font-bold uppercase rounded-md transition-all cursor-pointer">
+        Período
+      </button>
+      <button (click)="setFiltro('TODAS')" 
+              [ngClass]="filtroAtual === 'TODAS' ? 'bg-(--antique-ruby) text-white' : 'text-(--french-puce) hover:bg-pink-300'" 
+              class="px-4 py-2 text-xs font-bold uppercase rounded-md transition-all cursor-pointer">
+        Todas
+      </button>
     </div>
   </div>
 
-  <div *ngIf="filtroAtual === 'PERIODO'" class="mb-4 p-2 bg-gray-50 border flex gap-4">
-    <input type="date" [(ngModel)]="dataInicio" class="border p-1 text-xs">
-    <input type="date" [(ngModel)]="dataFim" class="border p-1 text-xs">
+  <div *ngIf="filtroAtual === 'PERIODO'" class="flex gap-4 bg-(--queen-pink) p-2 rounded-[10px] border-solid border-5 border-(--antique-ruby) shadow-md self-end">
+    <input type="date" [(ngModel)]="dataInicio" class="bg-white border-2 border-(--antique-ruby) p-1 text-xs rounded outline-none text-(--french-puce) font-bold">
+    <input type="date" [(ngModel)]="dataFim" class="bg-white border-2 border-(--antique-ruby) p-1 text-xs rounded outline-none text-(--french-puce) font-bold">
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    <div *ngFor="let req of requests" class="border p-4 rounded bg-white">
-      
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
+    <div *ngFor="let req of requests" class="bg-(--queen-pink) border-solid border-5 border-(--antique-ruby) p-4 rounded-[10px] flex flex-col justify-between shadow-xl hover:scale-[1.02] transition-transform">
       <div class="flex justify-between items-start mb-2">
-        <span class="text-xs text-gray-400">#{{req.id}}</span>
-        <span [style.background-color]="getStatusColor(req.status)" class="text-[10px] text-white px-2 py-0.5 rounded uppercase font-bold">
+        <span class="text-xs font-black text-(--french-puce) opacity-60">#{{req.id}}</span>
+        
+        <span [style.background-color]="getStatusColor(req.status)" class="text-[10px] text-white px-2 py-1 rounded uppercase font-black shadow-md border border-black/20">
           {{req.status}}
         </span>
       </div>
-
-      <h3 class="font-bold text-sm">{{req.clientName}}</h3>
-      <p class="text-xs text-gray-600 mt-1">{{req.description}}</p>
       
-      <div class="mt-4 text-[10px] text-gray-400 border-t pt-2 text-right">
+      <h3 class="font-bold text-sm text-(--french-puce) uppercase mt-2">{{req.clientName}}</h3>
+      <p class="text-xs text-(--french-puce) font-medium mt-1 mb-4 flex-1">{{req.description}}</p>
+      
+      <div class="text-[10px] font-bold text-(--french-puce) border-t-2 border-(--antique-ruby)/20 pt-2 text-right">
         {{req.dateTime | date:'dd/MM/yyyy'}}
       </div>
     </div>
   </div>
+
 </div>
