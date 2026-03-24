@@ -21,9 +21,9 @@ export class SolicitationPanel {
   ngOnInit(): void {
 
       this.clientService.getClient("1") //PEGA O CLIENTE INTEIRO, AÍ AS SOLS NÃO PRECISAM CARREGAR
-        .subscribe(client => {          //O NOME DO CLIENTE PQ A GNT AS INFOS DELE ACESSA DIRETAMENTE PELO OBJ CLIENTE
-          this.client = client;
-          this.sols = client.sols; 
+        .subscribe(data => {          //O NOME DO CLIENTE PQ A GNT AS INFOS DELE ACESSA DIRETAMENTE PELO OBJ CLIENTE
+          this.client = data;
+          this.sols = data.sols; //FAZ UM REQUEST A MENOS
         });
 
         //OU 

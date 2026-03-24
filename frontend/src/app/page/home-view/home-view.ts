@@ -3,7 +3,7 @@ import { SolicitationClient } from '../../presentation/client/solicitation-clien
 import { NavBar } from '../../shared/components/nav-bar/nav-bar';
 @Component({
   selector: 'app-home-view',
-  imports: [SolicitationClient, NavBar],
+  imports: [NavBar],
   templateUrl: './home-view.html',
   styleUrl: './home-view.css',
 })
