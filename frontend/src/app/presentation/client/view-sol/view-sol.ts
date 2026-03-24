@@ -4,7 +4,7 @@ import { Popup } from '../../../shared/components/popup/popup';
 
 @Component({
   selector: 'app-view-sol',
-  imports: [Popup],
+  imports: [],
   templateUrl: './view-sol.html',
   styleUrl: './view-sol.css',
 })
