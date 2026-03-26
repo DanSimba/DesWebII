@@ -13,29 +13,31 @@ import { ClientInterface } from '../../../models/client-interface';
 export class SolicitationPanel {
 
   //VERSÃO QUE VAI RECEBER RESPOSTA DO BACK USANDO O SERVICE
-/*
+
   private clientService = inject(ClientService);
   client?: ClientInterface;
   sols: Solicitation[] = []; //lista de objs do tipo Solicitation q vai retornar
 
   ngOnInit(): void {
 
-      this.clientService.getClient("1") //PEGA O CLIENTE INTEIRO, AÍ AS SOLS NÃO PRECISAM CARREGAR
-        .subscribe(data => {          //O NOME DO CLIENTE PQ A GNT AS INFOS DELE ACESSA DIRETAMENTE PELO OBJ CLIENTE
+      this.clientService.getClient("c12345").subscribe(
+        data => {          //O NOME DO CLIENTE PQ A GNT AS INFOS DELE ACESSA DIRETAMENTE PELO OBJ CLIENTE
           this.client = data;
           this.sols = data.sols; //FAZ UM REQUEST A MENOS
         });
 
         //OU 
-        
-        this.clientService.getSols("1") //PEGA SÓ A LISTA DE SOLS,    
+        /*
+        this.clientService.getSols("c12345") //PEGA SÓ A LISTA DE SOLS,    
           .subscribe(sols => {          // MAS AÍ AS SOLS DEVEM CONTER INFO DO CLIENTE
             this.sols = sols;
         });
+        */
     }
-*/
+
 
   //VERSÃO BÁSICA SÓ PRA APARECER NA TELA
+  /*
   date = new Date(2025, 5, 24, 10, 30)
 
   sols: Solicitation[]= [
@@ -65,5 +67,5 @@ export class SolicitationPanel {
     },
     
   ]
-    
+   */ 
 }

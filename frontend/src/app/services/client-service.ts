@@ -9,6 +9,7 @@ import { ClientInterface } from '../models/client-interface';
 })
 export class ClientService {
     private apiUrl = 'END-BACKEND';
+    private jsonUrl = 'assets/client-ex.json'; //VERSÃO COM JSON (CLIENTE DE EXEMPLO)
     constructor(private http: HttpClient) {}
 
     getSols(id:string): Observable <Solicitation[]>{ //retorna tds as sols do cliente 
@@ -18,6 +19,7 @@ export class ClientService {
     //OU
 
     getClient(id: string): Observable<ClientInterface> { //retorna diretamente o cliente
-      return this.http.get<ClientInterface>(`${this.apiUrl}/clients/${id}`);
+      //return this.http.get<ClientInterface>(`${this.apiUrl}/clients/${id}`); //VERSÃO QUE BUSCA DO BACK, PARA A SEGUNDA PARTE
+      return this.http.get<ClientInterface>(this.jsonUrl);
     }
 }
