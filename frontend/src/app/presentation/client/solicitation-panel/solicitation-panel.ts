@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { SolicitationClient } from '../solicitation-client/solicitation-card';
 import { ClientService } from '../../../services/client-service';
 import { Solicitation } from '../../../models/solicitation-interface';
@@ -15,14 +15,14 @@ export class SolicitationPanel {
   //VERSÃO QUE VAI RECEBER RESPOSTA DO BACK USANDO O SERVICE
 
   private clientService = inject(ClientService);
-  client?: ClientInterface;
+  client = signal<ClientInterface|null>(null);
   sols: Solicitation[] = []; //lista de objs do tipo Solicitation q vai retornar
 
   ngOnInit(): void {
-
+      
       this.clientService.getClient("c12345").subscribe(
         data => {          //O NOME DO CLIENTE PQ A GNT AS INFOS DELE ACESSA DIRETAMENTE PELO OBJ CLIENTE
-          this.client = data;
+          this.client.set(data);
           this.sols = data.sols; //FAZ UM REQUEST A MENOS
         });
 
@@ -33,7 +33,7 @@ export class SolicitationPanel {
             this.sols = sols;
         });
         */
-    }
+  }
 
 
   //VERSÃO BÁSICA SÓ PRA APARECER NA TELA
