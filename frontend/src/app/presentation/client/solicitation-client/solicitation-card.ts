@@ -10,7 +10,7 @@ import { Solicitation } from '../../../models/solicitation-interface';
 })
 export class SolicitationClient {
   router = inject(Router);
-  readonly nome = input.required<string>();
+  readonly nome = input<string>();
   readonly data = input.required<string>();
   readonly estado = input.required<string>();
   readonly desc = input.required<string>();

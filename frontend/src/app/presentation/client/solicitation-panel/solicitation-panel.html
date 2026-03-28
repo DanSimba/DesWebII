@@ -10,7 +10,7 @@
       @for (s of sols; track $index) {
         <app-solicitation-card 
           solId="{{s.id}}"
-          estado="{{s.estado}}" nome="{{client()?.nome}}"
+          estado="{{s.estado}}" 
           data="{{s.dataHora}}" desc="{{s.desc}}">
         </app-solicitation-card> <!--ID 01 FIXO POR ENQUANTO (TROCAR PELO UUID QNDO VIER)-->
       }
