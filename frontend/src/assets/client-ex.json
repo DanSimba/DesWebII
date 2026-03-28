@@ -1,0 +1,27 @@
+{
+  "id": "c12345",
+  "nome": "RAZER DA SILVA",
+  "sols": [
+    {
+      "id": "s001",
+      "equipamento": "computador",
+      "dataHora": "2026-03-26",
+      "estado": "aberta",
+      "desc": "O computador não liga e emite bipes ao tentar iniciar."
+    },
+    {
+      "id": "s002",
+      "equipamento": "celular",
+      "dataHora": "2026-03-26",
+      "estado": "orçada",
+      "desc": "A tela do celular está trincada e o touch não responde em algumas áreas."
+    },
+    {
+      "id": "s003",
+      "equipamento": "tablet",
+      "dataHora": "2026-03-26",
+      "estado": "paga",
+      "desc": "Troca de bateria solicitada devido a baixa autonomia de carga."
+    }
+  ]
+}

@@ -11,7 +11,7 @@ import { Popup } from '../../../shared/components/popup/popup';
 
 export class ViewSol {
 
-  est="orçada";
+  est="redirecionada";
 
   dialog = inject(Dialog); //cria obj 'dialog' (popup)
   protected openPopup(text: string, type: string){ 

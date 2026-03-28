@@ -3,9 +3,12 @@
         <div class="flex w-[13vh] h-[30px] text-sm bg-[#E4CDDD] justify-center items-center rounded-[10px]">
             {{estado()}}
         </div>
-        <div class="flex w-[25vh] h-[32px] text-md bg-[#E4CDDD] justify-center items-center rounded-[10px]">
-            {{nome()}}
-        </div>
+        @if(nome()){
+            <div class="flex w-[25vh] h-[32px] text-md bg-[#E4CDDD] justify-center items-center rounded-[10px]">
+                {{nome()}}
+            </div>
+        }
+        
     </div>
 
     <div class="flex w-[48] m-2 h-[13vh] text-sm bg-[#E4CDDD] p-[4px] rounded-[10px] break-words overflow-y-auto">

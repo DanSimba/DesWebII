@@ -9,5 +9,14 @@
     --parrot-pink: #ca99ab;
     --queen-pink: #e4cddd;
 
+    --aberta: gray;
+    --orcada: rgb(124, 19, 19);
+    --rejeitada: red;
+    --aprovada: yellow;
+    --redirecionada: purple;
+    --arrumada: blue;
+    --paga: orange;
+    --finalizada: green;
+
     --wallpaper-kitty: url('/images/hellokitty-hd.jpeg');
 }
