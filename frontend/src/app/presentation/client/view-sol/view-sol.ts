@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Dialog } from '@angular/cdk/dialog';
 import { Popup } from '../../../shared/components/popup/popup';
 
@@ -9,9 +9,13 @@ import { Popup } from '../../../shared/components/popup/popup';
   styleUrl: './view-sol.css',
 })
 
-export class ViewSol {
+export class ViewSol{
 
-  est="redirecionada";
+  est="aprovada";
+
+  ngOnInit(){
+    console.log("\nestado: "+ this.est)
+  }
 
   dialog = inject(Dialog); //cria obj 'dialog' (popup)
   protected openPopup(text: string, type: string){ 

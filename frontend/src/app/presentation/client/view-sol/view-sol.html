@@ -12,8 +12,9 @@
                 Data/hora
             </div>
 
-            <div class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[16px] bg-(--{{this.est}}) rounded-[28px] border-solid border-5 border-(--french-puce)">
-                {{this.est}}
+            <div [style.background-color]="'var(--' + est + ')'"
+             class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[16px] rounded-[28px] border-solid border-5 border-(--french-puce)">
+                {{est}}
             </div>
 
             @if(est=="aprovada"){
