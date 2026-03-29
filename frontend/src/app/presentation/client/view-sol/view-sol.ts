@@ -10,7 +10,6 @@ import { Popup } from '../../../shared/components/popup/popup';
 })
 
 export class ViewSol{
-
   est="aprovada";
 
   ngOnInit(){
