@@ -59,6 +59,10 @@ export const routes: Routes = [
             {
                 path: 'crud-func',
                 loadComponent: () => import('./page/crud-func/crud-func').then(m => m.CrudFunc)
+            },
+            {
+                path: 'relatorio',
+                loadComponent: () => import('./page/relatorio/relatorio/relatorio.component').then(m => m.RelatorioComponent)
             }
         ]
     }
