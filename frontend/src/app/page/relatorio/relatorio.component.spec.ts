@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RelatorioComponent } from './relatorio.component';
+import { RelatorioComponent } from './relatorio/relatorio.component';
 
 describe('RelatorioComponent', () => {
   let component: RelatorioComponent;
@@ -8,9 +8,8 @@ describe('RelatorioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RelatorioComponent]
-    })
-    .compileComponents();
+      imports: [RelatorioComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RelatorioComponent);
     component = fixture.componentInstance;
