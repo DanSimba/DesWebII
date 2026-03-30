@@ -5,7 +5,7 @@
 
     <div class="flex gap-4">
         <div class="text-xl m-2 p-1 text-center font-bold bg-(--queen-pink) rounded-[10px] p-4 w-1/2">
-            <button type="button" (click)="novaCat()">New categoria</button>
+            <button type="button" (click)="novaCat()" [routerLink]="['/func/new']">New categoria</button>
         </div>
         <div class="text-xl m-2 p-1 text-center font-bold bg-(--queen-pink) rounded-[10px] p-4 w-1/2">
             <button type="button" (click)="filtrarCat()">Filtros</button>
@@ -23,7 +23,8 @@
                     </tr>
                 </thead>
                 <tbody class="text-gray-700">
-                        <tr *ngFor="let categoria of categorias" class="border-b border-gray-100 hover:bg-red-50 transition-all">
+                    @for (categoria of categorias; track categoria.id) {
+                        <tr class="border-b border-gray-100 hover:bg-red-50 transition-all">
                             <td class="p-4 border-r text-xs font-mono text-center">{{categoria.id}}</td>
                             <td class="p-4 border-r font-bold text-sm uppercase text-center">{{categoria.nome}}</td>
                             <td class="p-4 text-center flex items-center justify-around">
@@ -41,6 +42,8 @@
                                 </button>
                             </td>
                         </tr>
+                    }
+                        
                 </tbody>
             </table>
         </div>

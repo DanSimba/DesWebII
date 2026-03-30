@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router, RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-categoria-crud',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './categoria-crud.html',
   styleUrl: './categoria-crud.css',
 })
 export class CategoriaCrud {
+  constructor(public router: Router){};
   categorias = [
     {
       id: 1,
@@ -44,7 +46,7 @@ export class CategoriaCrud {
   }
 
   editarCat() {
-    console.log('editar categoria\n') 
+    this.router.navigate(['/func/edit']);
   }
 
   removerCat() {
