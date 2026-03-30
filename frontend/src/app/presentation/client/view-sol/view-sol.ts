@@ -3,6 +3,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { Popup } from '../../../shared/components/popup/popup';
 import { ClientSolicitationService } from '../../../services/client-solicitation-service.service';
 import { Solicitation } from '../../../models/solicitation-interface';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-view-sol',
@@ -40,21 +41,21 @@ export class ViewSol{
   //ÁREA DO POPUP
   dialog = inject(Dialog); //cria obj 'dialog' (popup)
 
-  protected openPopup(text: string, type: string){ 
-    const dialogRef = this.dialog.open(Popup, {
+  protected async openPopup(text: string, type: string): Promise<boolean>{ 
+    const dialogRef = this.dialog.open<boolean>(Popup, {
       data: {
         text: text,
         typePopUp: type
       }
     });
 
-    dialogRef.closed.subscribe(result => {
-      if (result === true) {
-        console.log('SIM ou OK');
-        this.updtEstado("aprovada")
-      } else {
-        console.log('NAOR');
-      }
-    });
+    const result = await firstValueFrom(dialogRef.closed);
+    if(result){
+      console.log("sim!sim!sim!");
+      return true;
+    } else{
+      console.log("não ou ok");
+      return false;
+    }
   }
 }
