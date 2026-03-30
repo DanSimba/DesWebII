@@ -75,6 +75,10 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./page/relatorio/relatorio.component').then((m) => m.RelatorioComponent),
       },
+      {
+          path: 'budget',
+          loadComponent: () => import('./presentation/func/maintenance-budget/maintenance-budget.component').then(m => m.MaintenanceBudgetComponent)
+        },
     ],
   },
 ];
