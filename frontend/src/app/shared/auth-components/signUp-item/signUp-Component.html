@@ -1,4 +1,4 @@
-<div class="flex gap-4">
+<div class="flex gap-4 bg-(--queen-pink) ">
   <!--Estrutura do formulario-->
   <div class="flex flex-col items-center gap-2 w-[400px] h-[400px]">
     <!--ICONE TITULO-->
@@ -13,7 +13,7 @@
         ></mat-icon>
       </div>
       <!--Titulo-->
-      <div class="border-3 border-(--parrot-pink) w-full">
+      <div class="border-3 border-(--parrot-pink) w-full hover:cursor-pointer" [routerLink]="'/'">
         <h3 class="text-(--french-puce) font-bold border-(--parrot-pink) p-4 text-xl">
           MAINTEC - CADASTRO
         </h3>
@@ -27,9 +27,7 @@
     <!--Botões de Cadastro-->
     <div class="w-full flex gap-2 h-1/6">
       <div class="border-3 border-(--parrot-pink) w-1/2 content-center">
-        <button class="hover:cursor-pointer p-2 font-bold w-1/2 text-(--french-puce) text-xl" [routerLink]="'/auth/login'">
-           < LOGIN 
-        </button>
+        
       </div>
       <button class="hover:cursor-pointer p-2 font-bold w-1/2 text-(--french-puce) text-xl"
       (click)="botaoPai()"
