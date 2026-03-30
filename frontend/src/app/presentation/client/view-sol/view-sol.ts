@@ -1,6 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Dialog } from '@angular/cdk/dialog';
 import { Popup } from '../../../shared/components/popup/popup';
+import { ClientSolicitationService } from '../../../services/client-solicitation-service.service';
+import { Solicitation } from '../../../models/solicitation-interface';
 
 @Component({
   selector: 'app-view-sol',
@@ -9,11 +11,35 @@ import { Popup } from '../../../shared/components/popup/popup';
   styleUrl: './view-sol.css',
 })
 
-export class ViewSol {
+export class ViewSol{
 
-  est="redirecionada";
+  private solCard = inject(ClientSolicitationService);
+  solData = signal<Solicitation|null>(null);
+  est="aprovada";
 
+  ngOnInit(){
+    //console.log("\nestado: "+ this.est)
+    this.solCard.getSol().subscribe(
+      data => {
+        this.solData.set(data);
+      }
+    )
+    console.log("sol: ", this.solData())
+  }
+
+  updtEstado(est: string){
+    this.solData.update(data => {
+          if (!data) return null;
+          return {
+            ...data,   //OUTROS CAMPOS
+            estado: est
+          };
+    });
+  }
+
+  //ÁREA DO POPUP
   dialog = inject(Dialog); //cria obj 'dialog' (popup)
+
   protected openPopup(text: string, type: string){ 
     const dialogRef = this.dialog.open(Popup, {
       data: {
@@ -25,7 +51,7 @@ export class ViewSol {
     dialogRef.closed.subscribe(result => {
       if (result === true) {
         console.log('SIM ou OK');
-        this.est = "aprovada";
+        this.updtEstado("aprovada")
       } else {
         console.log('NAOR');
       }

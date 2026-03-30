@@ -1,6 +1,7 @@
 <div class="flex flex-col text-lg w-[63vh] h-[22vh] p-2 bg-[#CA99AB] border-solid border-5 border-[#7B1D26] rounded-[22px] break-words font-semibold shadow-lg">
     <div class="flex flex-row justify-around">
-        <div class="flex w-[13vh] h-[30px] text-sm bg-[#E4CDDD] justify-center items-center rounded-[10px]">
+        <div [style.background-color]="'var(--' + estado() + ')'"
+        class="flex w-[13vh] h-[30px] text-sm justify-center items-center rounded-[10px]">
             {{estado()}}
         </div>
         @if(nome()){
