@@ -8,6 +8,8 @@ import { Auth } from './page/auth/auth';
 import { LoginComponent } from './shared/auth-components/login-item/login-component';
 import { SignUpComponent } from './shared/auth-components/signUp-item/signUp-Component';
 import { Func } from './page/func/func';
+import { NewCategoriaComponent } from './presentation/func/new-categoria/new-categoria.component';
+import { EditCategoriaComponent } from './presentation/func/edit-categoria/edit-categoria.component';
 
 export const routes: Routes = [
   {
@@ -64,8 +66,10 @@ export const routes: Routes = [
       },
       {
         path: 'crud-cat',
-        loadComponent: () => import('./page/crud-cat/crud-cat').then((m) => m.CrudCat),
+        loadComponent: () => import('./page/crud-cat/crud-cat').then((m) => m.CrudCat),   
       },
+      { path: 'new', component: NewCategoriaComponent},
+      { path: 'edit', component: EditCategoriaComponent},
       {
         path: 'crud-func',
         loadComponent: () => import('./page/crud-func/crud-func').then((m) => m.CrudFunc),
