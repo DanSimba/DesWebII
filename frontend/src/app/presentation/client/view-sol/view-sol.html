@@ -4,7 +4,7 @@
     </div>
 
     <div class="flex font-bold w-[60vh] h-[17vh] p-2 justify-center items-center text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby)">
-      DADOS
+      {{solData()?.desc}}
     </div>
 
     <div class="flex flex-row font-bold w-[60vh] h-[10vh] p-2 justify-around items-center text-[20px] bg-(--queen-pink) rounded-[10px] border-dashed border-5 border-(--antique-ruby)">
@@ -12,33 +12,33 @@
                 Data/hora
             </div>
 
-            <div [style.background-color]="'var(--' + est + ')'"
+            <div [style.background-color]="'var(--' + solData()?.estado  + ')'"
              class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[16px] rounded-[28px] border-solid border-5 border-(--french-puce)">
-                {{est}}
+                {{solData()?.estado}}
             </div>
 
-            @if(est=="aprovada"){
-                  <div (click)="openPopup('Vai para o app do banco / gera QR code etc', 'ok'); est='paga'"
+            @if(solData()?.estado=="aprovada"){
+                  <div (click)="openPopup('Vai para o app do banco / gera QR code etc', 'ok'); this.updtEstado('paga')"
                   class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[16px] bg-(--paga) rounded-[28px] border-solid border-5 border-orange-500 hover:cursor-pointer hover:bg-orange-500">
                     Pagar
                   </div>
-            } @else if(est == "orcada"){
+            } @else if(solData()?.estado == "orcada"){
                   <div class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[14px] text-center bg-gray-500 rounded-[28px] border-solid border-5 border-gray-700">
                     Aprove primeiro
                   </div>
-            } @else if(est == "rejeitada"){
-              <div (click)="est = 'aberta'"
+            } @else if(solData()?.estado == "rejeitada"){
+              <div (click)="this.updtEstado('aberta')"
                   class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[16px] bg-(--parrot-pink) rounded-[28px] border-solid border-5 border-pink-700 hover:cursor-pointer hover:bg-(--solid-pink)">
                     Reabrir
               </div>
             } @else{
               <div class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[20px] text-center bg-gray-500 rounded-[28px] border-solid border-5 border-gray-700">
-                    {{est}}
+                    {{solData()?.estado}}
               </div>
             }
     </div>
 
-    @if(this.est == "orcada"){
+    @if(solData()?.estado == "orcada"){
       <div class="flex flex-col font-bold w-[60vh] h-[25vh] p-2 text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby) overflow-y-auto">
         <div class="flex justify-center items-center">
           Orçamento
@@ -57,7 +57,7 @@
                 Aprovar
           </div>
 
-          <div (click)="openPopup('Rejeitar este orçamento?', 'ok')"  class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-(--rejeitada) rounded-[28px] border-solid border-5 border-red-700 hover:cursor-pointer hover:bg-red-800">
+          <div (click)="openPopup('Rejeitar este orçamento?', 'opt'); this.updtEstado('rejeitada')"  class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-(--rejeitada) rounded-[28px] border-solid border-5 border-red-700 hover:cursor-pointer hover:bg-red-800">
                 Rejeitar
           </div>
         </div>

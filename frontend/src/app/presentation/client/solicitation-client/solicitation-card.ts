@@ -1,6 +1,7 @@
-import { Component, inject, input } from '@angular/core';
-import { Router, Route } from '@angular/router';
+import { Component, inject, input, computed } from '@angular/core';
+import { Router } from '@angular/router';
 import { Solicitation } from '../../../models/solicitation-interface';
+import { of, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-solicitation-card',
@@ -15,6 +16,8 @@ export class SolicitationClient {
   readonly estado = input.required<string>();
   readonly desc = input.required<string>();
   readonly solId = input.required<string>();
+
+  
 
   openSol(){
     console.log('abriu a sol\n')
