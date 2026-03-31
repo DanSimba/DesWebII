@@ -10,20 +10,20 @@ import { ClientInterface } from '../../../models/client-interface';
   templateUrl: './solicitation-panel.html',
   styleUrl: './solicitation-panel.css',
 })
-export class SolicitationPanel {
+export class SolicitationPanel implements OnInit {
 
   //VERSÃO QUE VAI RECEBER RESPOSTA DO BACK USANDO O SERVICE
 
   private clientService = inject(ClientService);
   client = signal<ClientInterface|null>(null);
-  sols: Solicitation[] = []; //lista de objs do tipo Solicitation q vai retornar
+  sols= signal<Solicitation[]|null>(null); //lista de objs do tipo Solicitation q vai retornar
 
   ngOnInit(): void {
       
       this.clientService.getClient("c12345").subscribe(
         data => {          //O NOME DO CLIENTE PQ A GNT AS INFOS DELE ACESSA DIRETAMENTE PELO OBJ CLIENTE
           this.client.set(data);
-          this.sols = data.sols; //FAZ UM REQUEST A MENOS
+          this.sols.set(data.sols); //FAZ UM REQUEST A MENOS
         });
 
         //OU 
