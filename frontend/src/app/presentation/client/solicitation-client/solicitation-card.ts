@@ -17,8 +17,10 @@ export class SolicitationClient {
   readonly desc = input.required<string>();
   readonly solId = input.required<string>();
 
-  
 
+
+
+  
   openSol(){
     console.log('abriu a sol\n')
     this.router.navigate(['client/view-solicitation/',this.solId()]); 

@@ -1,13 +1,15 @@
   <div class="flex flex-col w-[82vh] h-[65vh] bg-[image:var(--wallpaper-kitty)] bg-cover bg-center p-3 gap-2 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
     <div class="flex font-bold w-[32vh] h-[16vh] p-2 justify-center items-center text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby)">
       Painel de Solicitações
-      @if(client()){
-        <!--possívelmente maior gambiarra que eu ja fiz na minha vida, pfv não tirar este if-->
-      }
+      <!--  MARCO HISTÓRICO DO IF REDENTOR (FERIADO DA INSURREIÇÃO DO SIGNAL)
+        @if(client()){
+        
+        }
+      -->
     </div>
 
     <div class="flex flex-col w-full items-left gap-2">
-      @for (s of sols; track $index) {
+      @for (s of sols(); track s) {
         <app-solicitation-card 
           solId="{{s.id}}"
           estado="{{s.estado}}" 
