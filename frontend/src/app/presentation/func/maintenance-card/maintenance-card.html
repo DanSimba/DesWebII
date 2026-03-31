@@ -1,0 +1,26 @@
+<div class="bg-(--queen-pink) border-solid border-5 border-(--antique-ruby) p-4 rounded-[10px] flex flex-col justify-between shadow-xl hover:scale-[1.02] transition-transform h-full">
+  <div class="flex justify-between items-start mb-2">
+    <span class="text-xs font-black text-(--french-puce) opacity-60">#{{req().id}}</span>
+    
+    <span [style.background-color]="getStatusColor(req().status)" class="text-[10px] text-white px-2 py-1 rounded uppercase font-black shadow-md border border-black/20">
+      {{req().status}}
+    </span>
+  </div>
+  
+  <h3 class="font-bold text-sm text-(--french-puce) uppercase mt-2">{{req().clientName}}</h3>
+  <p class="text-xs text-(--french-puce) font-medium mt-1 mb-4 flex-1">{{req().description}}</p>
+  
+  <div class="flex justify-between items-end border-t-2 border-(--antique-ruby)/20 pt-2">
+    <div class="text-[10px] font-bold text-(--french-puce)">
+      {{req().dateTime | date:'dd/MM/yyyy'}}
+    </div>
+
+    <button *ngIf="req().status === 'ABERTA' || req().status === 'APROVADA' || req().status === 'REDIRECIONADA' || req().status === 'PAGA'" 
+            (click)="onActionClick()"
+            class="bg-(--antique-ruby) hover:bg-(--solid-pink) text-(--queen-pink) text-[10px] font-bold py-1 px-3 rounded shadow-md transition-colors uppercase cursor-pointer">
+      <span *ngIf="req().status === 'ABERTA'">Orçar</span>
+      <span *ngIf="req().status === 'APROVADA' || req().status === 'REDIRECIONADA'">Manutenção</span>
+      <span *ngIf="req().status === 'PAGA'">Finalizar</span>
+    </button>
+  </div>
+</div>

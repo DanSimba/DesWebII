@@ -1,3 +1,23 @@
-<div class="w-full h-full bg-(--queen-pink) flex justify-center items-center">
+<div
+  class="w-full h-full bg-(--queen-pink) flex flex-col justify-center items-center bg-center bg-repeat bg-contain gap-1"
+>
   <router-outlet></router-outlet>
+  <div class="flex w-[800px] justify-center gap-2 p-1 text-(--french-puce)">
+    <div class="hover:cursor-pointer flex items-center" [routerLink]="'/'">
+      <mat-icon aria-hidden="false" aria-label="setting icon" fontIcon="home" style="color: var(--french-puce);"></mat-icon>
+      <h3>HOME</h3>
+    </div>
+    <div class="border-2"></div>
+    <div class="hover:cursor-pointer flex items-center">
+      @if (router.url.includes('/login')) {
+        <div  [routerLink]="'/auth/signup'">
+          <h3>CADASTRAR-SE</h3>
+        </div>
+      } @else if (router.url.includes('/signup')) {
+        <div  [routerLink]="'/auth/login'">
+          <h3>LOGIN</h3>
+        </div>
+      }
+    </div>
+  </div>
 </div>

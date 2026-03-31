@@ -1,42 +1,14 @@
-<div class="flex flex-col w-[82vh] h-[65vh] bg-pink-700/50 p-3 gap-4 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
-  
-  <div class="flex font-bold w-[45vh] h-[12vh] p-2 items-center justify-center text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby) text-(--french-puce) uppercase tracking-tighter">
+<div
+  class="flex flex-col w-[82vh] h-[65vh] bg-pink-700/50 p-3 gap-4 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
+
+  <div
+    class="flex font-bold w-[45vh] h-[12vh] p-2 items-center justify-center text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby) text-(--french-puce) uppercase tracking-tighter shadow-md">
     Solicitações Abertas
   </div>
 
-  <div class="bg-(--queen-pink) shadow-2xl overflow-hidden border-solid border-5 border-(--antique-ruby) rounded-[10px]">
-    <div class="overflow-x-auto">
-      <table class="w-full text-left border-collapse">
-        <thead>
-          <tr class="bg-(--antique-ruby) text-(--queen-pink) uppercase text-[10px] tracking-widest">
-            <th class="p-3">Data/Hora</th>
-            <th class="p-3">Cliente</th>
-            <th class="p-3">Descrição</th>
-            <th class="p-3 text-center">Estado</th>
-            <th class="p-3 text-center">Ações</th>
-          </tr>
-        </thead>
-        <tbody class="text-(--french-puce)">
-          
-          <tr *ngFor="let item of requests" class="border-b border-(--parrot-pink) hover:bg-pink-300 transition-all">
-            <td class="p-3 text-xs font-mono font-bold">{{ item.dateTime | date: 'dd/MM HH:mm' }}</td>
-            <td class="p-3 font-bold text-sm uppercase">{{ item.clientName }}</td>
-            <td class="p-3 text-xs">{{ item.description.length > 25 ? (item.description | slice:0:25) + '...' : item.description }}</td>
-            <td class="p-3 text-center">
-              <span class="bg-gray-300 text-gray-700 text-[10px] font-black px-2 py-1 rounded shadow-sm">
-                ABERTA
-              </span>
-            </td>
-            <td class="p-3 text-center">
-              <button (click)='startBudget(item.id)' class="bg-(--antique-ruby) hover:bg-(--solid-pink) text-(--queen-pink) text-[10px] font-bold py-2 px-3 rounded shadow-md transition-colors uppercase cursor-pointer">
-                Orçar
-              </button>
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
-    </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+    <app-maintenance-card *ngFor="let item of requests" [req]="item" (actionClick)="startBudget($event)">
+    </app-maintenance-card>
   </div>
 
 </div>
