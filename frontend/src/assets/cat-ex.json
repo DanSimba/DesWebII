@@ -1,0 +1,30 @@
+{ "cats" : [{
+      "id": 1,
+      "categoryName": "Notebook"
+    },
+    {
+      "id": 2,
+      "categoryName": "Monitor"
+    },
+    {
+      "id": 3,
+      "categoryName": "Impressora"
+    },
+    {
+      "id": 4,
+      "categoryName": "Teclado"
+    },
+    {
+      "id": 5,
+      "categoryName": "Desktop"
+    },
+    {
+      "id": 6,
+      "categoryName": "Mouse"
+    }]
+
+}
+
+
+    
+  
