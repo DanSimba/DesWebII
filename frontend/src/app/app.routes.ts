@@ -2,14 +2,13 @@ import { Routes } from '@angular/router';
 import { HomeView } from './page/home-view/home-view';
 import { Client } from './page/client/client';
 import { SolicitationFormClient } from './presentation/client/solicitation-form-client/solicitation-form-client';
-import { CrudCat } from './page/crud-cat/crud-cat';
-import { CrudFunc } from './page/crud-func/crud-func';
+
 import { Auth } from './page/auth/auth';
 import { LoginComponent } from './shared/auth-components/login-item/login-component';
-import { SignUpComponent } from './shared/auth-components/signUp-item/signUp-Component';
+import { SignUpComponent } from './shared/auth-components/signUp-item/signUp-Component';  
 import { Func } from './page/func/func';
-import { NewCategoriaComponent } from './presentation/func/new-categoria/new-categoria.component';
-import { EditCategoriaComponent } from './presentation/func/edit-categoria/edit-categoria.component';
+import { CategoriaCrud } from './presentation/func/categoria-crud/categoria-crud';
+import { FuncionarioCrud } from './presentation/func/funcionario-crud/funcionario-crud';
 
 export const routes: Routes = [
   {
@@ -66,13 +65,16 @@ export const routes: Routes = [
       },
       {
         path: 'crud-cat',
-        loadComponent: () => import('./page/crud-cat/crud-cat').then((m) => m.CrudCat),   
-      },
-      { path: 'new', component: NewCategoriaComponent},
-      { path: 'edit', component: EditCategoriaComponent},
+        children: [
+         {
+            path: '',
+            loadComponent: () => import('./presentation/func/categoria-crud/categoria-crud').then((m) => m.CategoriaCrud),},
+          { path: 'new', loadComponent: () => import('./presentation/func/edit-categoria/edit-categoria.component').then((m) => m.EditCategoriaComponent) },
+          { path: 'edit/:id', loadComponent: () => import('./presentation/func/edit-categoria/edit-categoria.component').then((m) => m.EditCategoriaComponent) },
+      ]},
       {
         path: 'crud-func',
-        loadComponent: () => import('./page/crud-func/crud-func').then((m) => m.CrudFunc),
+        component: FuncionarioCrud,
       },
       {
         path: 'relatorio',

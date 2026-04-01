@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Categoria } from '../models/categoria.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of, map } from 'rxjs';
 
 const LS_CHAVE = "categorias";
 
@@ -7,47 +9,48 @@ const LS_CHAVE = "categorias";
   providedIn: 'root',
 })
 export class CategoriaService {
+  private cats : Categoria[] = [];
+  private jsonURL = 'assets/cat-ex.json';
 
-  listarTodos (): Categoria[] {
-    const categorias = localStorage[LS_CHAVE];
+  constructor(private http : HttpClient){
+    this.carregarJSON();
+  }
 
-    return categorias ? JSON.parse(categorias) : [];
+  private carregarJSON() : void { //private pra saber q só tem uma instância dessa budega
+    this.http.get<{ cats: Categoria[] }>(this.jsonURL).pipe(
+      map(db => db.cats)
+    ).subscribe(dados => {
+      this.cats = dados;
+    });
+  }
+
+
+
+
+  listarTodos (): Observable<Categoria[]> {
+    return of(this.cats);
   }
 
   inserir(categoria: Categoria): void {
-    const categorias = this.listarTodos();
-
     categoria.id = new Date().getTime();
-
-    categorias.push(categoria);
-
-    localStorage[LS_CHAVE] = JSON.stringify(categorias);
+    this.cats.push(categoria);
   }
 
-  buscarPorId(id: number): Categoria | undefined {
-    const categorias = this.listarTodos();
-
-    return categorias.find(categoria => categoria.id === id);
+  buscarPorId(id: number): Observable< Categoria | undefined > {
+    return of(this.cats.find(c => c.id === id));
   }
 
   atualizar(categoria: Categoria): void {
-    const categorias = this.listarTodos();
-
-    categorias.forEach( (obj, index, objs) => {
+    this.cats.forEach( (obj, index, objs) => {
       if (categoria.id === obj.id) {
         objs[index] = categoria
       }
     });
 
-    localStorage[LS_CHAVE] = JSON.stringify(categorias);
   }
 
   remover(id: number): void {
-    let categorias = this.listarTodos();
-
-    categorias = categorias.filter(categoria => categoria.id !== id);
-
-    localStorage[LS_CHAVE] = JSON.stringify(categorias);
+    this.cats.filter(cats => cats.id !== id);
   }
   
 }

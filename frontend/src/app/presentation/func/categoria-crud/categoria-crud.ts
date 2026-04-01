@@ -1,55 +1,44 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
+import { Categoria } from '../../../models/categoria.model';
+import { CategoriaService } from '../../../services/categoria.service';
 
 @Component({
   selector: 'app-categoria-crud',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './categoria-crud.html',
   styleUrl: './categoria-crud.css',
 })
-export class CategoriaCrud {
-  constructor(public router: Router){};
-  categorias = [
-    {
-      id: 1,
-      nome: 'Notebook'
-    },
-    {
-      id: 2,
-      nome: 'Monitor'
-    },
-    {
-      id: 3,
-      nome: 'Impressora'
-    },
-    {
-      id: 4,
-      nome: 'Teclado'
-    },
-    {
-      id: 5,
-      nome: 'Desktop'
-    },
-    {
-      id: 6,
-      nome: 'Mouse'
-    }
-  ];
+
+export class CategoriaCrud implements OnInit {
+  private router = inject(Router);
+  private catService = inject(CategoriaService);
+  cats = signal<Categoria[]>([]);
+
+
+  ngOnInit(): void {
+    this.catService.listarTodos().subscribe(
+      data => this.cats.set(data)
+    )
+  }
+
 
   novaCat(){
-    console.log('insertar nova categoria\n')
+    this.router.navigate(['/func/crud-cat/new']);
   }
 
-  filtrarCat(){
-    console.log('filtrar categoria\n')
+  editarCat(id : number) : void{
+    console.log('editarCat chamado com id:', id);
+    this.router.navigate(['/func/crud-cat/edit', id]);
   }
 
-  editarCat() {
-    this.router.navigate(['/func/edit']);
-  }
+  removerCat(id : number) : void{    
+    console.log("ta removendo essa buceta");
+    this.catService.remover(id);
+    this.catService.listarTodos().subscribe(
+      data => this.cats.set(data)
 
-  removerCat() {
-    console.log('remover categoria\n')
+    )
   }
 }
