@@ -38,7 +38,6 @@ export class CategoriaCrud implements OnInit {
     this.catService.remover(id);
     this.catService.listarTodos().subscribe(
       data => this.cats.set(data)
-
     )
   }
 }

@@ -3,7 +3,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriaService } from '../../../services/categoria.service';
 import { Categoria } from '../../../models/categoria.model';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-categoria',
@@ -23,7 +23,7 @@ export class EditCategoriaComponent implements OnInit {
 
   //famoso forms
   form : FormGroup = this.f.group({
-    categoryName : ['']
+    categoryName : ['',[Validators.required, Validators.minLength(3)]]
   })  
 
   ngOnInit(): void {

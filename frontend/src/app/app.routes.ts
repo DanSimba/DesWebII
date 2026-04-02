@@ -74,7 +74,11 @@ export const routes: Routes = [
       ]},
       {
         path: 'crud-func',
-        component: FuncionarioCrud,
+        children: [
+          {path: '', loadComponent: () => import('./presentation/func/funcionario-crud/funcionario-crud').then((m) => m.FuncionarioCrud)},
+          {path: 'new', loadComponent: () => import('./presentation/func/edit-funcionario/edit-funcionario.component').then((m) => m.EditFuncionarioComponent)},
+          {path: 'edit/:id', loadComponent: () => import('./presentation/func/edit-funcionario/edit-funcionario.component').then((m) => m.EditFuncionarioComponent)},
+        ]
       },
       {
         path: 'relatorio',
