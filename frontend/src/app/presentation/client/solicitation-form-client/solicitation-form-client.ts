@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { Categoria } from '../../../models/categoria.model';
+import { CategoriaService } from '../../../services/categoria.service';
 
 @Component({
   selector: 'app-solicitation-form-client',
@@ -15,6 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class SolicitationFormClient {
   form! : FormGroup;  
+  cats = signal<Categoria[]>([]);
+  private catService = inject(CategoriaService);
 
   constructor(private fb: FormBuilder) {}
 
@@ -24,6 +28,9 @@ export class SolicitationFormClient {
       catID:  ['', Validators.required],
       descDefeito:  ['', [Validators.required, Validators.maxLength(255)]]
     });
+    this.catService.listarTodos().subscribe(
+      data => this.cats.set(data)
+    )
   }
 
   onSubmit(): void {
