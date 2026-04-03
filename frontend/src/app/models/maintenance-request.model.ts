@@ -4,4 +4,5 @@ export interface MaintenanceRequest {
   clientName: string;
   description: string;
   status: 'ABERTA' | 'ORÇADA' | 'REJEITADA' | 'APROVADA' | 'REDIRECIONADA' | 'ARRUMADA' | 'PAGA' | 'FINALIZADA';
+  receivingEmployee?: string;
 }

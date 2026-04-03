@@ -6,6 +6,11 @@
 
   <div class="flex flex-wrap items-center gap-4">
     <div class="flex gap-2">
+      <button (click)="setOpen()" 
+              [ngClass]="activeFilter === 'ABERTAS' ? 'bg-(--antique-ruby) text-white' : 'bg-white text-(--french-puce) hover:bg-pink-300'" 
+              class="px-4 py-2 text-xs font-bold uppercase rounded-md transition-all cursor-pointer border-2 border-(--antique-ruby)">
+        Abertas
+      </button>
       <button (click)="setToday()" 
               [ngClass]="activeFilter === 'HOJE' ? 'bg-(--antique-ruby) text-white' : 'bg-white text-(--french-puce) hover:bg-pink-300'" 
               class="px-4 py-2 text-xs font-bold uppercase rounded-md transition-all cursor-pointer border-2 border-(--antique-ruby)">
