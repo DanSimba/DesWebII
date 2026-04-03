@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Categoria } from '../models/categoria.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of, map, tap } from 'rxjs';
 
 const LS_CHAVE = "categorias";
 
@@ -7,47 +9,50 @@ const LS_CHAVE = "categorias";
   providedIn: 'root',
 })
 export class CategoriaService {
+  private cats : Categoria[] = [];
+  private primeiro = false; //pra saber se é a primeira vez carregando esse json dos infernos 
+  private jsonURL = 'assets/cat-ex.json';
 
-  listarTodos (): Categoria[] {
-    const categorias = localStorage[LS_CHAVE];
+  constructor(private http : HttpClient){
+  }
 
-    return categorias ? JSON.parse(categorias) : [];
+
+  listarTodos (): Observable<Categoria[]> {
+    if(this.primeiro){
+      return of(this.cats)
+    }
+
+    return this.http.get<{ cats: Categoria[] }>(this.jsonURL).pipe(
+      map(db => db.cats),tap(
+        dados => {
+          this.cats = dados;
+          this.primeiro = true; 
+
+        }
+      )
+    );
   }
 
   inserir(categoria: Categoria): void {
-    const categorias = this.listarTodos();
-
     categoria.id = new Date().getTime();
-
-    categorias.push(categoria);
-
-    localStorage[LS_CHAVE] = JSON.stringify(categorias);
+    this.cats.push(categoria);
   }
 
-  buscarPorId(id: number): Categoria | undefined {
-    const categorias = this.listarTodos();
-
-    return categorias.find(categoria => categoria.id === id);
+  buscarPorId(id: number): Observable< Categoria | undefined > {
+    return of(this.cats.find(c => c.id === id));
   }
 
   atualizar(categoria: Categoria): void {
-    const categorias = this.listarTodos();
-
-    categorias.forEach( (obj, index, objs) => {
+    this.cats.forEach( (obj, index, objs) => {
       if (categoria.id === obj.id) {
         objs[index] = categoria
       }
     });
 
-    localStorage[LS_CHAVE] = JSON.stringify(categorias);
   }
 
   remover(id: number): void {
-    let categorias = this.listarTodos();
-
-    categorias = categorias.filter(categoria => categoria.id !== id);
-
-    localStorage[LS_CHAVE] = JSON.stringify(categorias);
+    this.cats = this.cats.filter(ct => ct.id !== id);
   }
   
 }

@@ -1,0 +1,72 @@
+<div
+  class="flex flex-col w-[82vh] h-[65vh] bg-pink-700/50 p-4 gap-4 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
+
+  <div
+    class="flex font-bold w-full h-[10vh] min-h-[10vh] p-2 items-center justify-center text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby) text-(--french-puce) uppercase tracking-tighter shadow-md">
+    Painel de Manutenção
+  </div>
+
+  <div
+    class="flex flex-col gap-4 bg-(--queen-pink) p-4 rounded-[10px] border-solid border-5 border-(--antique-ruby) shadow-md flex-1 overflow-y-auto">
+
+    <div class="flex flex-col lg:flex-row gap-4 border-b-2 border-(--antique-ruby)/20 pb-4">
+      <div class="flex flex-col gap-1 flex-1 lg:border-r-2 border-(--antique-ruby)/20 lg:pr-4">
+        <h3 class="font-black text-(--french-puce) uppercase text-sm mb-1">Dados do Cliente</h3>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">Nome:</span> {{clientName}}</p>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">CPF:</span> {{clientCpf}}</p>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">E-mail:</span> {{clientEmail}}</p>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">Telefone:</span> {{clientPhone}}</p>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">Endereço:</span> {{clientAddress}}</p>
+      </div>
+      <div class="flex flex-col gap-1 flex-1">
+        <h3 class="font-black text-(--french-puce) uppercase text-sm mb-1">Dados da Solicitação</h3>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">Categoria:</span> {{equipmentCategory}}</p>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">Equipamento:</span> {{equipmentDesc}}</p>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">Defeito Reportado:</span> {{maintenanceDesc}}
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-4 h-full">
+      <div class="flex flex-col gap-2 flex-1 lg:border-r-2 border-(--antique-ruby)/20 lg:pr-4">
+        <h3 class="font-black text-(--french-puce) uppercase text-sm">Efetuar Manutenção</h3>
+
+        <label class="text-[10px] font-bold text-(--french-puce) uppercase">Descrição da Manutenção</label>
+        <textarea [(ngModel)]="actionReport" rows="2"
+          class="p-2 rounded outline-none border-2 border-(--antique-ruby) text-xs text-(--french-puce) resize-none shadow-sm bg-white/50"></textarea>
+
+        <label class="text-[10px] font-bold text-(--french-puce) uppercase">Orientações ao Cliente</label>
+        <textarea [(ngModel)]="clientGuidelines" rows="2"
+          class="p-2 rounded outline-none border-2 border-(--antique-ruby) text-xs text-(--french-puce) resize-none shadow-sm bg-white/50"></textarea>
+
+        <button (click)="performMaintenance()"
+          class="mt-auto bg-[#3b82f6] hover:bg-blue-600 text-white text-xs font-bold py-2 px-4 rounded shadow-md uppercase transition-colors border-2 border-blue-800">
+          Registrar Manutenção
+        </button>
+      </div>
+
+      <div class="flex flex-col gap-2 flex-1">
+        <h3 class="font-black text-(--french-puce) uppercase text-sm">Redirecionar</h3>
+        <label class="text-[10px] font-bold text-(--french-puce) uppercase">Nome do Funcionário</label>
+        <select [(ngModel)]="receivingEmployee"
+          class="p-2 rounded outline-none border-2 border-(--antique-ruby) text-xs text-(--french-puce) shadow-sm bg-white/50 cursor-pointer">
+          <option value="" disabled selected>Selecione um funcionário</option>
+          <option *ngFor="let emp of availableEmployees" [value]="emp">{{ emp }}</option>
+        </select>
+
+        <button (click)="redirectMaintenance()"
+          class="mt-auto bg-[#a855f7] hover:bg-purple-600 text-white text-xs font-bold py-2 px-4 rounded shadow-md uppercase transition-colors border-2 border-purple-800">
+          Redirecionar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-start mt-auto">
+    <button (click)="cancel()"
+      class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-[8px] shadow-md transition-colors uppercase cursor-pointer border-2 border-gray-600">
+      Cancelar
+    </button>
+  </div>
+
+</div>

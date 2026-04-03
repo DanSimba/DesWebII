@@ -12,14 +12,27 @@ import { FormsModule } from '@angular/forms';
 export class MaintenanceFilterComponent {
   public startDate: string = '';
   public endDate: string = '';
-  public activeFilter: 'HOJE' | 'TODAS' | 'PERIODO' = 'TODAS'; 
+  public activeFilter: 'ABERTAS' | 'HOJE' | 'TODAS' | 'PERIODO' = 'ABERTAS'; 
 
   filterChanged = output<{ type: string, start: string, end: string }>();
 
+  public setOpen(): void {
+    this.startDate = '';
+    this.endDate = '';
+    this.activeFilter = 'ABERTAS';
+    this.emitFilter();
+  }
+
   public setToday(): void {
-    const today = new Date().toISOString().split('T')[0];
-    this.startDate = today;
-    this.endDate = today;
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    
+    const todayLocal = `${year}-${month}-${day}`; 
+
+    this.startDate = todayLocal;
+    this.endDate = todayLocal;
     this.activeFilter = 'HOJE';
     this.emitFilter();
   }
@@ -33,7 +46,9 @@ export class MaintenanceFilterComponent {
 
   public onDateSelected(): void {
     this.activeFilter = 'PERIODO';
-    this.emitFilter();
+    if (this.startDate && this.endDate) {
+      this.emitFilter();
+    }
   }
 
   private emitFilter(): void {
