@@ -7,6 +7,9 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { Categoria } from '../../../models/categoria.model';
 import { CategoriaService } from '../../../services/categoria.service';
+import { Solicitation } from '../../../models/solicitation-interface';
+import { Observable, of } from 'rxjs';
+import { ClientService } from '../../../services/client-service';
 
 @Component({
   selector: 'app-solicitation-form-client',
@@ -18,6 +21,7 @@ import { CategoriaService } from '../../../services/categoria.service';
 export class SolicitationFormClient {
   form! : FormGroup;  
   cats = signal<Categoria[]>([]);
+  private clientService = inject(ClientService);
   private catService = inject(CategoriaService);
 
   constructor(private fb: FormBuilder) {}
@@ -35,11 +39,22 @@ export class SolicitationFormClient {
 
   onSubmit(): void {
     if (this.form.invalid) {
-      this.form.markAllAsTouched(); 
+      this.form.markAllAsTouched();
       return;
     }
     // em algum momento isso daqui vai ir pro back, confia !!!!
       console.log(this.form); 
+      let idString = new Date();
+      let dateString = `${idString.getDate()+1}/${idString.getMonth()+1}/${idString.getFullYear()}`
+      const sol: Solicitation={
+        id: idString.toString(),
+        equipamento: this.form.value.value,
+        dataHora: dateString,
+        estado: 'aberta',
+        desc: this.form.value.descDefeito,
+      }
+
+      this.clientService.addSol(sol);
   }
 
 }

@@ -3,6 +3,7 @@ import { SolicitationClient } from '../solicitation-client/solicitation-card';
 import { ClientService } from '../../../services/client-service';
 import { Solicitation } from '../../../models/solicitation-interface';
 import { ClientInterface } from '../../../models/client-interface';
+import { SolicitationFormClient } from '../solicitation-form-client/solicitation-form-client';
 
 @Component({
   selector: 'app-solicitation-panel',
@@ -15,8 +16,10 @@ export class SolicitationPanel implements OnInit {
   //VERSÃO QUE VAI RECEBER RESPOSTA DO BACK USANDO O SERVICE
 
   private clientService = inject(ClientService);
+  //private solForm = inject(SolicitationFormClient);
   client = signal<ClientInterface|null>(null);
-  sols= signal<Solicitation[]|null>(null); //lista de objs do tipo Solicitation q vai retornar
+  sols= signal<Solicitation[]>([]); //lista de objs do tipo Solicitation q vai retornar
+  createdSols= signal<Solicitation[]>([]);
 
   ngOnInit(): void {
       
@@ -26,13 +29,13 @@ export class SolicitationPanel implements OnInit {
           this.sols.set(data.sols); //FAZ UM REQUEST A MENOS
         });
 
-        //OU 
-        /*
-        this.clientService.getSols("c12345") //PEGA SÓ A LISTA DE SOLS,    
-          .subscribe(sols => {          // MAS AÍ AS SOLS DEVEM CONTER INFO DO CLIENTE
-            this.sols = sols;
-        });
-        */
+        
+        this.clientService.getSols().subscribe(
+          (solData: Solicitation[]) => {
+              this.createdSols.set(solData);
+          } 
+        )
+        console.log("JUNTOU AS DUAS ARRAYS: ", this.createdSols())
   }
 
 

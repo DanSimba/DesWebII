@@ -16,6 +16,14 @@
           data="{{s.dataHora}}" desc="{{s.desc}}">
         </app-solicitation-card> <!--ID 01 FIXO POR ENQUANTO (TROCAR PELO UUID QNDO VIER)-->
       }
+
+      @for (s of createdSols(); track s) {
+        <app-solicitation-card 
+          solId="{{s.id}}"
+          estado="{{s.estado}}" 
+          data="{{s.dataHora}}" desc="{{s.desc}}">
+        </app-solicitation-card> <!--ID 01 FIXO POR ENQUANTO (TROCAR PELO UUID QNDO VIER)-->
+      }
     </div>
     
   </div>
