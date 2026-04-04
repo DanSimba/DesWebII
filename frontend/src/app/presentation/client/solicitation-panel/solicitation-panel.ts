@@ -16,7 +16,6 @@ export class SolicitationPanel implements OnInit {
   //VERSÃO QUE VAI RECEBER RESPOSTA DO BACK USANDO O SERVICE
 
   private clientService = inject(ClientService);
-  //private solForm = inject(SolicitationFormClient);
   client = signal<ClientInterface|null>(null);
   sols= signal<Solicitation[]>([]); //lista de objs do tipo Solicitation q vai retornar
   createdSols= signal<Solicitation[]>([]);
@@ -35,7 +34,7 @@ export class SolicitationPanel implements OnInit {
               this.createdSols.set(solData);
           } 
         )
-        console.log("JUNTOU AS DUAS ARRAYS: ", this.createdSols())
+        //console.log("ARRAY SOLS: ", this.sols())
   }
 
 

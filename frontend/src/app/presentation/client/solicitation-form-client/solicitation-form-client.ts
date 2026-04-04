@@ -8,7 +8,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { Categoria } from '../../../models/categoria.model';
 import { CategoriaService } from '../../../services/categoria.service';
 import { Solicitation } from '../../../models/solicitation-interface';
-import { Observable, of } from 'rxjs';
+import { Popup } from '../../../shared/components/popup/popup';
+import { firstValueFrom } from 'rxjs';
+import { Dialog } from '@angular/cdk/dialog';
 import { ClientService } from '../../../services/client-service';
 
 @Component({
@@ -55,6 +57,28 @@ export class SolicitationFormClient {
       }
 
       this.clientService.addSol(sol);
+      this.form.reset();
+  }
+
+   //ÁREA DO POPUP
+  dialog = inject(Dialog); //cria obj 'dialog' (popup)
+
+  protected async openPopup(text: string, type: string): Promise<boolean>{ 
+    const dialogRef = this.dialog.open<boolean>(Popup, {
+      data: {
+        text: text,
+        typePopUp: type
+      }
+    });
+
+    const result = await firstValueFrom(dialogRef.closed);
+    if(result){
+      console.log("sim!sim!sim!");
+      return true;
+    } else{
+      console.log("não ou ok");
+      return false;
+    }
   }
 
 }

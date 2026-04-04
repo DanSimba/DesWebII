@@ -19,7 +19,7 @@
       <textarea matInput formControlName="descDefeito" rows="6"></textarea>
     </mat-form-field>
     <p>
-        <button (click)="onSubmit()"
+        <button (click)="onSubmit(); openPopup('Solicitação criada.', 'ok')"
         class="items-end bg-(--queen-pink) border-3 rounded-xl border-(--french-puce) hover:cursor-pointer p-2 font-bold text-(--french-puce) text-l">
         SOLICITAR</button>
     </p>
