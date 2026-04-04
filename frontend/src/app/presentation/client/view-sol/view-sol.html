@@ -8,8 +8,8 @@
     </div>
 
     <div class="flex flex-row font-bold w-[60vh] h-[10vh] p-2 justify-around items-center text-[20px] bg-(--queen-pink) rounded-[10px] border-dashed border-5 border-(--antique-ruby)">
-            <div class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[20px] bg-(--parrot-pink) rounded-[28px] border-solid border-5 border-pink-700">
-                Data/hora
+            <div class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[16px] bg-(--parrot-pink) rounded-[28px] border-solid border-5 border-pink-700">
+                {{solData()?.dataHora}}
             </div>
 
             <div [style.background-color]="'var(--' + solData()?.estado  + ')'"

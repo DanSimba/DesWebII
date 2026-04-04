@@ -1,7 +1,8 @@
-import { Injectable, computed } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { of, Observable } from 'rxjs'; //vai inscrever a viewSol na função get solId
+import { Observable } from 'rxjs'; //vai inscrever a viewSol na função get solId
 import { Solicitation } from '../models/solicitation-interface';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
@@ -9,17 +10,15 @@ import { Solicitation } from '../models/solicitation-interface';
 export class ClientSolicitationService{
   //private apiUrl = 'END-BACKEND';
   private jsonUrl = 'assets/client-ex.json';
+  public sol = signal<Solicitation|null>(null);
   constructor(private http: HttpClient) {};
 
-    private sol = computed<Solicitation>(() => ({
-      id: "001",
-      equipamento: "tv",
-      dataHora: "22/02/2222",
-      estado: "orcada",
-      desc: "desc linda",
-    }));
+  public solObs = toObservable(this.sol);
+  public getSol(): Observable<Solicitation|null>{
+    return this.solObs;
+  }
 
-  public getSol(): Observable<Solicitation>{
-    return of(this.sol());
+  setSol(newSol: Solicitation) { //adiciona a lista de sols que o cliente criou
+      this.sol.set(newSol);
   }
 }

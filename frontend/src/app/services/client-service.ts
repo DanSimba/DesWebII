@@ -22,7 +22,7 @@ export class ClientService {
       return this.http.get<ClientInterface>(this.jsonUrl);
     }
 
-  addSol(newSol: Solicitation) { //adiciona a lista de sols que o cliente criou
-    this.sols.update(current => [...current, newSol]);
-  }
+    addSol(newSol: Solicitation) { //adiciona a lista de sols que o cliente criou
+      this.sols.update(current => [...current, newSol]);
+    }
 }
