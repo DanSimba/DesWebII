@@ -22,7 +22,7 @@ export class SolicitationClient {
 
   private sol =  computed<Solicitation>(() => ({
     id: this.solId(),
-    equipamento: 'monitor',
+    equipamento: this.eqp() ?? '',
     dataHora: this.data() ?? '',
     estado: this.estado() ?? '',
     desc: this.desc() ?? ''
