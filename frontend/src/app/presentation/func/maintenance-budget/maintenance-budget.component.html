@@ -1,0 +1,58 @@
+<div class="flex flex-col w-[82vh] h-[65vh] bg-pink-700/50 p-4 gap-4 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
+
+  <div class="flex font-bold w-full h-[10vh] min-h-[10vh] p-2 items-center justify-center text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby) text-(--french-puce) uppercase tracking-tighter shadow-md">
+    Efetuar Orçamento
+  </div>
+
+  <div class="flex flex-col gap-4 bg-(--queen-pink) p-4 rounded-[10px] border-solid border-5 border-(--antique-ruby) shadow-md flex-1">
+    
+    <div class="flex flex-col lg:flex-row gap-4 border-b-2 border-(--antique-ruby)/20 pb-4">
+      
+      <div class="flex flex-col gap-1 flex-1 lg:border-r-2 border-(--antique-ruby)/20 lg:pr-4">
+        <h3 class="font-black text-(--french-puce) uppercase text-sm mb-1">Dados do Cliente</h3>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">Nome:</span> {{clientName}}</p>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">CPF:</span> {{clientCpf}}</p>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">E-mail:</span> {{clientEmail}}</p>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">Telefone:</span> {{clientPhone}}</p>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">Endereço:</span> {{clientAddress}}</p>
+      </div>
+
+      <div class="flex flex-col gap-1 flex-1">
+        <h3 class="font-black text-(--french-puce) uppercase text-sm mb-1">Dados da Solicitação</h3>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">Categoria:</span> {{equipmentCategory}}</p>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">Equipamento:</span> {{equipmentDesc}}</p>
+        <p class="text-xs text-(--french-puce)"><span class="font-bold">Defeito:</span> {{maintenanceDesc}}</p>
+      </div>
+
+    </div>
+
+    <div class="flex flex-col gap-3 pt-2">
+      <h3 class="font-black text-(--french-puce) uppercase">Valores do Orçamento</h3>
+      
+      <div class="flex gap-4">
+        <div class="flex flex-col w-1/2">
+          <label class="text-xs font-bold text-(--french-puce)">Valor das Peças</label>
+          <input type="number" [(ngModel)]="partsValue" min="0" placeholder="0.00" class="p-2 rounded outline-none border-2 border-(--antique-ruby) text-(--french-puce) font-bold mt-1 shadow-sm bg-white/50">
+        </div>
+        <div class="flex flex-col w-1/2">
+          <label class="text-xs font-bold text-(--french-puce)">Mão de Obra</label>
+          <input type="number" [(ngModel)]="laborValue" min="0" placeholder="0.00" class="p-2 rounded outline-none border-2 border-(--antique-ruby) text-(--french-puce) font-bold mt-1 shadow-sm bg-white/50">
+        </div>
+      </div>
+
+      <div class="flex justify-end items-center gap-2 mt-4 bg-white/50 p-3 rounded-lg border border-(--antique-ruby)/30">
+        <span class="font-black text-(--french-puce) uppercase text-sm">Valor Total:</span>
+        <span class="font-black text-xl text-(--antique-ruby)">R$ {{totalValue | number:'1.2-2'}}</span>
+      </div>
+    </div>
+
+  </div> <div class="flex justify-end gap-3 mt-auto">
+    <button (click)="cancel()" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-[8px] shadow-md transition-colors uppercase cursor-pointer border-2 border-gray-600">
+      Cancelar
+    </button>
+    <button (click)="submitBudget()" class="bg-(--antique-ruby) hover:bg-(--solid-pink) text-(--queen-pink) font-bold py-2 px-6 rounded-[8px] shadow-md transition-colors uppercase cursor-pointer border-2 border-[#5a151c]">
+      Enviar
+    </button>
+  </div>
+
+</div>

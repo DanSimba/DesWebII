@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CepServiceService } from '../../../../services/CEP/cep-service.service';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
@@ -14,6 +14,7 @@ export class CepForm implements OnInit {
   constructor() {}
   ngOnInit(): void {}
   private cepService = inject(CepServiceService);
+  private cdr = inject(ChangeDetectorRef);
 
   cepInfo: CepType = {
     logradouro: '',
@@ -47,6 +48,7 @@ export class CepForm implements OnInit {
         this.cepInfo.uf = cepResponse.uf;
         this.cepInfo.bairro = cepResponse.bairro;
         this.cepInfo.complemento = cepResponse.complemento;
+        this.cdr.markForCheck();
       },
       error: (res) => {
         console.log('+ ERRO NO VIA CEP +' + res);

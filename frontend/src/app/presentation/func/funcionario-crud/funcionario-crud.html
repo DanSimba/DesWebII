@@ -1,18 +1,12 @@
-<div
-  class="flex flex-col w-[80vh] h-[65vh] bg-pink-700/50 p-3 gap-2 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto"
->
+<div class="flex flex-col w-[80vh] h-[65vh] bg-(--antique-ruby)/70 p-3 gap-2 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
   <div
-    class="flex font-bold w-[32vh] h-[16vh] p-2 items-center justify-center text-[22px] bg-(--queen-pink) rounded-[10px]"
-  >
+    class="flex font-bold w-[32vh] h-[16vh] p-2 items-center justify-center text-[22px] bg-(--queen-pink) rounded-[10px]">
     CRUD - Funcionários
   </div>
 
   <div class="flex gap-4">
     <div class="text-xl m-2 p-1 text-center font-bold bg-(--queen-pink) rounded-[10px] p-4 w-1/2">
-      <button type="button" (click)="novoFunc()">New funcionário</button>
-    </div>
-    <div class="text-xl m-2 p-1 text-center font-bold bg-(--queen-pink) rounded-[10px] p-4 w-1/2">
-      <button type="button" (click)="filtrarFunc()">Filtros</button>
+      <button type="button" (click)="novoFunc()">Novo funcionário</button>
     </div>
   </div>
 
@@ -20,24 +14,24 @@
     <div class="overflow-x-auto">
       <table class="w-full text-left border-collapse">
         <thead>
-          <tr class="bg-gray-800 text-white uppercase text-[10px] tracking-widest">
+          <tr class="bg-gray-800 text-white uppercase text-sm tracking-widest">
             <th class="p-4 text-center">ID</th>
-            <th class="p-4 text-center">Employee name</th>
-            <th class="p-4 text-center">Action</th>
+            <th class="p-4 text-center">Funcionário</th>
+            <th class="p-4 text-center">Ação</th>
           </tr>
         </thead>
-        <tbody class="text-gray-700">
-          <tr
-            *ngFor="let funcionario of funcionarios"
-            class="border-b border-gray-100 hover:bg-red-50 transition-all"
-          >
-            <td class="p-4 border-r text-xs font-mono text-center">{{ funcionario.id }}</td>
+        <tbody class="text-white">
+
+
+          @for (funcionario of funcs(); track funcionario.id) {
+          <tr class="border-b border-gray-100 hover:bg-(--queen-pink)/20 transition-all">
+            <td class="p-4 border-r text-sm font-mono text-center">{{ funcionario.id }}</td>
             <td class="p-4 border-r font-bold text-sm uppercase text-center">
-              {{ funcionario.nome }}
+              {{ funcionario.funcName }}
             </td>
             <td class="p-4 text-center flex items-center justify-around">
               <button
-                (click)="editarFunc()"
+                (click)="editarFunc(funcionario.id)"
                 class="text-white text-[10px] font-bold py-2 px-4 shadow-sm transition-colors uppercase flex items-center space-x-2 gap-2 hover:bg-green-700 rounded"
               >
                 <svg
@@ -57,8 +51,8 @@
                 Edit
               </button>
               <button
-                (click)="removerFunc()"
-                class="text-white text-[10px] font-bold py-2 px-4 shadow-sm transition-colors uppercase flex items-center space-x-2 gap-2 hover:bg-green-700 rounded"
+                (click)="removerFunc(funcionario.id)"
+                class="text-white text-[10px] font-bold py-2 px-4 shadow-sm transition-colors uppercase flex items-center space-x-2 gap-2 hover:bg-red-700 rounded"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +71,10 @@
                 Delete
               </button>
             </td>
-          </tr>
+          </tr> 
+          }
+         
+
         </tbody>
       </table>
     </div>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrudCat } from './crud-cat';
+import { EditCategoriaComponent } from './edit-categoria.component';
 
-describe('CrudCat', () => {
-  let component: CrudCat;
-  let fixture: ComponentFixture<CrudCat>;
+describe('EditCategoriaComponent', () => {
+  let component: EditCategoriaComponent;
+  let fixture: ComponentFixture<EditCategoriaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CrudCat]
+      imports: [EditCategoriaComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CrudCat);
+    fixture = TestBed.createComponent(EditCategoriaComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

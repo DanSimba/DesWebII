@@ -1,0 +1,33 @@
+{"funcionarios" : [
+    {
+      "id": 1,
+      "funcName": "Razer",
+      "funcCargo" : "Chefe"
+    },
+    {
+      "id": 2,
+      "funcName": "Alex",
+      "funcCargo" : "lindo"
+    },
+    {
+      "id": 3,
+      "funcName": "Savio",
+      "funcCargo" : "bodia"
+    },
+    {
+      "id": 4,
+      "funcName": "Glenda",
+      "funcCargo" : "who?"
+    },
+    {
+      "id": 5,
+      "funcName": "Ana Beatriz",
+      "funcCargo" : "carioca"
+    },
+    {
+      "id": 6,
+      "funcName": "Silvana",
+      "funcCargo" : "nhe"
+    }
+  ]
+}

@@ -2,12 +2,13 @@ import { Routes } from '@angular/router';
 import { HomeView } from './page/home-view/home-view';
 import { Client } from './page/client/client';
 import { SolicitationFormClient } from './presentation/client/solicitation-form-client/solicitation-form-client';
-import { CrudCat } from './page/crud-cat/crud-cat';
-import { CrudFunc } from './page/crud-func/crud-func';
+
 import { Auth } from './page/auth/auth';
 import { LoginComponent } from './shared/auth-components/login-item/login-component';
 import { SignUpComponent } from './shared/auth-components/signUp-item/signUp-Component';
 import { Func } from './page/func/func';
+import { CategoriaCrud } from './presentation/func/categoria-crud/categoria-crud';
+import { FuncionarioCrud } from './presentation/func/funcionario-crud/funcionario-crud';
 
 export const routes: Routes = [
   {
@@ -55,25 +56,44 @@ export const routes: Routes = [
             (m) => m.MaintenancePanel,
           ),
       },
-      {
+      /*{
         path: 'list',
         loadComponent: () =>
           import('./page/maintenance-list-view/maintenance-list-view').then(
             (m) => m.MaintenanceListView,
           ),
-      },
+      }*/
       {
         path: 'crud-cat',
-        loadComponent: () => import('./page/crud-cat/crud-cat').then((m) => m.CrudCat),
+        children: [
+          {
+            path: '',
+            loadComponent: () => import('./presentation/func/categoria-crud/categoria-crud').then((m) => m.CategoriaCrud),
+          },
+          { path: 'new', loadComponent: () => import('./presentation/func/edit-categoria/edit-categoria.component').then((m) => m.EditCategoriaComponent) },
+          { path: 'edit/:id', loadComponent: () => import('./presentation/func/edit-categoria/edit-categoria.component').then((m) => m.EditCategoriaComponent) },
+        ]
       },
       {
         path: 'crud-func',
-        loadComponent: () => import('./page/crud-func/crud-func').then((m) => m.CrudFunc),
+        children: [
+          { path: '', loadComponent: () => import('./presentation/func/funcionario-crud/funcionario-crud').then((m) => m.FuncionarioCrud) },
+          { path: 'new', loadComponent: () => import('./presentation/func/edit-funcionario/edit-funcionario.component').then((m) => m.EditFuncionarioComponent) },
+          { path: 'edit/:id', loadComponent: () => import('./presentation/func/edit-funcionario/edit-funcionario.component').then((m) => m.EditFuncionarioComponent) },
+        ]
       },
       {
         path: 'relatorio',
         loadComponent: () =>
           import('./page/relatorio/relatorio.component').then((m) => m.RelatorioComponent),
+      },
+      {
+        path: 'budget',
+        loadComponent: () => import('./presentation/func/maintenance-budget/maintenance-budget.component').then(m => m.MaintenanceBudgetComponent)
+      },
+      {
+        path: 'task',
+        loadComponent: () => import('./presentation/func/maintenance-task/maintenance-task.component').then(m => m.MaintenanceTaskComponent)
       },
     ],
   },

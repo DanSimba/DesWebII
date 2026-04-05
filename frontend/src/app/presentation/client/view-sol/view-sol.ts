@@ -1,6 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Dialog } from '@angular/cdk/dialog';
 import { Popup } from '../../../shared/components/popup/popup';
+import { ClientSolicitationService } from '../../../services/client-solicitation-service.service';
+import { Solicitation } from '../../../models/solicitation-interface';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-view-sol',
@@ -9,26 +12,50 @@ import { Popup } from '../../../shared/components/popup/popup';
   styleUrl: './view-sol.css',
 })
 
-export class ViewSol {
+export class ViewSol{
 
-  est="redirecionada";
+  private solCard = inject(ClientSolicitationService);
+  solData = signal<Solicitation|null>(null);
+  est="aprovada";
 
+  ngOnInit(){
+    //console.log("\nestado: "+ this.est)
+    this.solCard.getSol().subscribe(
+      data => {
+        this.solData.set(data);
+      }
+    )
+    console.log("sol: ", this.solData())
+  }
+
+  updtEstado(est: string){
+    this.solData.update(data => {
+          if (!data) return null;
+          return {
+            ...data,   //OUTROS CAMPOS
+            estado: est
+          };
+    });
+  }
+
+  //ÁREA DO POPUP
   dialog = inject(Dialog); //cria obj 'dialog' (popup)
-  protected openPopup(text: string, type: string){ 
-    const dialogRef = this.dialog.open(Popup, {
+
+  protected async openPopup(text: string, type: string): Promise<boolean>{ 
+    const dialogRef = this.dialog.open<boolean>(Popup, {
       data: {
         text: text,
         typePopUp: type
       }
     });
 
-    dialogRef.closed.subscribe(result => {
-      if (result === true) {
-        console.log('SIM ou OK');
-        this.est = "aprovada";
-      } else {
-        console.log('NAOR');
-      }
-    });
+    const result = await firstValueFrom(dialogRef.closed);
+    if(result){
+      console.log("sim!sim!sim!");
+      return true;
+    } else{
+      console.log("não ou ok");
+      return false;
+    }
   }
 }

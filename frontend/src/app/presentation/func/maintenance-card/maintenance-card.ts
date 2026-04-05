@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaintenanceRequest } from '../../../models/maintenance-request.model';
 
@@ -12,12 +12,23 @@ import { MaintenanceRequest } from '../../../models/maintenance-request.model';
 export class MaintenanceCard {
   readonly req = input.required<MaintenanceRequest>();
 
+  actionClick = output<number>();
+
   public getStatusColor(status: string): string {
     const statusColors: Record<string, string> = {
-      'ABERTA': '#9ca3af', 'ORÇADA': '#78350f', 'REJEITADA': '#ef4444',
-      'APROVADA': '#eab308', 'REDIRECIONADA': '#a855f7', 'ARRUMADA': '#3b82f6',
-      'PAGA': '#f97316', 'FINALIZADA': '#22c55e'
+      'ABERTA': 'var(--aberta)', 
+      'ORÇADA': 'var(--orcada)', 
+      'REJEITADA': 'var(--rejeitada)',
+      'APROVADA': 'var(--aprovada)', 
+      'REDIRECIONADA': 'var(--redirecionada)', 
+      'ARRUMADA': 'var(--arrumada)',
+      'PAGA': 'var(--paga)', 
+      'FINALIZADA': 'var(--finalizada)'
     };
-    return statusColors[status] || '#ccc';
+    return statusColors[status] || 'var(--aberta)';
+  }
+
+  onActionClick() {
+    this.actionClick.emit(this.req().id);
   }
 }

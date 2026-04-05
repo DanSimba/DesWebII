@@ -3,6 +3,7 @@ import { SolicitationClient } from '../solicitation-client/solicitation-card';
 import { ClientService } from '../../../services/client-service';
 import { Solicitation } from '../../../models/solicitation-interface';
 import { ClientInterface } from '../../../models/client-interface';
+import { SolicitationFormClient } from '../solicitation-form-client/solicitation-form-client';
 
 @Component({
   selector: 'app-solicitation-panel',
@@ -10,29 +11,30 @@ import { ClientInterface } from '../../../models/client-interface';
   templateUrl: './solicitation-panel.html',
   styleUrl: './solicitation-panel.css',
 })
-export class SolicitationPanel {
+export class SolicitationPanel implements OnInit {
 
   //VERSÃO QUE VAI RECEBER RESPOSTA DO BACK USANDO O SERVICE
 
   private clientService = inject(ClientService);
   client = signal<ClientInterface|null>(null);
-  sols: Solicitation[] = []; //lista de objs do tipo Solicitation q vai retornar
+  sols= signal<Solicitation[]>([]); //lista de objs do tipo Solicitation q vai retornar
+  createdSols= signal<Solicitation[]>([]);
 
   ngOnInit(): void {
       
       this.clientService.getClient("c12345").subscribe(
         data => {          //O NOME DO CLIENTE PQ A GNT AS INFOS DELE ACESSA DIRETAMENTE PELO OBJ CLIENTE
           this.client.set(data);
-          this.sols = data.sols; //FAZ UM REQUEST A MENOS
+          this.sols.set(data.sols); //FAZ UM REQUEST A MENOS
         });
 
-        //OU 
-        /*
-        this.clientService.getSols("c12345") //PEGA SÓ A LISTA DE SOLS,    
-          .subscribe(sols => {          // MAS AÍ AS SOLS DEVEM CONTER INFO DO CLIENTE
-            this.sols = sols;
-        });
-        */
+        
+        this.clientService.getSols().subscribe(
+          (solData: Solicitation[]) => {
+              this.createdSols.set(solData);
+          } 
+        )
+        //console.log("ARRAY SOLS: ", this.sols())
   }
 
 

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrudFunc } from './crud-func';
+import { MaintenanceTaskComponent } from './maintenance-task.component';
 
-describe('CrudFunc', () => {
-  let component: CrudFunc;
-  let fixture: ComponentFixture<CrudFunc>;
+describe('MaintenanceTaskComponent', () => {
+  let component: MaintenanceTaskComponent;
+  let fixture: ComponentFixture<MaintenanceTaskComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CrudFunc]
+      imports: [MaintenanceTaskComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CrudFunc);
+    fixture = TestBed.createComponent(MaintenanceTaskComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
