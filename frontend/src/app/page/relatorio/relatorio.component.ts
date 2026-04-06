@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { Categoria } from '../../models/categoria.model';
+import { CategoriaService } from '../../services/categoria.service';
 
 @Component({
   selector: 'app-relatorio',
@@ -7,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './relatorio.component.css',
 })
 export class RelatorioComponent {
+  cats = signal<Categoria[]>([]);
+  private catService = inject(CategoriaService);
 
+  ngOnInit(): void {
+    this.catService.listarTodos().subscribe((data) => this.cats.set(data));
+  }
 }

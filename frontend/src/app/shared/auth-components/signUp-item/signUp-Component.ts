@@ -19,6 +19,7 @@ export class SignUpComponent implements AfterViewInit{
 
   botaoPai():void{
     this.signUpForm.testeMaluco();
+    alert("cadastrado senha 1234 enviada por email");
   }
 
   ngAfterViewInit(): void {
