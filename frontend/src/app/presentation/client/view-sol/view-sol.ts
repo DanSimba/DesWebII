@@ -16,7 +16,7 @@ export class ViewSol{
 
   private solCard = inject(ClientSolicitationService);
   solData = signal<Solicitation|null>(null);
-  est="aprovada";
+  ans = '';
 
   ngOnInit(){
     //console.log("\nestado: "+ this.est)
@@ -41,8 +41,8 @@ export class ViewSol{
   //ÁREA DO POPUP
   dialog = inject(Dialog); //cria obj 'dialog' (popup)
 
-  protected async openPopup(text: string, type: string): Promise<boolean>{ 
-    const dialogRef = this.dialog.open<boolean>(Popup, {
+  protected async openPopup(text: string, type: string): Promise<boolean|string>{ 
+    const dialogRef = this.dialog.open<boolean|string>(Popup, {
       data: {
         text: text,
         typePopUp: type
@@ -50,11 +50,16 @@ export class ViewSol{
     });
 
     const result = await firstValueFrom(dialogRef.closed);
+    if(typeof result ==='string'){
+      this.ans = result;
+      console.log("msg (retorna false tbm): ",result);
+      return false;
+    }
     if(result){
-      console.log("sim!sim!sim!");
+      console.log("sim!sim!sim! ",result);
       return true;
     } else{
-      console.log("não ou ok");
+      console.log("não ou ok: ",result);
       return false;
     }
   }

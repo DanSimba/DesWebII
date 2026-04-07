@@ -52,15 +52,26 @@
         </div>
         
         <div class="flex flex-row h-[10vh] justify-between pt-1">
-          <div (click)="openPopup('Aprovar este orçamento?', 'option').then(res => res ? updtEstado('aprovada') : '')" 
+          <div (click)="openPopup('Aprovar este orçamento?', 'opt').then(res => res ? updtEstado('aprovada') : '')" 
           class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-(--aprovada) rounded-[28px] border-solid border-5 border-yellow-700 hover:cursor-pointer hover:bg-yellow-600">
                 Aprovar
           </div>
 
-          <div (click)="openPopup('Rejeitar este orçamento?', 'opt').then(res => res ? updtEstado('rejeitada') : '')"  class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-(--rejeitada) rounded-[28px] border-solid border-5 border-red-700 hover:cursor-pointer hover:bg-red-800">
+          <div (click)="openPopup('Explique por que deseja rejeitar este orçamento', 'custom').then(res => !res ? updtEstado('rejeitada') : '')"  class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-(--rejeitada) rounded-[28px] border-solid border-5 border-red-700 hover:cursor-pointer hover:bg-red-800">
                 Rejeitar
           </div>
         </div>
+      </div>
+    }
+
+    @if(solData()?.estado == "rejeitada"){
+      <div class="flex flex-col font-bold w-[60vh] h-[25vh] p-2 text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby) overflow-y-auto">
+                  <div class="flex justify-center items-center">
+                    Motivo da rejeição
+                  </div>
+                  <div class="flex justify-left text-[15px]">
+                    {{ans}}
+                  </div>
       </div>
     }
 </div>
