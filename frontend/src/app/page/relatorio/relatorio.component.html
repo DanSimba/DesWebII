@@ -16,9 +16,9 @@
       <div class=" min-w-[200px] content-center p-2">
         <label for="categorias">Categoria: </label>
         <select name="categorias">
-          <option value="teste">teste</option>
-          <option value="teste">teste</option>
-          <option value="teste">teste</option>
+          @for (categorias of cats(); track categorias.id) {
+          <option value="{{categorias.categoryName}}"> {{ categorias.categoryName }} </option>
+        } 
         </select>
       </div>
       <div class="border-1 rounded-4xl"></div>
@@ -36,7 +36,9 @@
   </div>
 </div>
   <!--Dowload pdf - botão-->
-  <div class="bg-(--queen-pink) text-xl font-bold w-[250px] content-center p-2 rounded-2xl self-end hover:cursor-pointer">
-    <input type="button" value="Dowload em PDF" class="hover:cursor-pointer w-full"/>
+  <div class="bg-(--queen-pink) text-xl font-bold w-[250px] p-2 rounded-2xl self-end hover:cursor-pointer">
+    <a href="../../../assets/relatorio_receita_placeholder.pdf" download class="hover:cursor-pointer w-full">
+      Download em PDF
+    </a>
   </div>
 </div>

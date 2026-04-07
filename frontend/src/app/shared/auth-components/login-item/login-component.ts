@@ -14,13 +14,12 @@ import { ViewChild, AfterViewInit } from '@angular/core';
 export class LoginComponent implements AfterViewInit {
   @ViewChild(LoginForm) loginForm! : LoginForm;
   constructor(){}
+  ngAfterViewInit(): void {}
 
   botaoPai():void{
-    this.loginForm.testeMaluco();
+    this.loginForm.handleLogin();
   }
 
-  ngAfterViewInit(): void {
-    
-  }
+  
 
 }
