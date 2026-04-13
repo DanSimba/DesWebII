@@ -1,43 +1,49 @@
 <div
   class="flex flex-col w-[80vh] justify-between h-[65vh] bg-pink-700/50 p-3 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto text-(--french-puce)"
 >
-
-<div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-2">
     <!--Titulo da guia-->
-  <div class="bg-(--queen-pink) text-2xl font-bold w-[150px] p-2 rounded-2xl justify-center flex">
-    <h3>Relatorios</h3>
-  </div>
-  <!--Area de filtros-->
-  <div class="gap-2 flex flex-col bg-(--queen-pink) items-center p-3 rounded-2xl">
-    <div class="border-b-2 w-full">
-      <h4>Filtros:</h4>
+    <div class="bg-(--queen-pink) text-2xl font-bold w-[150px] p-2 rounded-2xl justify-center flex">
+      <h3>Relatorios</h3>
     </div>
-    <div class="flex justify-around w-full min-h-[70px]">
-      <div class=" min-w-[200px] content-center p-2">
-        <label for="categorias">Categoria: </label>
-        <select name="categorias">
-          @for (categorias of cats(); track categorias.id) {
-          <option value="{{categorias.categoryName}}"> {{ categorias.categoryName }} </option>
-        } 
-        </select>
+    <!--Area de filtros-->
+    <div class="gap-2 flex flex-col bg-(--queen-pink) items-center p-3 rounded-2xl">
+      <div class="border-b-2 w-full">
+        <h4>Filtros:</h4>
       </div>
-      <div class="border-1 rounded-4xl"></div>
-      <div class=" min-w-[200px] content-center">
-        <div class="flex justify-between p-2">
-          <label for="dataInicio">A partir de: </label>
-          <input type="date" name="dataInicio" id="" />
+      <div class="flex justify-around w-full min-h-[70px]">
+        <div class="min-w-[200px] content-center p-2">
+          <label for="categorias">Categoria: </label>
+          <select name="categorias" [value]="relatorioInfo.categoria">
+            <option value=""></option>
+            @for (categorias of cats(); track categorias.id) {
+              <option value="{{ categorias.categoryName }}">{{ categorias.categoryName }}</option>
+            }
+          </select>
         </div>
-        <div class="flex justify-between p-2">
-          <label for="dataFim">Até: </label>
-          <input type="date" name="dataFim" id="" />
+        <div class="border-1 rounded-4xl"></div>
+        <div class="min-w-[200px] content-center">
+          <div class="flex justify-between p-2">
+            <label for="dataInicio">A partir de: </label>
+            <input type="date" name="dataInicio" id="" [value]="relatorioInfo.dataInicio" />
+          </div>
+          <div class="flex justify-between p-2">
+            <label for="dataFim">Até: </label>
+            <input type="date" name="dataFim" id="" [value]="relatorioInfo.dataFim" />
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
   <!--Dowload pdf - botão-->
-  <div class="bg-(--queen-pink) text-xl font-bold w-[250px] p-2 rounded-2xl self-end hover:cursor-pointer">
-    <a href="../../../assets/relatorio_receita_placeholder.pdf" download class="hover:cursor-pointer w-full">
+  <div
+    class="bg-(--queen-pink) text-xl font-bold w-[250px] p-2 rounded-2xl self-end hover:cursor-pointer"
+  >
+    <a
+      href="../../../assets/relatorio_receita_placeholder.pdf"
+      download
+      class="hover:cursor-pointer w-full"
+    >
       Download em PDF
     </a>
   </div>
