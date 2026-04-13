@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { Categoria } from '../../models/categoria.model';
 import { CategoriaService } from '../../services/categoria.service';
+import { RelatorioType } from '../../models/relatorio-interface';
 
 @Component({
   selector: 'app-relatorio',
@@ -15,4 +16,13 @@ export class RelatorioComponent {
   ngOnInit(): void {
     this.catService.listarTodos().subscribe((data) => this.cats.set(data));
   }
+
+  relatorioInfo: RelatorioType = {
+    categoria: '',
+    dataInicio: '',
+    dataFim: '',
+    info: '',
+  };
+
+  
 }

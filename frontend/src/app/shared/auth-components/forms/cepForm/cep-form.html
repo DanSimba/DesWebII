@@ -7,7 +7,6 @@
       name="cep"
       type="tel"
       placeholder=""
-      
       class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
       #cep
       (keyup)="cepAlteration(cep.value)"
@@ -29,7 +28,6 @@
       placeholder=""
       [value]="cepInfo.logradouro"
       class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
-      
     />
     <label
       for="logradouro"
@@ -64,9 +62,8 @@
         name="UF"
         type="text"
         placeholder=""
-        [value]="cepInfo.uf" 
+        [value]="cepInfo.uf"
         class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
-        
       />
       <label
         for="UF"
@@ -83,9 +80,8 @@
       name="bairro"
       type="text"
       placeholder=""
-      [value]="cepInfo.bairro" 
+      [value]="cepInfo.bairro"
       class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
- 
     />
     <label
       for="bairro"
@@ -101,9 +97,8 @@
       name="complemento"
       type="text"
       placeholder=""
-      [value]="cepInfo.complemento" 
+      [value]="cepInfo.complemento"
       class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
-   
     />
     <label
       for="complemento"
@@ -112,5 +107,4 @@
       Complemento
     </label>
   </div>
- 
 </form>
