@@ -1,0 +1,69 @@
+package main.java.maintec.service;
+
+import main.java.maintec.dto.CategoriaDTO;
+import main.java.maintec.entity.Categoria;
+import main.java.maintec.repository.CategoriaRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class CategoriaService {
+
+    private final CategoriaRepository repository;
+
+    public CategoriaService(CategoriaRepository repository) {
+        this.repository = repository;
+    }
+
+    public List<CategoriaDTO> listarTodas() {
+        return repository.findByAtivoTrue().stream()
+                .map(this::converterParaDTO)
+                .collect(Collectors.toList());
+    }
+
+
+    public CategoriaDTO buscarPorId(Long id) {
+        Categoria categoria = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Categoria não encontrada!"));
+        
+        if (categoria.getAtivo() != null && !categoria.getAtivo()) {
+            throw new RuntimeException("Categoria desativada!");
+        }
+        return converterParaDTO(categoria);
+    }
+
+    public CategoriaDTO salvar(CategoriaDTO dto) {
+        Categoria categoria = new Categoria();
+        categoria.setNome(dto.getNome());
+        categoria.setAtivo(true);
+        
+        Categoria categoriaSalva = repository.save(categoria);
+        return converterParaDTO(categoriaSalva);
+    }
+
+    public CategoriaDTO atualizar(Long id, CategoriaDTO dto) {
+        Categoria categoria = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Categoria não encontrada!"));
+        
+        categoria.setNome(dto.getNome());
+        Categoria categoriaAtualizada = repository.save(categoria);
+        return converterParaDTO(categoriaAtualizada);
+    }
+
+    public void desativar(Long id) {
+        Categoria categoria = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Categoria não encontrada!"));
+        
+        categoria.setAtivo(false);
+        repository.save(categoria);
+    }
+
+    private CategoriaDTO converterParaDTO(Categoria categoria) {
+        CategoriaDTO dto = new CategoriaDTO();
+        dto.setId(categoria.getId());
+        dto.setNome(categoria.getNome());
+        return dto;
+    }
+}
