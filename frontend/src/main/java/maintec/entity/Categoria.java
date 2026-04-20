@@ -11,6 +11,10 @@ public class Categoria {
     @Column(nullable = false, length = 200)
     private String nome;
 
+    private Boolean ativo = true;
+    public Boolean getAtivo() { return ativo; }
+    public void setAtivo(Boolean ativo) { this.ativo = ativo; }
+
     // Construtor sem parâmetros
     public Categoria(){
 
