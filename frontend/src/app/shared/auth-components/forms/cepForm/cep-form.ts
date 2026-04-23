@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CepServiceService } from '../../../../services/CEP/cep-service.service';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
-import { CepType } from './cepType';
+import { CepType } from '../../../../models/cepType';
 
 @Component({
   selector: 'cep-form',
@@ -26,7 +26,7 @@ export class CepForm implements OnInit {
   cepAlteration(cep: string) {
     //impede de gerar requisições falhas
     if (cep == '' || cep.length < 9) {
-      console.log("===IMPEDIDO===");
+      console.log('===IMPEDIDO===');
       return;
     }
 
@@ -35,10 +35,10 @@ export class CepForm implements OnInit {
     let cepResponse: any;
 
     //Iludindo o usuario
-    this.cepInfo.logradouro = "Buscando...";
-    this.cepInfo.uf = "...";
-    this.cepInfo.bairro = "Buscando...";
-    this.cepInfo.complemento = "Buscando...";
+    this.cepInfo.logradouro = 'Buscando...';
+    this.cepInfo.uf = '...';
+    this.cepInfo.bairro = 'Buscando...';
+    this.cepInfo.complemento = 'Buscando...';
 
     //Retira os caracteres da mascara
     this.cepService.getCep(cep).subscribe({
@@ -52,7 +52,7 @@ export class CepForm implements OnInit {
       },
       error: (res) => {
         console.log('+ ERRO NO VIA CEP +' + res);
-      }
+      },
     });
   }
 }

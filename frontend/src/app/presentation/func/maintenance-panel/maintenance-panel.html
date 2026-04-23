@@ -2,11 +2,16 @@
 
   <app-maintenance-filter (filterChanged)="applyFilter($event)"></app-maintenance-filter>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
-    <app-maintenance-card *ngFor="let req of filteredRequests" 
-                          [req]="req"
-                          (actionClick)="handleAction($event)">
-    </app-maintenance-card>
-  </div>
-
+  @if (filteredRequests.length > 0) {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
+      <app-maintenance-card *ngFor="let req of filteredRequests" 
+                            [req]="req"
+                            (actionClick)="handleAction($event)">
+      </app-maintenance-card>
+    </div>
+  } 
+  @else {
+    <app-empty-state message="Nenhuma solicitação encontrada"></app-empty-state>
+  }
+  
 </div>

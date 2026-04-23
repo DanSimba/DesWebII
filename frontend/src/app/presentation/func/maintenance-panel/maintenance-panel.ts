@@ -6,11 +6,12 @@ import { MaintenanceFilterComponent } from '../maintenance-filter/maintenance-fi
 import { Router } from '@angular/router';
 import { Dialog } from '@angular/cdk/dialog';
 import { Popup } from '../../../shared/components/popup/popup';
+import { EmptyStateComponent } from '../../../shared/components/empty-state/empty-state.component';
 
 @Component({
   selector: 'app-maintenance-panel',
   standalone: true,
-  imports: [CommonModule, MaintenanceCard, MaintenanceFilterComponent],
+  imports: [CommonModule, MaintenanceCard, MaintenanceFilterComponent, EmptyStateComponent],
   templateUrl: './maintenance-panel.html',
   styleUrl: './maintenance-panel.css'
 })
