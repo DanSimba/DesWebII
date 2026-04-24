@@ -1,30 +1,32 @@
 package main.java.maintec.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClientDTO {
     private Long id;
     private String nome;
-    private List<SolicitationDTO> sols;
+    private List<SolicitationDTO> sols= new ArrayList<>();
 
     public Long getId() {
         return id;
     }
 
+    public String getNome() {
+            return nome;
+        }
+
+    public List<SolicitationDTO> getSols() {
+        return sols;
+    }
+
+
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public List<SolicitationDTO> getSols() {
-        return sols;
     }
 
     public void setSols(List<SolicitationDTO> sols) {
