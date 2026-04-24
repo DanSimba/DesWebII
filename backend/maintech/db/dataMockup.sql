@@ -178,4 +178,101 @@ INSERT INTO solicitacao (
  110.00, 1, '2024-10-06 10:00:00',
  'Módulo Bluetooth substituído', 'Mantenha dispositivos próximos', 1, '2024-10-09 14:00:00',
  '2024-10-10 09:00:00', NULL, NULL, NULL);
+
  
+INSERT INTO historico_solicitacao (id_solicitacao, id_funcionario, estado_anterior, estado_novo, data_hora, observacao, id_func_origem, id_func_destino) VALUES
+ 
+-- Sol. 1: ABERTA (só criação, sem histórico ainda)
+ 
+-- Sol. 3: ABERTA → ORCADA
+(3, 1, 'ABERTA', 'ORCADA', '2024-10-16 09:00:00', 'Orçamento efetuado por Maria', NULL, NULL),
+ 
+-- Sol. 4: ABERTA → ORCADA
+(4, 2, 'ABERTA', 'ORCADA', '2024-10-21 10:00:00', 'Orçamento efetuado por Mário', NULL, NULL),
+ 
+-- Sol. 5: ABERTA → ORCADA → APROVADA
+(5, 1, 'ABERTA',  'ORCADA',   '2024-10-11 09:00:00', 'Orçamento efetuado por Maria', NULL, NULL),
+(5, NULL, 'ORCADA',   'APROVADA', '2024-10-11 14:00:00', 'Aprovado pelo cliente',        NULL, NULL),
+ 
+-- Sol. 6: ABERTA → ORCADA → APROVADA
+(6, 2, 'ABERTA',  'ORCADA',   '2024-10-13 11:00:00', 'Orçamento efetuado por Mário', NULL, NULL),
+(6, NULL, 'ORCADA',   'APROVADA', '2024-10-13 16:00:00', 'Aprovado pelo cliente',        NULL, NULL),
+ 
+-- Sol. 7: ABERTA → ORCADA → REJEITADA
+(7, 1, 'ABERTA',  'ORCADA',   '2024-09-06 10:00:00', 'Orçamento efetuado por Maria',       NULL, NULL),
+(7, NULL, 'ORCADA', 'REJEITADA', '2024-09-07 09:00:00', 'Valor muito alto para o cliente',  NULL, NULL),
+ 
+-- Sol. 8: ABERTA → ORCADA → REJEITADA
+(8, 2, 'ABERTA',  'ORCADA',   '2024-09-11 09:00:00', 'Orçamento efetuado por Mário',       NULL, NULL),
+(8, NULL, 'ORCADA', 'REJEITADA', '2024-09-12 10:00:00', 'Cliente optou por trocar o equipamento', NULL, NULL),
+ 
+-- Sol. 9: ABERTA → ORCADA → APROVADA → REDIRECIONADA
+(9, 1, 'ABERTA',    'ORCADA',        '2024-10-26 09:00:00', 'Orçamento efetuado por Maria',              NULL, NULL),
+(9, NULL, 'ORCADA',      'APROVADA',      '2024-10-26 14:00:00', 'Aprovado pelo cliente',                     NULL, NULL),
+(9, 1,    'APROVADA',    'REDIRECIONADA', '2024-10-27 08:00:00', 'Maria não tem expertise em impressoras',    1,    2   ),
+ 
+-- Sol. 10: ABERTA → ORCADA → APROVADA → ARRUMADA
+(10, 1, 'ABERTA',   'ORCADA',   '2024-10-02 09:00:00', 'Orçamento efetuado por Maria', NULL, NULL),
+(10, NULL, 'ORCADA',    'APROVADA', '2024-10-02 15:00:00', 'Aprovado pelo cliente',        NULL, NULL),
+(10, 1,   'APROVADA', 'ARRUMADA', '2024-10-05 14:00:00', 'HD substituído com sucesso',   NULL, NULL),
+ 
+-- Sol. 11: ABERTA → ORCADA → APROVADA → ARRUMADA
+(11, 2, 'ABERTA',   'ORCADA',   '2024-09-21 10:00:00', 'Orçamento efetuado por Mário', NULL, NULL),
+(11, NULL, 'ORCADA',    'APROVADA', '2024-09-21 16:00:00', 'Aprovado pelo cliente',        NULL, NULL),
+(11, 2,   'APROVADA', 'ARRUMADA', '2024-09-23 15:00:00', 'Sensor limpo com sucesso',     NULL, NULL),
+ 
+-- Sol. 12: → PAGA
+(12, 1, 'ABERTA',   'ORCADA',   '2024-08-16 10:00:00', 'Orçamento efetuado por Maria', NULL, NULL),
+(12, NULL, 'ORCADA',    'APROVADA', '2024-08-16 15:00:00', 'Aprovado pelo cliente',        NULL, NULL),
+(12, 1,   'APROVADA', 'ARRUMADA', '2024-08-20 11:00:00', 'Membrana substituída',         NULL, NULL),
+(12, NULL, 'ARRUMADA',  'PAGA',     '2024-08-21 16:00:00', 'Pagamento confirmado',         NULL, NULL),
+ 
+-- Sol. 13: → PAGA
+(13, 2, 'ABERTA',   'ORCADA',   '2024-08-02 09:00:00', 'Orçamento efetuado por Mário', NULL, NULL),
+(13, NULL, 'ORCADA',    'APROVADA', '2024-08-02 14:00:00', 'Aprovado pelo cliente',        NULL, NULL),
+(13, 2,   'APROVADA', 'ARRUMADA', '2024-08-05 14:00:00', 'RAM ampliada com sucesso',     NULL, NULL),
+(13, NULL, 'ARRUMADA',  'PAGA',     '2024-08-06 10:00:00', 'Pagamento confirmado',         NULL, NULL),
+ 
+-- Sol. 14: → FINALIZADA
+(14, 1, 'ABERTA',   'ORCADA',     '2024-07-11 10:00:00', 'Orçamento efetuado por Maria', NULL, NULL),
+(14, NULL, 'ORCADA',    'APROVADA',   '2024-07-11 15:00:00', 'Aprovado pelo cliente',        NULL, NULL),
+(14, 1,   'APROVADA', 'ARRUMADA',   '2024-07-15 11:00:00', 'Tela substituída',             NULL, NULL),
+(14, NULL, 'ARRUMADA',  'PAGA',       '2024-07-16 14:00:00', 'Pagamento confirmado',         NULL, NULL),
+(14, 1,   'PAGA',       'FINALIZADA', '2024-07-17 09:00:00', 'Equipamento entregue',         NULL, NULL),
+ 
+-- Sol. 15: → FINALIZADA
+(15, 2, 'ABERTA',   'ORCADA',     '2024-07-02 09:00:00', 'Orçamento efetuado por Mário', NULL, NULL),
+(15, NULL, 'ORCADA',    'APROVADA',   '2024-07-02 14:00:00', 'Aprovado pelo cliente',         NULL, NULL),
+(15, 2,   'APROVADA', 'ARRUMADA',   '2024-07-05 15:00:00', 'Cabeça limpa',                  NULL, NULL),
+(15, NULL, 'ARRUMADA',  'PAGA',       '2024-07-06 11:00:00', 'Pagamento confirmado',          NULL, NULL),
+(15, 2,   'PAGA',       'FINALIZADA', '2024-07-07 09:00:00', 'Equipamento entregue',          NULL, NULL),
+ 
+-- Sol. 16: → FINALIZADA
+(16, 1, 'ABERTA',   'ORCADA',     '2024-06-16 09:00:00', 'Orçamento efetuado por Maria', NULL, NULL),
+(16, NULL, 'ORCADA',    'APROVADA',   '2024-06-16 14:00:00', 'Aprovado pelo cliente',        NULL, NULL),
+(16, 1,   'APROVADA', 'ARRUMADA',   '2024-06-18 14:00:00', 'Porta USB corrigida',          NULL, NULL),
+(16, NULL, 'ARRUMADA',  'PAGA',       '2024-06-19 10:00:00', 'Pagamento confirmado',         NULL, NULL),
+(16, 1,   'PAGA',       'FINALIZADA', '2024-06-20 09:00:00', 'Equipamento entregue',         NULL, NULL),
+ 
+-- Sol. 18: ABERTA → ORCADA
+(18, 1, 'ABERTA', 'ORCADA', '2024-11-02 10:00:00', 'Orçamento efetuado por Maria', NULL, NULL),
+ 
+-- Sol. 19: ABERTA → ORCADA → APROVADA
+(19, 2, 'ABERTA',  'ORCADA',   '2024-10-29 10:00:00', 'Orçamento efetuado por Mário', NULL, NULL),
+(19, NULL, 'ORCADA',   'APROVADA', '2024-10-29 16:00:00', 'Aprovado pelo cliente',        NULL, NULL),
+ 
+-- Sol. 20: ABERTA → ORCADA → REJEITADA → APROVADA (RF009 - Resgatar)
+(20, 1, 'ABERTA',    'ORCADA',    '2024-09-26 09:00:00', 'Orçamento efetuado por Maria',     NULL, NULL),
+(20, NULL, 'ORCADA',     'REJEITADA', '2024-09-27 10:00:00', 'Cliente achou caro inicialmente',  NULL, NULL),
+(20, NULL, 'REJEITADA',  'APROVADA',  '2024-09-28 09:00:00', 'Cliente resgatou o serviço',       NULL, NULL),
+ 
+-- Sol. 21: → ARRUMADA
+(21, 2, 'ABERTA',   'ORCADA',   '2024-10-19 09:00:00', 'Orçamento efetuado por Mário', NULL, NULL),
+(21, NULL, 'ORCADA',    'APROVADA', '2024-10-19 15:00:00', 'Aprovado pelo cliente',        NULL, NULL),
+(21, 2,   'APROVADA', 'ARRUMADA', '2024-10-22 16:00:00', 'Placa de vídeo corrigida',     NULL, NULL),
+ 
+-- Sol. 22: → PAGA
+(22, 1, 'ABERTA',   'ORCADA',   '2024-10-06 10:00:00', 'Orçamento efetuado por Maria', NULL, NULL),
+(22, NULL, 'ORCADA',    'APROVADA', '2024-10-06 15:00:00', 'Aprovado pelo cliente',        NULL, NULL),
+(22, 1,   'APROVADA', 'ARRUMADA', '2024-10-09 14:00:00', 'Módulo Bluetooth trocado',     NULL, NULL),
+(22, NULL, 'ARRUMADA',  'PAGA',     '2024-10-10 09:00:00', 'Pagamento confirmado',         NULL, NULL);
