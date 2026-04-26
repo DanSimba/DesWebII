@@ -29,4 +29,24 @@ public class SolicitationDTO {
     public void setEst(String e){
         this.estado = e;
     }
+
+    public Long getId(){
+        return this.id;
+    }
+
+    public String getEquip(){
+        return this.equipamento;
+    }
+
+    public String getDesc(){
+        return this.desc;
+    }    
+
+    public String getData(){
+        return this.data;
+    }
+
+    public String getEst(){
+        return this.estado;
+    }
 }
