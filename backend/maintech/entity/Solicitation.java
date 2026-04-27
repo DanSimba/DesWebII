@@ -7,7 +7,7 @@ import java.util.List;
 public class Solicitation {
 
     @Id
-    private long id = new Date().getTime();
+    private Long id = new Date().getTime();
     private String equipamento;
     private String desc;
     private String data;
@@ -17,6 +17,9 @@ public class Solicitation {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
+
+    @OneToMany(mappedBy = "solicitacao")
+    private Historico historico;
 
     public long getId(){
         return this.id;
