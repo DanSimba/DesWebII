@@ -5,6 +5,7 @@ import main.java.maintec.service.CategoriaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -44,5 +45,14 @@ public class CategoriaController {
     public ResponseEntity<Void> remover(@PathVariable Long id) {
         service.desativar(id);
         return ResponseEntity.noContent().build();
+    }
+    @PostMapping
+    public ResponseEntity<CategoriaDTO> criar(@Valid @RequestBody CategoriaDTO dto) {
+        CategoriaDTO novaCategoria = service.salvar(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novaCategoria);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoriaDTO> atualizar(@PathVariable Long id, @Valid @RequestBody CategoriaDTO dto) {
+        return ResponseEntity.ok(service.atualizar(id, dto));
     }
 }

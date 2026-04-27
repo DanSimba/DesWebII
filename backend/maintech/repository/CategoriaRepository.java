@@ -10,4 +10,6 @@ import java.util.List;
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
     List<Categoria> findByAtivoTrue();
+    boolean existsByNomeIgnoreCase(String nome);
+    boolean existsByNomeIgnoreCaseAndIdNot(String nome, Long id);
 }
