@@ -44,5 +44,20 @@ public class ClientService {
                 .orElseThrow(() -> new RuntimeException("EXCEPTION!!! CLIENTE NÃO ENCONTRADO!!!"));
         return this.toDTO(client);
     }
+
+    public List<ClientDTO> listClients() {
+        return repository.findaAll().stream()
+                .map(this::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    public ClientDTO save(ClientDTO dto) {
+        Client novo = new Client();
+        novo.setNome(dto.getNome());
+        novo.setId(dto.getId());
+        
+        repository.save(novo);
+        return toDTO(novo);
+    }
 }
 
