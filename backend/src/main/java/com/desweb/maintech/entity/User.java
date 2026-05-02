@@ -21,4 +21,16 @@ public class User {
     public void setPassword(String p){ //sempre passar um .encode("senha")
         this.password = p;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }
