@@ -1,4 +1,4 @@
-package main.java.com.desweb.maintech.dto;
+package com.desweb.maintech.dto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,15 +9,15 @@ public class ClientDTO {
     private List<SolicitationDTO> sols= new ArrayList<>();
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public String getNome() {
-            return nome;
+            return this.nome;
         }
 
     public List<SolicitationDTO> getSols() {
-        return sols;
+        return this.sols;
     }
 
 

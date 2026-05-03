@@ -1,7 +1,12 @@
 package com.desweb.maintech.entity;
 
-import jakarta.persistence.*; //bd
-import java.util.List;
+import java.util.Date;
+
+import jakarta.persistence.Entity; //bd
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Solicitation {
