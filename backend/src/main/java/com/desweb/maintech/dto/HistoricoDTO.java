@@ -1,4 +1,4 @@
-package maintech.dto;
+package com.desweb.maintech.dto;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +14,7 @@ public class HistoricoDTO {
     }
 
     public LocalDateTime getDataHora(){
-        return data_hora;
+        return dataHora;
     }
 
     public String getObservacao(){

@@ -1,7 +1,7 @@
 package com.desweb.maintech.entity;
 
 import jakarta.persistence.*; //bd
-import java.util.List;
+import java.util.Date;
 
 @Entity
 public class Solicitation {

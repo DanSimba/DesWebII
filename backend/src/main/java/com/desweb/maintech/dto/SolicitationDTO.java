@@ -1,6 +1,4 @@
-package main.java.com.desweb.maintech.dto;
-
-import java.util.List;
+package com.desweb.maintech.dto;
 
 public class SolicitationDTO {
     private Long id;

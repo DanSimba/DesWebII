@@ -1,6 +1,7 @@
-package main.java.com.desweb.maintech.entity;
+package com.desweb.maintech.entity;
 
 import jakarta.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Categoria {

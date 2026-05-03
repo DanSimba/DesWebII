@@ -1,14 +1,20 @@
 package com.desweb.maintech.entity;
 
+import java.util.Date;
+import jakarta.persistence.*;
+
 @Entity
 public class User {
     //login
     @Id
     @GeneratedValue
-    private Long id;
+    private Long id = new Date().getTime();
 
     private String email;
     private String password;
+
+    @OneToOne(mappedBy = "user")
+    private Funcionario funcionario;
 
     public void setId(Long id) {
         this.id = id;

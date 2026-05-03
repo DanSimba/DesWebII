@@ -1,9 +1,10 @@
-package main.java.com.desweb.maintech.entity;
+package com.desweb.maintech.entity;
 
 import jakarta.persistence.*; //bd
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 @Entity
 public class Client {
@@ -35,7 +36,7 @@ public class Client {
         this.nome = nome;
     }
 
-    public void setSols(List<SolicitationDTO> sols) {
+    public void setSols(List<Solicitation> sols) {
         this.sols = sols;
     }
 

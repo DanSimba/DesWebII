@@ -1,4 +1,4 @@
-package main.java.com.desweb.maintech.dto;
+package com.desweb.maintech.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
