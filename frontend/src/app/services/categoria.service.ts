@@ -9,50 +9,35 @@ const LS_CHAVE = "categorias";
   providedIn: 'root',
 })
 export class CategoriaService {
-  private cats : Categoria[] = [];
-  private primeiro = false; //pra saber se é a primeira vez carregando esse json dos infernos 
-  private jsonURL = 'assets/cat-ex.json';
+
+  // private cats : Categoria[] = [];
+  // private primeiro = false; //pra saber se é a primeira vez carregando esse json dos infernos 
+  // private jsonURL = 'assets/cat-ex.json';
+  // se tudo der errado a gente volta aqui 
 
   constructor(private http : HttpClient){
   }
+  private readonly apiURL = 'http://localhost:8080/api/categorias';
 
 
   listarTodos (): Observable<Categoria[]> {
-    if(this.primeiro){
-      return of(this.cats)
-    }
-
-    return this.http.get<{ cats: Categoria[] }>(this.jsonURL).pipe(
-      map(db => db.cats),tap(
-        dados => {
-          this.cats = dados;
-          this.primeiro = true; 
-
-        }
-      )
-    );
+    return this.http.get<Categoria[]>(this.apiURL);
   }
 
-  inserir(categoria: Categoria): void {
-    categoria.id = new Date().getTime();
-    this.cats.push(categoria);
+  inserir(categoria: Categoria): Observable<Categoria> {
+    return this.http.post<Categoria>(this.apiURL, categoria);
   }
 
-  buscarPorId(id: number): Observable< Categoria | undefined > {
-    return of(this.cats.find(c => c.id === id));
+  buscarPorId(id: number): Observable<Categoria> {
+    return this.http.get<Categoria>(`${this.apiURL}/${id}`);
   }
 
-  atualizar(categoria: Categoria): void {
-    this.cats.forEach( (obj, index, objs) => {
-      if (categoria.id === obj.id) {
-        objs[index] = categoria
-      }
-    });
-
+  atualizar(categoria: Categoria, id : number): Observable<Categoria> {
+    return this.http.put<Categoria>(`${this.apiURL}/${id}`, categoria);
   }
 
-  remover(id: number): void {
-    this.cats = this.cats.filter(ct => ct.id !== id);
+  remover(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiURL}/${id}`);
   }
   
 }
