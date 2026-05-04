@@ -3,6 +3,8 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
 import { Categoria } from '../../../models/categoria.model';
 import { CategoriaService } from '../../../services/categoria.service';
+import { Dialog } from '@angular/cdk/dialog';
+import { Popup } from '../../../shared/components/popup/popup';
 
 @Component({
   selector: 'app-categoria-crud',
@@ -15,6 +17,7 @@ export class CategoriaCrud implements OnInit {
   private router = inject(Router);
   private catService = inject(CategoriaService);
   cats = signal<Categoria[]>([]);
+  private dialog = inject(Dialog);
 
 
   ngOnInit(): void {
@@ -33,11 +36,25 @@ export class CategoriaCrud implements OnInit {
     this.router.navigate(['/func/crud-cat/edit', id]);
   }
 
-  removerCat(id : number) : void{    
-    console.log("ta removendo essa buceta");
-    this.catService.remover(id);
-    this.catService.listarTodos().subscribe(
-      data => this.cats.set(data)
-    )
+  removerCat(id : number) : void{   
+    const ref = this.dialog.open( Popup, {
+      data : {
+        text: 'Deseja remover esta categoria?',
+        typePopUp: 'opt'
+      }
+    });
+    
+    ref.closed.subscribe(check => {
+      if(!check) return;
+
+      this.catService.remover(id).subscribe({
+        next: () => {this.catService.listarTodos().subscribe(
+          data => this.cats.set(data)
+        )},
+        error: (err) => console.log("não foi", err)      
+      })
+    })
+    
+    
   }
 }
