@@ -22,10 +22,7 @@ public class UserService {
 
         //Cria o usuario;
         User user = new User();
-        user.setCpf(dto.getCpf());
-        user.setNome(dto.getNome());
         user.setEmail(dto.getEmail());
-        user.setTelefone(dto.getTelefone());
         user.setPassword(senhaHash);
         user.setTypeUser(dto.getTypeUser());
         user.setSalt(salt);// É preciso salvar o salt gerado aleatorio para validar depois
