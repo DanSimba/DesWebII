@@ -11,12 +11,12 @@
         Nome da Categoria
       </label>
       <input
-        formControlName="categoryName"
+        formControlName="nome"
         type="text"
         placeholder="Ex: Notebook"
         class="p-3 rounded-[10px] bg-(--queen-pink) font-bold text-sm outline-none border-2 border-transparent focus:border-[#7B1D26] transition-all"
       />
-      @if (form.get('categoryName')?.invalid && form.get('categoryName')?.touched) {
+      @if (form.get('nome')?.invalid && form.get('nome')?.touched) {
         <span class="text-white text-[11px] font-bold">
           Nome obrigatório (mínimo 3 caracteres)
         </span>
