@@ -9,15 +9,15 @@ public class ClientDTO {
     private List<SolicitationDTO> sols= new ArrayList<>();
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public String getNome() {
-            return nome;
+            return this.nome;
         }
 
     public List<SolicitationDTO> getSols() {
-        return sols;
+        return this.sols;
     }
 
 

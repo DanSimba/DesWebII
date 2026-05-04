@@ -1,12 +1,14 @@
-package main.java.com.desweb.maintech.service;
-
-import main.java.com.desweb.maintech.dto.ClientDTO;
-import main.java.com.desweb.maintech.dto.SolicitationDTO;
-import main.java.com.desweb.maintech.entity.Client;
-import main.java.com.desweb.maintech.repository.ClientRepository;
-import org.springframework.stereotype.Service;
+package com.desweb.maintech.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.desweb.maintech.dto.ClientDTO;
+import com.desweb.maintech.dto.SolicitationDTO;
+import com.desweb.maintech.entity.Client;
+import com.desweb.maintech.repository.ClientRepository;
 
 @Service
 public class ClientService {
@@ -46,7 +48,7 @@ public class ClientService {
     }
 
     public List<ClientDTO> listClients() {
-        return repository.findaAll().stream()
+        return repository.findAll().stream()
                 .map(this::toDTO)
                 .collect(Collectors.toList());
     }

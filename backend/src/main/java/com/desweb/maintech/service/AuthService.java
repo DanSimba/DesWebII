@@ -1,4 +1,11 @@
-package main.java.com.desweb.maintech.service;
+package com.desweb.maintech.service;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.desweb.maintech.entity.User;
+import com.desweb.maintech.repository.UserRepository;
+import com.desweb.maintech.security.JwtService;
 
 @Service
 public class AuthService {

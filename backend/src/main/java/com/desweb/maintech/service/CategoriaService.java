@@ -1,12 +1,13 @@
-package main.java.com.desweb.maintech.service;
-
-import main.java.com.desweb.maintech.dto.CategoriaDTO;
-import main.java.com.desweb.maintech.entity.Categoria;
-import main.java.com.desweb.maintech.repository.CategoriaRepository;
-import org.springframework.stereotype.Service;
+package com.desweb.maintech.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.desweb.maintech.dto.CategoriaDTO;
+import com.desweb.maintech.entity.Categoria;
+import com.desweb.maintech.repository.CategoriaRepository;
 
 @Service
 public class CategoriaService {

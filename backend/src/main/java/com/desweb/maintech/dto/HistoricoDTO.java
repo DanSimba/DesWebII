@@ -8,17 +8,16 @@ public class HistoricoDTO {
     private String observacao;
 
     //Getters
-
     public Long getId(){
-        return id;
+        return this.id;
     }
 
     public LocalDateTime getDataHora(){
-        return dataHora;
+        return this.dataHora;
     }
 
     public String getObservacao(){
-        return observacao;
+        return this.observacao;
     }
 
 }

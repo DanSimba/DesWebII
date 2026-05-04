@@ -1,10 +1,12 @@
 package com.desweb.maintech.entity;
 
-import java.util.Date;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 @Entity
 public class User {
+
     //login
     @Id
     @GeneratedValue
@@ -12,6 +14,8 @@ public class User {
 
     private String email;
     private String password;
+    private TypeUser typeUser;
+    private String salt;
 
     @OneToOne(mappedBy = "user")
     private Funcionario funcionario;
@@ -23,20 +27,39 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public void setTypeUser(TypeUser typeUser) {
+        this.typeUser = typeUser;
+    }
 
-    public void setPassword(String p){ //sempre passar um .encode("senha")
-        this.password = p;
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+
+    public Long getId() {
+        return id;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public TypeUser getTypeUser() {
+        return typeUser;
+    }
+
+    //Lidando com a senha
+    public void setPassword(String p) { //sempre passar um .encode("senha")
+        this.password = p;
+    }
+
     public String getPassword() {
         return password;
     }
 
-    public Long getId() {
-        return id;
+    public String getSalt() {
+        return salt;
     }
+
 }
