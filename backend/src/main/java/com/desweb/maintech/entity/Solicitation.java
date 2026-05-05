@@ -1,21 +1,20 @@
 package com.desweb.maintech.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
-import jakarta.persistence.Entity; //bd
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "solicitacao")
 public class Solicitation {
 
     @Id
     private Long id = new Date().getTime();
     private String equipamento;
-    private String desc;
-    private String data;
+    private String desc_defeito;
+    private LocalDateTime data_hora;
     private String estado;
 
 
@@ -24,22 +23,22 @@ public class Solicitation {
     private Client client;
 
     @OneToMany(mappedBy = "solicitacao")
-    private Historico historico;
+    private List<Historico> historico;
 
     public long getId(){
         return this.id;
     }
 
     public String getDesc(){
-        return this.desc;
+        return this.desc_defeito;
     }
 
     public String getEquip(){
         return this.equipamento;
     }
 
-    public String getData(){
-        return this.data;
+    public LocalDateTime getData(){
+        return this.data_hora;
     }
 
     public String getEst(){
@@ -55,11 +54,11 @@ public class Solicitation {
     }
 
     public void setDesc(String e){
-        this.desc = e;
+        this.desc_defeito = e;
     }
 
-    public void setData(String e){
-        this.data = e;
+    public void setData(LocalDateTime e){
+        this.data_hora = e;
     }
 
     public void setEst(String e){
