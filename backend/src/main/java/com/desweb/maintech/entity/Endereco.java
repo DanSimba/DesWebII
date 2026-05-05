@@ -1,10 +1,19 @@
 package com.desweb.maintech.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+
 
 @Entity
 public class Endereco {
+
+    @Id
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String cep;
+    
     private String logradouro;
     private int numero;
     private String uf;
