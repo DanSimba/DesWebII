@@ -1,10 +1,12 @@
 package com.desweb.maintech.dto;
 
+import java.time.LocalDateTime;
+
 public class SolicitationDTO {
     private Long id;
     private String equipamento;
     private String desc;
-    private String data;
+    private LocalDateTime data;
     private String estado;
 
     //supostamente aqui eu só preciso dos setters certo?
@@ -20,7 +22,7 @@ public class SolicitationDTO {
         this.desc = e;
     }
 
-    public void setData(String e){
+    public void setData(LocalDateTime e){
         this.data = e;
     }
 
@@ -40,7 +42,7 @@ public class SolicitationDTO {
         return this.desc;
     }    
 
-    public String getData(){
+    public LocalDateTime getData(){
         return this.data;
     }
 

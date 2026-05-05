@@ -1,6 +1,7 @@
 package com.desweb.maintech.dto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 // importa uma ferramenta da biblioteca Jackson que ajuda a formatar como os dados serão transformados em JSON.
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -11,7 +12,7 @@ public class FuncionarioDTO {
 
     // Quando o objeto for convertido para JSON, a data deve aparecer no formato brasileiro "dia/mês/ano"
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private LocalDate dataNascimento;
+    private LocalDateTime dataNascimento;
 
     //Getters
 
@@ -23,7 +24,7 @@ public class FuncionarioDTO {
         return nome;
     }
 
-    public LocalDate getDataNascimento(){
+    public LocalDateTime getDataNascimento(){
         return dataNascimento;
     }
 
@@ -37,7 +38,7 @@ public class FuncionarioDTO {
         this.nome = n;
     }
 
-    public void setDataNascimento(LocalDate dn){
+    public void setDataNascimento(LocalDateTime dn){
         this.dataNascimento = dn;
     }
 }

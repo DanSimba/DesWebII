@@ -9,7 +9,8 @@ import java.util.Date;
 @Table(name = "historico_solicitacao")
 public class Historico {
     @Id
-    private Long id = new Date().getTime();
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "data_hora")
     private LocalDateTime dataHora;
@@ -17,11 +18,11 @@ public class Historico {
     private String observacao;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "estado_anterior", columnDefinition = "estado_solicitacao")
+    @Column(name = "estado_anterior")
     private EstadoSolicitacao estadoAnterior;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "estado_novo", columnDefinition = "estado_solicitacao")
+    @Column(name = "estado_novo")
     private EstadoSolicitacao estadoNovo;
 
     @ManyToOne

@@ -11,8 +11,8 @@ import jakarta.persistence.*;
 @Table(name = "cliente")
 public class Client {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY) //stratégia pro bd criar id automaticamente (autoincrementa)
-    private long id = new Date().getTime(); //gera baseado na data
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String nome;
     @OneToMany(mappedBy = "client")

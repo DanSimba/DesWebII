@@ -11,15 +11,20 @@ import jakarta.persistence.*;
 public class Solicitation {
 
     @Id
-    private Long id = new Date().getTime();
-    private String equipamento;
-    private String desc_defeito;
-    private LocalDateTime data_hora;
-    private String estado;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @Column(name = "desc_defeito")
+    private String descDefeito;
+
+    @Column(name = "data_hora")
+    private LocalDateTime dataHora; 
+
+    private String estado;
+    private String equipamento;
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "id_cliente")
     private Client client;
 
     @OneToMany(mappedBy = "solicitacao")
@@ -30,7 +35,7 @@ public class Solicitation {
     }
 
     public String getDesc(){
-        return this.desc_defeito;
+        return this.descDefeito;
     }
 
     public String getEquip(){
@@ -38,7 +43,7 @@ public class Solicitation {
     }
 
     public LocalDateTime getData(){
-        return this.data_hora;
+        return this.dataHora;
     }
 
     public String getEst(){
@@ -54,11 +59,11 @@ public class Solicitation {
     }
 
     public void setDesc(String e){
-        this.desc_defeito = e;
+        this.descDefeito = e;
     }
 
     public void setData(LocalDateTime e){
-        this.data_hora = e;
+        this.dataHora = e;
     }
 
     public void setEst(String e){
