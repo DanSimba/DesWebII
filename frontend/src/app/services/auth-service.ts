@@ -8,20 +8,38 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private http = inject(HttpClient);
-  private jsonUrl = 'assets/auth-ex.json';
+  private readonly apiURL = 'http://localhost:8080/auth';
 
-  query(): Observable<User[]> {
-    return this.http.get<User[]>(this.jsonUrl);
+  login(email: string, senha: string) : Observable<{token: string}>{
+    return this.http.post<{token: string}>(`${this.apiURL}/login`, { email, senha });
   }
 
-  loginValidation(email: string, password: string, res: User[]): string | undefined {
-    let type;
-    res.map((reg) => {
-      if (reg.email === email && reg.password === password) {
-        type = reg.type;
-      }
-    });
-    console.log(type);
-    return type;
+  // aqui para auto cadastro
+  cadastrar(dados : any) : Observable<any>{
+    return this.http.post(`${this.apiURL}/cadastro`, { dados });
   }
+
+  salvarToken(token: string): void {
+    localStorage.setItem('token', token);
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+  }
+
+
+  // query(): Observable<User[]> {
+  //   return this.http.get<User[]>(this.jsonUrl);
+  // }
+
+  // loginValidation(email: string, password: string, res: User[]): string | undefined {
+  //   let type;
+  //   res.map((reg) => {
+  //     if (reg.email === email && reg.password === password) {
+  //       type = reg.type;
+  //     }
+  //   });
+  //   console.log(type);
+  //   return type;
+  // }
 }
