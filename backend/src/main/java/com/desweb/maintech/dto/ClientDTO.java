@@ -3,6 +3,8 @@ package com.desweb.maintech.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.desweb.maintech.entity.User;
+
 public class ClientDTO {
     private Long id;
     private String nome;

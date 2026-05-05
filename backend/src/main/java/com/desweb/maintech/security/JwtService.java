@@ -19,7 +19,6 @@ public class JwtService {
     }
 
     public String generateToken(String email) {
-
         return Jwts.builder()
                 .setSubject(email)
                 .setIssuedAt(new Date())

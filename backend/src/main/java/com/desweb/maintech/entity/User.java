@@ -9,11 +9,10 @@ import java.util.Date;
 
 @Entity
 public class User {
-
     //login
     @Id
     @GeneratedValue
-    private Long id = new Date().getTime();
+    private Long id;
 
     private String email;
     private String password;

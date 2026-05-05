@@ -8,6 +8,8 @@ import java.util.Date;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 public class Client {
@@ -18,6 +20,10 @@ public class Client {
     private String nome;
     @OneToMany(mappedBy = "client")
     private List<Solicitation> sols = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "id_usuario")
+    private User user;
 
     public long getId(){
         return this.id;
