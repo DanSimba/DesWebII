@@ -17,7 +17,7 @@
           <select name="categorias" [value]="relatorioInfo.categoria">
             <option value=""></option>
             @for (categorias of cats(); track categorias.id) {
-              <option value="{{ categorias.categoryName }}">{{ categorias.categoryName }}</option>
+              <option value="{{ categorias.nome }}">{{ categorias.nome }}</option>
             }
           </select>
         </div>
