@@ -1,22 +1,15 @@
 package com.desweb.maintech.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.*;
 
 
-@Entity
+@Embeddable
 public class Endereco {
 
-    @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String cep;
-    
     private String logradouro;
-    private int numero;
-    private String uf;
+    private String numero;
+    private String estado;
     private String bairro;
     private String complemento;
 
@@ -36,20 +29,20 @@ public class Endereco {
         this.logradouro = logradouro;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
-    public String getUf() {
-        return uf;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getBairro() {

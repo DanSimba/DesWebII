@@ -5,13 +5,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "cliente")
 public class Client {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY) //stratégia pro bd criar id automaticamente (autoincrementa)
@@ -24,6 +21,9 @@ public class Client {
     @OneToOne
     @JoinColumn(name = "id_usuario")
     private User user;
+
+    @Embedded
+    private Endereco endereco;
 
     public long getId(){
         return this.id;
