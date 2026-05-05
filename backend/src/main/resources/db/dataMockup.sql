@@ -25,7 +25,9 @@ INSERT INTO funcionario (id_usuario, nome, data_nascimento) VALUES
 
  
 INSERT INTO cliente (id_usuario, cpf, nome, telefone, cep, logradouro, numero, complemento, bairro, cidade, estado) VALUES
-    (3, '12345678901', 'João Oliveira',    '41999990001', '80010000', 'Rua XV de Novembro',  '100', 'Apto 10', 'Centro',         'Curitiba',   'PR'),
+    (1, '12345678901', 'Jaime Pereira',    '41999990005', '80050000', 'Rua Minas Gerais',  '600', 'Apto 25', 'Centro',         'Curitiba',   'PR'),
+    (2, '23456789002', 'José Santos',      '41999990006', '80060000', 'Rua Capitao Rocha', '500', NULL,      'Centro',         'Curitiba',   'PR'),
+    (3, '12345678903', 'João Oliveira',    '41999990001', '80010000', 'Rua XV de Novembro',  '100', 'Apto 10', 'Centro',         'Curitiba',   'PR'),
     (4, '23456789012', 'José Santos',      '41999990002', '80020000', 'Av. Sete de Setembro', '200', NULL,      'Centro',         'Curitiba',   'PR'),
     (5, '34567890123', 'Joana Pereira',    '41999990003', '80030000', 'Rua Marechal Deodoro', '300', 'Sala 5', 'Centro',         'Curitiba',   'PR'),
     (6, '45678901234', 'Joaquina Mendes',  '41999990004', '80040000', 'Rua Amintas de Barros','400', NULL,      'Alto da Glória', 'Curitiba',   'PR');
