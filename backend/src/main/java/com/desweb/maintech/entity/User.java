@@ -1,22 +1,23 @@
 package com.desweb.maintech.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
+@Table(name = "usuario")
 public class User {
     //login
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String email;
-    private String password;
-    private TypeUser typeUser;
+    private String senha;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "perfil")
+    private TypeUser perfil;
     private String salt;
 
     @OneToOne(mappedBy = "user")
@@ -31,7 +32,7 @@ public class User {
     }
     
     public void setTypeUser(TypeUser typeUser) {
-        this.typeUser = typeUser;
+        this.perfil = typeUser;
     }
 
     public void setSalt(String salt) {
@@ -48,16 +49,16 @@ public class User {
     }
 
     public TypeUser getTypeUser() {
-        return typeUser;
+        return perfil;
     }
 
     //Lidando com a senha
     public void setPassword(String p) { //sempre passar um .encode("senha")
-        this.password = p;
+        this.senha = p;
     }
 
     public String getPassword() {
-        return password;
+        return senha;
     }
 
     public String getSalt() {

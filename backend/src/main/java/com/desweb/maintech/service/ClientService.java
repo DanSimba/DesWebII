@@ -26,7 +26,7 @@ public class ClientService {
 
         List<SolicitationDTO> sols = client.getSols() // coloca as sols do client uma por uma
                 .stream()
-                .map(sol -> {
+                .map(sol -> {   
                     SolicitationDTO s = new SolicitationDTO();
                     s.setId(sol.getId());
                     s.setDesc(sol.getDesc());

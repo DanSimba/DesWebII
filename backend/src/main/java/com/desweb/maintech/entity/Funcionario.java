@@ -10,7 +10,8 @@ import java.util.List;
 @Table(name = "funcionario")
 public class Funcionario {
     @Id
-    private Long id = new Date().getTime();
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false, length = 200)
     private String nome;
