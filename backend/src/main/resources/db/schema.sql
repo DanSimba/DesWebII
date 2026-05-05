@@ -1,6 +1,5 @@
 
 -- Remove tabelas na ordem inversa de dependência
-DROP DATABASE IF EXISTS maintech;
 DROP TABLE IF EXISTS historico_solicitacao CASCADE;
 DROP TABLE IF EXISTS solicitacao CASCADE;
 DROP TABLE IF EXISTS cliente CASCADE;
@@ -12,8 +11,6 @@ DROP TABLE IF EXISTS usuario CASCADE;
 
 DROP TYPE IF EXISTS perfil_usuario;
 DROP TYPE IF EXISTS estado_solicitacao;
-
-CREATE DATABASE maintech
  
 CREATE TYPE perfil_usuario AS ENUM ('CLIENTE', 'FUNCIONARIO');
  
