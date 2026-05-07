@@ -26,16 +26,10 @@ export class LoginForm {
   }
 
   private executeLogin() {
-    this.authService.query().subscribe({
+    this.authService.login(this.email, this.password).subscribe({
       next: (res) => {
-        const userRole = this.authService.loginValidation(
-          this.email,
-          this.password,
-          res
-        );
-
-        this.redirectUser(userRole);
-      },
+        this.authService.salvarToken(res.token)
+        },
       error: (err) => console.error('Login error:', err)
     });
   }
