@@ -1,9 +1,11 @@
-<body class="flex w-screen justify-center items-center">
-    <div class="flex flex-row w-[120vh] h-[80vh] p-3 items-center gap-4 bg-[#CA99AB] border-solid border-5 border-[#7B1D26] rounded-[22px]">
-        <div>
+<body class="flex w-screen h-screen justify-center items-center">
+    <div class="flex flex-row w-full max-w-6xl h-[85vh] p-6 items-center gap-6 bg-(--queen-pink) border-4 border-(--antique-ruby) rounded-[30px] shadow-[12px_12px_0px_var(--solid-pink)] relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none bg-repeat"></div>
+        <div class="relative z-10">
             <app-nav-bar-client></app-nav-bar-client>
         </div>
-        <div class="flex w-[82vh] h-[65vh]">
+
+        <div class="flex-1 h-full w-full flex justify-center items-center">
             <router-outlet></router-outlet>
         </div>
     </div>

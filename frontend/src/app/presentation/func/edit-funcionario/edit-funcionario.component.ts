@@ -25,8 +25,8 @@ export class EditFuncionarioComponent implements OnInit{
   idEditado : number | null = null;
 
   form : FormGroup = this.f.group ({
-    funcName : ['', [Validators.required, Validators.minLength(3)]],
-    funcCargo : ['', [Validators.required, Validators.minLength(3)]]
+    nome : ['', [Validators.required, Validators.minLength(3)]],
+    cargo : ['', [Validators.required, Validators.minLength(3)]]
   })
 
 
@@ -39,8 +39,8 @@ export class EditFuncionarioComponent implements OnInit{
 
       this.funcService.buscarPorId(this.idEditado).subscribe(
         fun => this.form.patchValue({
-          funcName : fun?.funcName,
-          funcCargo : fun?.funcCargo
+          nome : fun?.nome,
+          cargo : fun?.cargo
         })
       )
     }  

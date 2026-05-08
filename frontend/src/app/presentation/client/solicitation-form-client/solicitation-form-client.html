@@ -1,4 +1,4 @@
-<div class="flex flex-col w-[82vh] h-[65vh] bg-[image:var(--wallpaper-kitty)] bg-cover bg-center p-3 gap-2 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
+<!-- <div class="flex flex-col w-[82vh] h-[65vh] bg-[image:var(--wallpaper-kitty)] bg-cover bg-center p-3 gap-2 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
   <div class="flex flex-col w-xl" [formGroup]="form">
 
     <mat-form-field class="">
@@ -10,7 +10,7 @@
       <mat-select formControlName="catID">
         @for (categorias of cats(); track categorias.id) {
           <mat-option value="{{categorias.nome}}"> {{ categorias.nome }} </mat-option>
-          <!--mudei o value para o nome, n é ideal mas é melhor do q 'one'-->
+          //mudei o value para o nome, n é ideal mas é melhor do q 'one'
         }      
       </mat-select>
     </mat-form-field>
@@ -23,6 +23,41 @@
         class="items-end bg-(--queen-pink) border-3 rounded-xl border-(--french-puce) hover:cursor-pointer p-2 font-bold text-(--french-puce) text-l">
         SOLICITAR</button>
     </p>
+  </div>
+</div> -->
+
+<div class="flex flex-col w-[82vh] h-[65vh] bg-[image:var(--wallpaper-kitty)] bg-cover bg-center p-6 border-4 border-(--antique-ruby) rounded-[22px] overflow-y-auto shadow-[8px_8px_0px_var(--parrot-pink)]">
+  
+  <div class="bg-(--queen-pink) p-6 border-2 border-(--french-puce) rounded-lg shadow-inner">
+    <form [formGroup]="form" class="flex flex-col gap-4">
+      
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Descrição do Equipamento</mat-label>
+        <input matInput formControlName="descEquip" placeholder="Ex: iPhone 13 Pro">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="catID">
+          @for (cat of cats(); track cat.id) {
+            <mat-option [value]="cat.nome">{{ cat.nome }}</mat-option>
+          }      
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Descrição do Defeito</mat-label>
+        <textarea matInput formControlName="descDefeito" rows="4" placeholder="O que está acontecendo?"></textarea>
+      </mat-form-field>
+
+      <div class="flex justify-end mt-2">
+        <button (click)="onSubmit(); openPopup('Solicitação criada.', 'ok')"
+          class="bg-(--french-puce) text-white border-2 border-(--antique-ruby) px-8 py-3 font-bold text-lg hover:bg-(--antique-ruby) transition-colors shadow-[4px_4px_0px_var(--parrot-pink)] active:translate-y-1">
+          SOLICITAR >
+        </button>
+      </div>
+      
+    </form>
   </div>
 </div>
 

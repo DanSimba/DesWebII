@@ -11,12 +11,12 @@
         Nome do Funcionário
       </label>
       <input
-        formControlName="funcName"
+        formControlName="nome"
         type="text"
         placeholder="Nome completo"
         class="p-3 rounded-[10px] bg-(--queen-pink) font-bold text-sm outline-none border-2 border-transparent focus:border-[#7B1D26] transition-all"
       />
-      @if (form.get('funcName')?.invalid && form.get('funcName')?.touched) {
+      @if (form.get('nome')?.invalid && form.get('funcName')?.touched) {
         <span class="text-white text-[11px] font-bold">
           Nome obrigatório (mínimo 3 caracteres)
         </span>
@@ -28,12 +28,12 @@
         Cargo do Funcionário
       </label>
       <input
-        formControlName="funcCargo"
+        formControlName="cargo"
         type="text"
         placeholder="Cargo recente"
         class="p-3 rounded-[10px] bg-(--queen-pink) font-bold text-sm outline-none border-2 border-transparent focus:border-[#7B1D26] transition-all"
       />
-      @if (form.get('funcCargo')?.invalid && form.get('funcCargo')?.touched) {
+      @if (form.get('cargo')?.invalid && form.get('funcCargo')?.touched) {
         <span class="text-white text-[11px] font-bold">
           Cargo obrigatório
         </span>
