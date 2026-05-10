@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.desweb.maintech.dto.ClientDTO;
 import com.desweb.maintech.dto.SolicitationDTO;
 import com.desweb.maintech.entity.Client;
+import com.desweb.maintech.entity.Endereco;
 import com.desweb.maintech.repository.ClientRepository;
 
 @Service
@@ -26,7 +27,7 @@ public class ClientService {
 
         List<SolicitationDTO> sols = client.getSols() // coloca as sols do client uma por uma
                 .stream()
-                .map(sol -> {   
+                .map(sol -> {
                     SolicitationDTO s = new SolicitationDTO();
                     s.setId(sol.getId());
                     s.setDesc(sol.getDesc());
@@ -55,11 +56,26 @@ public class ClientService {
 
     public ClientDTO save(ClientDTO dto) {
         Client novo = new Client();
+
         novo.setNome(dto.getNome());
-        novo.setId(dto.getId());
-        
+        novo.setCpf(dto.getCpf());
+        novo.setTelefone(dto.getTelefone());
+
+        // endereço
+        Endereco end = new Endereco();
+
+        end.setCep(dto.getEndereco().getCep());
+        end.setLogradouro(dto.getEndereco().getLogradouro());
+        end.setNumero(dto.getEndereco().getNumero());
+        end.setComplemento(dto.getEndereco().getComplemento());
+        end.setBairro(dto.getEndereco().getBairro());
+        end.setCidade(dto.getEndereco().getCidade());
+        end.setEstado(dto.getEndereco().getEstado());
+
+        novo.setEndereco(end);
+
         repository.save(novo);
+
         return toDTO(novo);
     }
 }
-
