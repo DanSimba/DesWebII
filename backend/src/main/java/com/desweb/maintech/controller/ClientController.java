@@ -29,11 +29,12 @@ public class ClientController {
         return service.getClient(id);
     }
 
+    @GetMapping //Pq precisamos disso? em algum momento vai ser necessario listar todos os clientes?
     public ResponseEntity<List<ClientDTO>> listAll() {
         return ResponseEntity.ok(service.listClients());
     }
 
-    @PostMapping
+    @PostMapping("/cadastro")
     public ResponseEntity<ClientDTO> criar(@RequestBody ClientDTO dto) {
         ClientDTO novo = service.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(novo);
