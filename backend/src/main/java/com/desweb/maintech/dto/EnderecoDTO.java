@@ -1,17 +1,14 @@
-package com.desweb.maintech.entity;
+package com.desweb.maintech.dto;
 
-import jakarta.persistence.Embeddable;
-
-@Embeddable
-public class Endereco {
+public class EnderecoDTO {
 
     private String cep;
     private String logradouro;
     private String numero;
-    private String estado;
-    private String cidade;
-    private String bairro;
     private String complemento;
+    private String bairro;
+    private String cidade;
+    private String estado;
 
     public String getCep() {
         return cep;
@@ -37,12 +34,12 @@ public class Endereco {
         this.numero = numero;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getComplemento() {
+        return complemento;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
     public String getBairro() {
@@ -53,20 +50,20 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
     public String getCidade() {
         return cidade;
     }
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
 }
