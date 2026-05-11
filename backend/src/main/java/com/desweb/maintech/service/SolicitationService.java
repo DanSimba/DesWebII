@@ -1,10 +1,14 @@
 package com.desweb.maintech.service;
 
 import com.desweb.maintech.dto.SolicitationDTO;
+import com.desweb.maintech.entity.EstadoSolicitacao;
 import com.desweb.maintech.entity.Solicitation;
 import com.desweb.maintech.repository.SolicitationRepository;
+import com.desweb.maintech.entity.Funcionario;
+import com.desweb.maintech.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +18,9 @@ public class SolicitationService {
 
     @Autowired
     private SolicitationRepository repository;
+
+    @Autowired
+    private FuncionarioRepository funcionarioRepository;
 
     private SolicitationDTO toDTO(Solicitation sol) {
         SolicitationDTO dto = new SolicitationDTO();
@@ -68,5 +75,33 @@ public class SolicitationService {
     
     public void deletar(Long id) {
         repository.deleteById(id);
+    }
+
+    public SolicitationDTO efetuarManutencao(Long id, String orientacao) {
+        Solicitation sol = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Solicitação não encontrada"));
+        
+        if (!"EM_ANDAMENTO".equals(sol.getEst())) {
+            throw new RuntimeException("Apenas solicitações EM ANDAMENTO podem ser finalizadas.");
+        }
+        
+        sol.setEst("FINALIZADA");
+        sol.setOrientacao(orientacao);
+
+        sol = repository.save(sol);
+        return toDTO(sol);
+    }
+
+    public SolicitationDTO redirecionar(Long id, Long novoFuncionarioId) {
+        Solicitation sol = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Solicitação não encontrada"));
+        
+        Funcionario novoResp = funcionarioRepository.findById(novoFuncionarioId)
+                .orElseThrow(() -> new RuntimeException("Funcionário não encontrado"));
+
+        sol.setFuncionario(novoResp);
+
+        sol = repository.save(sol);
+        return toDTO(sol);
     }
 }
