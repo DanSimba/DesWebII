@@ -2,10 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { Categoria } from '../../models/categoria.model';
 import { CategoriaService } from '../../services/categoria.service';
 import { RelatorioType } from '../../models/relatorio-interface';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-relatorio',
-  imports: [],
+  imports: [MatIcon],
   templateUrl: './relatorio.component.html',
   styleUrl: './relatorio.component.css',
 })

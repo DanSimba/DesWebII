@@ -5,10 +5,11 @@ import { Categoria } from '../../../models/categoria.model';
 import { CategoriaService } from '../../../services/categoria.service';
 import { Dialog } from '@angular/cdk/dialog';
 import { Popup } from '../../../shared/components/popup/popup';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-categoria-crud',
-  imports: [CommonModule],
+  imports: [CommonModule, MatIcon],
   templateUrl: './categoria-crud.html',
   styleUrl: './categoria-crud.css',
 })

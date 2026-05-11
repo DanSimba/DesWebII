@@ -1,4 +1,4 @@
-<div class="flex flex-col w-[82vh] h-[65vh] bg-pink-700/50 p-4 gap-4 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
+<!-- <div class="flex flex-col w-[82vh] h-[65vh] bg-pink-700/50 p-4 gap-4 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
 
   <div class="flex font-bold w-full h-[10vh] min-h-[10vh] p-2 items-center justify-center text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby) text-(--french-puce) uppercase tracking-tighter shadow-md">
     Efetuar Orçamento
@@ -55,4 +55,49 @@
     </button>
   </div>
 
+</div> -->
+
+<div class="flex flex-col w-full h-full bg-[image:var(--wallpaper-kitty)] bg-cover bg-center p-6 gap-4 border-4 border-(--antique-ruby) rounded-[30px] overflow-y-auto shadow-[10px_10px_0px_var(--parrot-pink)]">
+
+  <div class="flex font-bold w-full py-4 items-center justify-center text-xl bg-(--queen-pink) border-3 border-(--antique-ruby) text-(--french-puce) uppercase tracking-widest shadow-sm">
+    EFETUAR ORÇAMENTO
+  </div>
+
+  <div class="flex flex-col gap-6 bg-(--queen-pink)/95 p-6 rounded-xl border-3 border-(--antique-ruby) shadow-inner flex-1">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-b-2 border-(--parrot-pink) pb-4">
+      <div class="space-y-1">
+        <h3 class="font-black text-(--french-puce) uppercase text-xs">Dados do Cliente</h3>
+        <p class="text-sm"><span class="font-bold">Nome:</span> {{clientName}}</p>
+        <p class="text-sm"><span class="font-bold">CPF:</span> {{clientCpf}}</p>
+      </div>
+      <div class="space-y-1">
+        <h3 class="font-black text-(--french-puce) uppercase text-xs">Equipamento</h3>
+        <p class="text-sm font-medium">{{equipmentCategory}}</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div class="flex flex-col gap-1">
+        <label class="text-xs font-bold text-(--french-puce) uppercase text-center">Peças (R$)</label>
+        <input type="number" [(ngModel)]="partsValue" class="p-3 rounded-lg border-2 border-(--french-puce) text-center font-bold bg-white focus:ring-2 ring-(--parrot-pink) outline-none">
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="text-xs font-bold text-(--french-puce) uppercase text-center">Mão de Obra (R$)</label>
+        <input type="number" [(ngModel)]="laborValue" class="p-3 rounded-lg border-2 border-(--french-puce) text-center font-bold bg-white focus:ring-2 ring-(--parrot-pink) outline-none">
+      </div>
+    </div>
+
+    <div class="mt-auto bg-(--french-puce) p-4 rounded-lg flex justify-between items-center border-b-4 border-black">
+      <span class="text-white font-bold uppercase">Total do Orçamento:</span>
+      <span class="text-white font-black text-2xl">R$ {{totalValue | number:'1.2-2'}}</span>
+    </div>
+  </div>
+
+  <div class="flex justify-end gap-4">
+    <button (click)="cancel()" class="px-6 py-2 font-bold text-(--french-puce) hover:underline">Cancelar</button>
+    <button (click)="submitBudget()" class="bg-(--antique-ruby) text-white px-10 py-3 font-bold border-b-4 border-(--french-puce) active:border-b-0 hover:brightness-110 transition-all uppercase">
+      Enviar Proposta >
+    </button>
+  </div>
 </div>

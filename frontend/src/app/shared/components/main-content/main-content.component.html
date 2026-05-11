@@ -1,37 +1,46 @@
-<div class="p-8">
-    <h1 class="text-center text-3xl text-(--french-puce) font-bold border-(--parrot-pink) my-6">
+<div class="relative min-h-screen bg-(--parrot-pink) flex items-center justify-center p-8 font-mono">
+  
+  <div class="relative w-full max-w-5xl border-4 border-(--french-puce) p-12 bg-(--queen-pink) shadow-[8px_8px_0px_var(--solid-pink)]">
+    
+    <div class="absolute inset-4 border border-(--french-puce) pointer-events-none"></div>
+
+    <div class="absolute -top-6 right-12 bg-(--queen-pink) border-3 border-(--french-puce) px-8 py-2 z-10">
+      <h1 class="text-(--french-puce) font-bold text-2xl tracking-widest">
         MAINTEC - MANUTENÇÃO
-    </h1>
-</div>
-<!-- Trocar h-screen por h-[400px] para reducir o tamanho do banner na tela-->
-<div class="relative h-screen w-full overflow-hidden">
-    <img 
-        src="assets/images/banner.png" 
-        alt="banner-background" 
-        class="absolute inset-0 h-full w-full object-cover"
-    />
-    <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-        <div class="text-center px-4">
-            <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight drop-shadow-lg">
-                Bem-vindo ao nosso cantinho encantado de cuidados eletrônicos!
-            </h2>
-        </div> 
+      </h1>
     </div>
-</div>
-<div class="p-8">
-    <p class="text-justify leading-relaxed text-gray-700 mb-4"> 
-        Aqui, seus aparelhos recebem o carinho que merecem! Seja seu celular, tablet, notebook ou qualquer outro dispositivo querido, nós cuidamos de tudo com muito amor, atenção e um toque super fofinho kawaii!
-        Assim como um abraço quentinho, nossa missão é deixar seus eletrônicos funcionando perfeitamente de novo, rapidinho e sem estresse. Com tecnologia, dedicação e muito capricho, transformamos problemas em soluções com um sorriso!
-    </p>
-    <p class="text-justify leading-relaxed text-gray-700 mb-4">
-        Nossos serviços incluem:
 
-        * Conserto de celulares e tablets
-        * Manutenção de notebooks e computadores
-        * Troca de telas, baterias e componentes
-        * Diagnóstico rápido e confiável
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-0">
+      
+      <div class="flex justify-center items-end">
+        <img src="assets/images/hello-kitty-44.png" 
+             alt="Hello Kitty Nurse" 
+             class="w-full max-w-[350px] drop-shadow-[8px_8px_0px_rgba(202,153,171,0.5)]">
+      </div>
 
-        Tudo isso com um atendimento doce, gentil e cheio de cuidado — porque aqui, cada cliente é especial!
-        Traga seu aparelho para nosso mundo fofinho e deixe a gente cuidar dele com todo o carinho!
-    </p>
+      <div class="flex flex-col gap-6 text-(--french-puce)">
+        
+        <h2 class="text-2xl font-bold leading-tight">
+          Bem-vindo ao nosso cantinho encantado de cuidados eletrônicos!
+        </h2>
+
+        <div class="flex justify-end">
+          <button 
+            [routerLink]="['auth/login/']"
+            class="bg-(--french-puce) text-white font-bold py-3 px-12 text-xl hover:opacity-90 transition-all active:translate-y-1">
+            LOGIN
+          </button>
+        </div>
+
+        <p class="text-sm leading-relaxed text-justify border-l-2 border-(--parrot-pink) pl-4">
+          Aqui, seus aparelhos recebem o carinho que merecem! Seja seu celular, tablet, notebook ou qualquer outro dispositivo querido, nós cuidamos de tudo com muito amor, atenção e um toque super fofinho kawaii! 
+          <br><br>
+          Assim como um abraço quentinho, nossa missão é deixar seus eletrônicos funcionando perfeitamente de novo, rapidinho e sem estresse. Com tecnologia, dedicação e muito capricho, transformamos problemas em soluções com um sorriso!
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
+<footer>
+    <app-footer-content></app-footer-content>
+</footer>
