@@ -56,6 +56,7 @@ public class FuncionarioService {
         }
 
         funcionario.setNome(dto.getNome());
+        funcionario.setDataNascimento(dto.getDataNascimento());
         Funcionario funcionarioAtualizado = repository.save(funcionario);
         return converterParaDTO(funcionarioAtualizado); 
     }
