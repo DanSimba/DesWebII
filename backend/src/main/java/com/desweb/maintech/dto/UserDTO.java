@@ -2,8 +2,8 @@ package com.desweb.maintech.dto;
 
 import com.desweb.maintech.entity.TypeUser;
 
-
 public class UserDTO {
+
     private Long id;
 
     private String email;
@@ -18,7 +18,7 @@ public class UserDTO {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     public void setTypeUser(TypeUser typeUser) {
         this.typeUser = typeUser;
     }
