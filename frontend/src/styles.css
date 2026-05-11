@@ -20,3 +20,16 @@
 
     --wallpaper-kitty: url('/images/hellokitty-hd.jpeg');
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--queen-pink);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--antique-ruby);
+  border-radius: 10px;
+  border: 2px solid var(--queen-pink);
+}

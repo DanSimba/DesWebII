@@ -1,32 +1,30 @@
-  <div class="flex flex-col w-[82vh] h-[65vh] bg-[image:var(--wallpaper-kitty)] bg-cover bg-center p-3 gap-2 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
-    <div class="flex font-bold w-[32vh] h-[16vh] p-2 justify-center items-center text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby)">
-      Painel de Solicitações
-      <!--  MARCO HISTÓRICO DO IF REDENTOR (FERIADO DA INSURREIÇÃO DO SIGNAL)
-        @if(client()){
-        
-        }
-      -->
-    </div>
-
-    <div class="flex flex-col w-full items-left gap-2">
-      @for (s of sols(); track s) {
-        <app-solicitation-card 
-          solId="{{s.id}}"
-          eqp="{{s.equipamento}}"
-          estado="{{s.estado}}" 
-          data="{{s.dataHora}}" desc="{{s.desc}}">
-        </app-solicitation-card> <!--ID 01 FIXO POR ENQUANTO (TROCAR PELO UUID QNDO VIER)-->
-      }
-
-      @for (s of createdSols(); track s) {
-        <app-solicitation-card 
-          solId="{{s.id}}"
-          eqp="{{s.equipamento}}"
-          estado="{{s.estado}}" 
-          data="{{s.dataHora}}" desc="{{s.desc}}">
-        </app-solicitation-card> 
-      }
-    </div>
-    
-  </div>
+<div class="flex flex-col w-full h-full bg-[image:var(--wallpaper-kitty)] bg-cover bg-center p-6 gap-4 border-4 border-(--antique-ruby) rounded-[30px] shadow-[10px_10px_0px_var(--parrot-pink)] overflow-hidden text-(--french-puce)">
   
+  <div class="flex font-bold w-fit px-8 py-3 justify-center items-center text-xl bg-(--queen-pink) border-3 border-(--antique-ruby) text-(--french-puce) self-center md:self-start">
+    PAINEL DE SOLICITAÇÕES
+  </div>
+
+  <div class="flex flex-col w-full gap-3">
+    @for (s of sols(); track s.id) {
+      <app-solicitation-card 
+        class="hover:scale-[1.01] transition-transform"
+        [solId]="s.id"
+        [eqp]="s.equipamento"
+        [estado]="s.estado" 
+        [data]="s.dataHora" 
+        [desc]="s.desc">
+      </app-solicitation-card>
+    }
+
+    @for (s of createdSols(); track s.id) {
+      <app-solicitation-card 
+        class="hover:scale-[1.01] transition-transform"
+        [solId]="s.id"
+        [eqp]="s.equipamento"
+        [estado]="s.estado" 
+        [data]="s.dataHora" 
+        [desc]="s.desc">
+      </app-solicitation-card> 
+    }
+  </div>
+</div>

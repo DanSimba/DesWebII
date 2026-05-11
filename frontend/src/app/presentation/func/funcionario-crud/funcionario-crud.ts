@@ -4,10 +4,11 @@ import { signal } from '@angular/core';
 import { Funcionario } from '../../../models/funcionario.model';
 import { Router } from '@angular/router';
 import { FuncionarioService } from '../../../services/funcionario.service';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-funcionario-crud',
-  imports: [CommonModule],
+  imports: [CommonModule, MatIcon],
   templateUrl: './funcionario-crud.html',
   styleUrl: './funcionario-crud.css',
 })
