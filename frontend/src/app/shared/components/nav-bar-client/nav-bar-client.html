@@ -1,12 +1,13 @@
-<div class="flex flex-col h-[75vh] w-[30vh] bg-[image:var(--wallpaper-kitty)] bg-cover bg-center border-4 border-(--antique-ruby) rounded-[22px] shadow-inner overflow-hidden relative">
+<div class="flex flex-col h-full w-[220px] bg-[image:var(--wallpaper-kitty)] bg-cover bg-center border-4 border-(--antique-ruby) rounded-[22px] shadow-inner overflow-hidden relative">
   <div class="absolute inset-0 bg-white/20 pointer-events-none"></div>
   <div class="relative z-10 m-3 p-2 text-center font-bold bg-(--french-puce) rounded-xl border-2 border-(--antique-ruby) shadow-sm">
     <h1 class="text-(--queen-pink) text-lg tracking-widest">MENU</h1>
   </div>
-  <div class="relative z-10 flex flex-col m-3 gap-3 p-4 h-full bg-(--queen-pink)/80 backdrop-blur-sm rounded-xl border-2 border-dashed border-(--antique-ruby)">
+  <div class="relative z-10 flex flex-col m-3 gap-3 p-4 flex-1 min-h-0 bg-(--queen-pink)/80 backdrop-blur-sm rounded-xl border-2 border-dashed border-(--antique-ruby) overflow-y-auto">
       
-      <app-nav-item class="w-full transition-all hover:translate-x-1" label="Painel Geral" route="panel"></app-nav-item>
+       <app-nav-item class="w-full transition-all hover:translate-x-1" label="Painel Geral" route="panel"></app-nav-item>
       <app-nav-item class="w-full transition-all hover:translate-x-1" label="Nova Solicitação" route="solicitation"></app-nav-item>
+
       <div class="flex-1"></div>
       <app-nav-item class="w-full opacity-80 hover:opacity-100 border-t border-(--antique-ruby) pt-2" label="Sair" route=""></app-nav-item>
 
@@ -15,3 +16,5 @@
     <span class="text-[10px] font-bold text-(--queen-pink) uppercase tracking-tighter bg-(--french-puce) border-1 border-(--antique-ruby) rounded-md p-2">Maintec v1.0</span>
   </div>
 </div>
+
+     

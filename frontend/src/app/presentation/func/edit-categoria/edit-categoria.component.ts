@@ -4,10 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriaService } from '../../../services/categoria.service';
 import { Categoria } from '../../../models/categoria.model';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-edit-categoria',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatIcon],
   templateUrl: './edit-categoria.component.html',
   styleUrl: './edit-categoria.component.css',
 })

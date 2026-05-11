@@ -1,4 +1,4 @@
-<div class="flex flex-col w-[80vh] h-[65vh] bg-(--antique-ruby)/70 p-3 gap-2 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
+<!-- <div class="flex flex-col w-[80vh] h-[65vh] bg-(--antique-ruby)/70 p-3 gap-2 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
   <div
     class="flex font-bold w-[32vh] h-[16vh] p-2 items-center justify-center text-[22px] bg-(--queen-pink) rounded-[10px]">
     CRUD - Funcionários
@@ -78,5 +78,46 @@
         </tbody>
       </table>
     </div>
+  </div>
+</div> -->
+
+<div class="flex flex-col w-full h-full bg-(--queen-pink) p-6 gap-4 border-4 border-(--antique-ruby) rounded-[30px] shadow-[10px_10px_0px_var(--parrot-pink)] overflow-hidden">
+  
+  <div class="flex justify-between items-center">
+    <div class="font-bold px-8 py-3 bg-(--queen-pink) border-3 border-(--antique-ruby) text-(--french-puce) text-xl shadow-sm">
+      GERENCIAR FUNCIONÁRIOS
+    </div>
+    
+    <button (click)="novoFunc()" class="bg-(--french-puce) text-white font-bold px-6 py-3 border-b-4 border-black active:border-b-0 transition-all flex items-center gap-2">
+      <mat-icon>add</mat-icon> NOVO REGISTRO
+    </button>
+  </div>
+
+  <div class="flex-1 overflow-auto border-3 border-(--antique-ruby) rounded-xl bg-white/50">
+    <table class="w-full text-left border-collapse">
+      <thead class="sticky top-0 bg-(--antique-ruby) text-white uppercase text-xs tracking-widest">
+        <tr>
+          <th class="p-4 border-b-2 border-(--french-puce)">ID</th>
+          <th class="p-4 border-b-2 border-(--french-puce)">Nome / Funcionário</th>
+          <th class="p-4 border-b-2 border-(--french-puce) text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="text-(--french-puce)">
+        @for (f of funcs(); track f.id) {
+          <tr class="border-b border-(--parrot-pink)/30 hover:bg-(--queen-pink)/50 transition-colors">
+            <td class="p-4 font-mono text-xs">#{{f.id}}</td>
+            <td class="p-4 font-bold">{{f.nome}}</td>
+            <td class="p-4 flex justify-center gap-2">
+              <button (click)="editarFunc(f.id)" class="p-2 bg-blue-100 text-blue-700 rounded-md border border-blue-300 hover:bg-blue-200">
+                <mat-icon class="scale-75">edit</mat-icon>
+              </button>
+              <button (click)="removerFunc(f.id)" class="p-2 bg-red-100 text-red-700 rounded-md border border-red-300 hover:bg-red-200">
+                <mat-icon class="scale-75">delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
   </div>
 </div>

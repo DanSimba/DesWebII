@@ -1,4 +1,4 @@
-<div class="flex flex-col w-[82vh] h-[65vh] bg-pink-700/50 p-3 gap-2 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
+<!-- <div class="flex flex-col w-[82vh] h-[65vh] bg-pink-700/50 p-3 gap-2 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
 
   <app-maintenance-filter (filterChanged)="applyFilter($event)"></app-maintenance-filter>
 
@@ -14,4 +14,29 @@
     <app-empty-state message="Nenhuma solicitação encontrada"></app-empty-state>
   }
   
+</div> -->
+
+<div class="flex flex-col w-full h-full bg-[image:var(--wallpaper-kitty)] bg-cover bg-center p-6 gap-4 border-4 border-(--antique-ruby) rounded-[30px] shadow-[10px_10px_0px_var(--parrot-pink)] overflow-hidden">
+  
+  <div class="shrink-0">
+    <app-maintenance-filter (filterChanged)="applyFilter($event)"></app-maintenance-filter>
+  </div>
+
+  <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+    @if (filteredRequests.length > 0) {
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-4">
+        @for (req of filteredRequests; track req.id) {
+          <app-maintenance-card 
+            class="hover:scale-[1.02] transition-transform"
+            [req]="req"
+            (actionClick)="handleAction($event)">
+          </app-maintenance-card>
+        }
+      </div>
+    } @else {
+      <div class="flex flex-col items-center justify-center h-48 bg-(--queen-pink)/80 border-2 border-dashed border-(--antique-ruby) rounded-xl">
+        <app-empty-state message="Nenhuma solicitação encontrada"></app-empty-state>
+      </div>
+    }
+  </div>
 </div>

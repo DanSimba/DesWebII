@@ -5,10 +5,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { FuncionarioService } from '../../../services/funcionario.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-edit-funcionario',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,MatIcon],
   templateUrl: './edit-funcionario.component.html',
   styleUrl: './edit-funcionario.component.css',
 })
