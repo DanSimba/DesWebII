@@ -52,4 +52,22 @@ public class SolicitationController {
         solicitationService.deletar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PatchMapping("/{id}/efetuar")
+    public ResponseEntity<SolicitationDTO> efetuarManutencao(
+            @PathVariable Long id, 
+            @RequestBody(required = false) String orientacao) {
+            
+        SolicitationDTO finalizada = solicitationService.efetuarManutencao(id, orientacao);
+        return ResponseEntity.ok(finalizada);
+    }
+
+    @PatchMapping("/{id}/redirecionar/{novoFuncionarioId}")
+    public ResponseEntity<SolicitationDTO> redirecionar(
+            @PathVariable Long id, 
+            @PathVariable Long novoFuncionarioId) {
+            
+        SolicitationDTO redirecionada = solicitationService.redirecionar(id, novoFuncionarioId);
+        return ResponseEntity.ok(redirecionada);
+    }
 }

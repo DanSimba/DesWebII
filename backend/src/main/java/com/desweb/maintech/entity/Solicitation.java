@@ -20,12 +20,19 @@ public class Solicitation {
     @Column(name = "data_hora")
     private LocalDateTime dataHora; 
 
+    @Column(name = "orientacao_manutencao", length = 1000)
+    private String orientacao;
+
     private String estado;
     private String equipamento;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente")
     private Client client;
+
+    @ManyToOne
+    @JoinColumn(name = "id_funcionario")
+    private Funcionario funcionario;
 
     @OneToMany(mappedBy = "solicitacao")
     private List<Historico> historico;
@@ -50,6 +57,14 @@ public class Solicitation {
         return this.estado;
     }
 
+    public String getOrientacao() {
+        return this.orientacao;
+    }
+
+    public Funcionario getFuncionario() {
+        return this.funcionario;
+    }
+
     public void setId(long i){
         this.id = i;
     }
@@ -68,5 +83,13 @@ public class Solicitation {
 
     public void setEst(String e){
         this.estado = e;
+    }
+
+    public void setOrientacao(String e) {
+        this.orientacao = e;
+    }
+
+    public void setFuncionario(Funcionario f) {
+        this.funcionario = f;
     }
 }
