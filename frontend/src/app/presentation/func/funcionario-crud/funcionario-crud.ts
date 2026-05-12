@@ -5,6 +5,8 @@ import { Funcionario } from '../../../models/funcionario.model';
 import { Router } from '@angular/router';
 import { FuncionarioService } from '../../../services/funcionario.service';
 import { MatIcon } from '@angular/material/icon';
+import { Dialog } from '@angular/cdk/dialog';
+import { Popup } from '../../../shared/components/popup/popup';
 
 @Component({
   selector: 'app-funcionario-crud',
@@ -16,6 +18,7 @@ export class FuncionarioCrud implements OnInit {
   funcs = signal<Funcionario[]>([]);
   private router = inject(Router);
   private funcService = inject(FuncionarioService);
+  private dialog = inject(Dialog);
 
 
   ngOnInit(): void {
@@ -39,9 +42,26 @@ export class FuncionarioCrud implements OnInit {
   }
 
   removerFunc(id : number) : void {
-    this.funcService.remover(id);
-    this.funcService.listarTodos().subscribe(
-      dados => this.funcs.set(dados)
+    const ref = this.dialog.open( Popup, {
+      data : {
+        text: 'Deseja remover este funcionário?',
+        typePopUp: 'opt'
+      }
+    });
+
+    ref.closed.subscribe(check => {
+      if(!check) return; 
+
+      this.funcService.remover(id).subscribe({
+        next: () => {this.funcService.listarTodos().subscribe(
+          data => this.funcs.set(data)
+        )},
+        error: (err) => console.log("não rolou", err)
+      })
+    }
+
     )
+    
+  
   }
 }

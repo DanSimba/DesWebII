@@ -8,45 +8,32 @@ import { C } from '@angular/cdk/keycodes';
   providedIn: 'root',
 })
 export class FuncionarioService {
-  private func : Funcionario[] = [];
-  private primeiro = false; 
-  private jsonURL = 'assets/func-ex.json';
+  // private func : Funcionario[] = [];
+  // private primeiro = false; 
+  // private jsonURL = 'assets/func-ex.json';
 
   constructor(private http : HttpClient){}
+  private readonly apiURL = 'http://localhost:8080/api/funcionarios'
 
   listarTodos() : Observable<Funcionario[]>{
-    if(this.primeiro){
-      return of(this.func);
-    }
-    return this.http.get<{ funcionarios : Funcionario[] }>(this.jsonURL).pipe(
-      map(ff => ff.funcionarios),tap(
-        dados => {
-          this.func = dados;
-          this.primeiro = true; 
-        }
-      )
-    );
+    return this.http.get<Funcionario[]>(this.apiURL);
   }
 
 
-  inserir(funcionario : Funcionario) : void {
-    funcionario.id = new Date().getTime();
-    this.func.push(funcionario);
+  inserir(funcionario : Funcionario) : Observable<Funcionario> {
+    return this.http.post<Funcionario>(this.apiURL, funcionario);
   }
   
-  atualizar(funcionario : Funcionario) : void {
-    this.func.forEach((obj, index, objs) => {
-      if (funcionario.id === obj.id){
-        objs[index] = funcionario;
-      }
-    });
+  atualizar(id: Number, funcionario : Funcionario) : Observable<Funcionario> {
+    return this.http.put<Funcionario>(`${this.apiURL}/${id}`, Funcionario);
+    
   }
 
-  buscarPorId(id : number) : Observable <Funcionario | undefined> {
-    return of(this.func.find(f => f.id === id));
+  buscarPorId(id : number) : Observable <Funcionario> {
+    return this.http.get<Funcionario>(`${this.apiURL}/${id}`);
   }
 
-  remover(id : number) : void{
-    this.func = this.func.filter(f => f.id !== id)
+  remover(id : number) : Observable<void>{
+    return this.http.delete<void>(`${this.apiURL}/${id}`);
   }
 }

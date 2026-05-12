@@ -19,8 +19,11 @@
     --finalizada: green;
 
     --wallpaper-kitty: url('/images/hellokitty-hd.jpeg');
+
+    /* scrollbar-gutter: stable; */
 }
 
+/* sim eu fiz uma scroll bonitinha pra ser usada, me processem */
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
 }
@@ -32,4 +35,25 @@
   background: var(--antique-ruby);
   border-radius: 10px;
   border: 2px solid var(--queen-pink);
+}
+
+.bg-kitty-soft {
+  position: relative;
+  z-index: 0;
+}
+
+/* pra ter um  wallpaper q não estoure os olhos de todo mundo <3 */
+.bg-kitty-soft::before {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  z-index: -1; 
+  background-image: var(--wallpaper-kitty);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.6; 
+  border-radius: inherit;
 }
