@@ -1,19 +1,16 @@
-<div class="flex flex-col w-full h-full p-8 gap-6 bg-(--queen-pink) border-4 border-(--antique-ruby) rounded-[30px] shadow-[10px_10px_0px_var(--parrot-pink)] overflow-y-auto">
+<div class="flex flex-col w-full h-full bg-kitty-soft bg-cover bg-center p-6 gap-4 border-4 border-(--antique-ruby) rounded-4xl overflow-hidden text-(--french-puce)">
 
-  <!-- Cabeçalho -->
   <div class="flex items-center gap-4 shrink-0">
-    <div class="font-bold px-8 py-3 bg-(--queen-pink) border-3 border-(--antique-ruby) text-(--french-puce) text-xl shadow-sm">
+    <div class="font-bold px-8 py-3 bg-(--queen-pink) border-3 border-(--antique-ruby) text-(--french-puce) text-xl shadow-[4px_4px_0px_var(--french-puce)]">
       {{ editando ? 'EDITAR' : 'NOVO' }} FUNCIONÁRIO
     </div>
   </div>
 
-  <!-- Card do formulário -->
   <div class="flex-1 min-h-0 flex items-start justify-center">
-    <div class="w-full max-w-lg bg-white/50 border-3 border-(--antique-ruby) rounded-2xl p-8 flex flex-col gap-6 shadow-inner">
+    <div class="w-full max-w-lg bg-(--queen-pink) border-3 border-(--antique-ruby) rounded-2xl p-8 flex flex-col gap-6 shadow-inner">
 
       <form [formGroup]="form" class="flex flex-col gap-6">
 
-        <!-- Campo nome -->
         <div class="flex flex-col gap-2">
           <label class="text-(--french-puce) font-bold uppercase text-xs tracking-widest">
             Nome do Funcionário
@@ -32,7 +29,6 @@
           }
         </div>
 
-        <!-- Campo cargo -->
         <div class="flex flex-col gap-2">
           <label class="text-(--french-puce) font-bold uppercase text-xs tracking-widest">
             Cargo do Funcionário
@@ -51,19 +47,18 @@
           }
         </div>
 
-        <!-- Botões -->
         <div class="flex gap-3 pt-2">
           <button
             type="button"
-            (click)="onSubmit()"
-            class="flex-1 bg-(--french-puce) text-white font-bold px-6 py-3 border-b-4 border-black active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center gap-2 rounded-sm">
-            <mat-icon>save</mat-icon> SALVAR
+            (click)="cancelar()"
+            class="flex-1 flex items-center justify-center gap-2 bg-(--antique-ruby) text-white px-6 py-3 font-bold shadow-[4px_4px_0px_var(--french-puce)] border-(--french-puce) border-1 active:border-b-0 hover:brightness-110 transition-all uppercase">
+            <mat-icon>close</mat-icon> CANCELAR
           </button>
           <button
-            type="button"
-            (click)="cancelar()"
-            class="flex-1 bg-white text-(--french-puce) font-bold px-6 py-3 border-3 border-(--antique-ruby) border-b-4 active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center gap-2 rounded-sm hover:bg-(--queen-pink)">
-            <mat-icon>close</mat-icon> CANCELAR
+            type="button" 
+            (click)="onSubmit()"
+            class="flex-1 flex items-center justify-center gap-2 bg-(--french-puce) text-white font-bold px-6 py-3 shadow-[4px_4px_0px_var(--antique-ruby)] border-(--french-puce) border-1 active:border-b-0 active:translate-y-1 transition-all uppercase">
+            <mat-icon>save</mat-icon> SALVAR
           </button>
         </div>
 

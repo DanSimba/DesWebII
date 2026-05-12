@@ -1,7 +1,7 @@
-<div class="flex flex-col w-full h-full bg-(--queen-pink) p-6 gap-4 border-4 border-(--antique-ruby) rounded-[30px] shadow-[10px_10px_0px_var(--parrot-pink)] overflow-hidden">
+<div class="flex flex-col w-full h-full bg-kitty-soft bg-cover bg-center p-6 gap-4 border-4 border-(--antique-ruby) rounded-4xl overflow-hidden text-(--french-puce)">
   
   <div class="flex justify-between items-center shrink-0">
-    <div class="font-bold px-8 py-3 bg-(--queen-pink) border-3 border-(--antique-ruby) text-(--french-puce) text-xl shadow-sm">
+    <div class="font-bold px-8 py-3 bg-(--queen-pink) border-3 border-(--antique-ruby) shadow-[4px_4px_0px_var(--french-puce)] text-(--french-puce) text-xl">
       GERENCIAR CATEGORIAS
     </div>
     
@@ -10,9 +10,9 @@
     </button>
   </div>
 
-  <div class="flex-1 min-h-0 overflow-auto border-3 border-(--antique-ruby) rounded-xl bg-white/50">
+  <div class="flex-1 overflow-auto border-3 border-(--antique-ruby) rounded-xl bg-(--queen-pink) custom-scrollbar">
     <table class="w-full text-left border-collapse">
-      <thead class="sticky top-0 bg-(--antique-ruby) text-white uppercase text-xs tracking-widest">
+      <thead class="bg-(--antique-ruby) text-white uppercase text-xs tracking-widest">
         <tr>
           <th class="p-4 border-b-2 border-(--french-puce)">ID</th>
           <th class="p-4 border-b-2 border-(--french-puce)">Nome / Categoria</th>
@@ -22,10 +22,11 @@
       <tbody class="text-(--french-puce)">
         @for (categoria of cats(); track categoria.id) {
           <tr class="border-b border-(--parrot-pink)/30 hover:bg-(--queen-pink)/50 transition-colors">
-            <td class="p-4 font-mono text-xs">#{{categoria.id}}</td>
+            <td class="p-4 font-mono text-xs">{{categoria.id}}</td>
             <td class="p-4 font-bold">{{categoria.nome}}</td>
             <td class="p-4 flex justify-center gap-2">
-              <button (click)="editarCat(categoria.id!)" class="p-2 bg-blue-100 text-blue-700 rounded-md border border-blue-300 hover:bg-blue-200">
+              <button (click)="editarCat(categoria.id!)" 
+              class="p-2 bg-(--antique-ruby) text-(--queen-pink) rounded-md border border-(--french-puce) hover:bg-rose-700">
                 <mat-icon class="scale-75">edit</mat-icon>
               </button>
               <button (click)="removerCat(categoria.id!)" class="p-2 bg-red-100 text-red-700 rounded-md border border-red-300 hover:bg-red-200">
