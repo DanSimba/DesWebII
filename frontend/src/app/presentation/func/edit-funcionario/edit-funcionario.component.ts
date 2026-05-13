@@ -55,8 +55,8 @@ export class EditFuncionarioComponent implements OnInit{
     }
     
     if (this.editando && this.idEditado) {
-      const atualizada : Funcionario = {id: this.idEditado, ...this.form.value}; //quase um playload q tem no edit-cat vamo ve se roda
-      this.funcService.atualizar(this.idEditado!, atualizada);
+      const playload : Funcionario = {id: this.idEditado, ...this.form.value}; //quase um playload q tem no edit-cat vamo ve se roda
+      this.funcService.atualizar(this.idEditado!, playload);
     } else {
       console.log(this.form.value); 
       this.funcService.inserir(this.form.value);

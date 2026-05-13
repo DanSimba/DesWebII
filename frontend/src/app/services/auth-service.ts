@@ -10,8 +10,8 @@ export class AuthService {
   private http = inject(HttpClient);
   private readonly apiURL = 'http://localhost:8080/auth';
 
-  login(email: string, senha: string) : Observable<{token: string}>{
-    return this.http.post<{token: string}>(`${this.apiURL}/login`, { email, senha });
+  login(email: string, senha : string) : Observable<{token: string}>{
+    return this.http.post<{token: string}>(`${this.apiURL}/login`, { email, password : senha });
   }
 
   // aqui para auto cadastro
