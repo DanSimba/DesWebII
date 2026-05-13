@@ -32,14 +32,14 @@ export class AuthService {
   //   return this.http.get<User[]>(this.jsonUrl);
   // }
 
-  // loginValidation(email: string, password: string, res: User[]): string | undefined {
-  //   let type;
-  //   res.map((reg) => {
-  //     if (reg.email === email && reg.password === password) {
-  //       type = reg.type;
-  //     }
-  //   });
-  //   console.log(type);
-  //   return type;
-  // }
+  //loginValidation(email: string, password: string, res: User[]): string | undefined {
+  //  let type;
+  //  res.map((reg) => {
+  //    if (reg.email === email && reg.senha === password) {
+  //      type = reg.perfil;
+  //    }
+  //  });
+  //  console.log(type);
+  //  return type;
+  //}
 }
