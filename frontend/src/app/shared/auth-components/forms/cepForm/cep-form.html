@@ -46,6 +46,7 @@
         type="number"
         placeholder=" "
         min="0"
+        [value]="cepInfo.numero"
         class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
       />
       <label
@@ -73,22 +74,41 @@
       </label>
     </div>
   </div>
-  <!--Bairro - id=bairro-->
-  <div class="relative w-full">
-    <input
-      id="bairro"
-      name="bairro"
-      type="text"
-      placeholder=""
-      [value]="cepInfo.bairro"
-      class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
-    />
-    <label
-      for="bairro"
-      class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-    >
-      Bairro
-    </label>
+  <!--Bairro Cidade-->
+  <div class="w-full flex gap-4">
+    <!--Bairro - id=bairro-->
+    <div class="relative w-full">
+      <input
+        id="bairro"
+        name="bairro"
+        type="text"
+        placeholder=""
+        [value]="cepInfo.bairro"
+        class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
+      />
+      <label
+        for="bairro"
+        class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
+      >
+        Bairro
+      </label>
+    </div>
+    <div class="relative w-full">
+      <input
+        id="cidade"
+        name="cidade"
+        type="text"
+        placeholder=""
+        [value]="cepInfo.cidade"
+        class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
+      />
+      <label
+        for="cidade"
+        class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
+      >
+        Cidade
+      </label>
+    </div>
   </div>
   <!--Complemento - id=complemento-->
   <div class="relative w-full">
@@ -97,6 +117,7 @@
       name="complemento"
       type="text"
       placeholder=""
+      (keyup)="testa()"
       [value]="cepInfo.complemento"
       class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
     />

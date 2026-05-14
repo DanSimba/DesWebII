@@ -14,20 +14,24 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
-    public void register(UserDTO dto) {
+    public User register(UserDTO dto) {
+
+        String senha = SenhaService.gerarSenha(); 
+        String email = dto.getEmail();
 
         String salt = HashUtil.gerarSalt(); // Gera o salt
         // Envia a senha e o salt para gerar o que vai ser salvo como senha
-        String senhaHash = HashUtil.hashSenha(dto.getPassword(), salt);
+        String senhaHash = HashUtil.hashSenha(senha, salt);
 
         //Cria o usuario;
         User user = new User();
-        user.setEmail(dto.getEmail());
+        user.setEmail(email);
         user.setPassword(senhaHash);
         user.setTypeUser(dto.getTypeUser());
         user.setSalt(salt);// É preciso salvar o salt gerado aleatorio para validar depois
 
-
         repository.save(user);
+        SenhaService.informarSenha(senha, email);
+        return user;
     }
 }

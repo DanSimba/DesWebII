@@ -7,13 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.desweb.maintech.dto.ClientDTO;
 import com.desweb.maintech.dto.SolicitationDTO;
+import com.desweb.maintech.dto.UserDTO;
 import com.desweb.maintech.entity.Client;
 import com.desweb.maintech.entity.Endereco;
+import static com.desweb.maintech.entity.TypeUser.CLIENTE;
+import com.desweb.maintech.entity.User;
 import com.desweb.maintech.repository.ClientRepository;
 
 @Service
 public class ClientService {
 
+    private UserService userS;
     private final ClientRepository repository;
 
     public ClientService(ClientRepository repository) {
@@ -55,8 +59,16 @@ public class ClientService {
     }
 
     public ClientDTO save(ClientDTO dto) {
+
+        UserDTO newUserDTO = new UserDTO();
+        newUserDTO.setEmail(dto.getEmail());
+        newUserDTO.setTypeUser(CLIENTE);
+        User newUser = userS.register(newUserDTO);
+
+
         Client newCliente = new Client();
-        //User newUser = new User();
+        
+        newCliente.setUser(newUser);
 
         newCliente.setNome(dto.getNome());
         newCliente.setCpf(dto.getCpf());
