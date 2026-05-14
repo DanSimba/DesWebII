@@ -1,13 +1,12 @@
 
 INSERT INTO usuario (email, senha, salt, perfil) VALUES
-    -- Funcionários
-    ('maria@maintec.com',    'a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7', 'salt_maria_0001', 'FUNCIONARIO'),
-    ('mario@maintec.com',    'b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8', 'salt_mario_0002', 'FUNCIONARIO'),
-    -- Clientes
-    ('joao@email.com',       'c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9', 'salt_joao_0003',  'CLIENTE'),
-    ('jose@email.com',       'd9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0', 'salt_jose_0004',  'CLIENTE'),
-    ('joana@email.com',      'e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1', 'salt_joana_0005', 'CLIENTE'),
-    ('joaquina@email.com',   'f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2', 'salt_joaq_0006',  'CLIENTE');
+
+('jose@email.com', 'VEFoxERSrb39RjzdX66zrb1O38A5BrIMAI53cU/59uU=', 'FglaIh2ZBUsnkTVi0+XStw==', 'FUNCIONARIO'),
+('joana@email.com', 'nyR9Mz7fb4VF7NPMkkqEEKd1k1KqOiHa/ilk/vTXRws=', 'Vg7O1wGLHVzDqwLu/rE8CQ==', 'FUNCIONARIO'),
+('mario@maintec.com', '7jCHtnMfa30qvgMyDFb69CAdeq3BtLZPgJI2NLQT86Y=', 'GMvISiVtM7OH7dHKSqHIag==', 'FUNCIONARIO'),
+('joao@email.com', 'kvsH2BTxLG/8Kmagr5OY5XOmhlpoJrLNlpOxcxEwBZw=', 'jOT+JORhq3xN9K7lqGH6mg==', 'FUNCIONARIO'),
+('maria@maintec.com', 'prwCj4u/D7I+CoKzlEOw9N1qs5V0OSkFAIvMP+WCVM8=', 'Dbrm5DARwEFhRRICCibiIQ==', 'FUNCIONARIO'),
+('joaquina@email.com', 'b+WpDvKYCNQKL+intc5zab9M2MjA46R3pjyBqLUucIU=', '91CXd+pjN97Fu4gnxuPjZA==', 'CLIENTE');
  
 
  
