@@ -9,6 +9,7 @@ import { SignUpComponent } from './shared/auth-components/signUp-item/signUp-Com
 import { Func } from './page/func/func';
 import { CategoriaCrud } from './presentation/func/categoria-crud/categoria-crud';
 import { FuncionarioCrud } from './presentation/func/funcionario-crud/funcionario-crud';
+import { clientGuard } from './shared/guards/client.guard';
 
 export const routes: Routes = [
   {
@@ -26,6 +27,7 @@ export const routes: Routes = [
   {
     path: 'client',
     component: Client,
+    canActivate: [clientGuard],
     children: [
       {
         path: 'solicitation',
