@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models/usr-interface';
-import { Observable } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
+import { Observable, map } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,16 @@ export class AuthService {
   private http = inject(HttpClient);
   private readonly apiURL = 'http://localhost:8080/auth';
 
-  login(email: string, senha: string) : Observable<{token: string}>{
-    return this.http.post<{token: string}>(`${this.apiURL}/login`, { email, senha });
+  private token = 'token';
+
+  login(email: string, senha: string): Observable<any>{
+    return this.http.post<{token: string}>(`${this.apiURL}/login`, { email, senha })
+      .pipe(
+            map(response => {
+              this.salvarToken(response.token);
+              return response.token;
+            })
+          )
   }
 
   // aqui para auto cadastro
@@ -20,7 +29,22 @@ export class AuthService {
   }
 
   salvarToken(token: string): void {
-    localStorage.setItem('token', token);
+    localStorage.setItem(this.token, token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.token);
+  }
+
+  isAuth(): boolean {
+    const t = this.getToken();
+    if(!t)return false;
+
+    const decoded: any = jwtDecode(t); //n sei se vai dar certo mas here we go
+    const now = Date.now()/1000;
+
+    if(decoded.exp>now) return true; //exp = expiração
+    return false;
   }
 
   logout(): void {
