@@ -14,7 +14,7 @@ export class AuthService {
   private token = 'token';
 
   login(email: string, senha: string): Observable<any>{
-    return this.http.post<{token: string}>(`${this.apiURL}/login`, { email, password : senha,  })
+    return this.http.post<{token: string}>(`${this.apiURL}/login`, { email, password : senha  })
       .pipe(
             map(response => {
               this.salvarToken(response.token);
