@@ -50,7 +50,6 @@ export class EditCategoriaComponent implements OnInit {
     const payload : Categoria = {nome : this.form.value.nome};
     //famoso playload pra mandar essa joça pro backend 
 
-
     if (this.editando && this.idEditado) {
       this.catService.atualizar(payload, this.idEditado!).subscribe({
         next: () => this.router.navigate(['/func/crud-cat']),
@@ -64,6 +63,8 @@ export class EditCategoriaComponent implements OnInit {
 
       })
     }
+
+    // this.router.navigate(['/func/crud-cat']);
 
   }
 

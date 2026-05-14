@@ -1,8 +1,13 @@
 package com.desweb.maintech.entity;
 
-import jakarta.persistence.*;
-
-import java.util.Date;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
@@ -20,8 +25,8 @@ public class User {
     private TypeUser perfil;
     private String salt;
 
-    @OneToOne(mappedBy = "user")
-    private Funcionario funcionario;
+    //@OneToOne(mappedBy = "user")
+    //private Funcionario funcionario;
 
     public void setId(Long id) {
         this.id = id;
@@ -52,7 +57,6 @@ public class User {
         return perfil;
     }
 
-    //Lidando com a senha
     public void setPassword(String p) { //sempre passar um .encode("senha")
         this.senha = p;
     }
