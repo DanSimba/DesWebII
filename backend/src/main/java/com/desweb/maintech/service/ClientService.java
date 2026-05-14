@@ -55,11 +55,12 @@ public class ClientService {
     }
 
     public ClientDTO save(ClientDTO dto) {
-        Client novo = new Client();
+        Client newCliente = new Client();
+        //User newUser = new User();
 
-        novo.setNome(dto.getNome());
-        novo.setCpf(dto.getCpf());
-        novo.setTelefone(dto.getTelefone());
+        newCliente.setNome(dto.getNome());
+        newCliente.setCpf(dto.getCpf());
+        newCliente.setTelefone(dto.getTelefone());
 
         // endereço
         Endereco end = new Endereco();
@@ -72,10 +73,10 @@ public class ClientService {
         end.setCidade(dto.getEndereco().getCidade());
         end.setEstado(dto.getEndereco().getEstado());
 
-        novo.setEndereco(end);
+        newCliente.setEndereco(end);
 
-        repository.save(novo);
+        repository.save(newCliente);
 
-        return toDTO(novo);
+        return toDTO(newCliente);
     }
 }
