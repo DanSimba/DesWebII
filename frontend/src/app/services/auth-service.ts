@@ -14,7 +14,7 @@ export class AuthService {
   private token = 'token';
 
   login(email: string, senha: string): Observable<any>{
-    return this.http.post<{token: string}>(`${this.apiURL}/login`, { email, senha })
+    return this.http.post<{token: string}>(`${this.apiURL}/login`, { email, password : senha })
       .pipe(
             map(response => {
               this.salvarToken(response.token);
@@ -38,6 +38,7 @@ export class AuthService {
 
   isAuth(): boolean {
     const t = this.getToken();
+    //console.log("TOKEN: "+ t);
     if(!t)return false;
 
     const decoded: any = jwtDecode(t); //n sei se vai dar certo mas here we go
