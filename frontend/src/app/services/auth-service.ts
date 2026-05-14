@@ -46,7 +46,7 @@ export class AuthService {
 
     if(decoded.exp>now) return true; //exp = expiração
 
-    if(decoded.perfil=='CLIENTE') return true;
+    if(decoded.perfil=='CLIENTE') return true; //verifica se é cliente
     
     return false;
   }
