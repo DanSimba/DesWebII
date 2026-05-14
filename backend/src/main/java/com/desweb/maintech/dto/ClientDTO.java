@@ -7,10 +7,9 @@ import java.util.List;
 public class ClientDTO {
 
     private Long id;
-    private String nome;
-
     private String cpf;
-
+    private String nome;
+    private String email;
     private String telefone;
 
     private EnderecoDTO endereco;
@@ -63,5 +62,13 @@ public class ClientDTO {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

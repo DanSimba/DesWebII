@@ -12,6 +12,8 @@ export class CepServiceService {
             .get(`https://viacep.com.br/ws/${cep}/json/`)
     }
 
-    
+    limpaCep(cep: String){
+      return cep.replace(/-/g, '');
+    }
 
 }
