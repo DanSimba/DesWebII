@@ -28,6 +28,6 @@ public class AuthService {
         if (!encoder.matches(password, user.getPassword())) {
             throw new RuntimeException("Senha inválida");
         }
-        return jwtService.generateToken(email);
+        return jwtService.generateToken(user);
     }
 }

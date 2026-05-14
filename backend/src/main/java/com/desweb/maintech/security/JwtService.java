@@ -5,6 +5,8 @@ import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
+import com.desweb.maintech.entity.User;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -18,9 +20,10 @@ public class JwtService {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
     }
 
-    public String generateToken(String email) {
+    public String generateToken(User u) {
         return Jwts.builder()
-                .setSubject(email)
+                .setSubject(u.getEmail())
+                .claim("perfil", u.getTypeUser().name())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1h
                 .signWith(getKey(), SignatureAlgorithm.HS256)
