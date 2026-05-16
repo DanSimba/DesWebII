@@ -30,6 +30,7 @@ export class AuthService {
   }
 
   salvarToken(token: string): void {
+    localStorage.removeItem('token');
     localStorage.setItem(this.token, token);
   }
 
@@ -39,15 +40,13 @@ export class AuthService {
 
   isAuth(p: string): boolean {
     const t = this.getToken();
-    //console.log("TOKEN: "+ t);
+    console.log("TOKEN: "+ t);
     if(!t)return false;
 
     const decoded: any = jwtDecode(t); //n sei se vai dar certo mas here we go
     const now = Date.now()/1000;
 
-    if(decoded.exp>now) return true; //exp = expiração
-
-    if(decoded.perfil==p) return true; //verifica se é cliente/func entrando na rota certa
+    if(decoded.perfil===p && decoded.exp>now) return true; //verifica se é cliente/func entrando na rota certa
     
     return false;
   }

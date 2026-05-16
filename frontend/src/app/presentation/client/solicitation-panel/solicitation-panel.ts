@@ -22,19 +22,19 @@ export class SolicitationPanel implements OnInit {
 
   ngOnInit(): void {
       
-      this.clientService.getClient("1").subscribe(
-        data => {          //O NOME DO CLIENTE PQ A GNT AS INFOS DELE ACESSA DIRETAMENTE PELO OBJ CLIENTE
-          this.client.set(data);
-          this.sols.set(data.sols); //FAZ UM REQUEST A MENOS
-        });
+      //this.clientService.getClient("1").subscribe(
+      //  data => {          //O NOME DO CLIENTE PQ A GNT PEGA AS INFOS DELE ACESSA DIRETAMENTE PELO OBJ CLIENTE
+      //    this.client.set(data);
+      //    this.sols.set(data.sols); //FAZ UM REQUEST A MENOS
+      //  });
 
         
-        // this.clientService.getSols().subscribe(
-        //   (solData: Solicitation[]) => {
-        //       this.createdSols.set(solData);
-        //   } 
-        // )
-        // //console.log("ARRAY SOLS: ", this.sols())
+         this.clientService.getSols(1).subscribe(
+           (solData: Solicitation[]) => {
+               this.createdSols.set(solData);
+           } 
+         )
+         //console.log("ARRAY SOLS: ", this.sols())
   }
 
 

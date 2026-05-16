@@ -7,8 +7,6 @@ import { Auth } from './page/auth/auth';
 import { LoginComponent } from './shared/auth-components/login-item/login-component';
 import { SignUpComponent } from './shared/auth-components/signUp-item/signUp-Component';
 import { Func } from './page/func/func';
-import { CategoriaCrud } from './presentation/func/categoria-crud/categoria-crud';
-import { FuncionarioCrud } from './presentation/func/funcionario-crud/funcionario-crud';
 import { clientGuard } from './shared/guards/client.guard';
 import { funcGuard } from './shared/guards/func.guard';
 
@@ -28,7 +26,7 @@ export const routes: Routes = [
   {
     path: 'client',
     component: Client,
-    canActivate: [clientGuard],
+    canActivateChild: [clientGuard],
     children: [
       {
         path: 'solicitation',
@@ -42,7 +40,7 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'view-solicitation/:',
+        path: 'view-solicitation/:id',
         loadComponent: () =>
           import('./presentation/client/view-sol/view-sol').then((m) => m.ViewSol),
       },
@@ -51,7 +49,7 @@ export const routes: Routes = [
   {
     path: 'func',
     component: Func,
-    canActivate: [funcGuard],
+    canActivateChild: [funcGuard],
     children: [
       {
         path: 'panel',
