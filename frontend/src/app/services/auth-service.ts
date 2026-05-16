@@ -15,7 +15,7 @@ export class AuthService {
   private token = 'token';
 
   login(email: string, senha: string): Observable<any>{
-    return this.http.post<{token: string}>(`${this.apiURL}/login`, { email, password : senha })
+    return this.http.post<{token: string}>(`${this.apiURL}/login`, { email, password : senha  })
       .pipe(
             map(response => {
               this.salvarToken(response.token);
@@ -37,7 +37,7 @@ export class AuthService {
     return localStorage.getItem(this.token);
   }
 
-  isAuth(): boolean {
+  isAuth(p: string): boolean {
     const t = this.getToken();
     //console.log("TOKEN: "+ t);
     if(!t)return false;
@@ -46,6 +46,9 @@ export class AuthService {
     const now = Date.now()/1000;
 
     if(decoded.exp>now) return true; //exp = expiração
+
+    if(decoded.perfil==p) return true; //verifica se é cliente/func entrando na rota certa
+    
     return false;
   }
 
