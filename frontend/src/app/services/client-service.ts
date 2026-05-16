@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable,of } from 'rxjs';
+import { map, Observable,of } from 'rxjs';
 import { Solicitation } from '../models/solicitation-interface';
 import { ClientInterface } from '../models/client-interface';
 
@@ -13,12 +13,14 @@ export class ClientService {
     public sols = signal<Solicitation[]>([]); //para guardar as sols criadas no solicitation-form
     constructor(private http: HttpClient) {}
 
-    getSols(): Observable <Solicitation[]>{ //REWORK: essa função agr retorna a lista sols
-      return this.http.get<Solicitation[]>(`http://localhost:8080/client/{id}`);
+    getSols(id: number): Observable<Solicitation[]> {
+      return this.http.get<ClientInterface>(`${this.apiUrl}/${id}`).pipe(
+       map(client => client.sols)
+      );
     }
 
     getClient(id: string): Observable<ClientInterface> { //retorna diretamente o cliente
-      return this.http.get<ClientInterface>(`${this.apiUrl}/clients/${id}`); //VERSÃO QUE BUSCA DO BACK, PARA A SEGUNDA PARTE
+      return this.http.get<ClientInterface>(`${this.apiUrl}/${id}`); //VERSÃO QUE BUSCA DO BACK, PARA A SEGUNDA PARTE
       // return this.http.get<ClientInterface>(this.jsonUrl);
     }
 

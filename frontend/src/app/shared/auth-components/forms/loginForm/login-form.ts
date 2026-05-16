@@ -28,7 +28,12 @@ export class LoginForm {
   private executeLogin() {
     this.authService.login(this.email, this.password).subscribe({
       next: (res) => {
-        this.authService.salvarToken(res.token)
+        const role = this.authService.getTypeUser();
+        if (role) {
+          this.redirectUser(role);
+        } else {
+          this.redirectUser();
+        }
         },
       error: (err) => console.error('Login error:', err)
     });
@@ -36,8 +41,8 @@ export class LoginForm {
 
   private redirectUser(role: string | void) {
     const routes: Record<string, string> = {
-      'cliente': '/client/panel',
-      'funcionario': '/func/panel'
+      'CLIENTE': '/client/panel',
+      'FUNCIONARIO': '/func/panel'
     };
 
     const targetRoute = routes[role as string];

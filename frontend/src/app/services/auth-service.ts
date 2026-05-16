@@ -8,6 +8,7 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
+ 
   private http = inject(HttpClient);
   private readonly apiURL = 'http://localhost:8080/auth';
 
@@ -55,6 +56,17 @@ export class AuthService {
     localStorage.removeItem('token');
   }
 
+  getTypeUser(): string | null {
+    const t = this.getToken();
+    if (!t) return null;
+  
+    const decoded: any = jwtDecode(t);
+    if (decoded.perfil) {
+      return decoded.perfil;
+    } else {
+      return null;
+    }
+  }
 
   // query(): Observable<User[]> {
   //   return this.http.get<User[]>(this.jsonUrl);

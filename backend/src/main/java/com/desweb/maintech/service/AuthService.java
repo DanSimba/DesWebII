@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.desweb.maintech.entity.User;
 import com.desweb.maintech.repository.UserRepository;
+import com.desweb.maintech.security.HashUtil;
 import com.desweb.maintech.security.JwtService;
 
 @Service
@@ -25,9 +26,11 @@ public class AuthService {
         User user = repository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("EXCEPTION!!! Usuário não encontrado :("));
 
-        if (!encoder.matches(password, user.getPassword())) {
+        String hashTentativa = HashUtil.hashSenha(password, user.getSalt());
+
+        if (!hashTentativa.equals(user.getPassword())) {
             throw new RuntimeException("Senha inválida");
         }
-        return jwtService.generateToken(user);
+        return jwtService.generateToken(email, user.getTypeUser().name());
     }
 }
