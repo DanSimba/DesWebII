@@ -36,7 +36,7 @@ export class AuthService {
     return localStorage.getItem(this.token);
   }
 
-  isAuth(): boolean {
+  isAuth(p: string): boolean {
     const t = this.getToken();
     //console.log("TOKEN: "+ t);
     if(!t)return false;
@@ -46,7 +46,7 @@ export class AuthService {
 
     if(decoded.exp>now) return true; //exp = expiração
 
-    if(decoded.perfil=='CLIENTE') return true; //verifica se é cliente
+    if(decoded.perfil==p) return true; //verifica se é cliente/func entrando na rota certa
     
     return false;
   }

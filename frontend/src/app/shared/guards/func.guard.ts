@@ -3,12 +3,12 @@ import { CanActivateFn } from '@angular/router';
 import { AuthService } from '../../services/auth-service';
 import { Router } from '@angular/router';
 
-export const clientGuard: CanActivateFn = (route, state) => {
+export const funcGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
-  if(authService.isAuth('CLIENTE'))return true;
+  if(authService.isAuth('FUNCIONARIO'))return true;
 
-  alert("OPSS! Parece que você esqueceu de autenticar! ;)");
+  alert("OPSS! Parece que você esqueceu de autenticar! ;)")
   router.navigate(['auth/login']);
   return false;
 };

@@ -10,6 +10,7 @@ import { Func } from './page/func/func';
 import { CategoriaCrud } from './presentation/func/categoria-crud/categoria-crud';
 import { FuncionarioCrud } from './presentation/func/funcionario-crud/funcionario-crud';
 import { clientGuard } from './shared/guards/client.guard';
+import { funcGuard } from './shared/guards/func.guard';
 
 export const routes: Routes = [
   {
@@ -50,6 +51,7 @@ export const routes: Routes = [
   {
     path: 'func',
     component: Func,
+    canActivate: [funcGuard],
     children: [
       {
         path: 'panel',
