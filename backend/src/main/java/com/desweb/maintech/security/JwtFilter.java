@@ -6,8 +6,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.io.IOException;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,6 +30,7 @@ public class JwtFilter extends OncePerRequestFilter {
     throws ServletException, IOException {
 
         String header = request.getHeader("Authorization");
+        System.out.println("JWT FILTER EXECUTOU");
 
         if (header != null && header.startsWith("Bearer ")) {
         String token = header.substring(7);

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 import com.desweb.maintech.dto.ClientDTO;
 import com.desweb.maintech.dto.SolicitationDTO;
@@ -48,7 +49,10 @@ public class ClientService {
 
     public ClientDTO getClient(Long id) {
         Client client = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("EXCEPTION!!! CLIENTE NÃO ENCONTRADO!!!"));
+            .orElseThrow(() ->
+                new RuntimeException("CLIENTE NÃO ENCONTRADO")
+            );
+            
         return this.toDTO(client);
     }
 
@@ -92,8 +96,8 @@ public class ClientService {
         return toDTO(newCliente);
     }
 
-    public ClientDTO findByEmail(String email) {
-        Client client = clientRepository.findByUserEmail(email)
+    public ClientDTO findByEmail(String email) { //acha o abj client pelo email e cria o dto
+        Client client = repository.findByUserEmail(email)
             .orElseThrow(() -> new RuntimeException("EXCEPTION!!! EMAIL NÃO ENCONTRADO!!!"));
 
         return new ClientDTO(client);

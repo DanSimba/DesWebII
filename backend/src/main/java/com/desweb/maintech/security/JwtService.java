@@ -4,11 +4,13 @@ import java.util.Date;
 import java.security.Key; 
 
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Value;  
+import org.springframework.beans.factory.annotation.Value; 
+ 
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.Claims;
 
 @Service
 public class JwtService {
@@ -43,5 +45,13 @@ public class JwtService {
     public String extractPerfil(String token) {
         Claims claims = extractAllClaims(token);
         return claims.get("perfil", String.class);
+    }
+
+    private Claims extractAllClaims(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(getKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 }
