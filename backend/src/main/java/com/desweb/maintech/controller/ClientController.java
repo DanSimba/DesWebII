@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.desweb.maintech.dto.ClientDTO;
 import com.desweb.maintech.service.ClientService;
 
+import org.springframework.security.core.Authentication;
+
 @RestController
 @RequestMapping("/client")
 public class ClientController {
@@ -22,6 +24,14 @@ public class ClientController {
 
     public ClientController(ClientService s) {
         this.service = s;
+    }
+
+    @GetMapping("/me") //pega o token guardado no local storage, extrai o id e bota no request
+    public ResponseEntity<ClientDTO> getLoggedClient(Authentication auth) {
+        String email = auth.getName();
+        ClientDTO client = service.findByEmail(email);
+
+        return ResponseEntity.ok(client);
     }
 
     @GetMapping("/{id}")

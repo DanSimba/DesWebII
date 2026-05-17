@@ -3,18 +3,30 @@ package com.desweb.maintech.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.desweb.maintech.entity.Client;
+
 //import com.desweb.maintech.entity.User;
 public class ClientDTO {
 
     private Long id;
     private String cpf;
     private String nome;
-    private String email;
+    private String email; //cliente nem tem email pq q tem isso aq
     private String telefone;
 
     private EnderecoDTO endereco;
 
     private List<SolicitationDTO> sols = new ArrayList<>();
+
+    public ClientDTO(Client c){
+        this.setId(c.getId());
+        this.setCpf(c.getCpf());
+        this.setNome(c.getNome());
+        this.setTelefone(c.getTelefone());
+        //this.setEndereco(c.getEndereco()); //isso n retorna um endereçoDTO e eu que n vou ver essa pika agr
+    }
+
+    public ClientDTO(){};
 
     public Long getId() {
         return this.id;

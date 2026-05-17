@@ -35,7 +35,7 @@ export class LoginForm {
           this.redirectUser();
         }
         },
-      error: (err) => console.error('Login error:', err)
+      error: (err) => console.error('ERRO NO LOGIN! :(', err)
     });
   }
 
