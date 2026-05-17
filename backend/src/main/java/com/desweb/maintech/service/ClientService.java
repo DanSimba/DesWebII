@@ -91,4 +91,11 @@ public class ClientService {
 
         return toDTO(newCliente);
     }
+
+    public ClientDTO findByEmail(String email) {
+        Client client = clientRepository.findByUserEmail(email)
+            .orElseThrow(() -> new RuntimeException("EXCEPTION!!! EMAIL NÃO ENCONTRADO!!!"));
+
+        return new ClientDTO(client);
+    }
 }

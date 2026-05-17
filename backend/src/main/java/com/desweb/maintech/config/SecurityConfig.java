@@ -40,6 +40,8 @@ public class SecurityConfig {
                     "/swagger-ui/**",
                     "/swagger-ui.html"
                 ).permitAll() //pwemite entrar em todas as rotas de auth/ pra frente
+                .requestMatchers("/client/**").hasRole("CLIENTE")
+                .requestMatchers("/func/**").hasRole("FUNCIONARIO")
                 .anyRequest().authenticated()
             );
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

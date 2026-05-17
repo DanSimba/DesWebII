@@ -19,9 +19,13 @@ export class ClientService {
       );
     }
 
-    getClient(id: string): Observable<ClientInterface> { //retorna diretamente o cliente
+    getClient(id: number): Observable<ClientInterface> { //retorna diretamente o cliente
       return this.http.get<ClientInterface>(`${this.apiUrl}/${id}`); //VERSÃO QUE BUSCA DO BACK, PARA A SEGUNDA PARTE
       // return this.http.get<ClientInterface>(this.jsonUrl);
+    }
+
+    getMe(): Observable<ClientInterface> { //retorna o cliente que esta guardado no token
+      return this.http.get<ClientInterface>(`${this.apiUrl}/me`); 
     }
 
     addSol(newSol: Solicitation) : Observable<Solicitation>{

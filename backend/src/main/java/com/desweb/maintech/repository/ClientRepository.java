@@ -6,4 +6,7 @@ import com.desweb.maintech.entity.Client;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
+    Client findById(Long id);
+
+    Optional<Client> findByUserEmail(String email);
 }

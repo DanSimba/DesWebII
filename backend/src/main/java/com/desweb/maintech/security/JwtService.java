@@ -39,4 +39,9 @@ public class JwtService {
                 .getBody()
                 .getSubject();
     }
+
+    public String extractPerfil(String token) {
+        Claims claims = extractAllClaims(token);
+        return claims.get("perfil", String.class);
+    }
 }

@@ -40,7 +40,7 @@ export class AuthService {
 
   isAuth(p: string): boolean {
     const t = this.getToken();
-    console.log("TOKEN: "+ t);
+    //console.log("TOKEN: "+ t);
     if(!t)return false;
 
     const decoded: any = jwtDecode(t); //n sei se vai dar certo mas here we go

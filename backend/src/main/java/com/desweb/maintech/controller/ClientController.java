@@ -39,4 +39,12 @@ public class ClientController {
         ClientDTO novo = service.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(novo);
     }
+
+    @GetMapping("/me") //pega o token guardado no local storage, extrai o id e bota no request
+    public ResponseEntity<ClientDTO> getLoggedClient(Authentication auth) {
+        String email = auth.getName();
+        ClientDTO client = service.findByEmail(email);
+
+        return ResponseEntity.ok(client);
+    }
 }
