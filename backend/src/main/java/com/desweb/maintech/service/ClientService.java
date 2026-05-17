@@ -20,8 +20,9 @@ public class ClientService {
     private UserService userS;
     private final ClientRepository repository;
 
-    public ClientService(ClientRepository repository) {
+    public ClientService(ClientRepository repository, UserService userS) {
         this.repository = repository;
+        this.userS = userS;
     }
 
     public ClientDTO toDTO(Client client) {

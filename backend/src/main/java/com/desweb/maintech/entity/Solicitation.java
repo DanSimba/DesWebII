@@ -1,7 +1,6 @@
 package com.desweb.maintech.entity;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -23,7 +22,9 @@ public class Solicitation {
     @Column(name = "orientacao_manutencao", length = 1000)
     private String orientacao;
 
-    private String estado;
+    @Enumerated(EnumType.STRING)
+    private EstadoSolicitacao estado;
+
     private String equipamento;
 
     @ManyToOne
@@ -37,7 +38,8 @@ public class Solicitation {
     @OneToMany(mappedBy = "solicitacao")
     private List<Historico> historico;
 
-    public long getId(){
+    //Getters
+    public Long getId(){
         return this.id;
     }
 
@@ -53,10 +55,6 @@ public class Solicitation {
         return this.dataHora;
     }
 
-    public String getEst(){
-        return this.estado;
-    }
-
     public String getOrientacao() {
         return this.orientacao;
     }
@@ -65,7 +63,16 @@ public class Solicitation {
         return this.funcionario;
     }
 
-    public void setId(long i){
+     public EstadoSolicitacao getEst() {
+        return this.estado;
+    }
+
+    public List<Historico> getHistorico() {
+        return this.historico;
+    }
+
+    //Setters
+    public void setId(Long i){
         this.id = i;
     }
 
@@ -81,12 +88,20 @@ public class Solicitation {
         this.dataHora = e;
     }
 
-    public void setEst(String e){
+    public void setOrientacao(String e) {
+        this.orientacao = e;
+    }
+
+    public void setEst(EstadoSolicitacao e) {
         this.estado = e;
     }
 
-    public void setOrientacao(String e) {
-        this.orientacao = e;
+    public void setClient(Client c) {
+        this.client = c;
+    }
+
+    public void setHistorico(List<Historico> h) {
+        this.historico = h;
     }
 
     public void setFuncionario(Funcionario f) {

@@ -2,12 +2,14 @@ package com.desweb.maintech.dto;
 
 import java.time.LocalDateTime;
 
+import com.desweb.maintech.entity.EstadoSolicitacao;
+
 public class SolicitationDTO {
     private Long id;
     private String equipamento;
     private String desc;
     private LocalDateTime data;
-    private String estado;
+    private EstadoSolicitacao estado;
 
     //supostamente aqui eu só preciso dos setters certo?
     public void setId(long i){
@@ -26,7 +28,7 @@ public class SolicitationDTO {
         this.data = e;
     }
 
-    public void setEst(String e){
+    public void setEst(EstadoSolicitacao e){
         this.estado = e;
     }
 
@@ -46,7 +48,7 @@ public class SolicitationDTO {
         return this.data;
     }
 
-    public String getEst(){
+    public EstadoSolicitacao getEst(){
         return this.estado;
     }
 }

@@ -2,9 +2,9 @@ package com.desweb.maintech.service;
 
 import com.desweb.maintech.dto.SolicitationDTO;
 import com.desweb.maintech.entity.EstadoSolicitacao;
-import com.desweb.maintech.entity.Solicitation;
 import com.desweb.maintech.repository.SolicitationRepository;
 import com.desweb.maintech.entity.Funcionario;
+import com.desweb.maintech.entity.Solicitation;
 import com.desweb.maintech.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,11 +81,11 @@ public class SolicitationService {
         Solicitation sol = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Solicitação não encontrada"));
         
-        if (!"EM_ANDAMENTO".equals(sol.getEst())) {
-            throw new RuntimeException("Apenas solicitações EM ANDAMENTO podem ser finalizadas.");
+        if (!"PAGA".equals(sol.getEst())) {
+            throw new RuntimeException("Apenas solicitações PAGA podem ser finalizadas.");
         }
         
-        sol.setEst("FINALIZADA");
+        sol.setEst(EstadoSolicitacao.valueOf("FINALIZADA"));
         sol.setOrientacao(orientacao);
 
         sol = repository.save(sol);

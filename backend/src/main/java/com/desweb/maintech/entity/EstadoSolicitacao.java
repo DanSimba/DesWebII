@@ -2,7 +2,11 @@ package com.desweb.maintech.entity;
 
 public enum EstadoSolicitacao {
     ABERTA,
-    EM_ANDAMENTO,
-    FINALIZADA,
-    CANCELADA
+    ORCADA,
+    APROVADA,
+    REJEITADA,
+    REDIRECIONADA,
+    ARRUMADA,
+    PAGA,
+    FINALIZADA
 }
