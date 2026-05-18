@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RelatorioComponent } from './relatorio/relatorio.component';
+import { RelatorioComponent } from './relatorio.component';
 
 describe('RelatorioComponent', () => {
   let component: RelatorioComponent;
