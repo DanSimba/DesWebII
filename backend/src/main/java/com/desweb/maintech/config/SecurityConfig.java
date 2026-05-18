@@ -12,6 +12,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.http.HttpMethod;
+
 
 import com.desweb.maintech.security.JwtFilter;
 @Configuration
@@ -30,7 +32,7 @@ public class SecurityConfig {
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                // .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers(
                     "/public/**",
                     "/auth/**",
@@ -41,6 +43,9 @@ public class SecurityConfig {
                 ).permitAll() //pwemite entrar em todas as rotas de auth/ pra frente
                 .requestMatchers("/client/**").hasRole("CLIENTE")
                 .requestMatchers("/func/**").hasRole("FUNCIONARIO")
+                .requestMatchers("/api/funcionarios/**").hasRole("FUNCIONARIO")
+                .requestMatchers("/api/categorias/**").authenticated()
+                .requestMatchers("/api/solicitations/**").authenticated()
                 .anyRequest().authenticated()
             );
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
