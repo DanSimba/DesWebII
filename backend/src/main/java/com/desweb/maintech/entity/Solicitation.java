@@ -19,7 +19,7 @@ public class Solicitation {
     @Column(name = "data_hora")
     private LocalDateTime dataHora; 
 
-    @Column(name = "orientacao_manutencao", length = 1000)
+    @Column(name = "orientacoes_cliente")
     private String orientacao;
 
     @Enumerated(EnumType.STRING)
@@ -32,7 +32,11 @@ public class Solicitation {
     private Client client;
 
     @ManyToOne
-    @JoinColumn(name = "id_funcionario")
+    @JoinColumn(name = "id_categoria")
+    private Categoria categoria;
+
+    @ManyToOne
+    @JoinColumn(name = "id_func_destino")
     private Funcionario funcionario;
 
     @OneToMany(mappedBy = "solicitacao")
