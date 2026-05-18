@@ -167,14 +167,14 @@ INSERT INTO solicitacao (
  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
  
 -- 21. ARRUMADA recente
-(1, 2, 'Desktop custom', 'Placa de vídeo com artefatos',
+(6, 2, 'Desktop custom', 'Placa de vídeo com artefatos',
  'ARRUMADA', '2024-10-18 08:00:00',
  850.00, 2, '2024-10-19 09:00:00',
  'Pasta térmica reaplicada e drivers reinstalados', 'Mantenha o gabinete limpo', 2, '2024-10-22 16:00:00',
  NULL, NULL, NULL, NULL),
  
 -- 22. PAGA recente
-(2, 5, 'Teclado Bluetooth', 'Perda de conexão frequente',
+(6, 5, 'Teclado Bluetooth', 'Perda de conexão frequente',
  'PAGA', '2024-10-05 11:00:00',
  110.00, 1, '2024-10-06 10:00:00',
  'Módulo Bluetooth substituído', 'Mantenha dispositivos próximos', 1, '2024-10-09 14:00:00',

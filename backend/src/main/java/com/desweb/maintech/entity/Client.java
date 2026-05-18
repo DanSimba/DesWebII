@@ -3,6 +3,8 @@ package com.desweb.maintech.entity;
 import java.util.ArrayList; //bd
 import java.util.List;
 
+import jakarta.persistence.FetchType;
+
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,7 +29,7 @@ public class Client {
 
     private String telefone;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client",  fetch = FetchType.EAGER) //só garante que o dto vai chegar antes da conexão fechar
     private List<Solicitation> sols = new ArrayList<>();
 
     @OneToOne

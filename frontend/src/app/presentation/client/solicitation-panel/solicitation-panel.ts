@@ -24,6 +24,7 @@ export class SolicitationPanel implements OnInit {
       
       this.clientService.getMe().subscribe(
         data => {          //O NOME DO CLIENTE PQ A GNT PEGA AS INFOS DELE ACESSA DIRETAMENTE PELO OBJ CLIENTE
+          console.log(data);
           this.client.set(data);
           this.sols.set(data.sols); //FAZ UM REQUEST A MENOS
         });

@@ -15,9 +15,11 @@ export class AuthService {
   private token = 'token';
 
   login(email: string, senha: string): Observable<any>{
+    //console.log(email);
     return this.http.post<{token: string}>(`${this.apiURL}/login`, { email, password : senha  })
       .pipe(
             map(response => {
+              //console.log(response);
               this.salvarToken(response.token);
               return response.token;
             })

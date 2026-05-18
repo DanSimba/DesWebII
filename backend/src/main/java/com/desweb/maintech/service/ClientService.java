@@ -30,6 +30,7 @@ public class ClientService {
         ClientDTO dto = new ClientDTO();
         dto.setId(client.getId());
         dto.setNome(client.getNome());
+        dto.setEmail(client.getUser().getEmail());
 
         List<SolicitationDTO> sols = client.getSols() // coloca as sols do client uma por uma
                 .stream()
@@ -101,6 +102,7 @@ public class ClientService {
         Client client = repository.findByUserEmail(email)
             .orElseThrow(() -> new RuntimeException("EXCEPTION!!! EMAIL NÃO ENCONTRADO!!!"));
 
-        return new ClientDTO(client);
+            //System.out.println(client.getSols().size());
+        return toDTO(client);
     }
 }
