@@ -102,7 +102,10 @@ public class ClientService {
         Client client = repository.findByUserEmail(email)
             .orElseThrow(() -> new RuntimeException("EXCEPTION!!! EMAIL NÃO ENCONTRADO!!!"));
 
+<<<<<<< HEAD
             //System.out.println(client.getSols().size());
+=======
+>>>>>>> 242a8814ddbde76c0aad48911649c8b9d3f35200
         return toDTO(client);
     }
 }
