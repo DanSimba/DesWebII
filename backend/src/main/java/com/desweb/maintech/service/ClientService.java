@@ -101,6 +101,6 @@ public class ClientService {
         Client client = repository.findByUserEmail(email)
             .orElseThrow(() -> new RuntimeException("EXCEPTION!!! EMAIL NÃO ENCONTRADO!!!"));
 
-        return new ClientDTO(client);
+        return toDTO(client);
     }
 }
