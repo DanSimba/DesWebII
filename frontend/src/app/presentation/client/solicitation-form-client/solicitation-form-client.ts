@@ -49,10 +49,10 @@ export class SolicitationFormClient {
       let idString = new Date();
       let dateString = `${idString.getDate()+1}/${idString.getMonth()+1}/${idString.getFullYear()}`
       const sol: Solicitation={
-        id: idString.toString(),
-        equipamento: this.form.value.value,
-        dataHora: dateString,
-        estado: 'aberta',
+        id: +idString, //fun fact: '+' converte pra number
+        equip: this.form.value.value,
+        data: dateString,
+        est: 'aberta',
         desc: this.form.value.descDefeito,
       }
 

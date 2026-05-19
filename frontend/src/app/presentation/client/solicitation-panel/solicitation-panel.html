@@ -8,9 +8,9 @@
     @for (s of sols(); track s.id) {
       <app-solicitation-card 
         [solId]="s.id"
-        [eqp]="s.equipamento"
-        [estado]="s.estado" 
-        [data]="s.dataHora" 
+        [eqp]="s.equip"
+        [estado]="s.est" 
+        [data]="s.data" 
         [desc]="s.desc">
       </app-solicitation-card>
     }
@@ -18,9 +18,9 @@
     @for (s of createdSols(); track s.id) {
       <app-solicitation-card 
         [solId]="s.id"
-        [eqp]="s.equipamento"
-        [estado]="s.estado" 
-        [data]="s.dataHora" 
+        [eqp]="s.equip"
+        [estado]="s.est" 
+        [data]="s.data" 
         [desc]="s.desc">
       </app-solicitation-card> 
     }
