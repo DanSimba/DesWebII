@@ -175,7 +175,7 @@ INSERT INTO solicitacao (
  
 -- 22. PAGA recente
 (6, 5, 'Teclado Bluetooth', 'Perda de conexão frequente',
- 'PAGA', '2024-10-05 11:00:00',
+ 'ORCADA', '2024-10-05 11:00:00',
  110.00, 1, '2024-10-06 10:00:00',
  'Módulo Bluetooth substituído', 'Mantenha dispositivos próximos', 1, '2024-10-09 14:00:00',
  '2024-10-10 09:00:00', NULL, NULL, NULL);

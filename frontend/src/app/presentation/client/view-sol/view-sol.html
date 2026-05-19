@@ -11,20 +11,20 @@
     <div class="flex flex-row w-full max-w-[60vh] p-3 justify-around items-center bg-(--queen-pink) border-2 border-dashed border-(--antique-ruby) rounded-xl">
             
             <div class="px-4 py-1 text-sm font-bold bg-(--parrot-pink) text-(--french-puce) rounded-full border-2 border-(--solid-pink)">
-                {{solData()?.dataHora}}
+                {{solData()?.data}}
             </div>
 
-            <div [style.background-color]="'var(--' + solData()?.estado  + ')'"
+            <div [style.background-color]="'var(--' + solData()?.est  + ')'"
                  class="px-6 py-1 text-sm font-bold rounded-full border-2 border-(--french-puce) uppercase tracking-wider shadow-sm">
-                {{solData()?.estado}}
+                {{solData()?.est}}
             </div>
 
-            @if(solData()?.estado == "aprovada"){
+            @if(solData()?.est == "APROVADA"){
                 <button (click)="openPopup('Redirecionando para pagamento...', 'ok'); this.updtEstado('paga')"
                   class="bg-orange-500 text-white px-4 py-1 rounded-full border-2 border-orange-700 font-bold hover:scale-105 transition-transform">
                   Pagar
                 </button>
-            } @else if(solData()?.estado == "rejeitada"){
+            } @else if(solData()?.est == "REJEITADA"){
                 <button (click)="this.updtEstado('aberta')"
                   class="bg-(--solid-pink) text-white px-4 py-1 rounded-full border-2 border-(--french-puce) font-bold hover:bg-(--antique-ruby)">
                   Reabrir
@@ -32,7 +32,7 @@
             }
     </div>
 
-    @if(solData()?.estado == "orcada"){
+    @if(solData()?.est == "ORCADA"){
       <div class="flex flex-col w-full max-w-[60vh] p-5 bg-(--queen-pink) border-3 border-(--antique-ruby) rounded-lg shadow-md animate-in fade-in zoom-in duration-300">
         <div class="text-center font-bold text-xl border-b-2 border-(--parrot-pink) mb-3 pb-1 text-(--french-puce)">
           PROPOSTA DE ORÇAMENTO
@@ -58,7 +58,7 @@
       </div>
     }
 
-    @if(solData()?.estado == "rejeitada"){
+    @if(solData()?.est == "REJEITADA"){
       <div class="flex flex-col w-full max-w-[60vh] p-4 bg-red-50 border-2 border-red-300 rounded-md">
           <div class="text-red-800 font-bold text-center underline mb-2 italic">MOTIVO DA REJEIÇÃO</div>
           <div class="text-sm text-red-900 text-center">{{ans}}</div>
