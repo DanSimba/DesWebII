@@ -30,6 +30,7 @@ public class ClientService {
         ClientDTO dto = new ClientDTO();
         dto.setId(client.getId());
         dto.setNome(client.getNome());
+        dto.setEmail(client.getUser().getEmail());
 
         List<SolicitationDTO> sols = client.getSols() // coloca as sols do client uma por uma
                 .stream()

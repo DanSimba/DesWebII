@@ -11,7 +11,7 @@ public class ClientDTO {
     private Long id;
     private String cpf;
     private String nome;
-    private String email; //cliente nem tem email pq q tem isso aq
+    private String email;
     private String telefone;
 
     private EnderecoDTO endereco;

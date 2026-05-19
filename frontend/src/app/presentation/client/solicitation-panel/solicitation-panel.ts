@@ -3,7 +3,6 @@ import { SolicitationClient } from '../solicitation-client/solicitation-card';
 import { ClientService } from '../../../services/client-service';
 import { Solicitation } from '../../../models/solicitation-interface';
 import { ClientInterface } from '../../../models/client-interface';
-import { SolicitationFormClient } from '../solicitation-form-client/solicitation-form-client';
 
 @Component({
   selector: 'app-solicitation-panel',
@@ -12,8 +11,6 @@ import { SolicitationFormClient } from '../solicitation-form-client/solicitation
   styleUrl: './solicitation-panel.css',
 })
 export class SolicitationPanel implements OnInit {
-
-  //VERSÃO QUE VAI RECEBER RESPOSTA DO BACK USANDO O SERVICE
 
   private clientService = inject(ClientService);
   client = signal<ClientInterface|null>(null);
@@ -26,49 +23,7 @@ export class SolicitationPanel implements OnInit {
         data => {          //O NOME DO CLIENTE PQ A GNT PEGA AS INFOS DELE ACESSA DIRETAMENTE PELO OBJ CLIENTE
           console.log(data);
           this.client.set(data);
-          this.sols.set(data.sols); //FAZ UM REQUEST A MENOS
+          this.sols.set(data.sols); 
         });
-
-      //  
-      //   this.clientService.getSols(1).subscribe(
-      //     (solData: Solicitation[]) => {
-      //         this.createdSols.set(solData);
-      //     } 
-      //   )
-      //   //console.log("ARRAY SOLS: ", this.sols())
   }
-
-
-  //VERSÃO BÁSICA SÓ PRA APARECER NA TELA
-  /*
-  date = new Date(2025, 5, 24, 10, 30)
-
-  sols: Solicitation[]= [
-    {
-        id: "1",
-        nomeCli: "RAZER",
-        equipamento: "compiuter",
-        dataHora: `${this.date.getDate()}/${this.date.getMonth()}/${this.date.getFullYear()}`,
-        estado: "Pendente",
-        desc: "moiado"
-    },
-    {
-        id: "2",
-        nomeCli: "RAFINHA",
-        equipamento: "cerula",
-        dataHora: `${this.date.getDate()}/${this.date.getMonth()}/${this.date.getFullYear()}`,
-        estado: "Concluída",
-        desc: "deu pau"
-    },
-    {
-        id: "3",
-        nomeCli: "PEDRINHO",
-        equipamento: "tablet",
-        dataHora: `${this.date.getDate()}/${this.date.getMonth()}/${this.date.getFullYear()}`,
-        estado: "Concluída",
-        desc: "quebrado"
-    },
-    
-  ]
-   */ 
 }

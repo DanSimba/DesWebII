@@ -1,8 +1,8 @@
 
 export interface Solicitation{ 
-    id: string;
-    equipamento: string;
-    dataHora: string;
-    estado: string;
+    id: number;
+    equip: string;
+    data: string;
+    est: string;
     desc: string;
 }

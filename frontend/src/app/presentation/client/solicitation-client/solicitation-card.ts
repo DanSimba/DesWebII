@@ -17,15 +17,15 @@ export class SolicitationClient {
   readonly data = input.required<string>();
   readonly estado = input.required<string>();
   readonly desc = input.required<string>();
-  readonly solId = input.required<string>();
+  readonly solId = input.required<number>();
    readonly eqp = input.required<string>();
 
   private sol =  computed<Solicitation>(() => ({
     id: this.solId(),
-    equipamento: this.eqp() ?? '',
-    dataHora: this.data() ?? '',
-    estado: this.estado() ?? '',
-    desc: this.desc() ?? ''
+    equip: this.eqp(),
+    data: this.data(),
+    est: this.estado(),
+    desc: this.desc() 
   }));
 
   openSol(){
