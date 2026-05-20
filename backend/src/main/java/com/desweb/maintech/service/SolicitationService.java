@@ -104,4 +104,29 @@ public class SolicitationService {
         sol = repository.save(sol);
         return toDTO(sol);
     }
+
+    public SolicitationDTO mudarEst(Long id, String novoEstado){
+        Solicitation sol = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Solicitação não encontrada"));
+        
+        switch (novoEstado) {
+            case "APROVADA":
+                sol.setEst(EstadoSolicitacao.APROVADA); //tem que explicar pro java que isso é da classe enum (vergonhoso)
+                break;
+            case "REJEITADA":
+                sol.setEst(EstadoSolicitacao.REJEITADA);
+                break;
+            case "PAGA":
+                sol.setEst(EstadoSolicitacao.PAGA);
+                break;
+            case "ABERTA": //o cliente pode reabrir se ele rejeitar
+                sol.setEst(EstadoSolicitacao.ABERTA);
+                break;
+        
+            default:
+                break;
+        }
+
+        return toDTO(sol);
+    }
 }
