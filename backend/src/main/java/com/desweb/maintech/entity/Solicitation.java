@@ -58,6 +58,10 @@ public class Solicitation {
     public LocalDateTime getData(){
         return this.dataHora;
     }
+    
+    public Client getClient() {
+        return client;
+    }
 
     public String getOrientacao() {
         return this.orientacao;
