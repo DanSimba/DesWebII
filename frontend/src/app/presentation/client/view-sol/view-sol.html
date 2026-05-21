@@ -20,12 +20,12 @@
             </div>
 
             @if(solData()?.est == "APROVADA"){
-                <button (click)="openPopup('Redirecionando para pagamento...', 'ok'); this.updtEstado('paga')"
+                <button (click)="openPopup('Redirecionando para pagamento...', 'ok'); this.updtEstado('PAGA')"
                   class="bg-orange-500 text-white px-4 py-1 rounded-full border-2 border-orange-700 font-bold hover:scale-105 transition-transform">
                   Pagar
                 </button>
             } @else if(solData()?.est == "REJEITADA"){
-                <button (click)="this.updtEstado('aberta')"
+                <button (click)="this.updtEstado('ABERTA')"
                   class="bg-(--solid-pink) text-white px-4 py-1 rounded-full border-2 border-(--french-puce) font-bold hover:bg-(--antique-ruby)">
                   Reabrir
                 </button>
@@ -45,14 +45,14 @@
         </div>
         
         <div class="flex flex-row justify-between gap-4 mt-2">
-          <button (click)="openPopup('Aprovar este orçamento?', 'opt').then(res => res ? updtEstado('aprovada') : '')" 
+          <button (click)="openPopup('Aprovar este orçamento?', 'opt').then(res => res ? updtEstado('APROVADA') : '')" 
                   class="flex-1 bg-green-500 text-white font-bold py-2 rounded-lg border-b-4 border-green-700 active:border-b-0 hover:bg-green-600 transition-all uppercase">
                 Aceitar
           </button>
 
-          <button (click)="openPopup('Explique o motivo da rejeição', 'custom').then(res => !res ? updtEstado('rejeitada') : '')" 
+          <button (click)="openPopup('Explique o motivo da rejeição', 'custom').then(res => !res ? updtEstado('REJEITADA') : '')" 
                   class="flex-1 bg-red-500 text-white font-bold py-2 rounded-lg border-b-4 border-red-700 active:border-b-0 hover:bg-red-600 transition-all uppercase text-xs">
-                Recusar
+                Rejeitar
           </button>
         </div>
       </div>

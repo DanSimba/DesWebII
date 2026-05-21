@@ -5,6 +5,7 @@ import com.desweb.maintech.entity.EstadoSolicitacao;
 import com.desweb.maintech.repository.SolicitationRepository;
 import com.desweb.maintech.entity.Funcionario;
 import com.desweb.maintech.entity.Solicitation;
+import com.desweb.maintech.repository.ClientRepository;
 import com.desweb.maintech.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class SolicitationService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
+    //@Autowired
+    //private ClientRepository clientRepository;
+
     private SolicitationDTO toDTO(Solicitation sol) {
         SolicitationDTO dto = new SolicitationDTO();
         dto.setId(sol.getId());
@@ -29,7 +33,7 @@ public class SolicitationService {
         dto.setEquip(sol.getEquip());
         dto.setData(sol.getData());
         dto.setEst(sol.getEst());
-        dto.getNomeCliente(sol.getClient().getNome());
+        dto.setNomeCliente(sol.getClient().getNome());
         return dto;
     }
 
@@ -103,6 +107,33 @@ public class SolicitationService {
         sol.setFuncionario(novoResp);
 
         sol = repository.save(sol);
+        return toDTO(sol);
+    }
+
+    public SolicitationDTO mudarEst(Long id, String novoEstado){
+        Solicitation sol = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Solicitação não encontrada"));
+        
+        switch (novoEstado) {
+            case "APROVADA":
+                sol.setEst(EstadoSolicitacao.APROVADA); //tem que explicar pro java que isso é da classe enum (vergonhoso)
+                break;
+            case "REJEITADA":
+                sol.setEst(EstadoSolicitacao.REJEITADA);
+                break;
+            case "PAGA":
+                sol.setEst(EstadoSolicitacao.PAGA);
+                break;
+            case "ABERTA": //o cliente pode reabrir se ele rejeitar
+                sol.setEst(EstadoSolicitacao.ABERTA);
+                break;
+        
+            default:
+                break;
+        }
+
+        repository.save(sol);
+
         return toDTO(sol);
     }
 }

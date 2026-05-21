@@ -15,7 +15,7 @@ export interface OrcamentoPayload {
 export class SolicitationService {
   constructor(private http : HttpClient){}
 
-  private readonly apiURL = 'http://localhost/api/solicitations'
+  private readonly apiURL = 'http://localhost:8080/api/solicitations'
 
   listarTodos(): Observable<Solicitation[]>{
     return this.http.get<Solicitation[]>(this.apiURL);
