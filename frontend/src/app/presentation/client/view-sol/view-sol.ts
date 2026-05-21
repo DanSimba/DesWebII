@@ -37,10 +37,10 @@ export class ViewSol{
           console.log('novo est: ', response);
           
           //pra mudar na tela imediatamente
-          //this.solData.set({
-          //  ...currentSol,
-          //  est: est
-          //});
+          this.solData.set({
+            ...currentSol,
+            est: est
+          });
         },
         error: (err) => {
           console.error('Erro ao atualizar o estado:', err);

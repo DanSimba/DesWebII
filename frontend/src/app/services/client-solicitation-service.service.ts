@@ -23,7 +23,7 @@ export class ClientSolicitationService{
     this.sol.set(newSol);
   }
 
-  updtEst(newEst: String, id: number){
-    return this.http.patch(`${this.apiUrl}/solicitations/${id}/mudar`, newEst);
+  updtEst(newEst: string, id: number){
+    return this.http.patch(`${this.apiUrl}/api/solicitations/${id}/mudar/${newEst}`, {});
   }
 }
