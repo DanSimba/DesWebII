@@ -3,6 +3,9 @@ package com.desweb.maintech.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -23,6 +26,8 @@ public class Solicitation {
     private String orientacao;
 
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(name = "estado", columnDefinition = "estado_solicitacao")
     private EstadoSolicitacao estado;
 
     private String equipamento;

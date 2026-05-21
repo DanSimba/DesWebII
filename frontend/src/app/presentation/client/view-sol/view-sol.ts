@@ -29,13 +29,24 @@ export class ViewSol{
   }
 
   updtEstado(est: string){
-    this.solData.update(data => {
-          if (!data) return null;
-          return {
-            ...data,   //OUTROS CAMPOS
-            estado: est
-          };
-    });
+    const currentSol = this.solData(); //passa pra outra const pra evitar que seja null
+
+    if (currentSol) {
+      this.solCard.updtEst(est, currentSol.id).subscribe({
+        next: (response) => {
+          console.log('novo est: ', response);
+          
+          //pra mudar na tela imediatamente
+          this.solData.set({
+            ...currentSol,
+            est: est
+          });
+        },
+        error: (err) => {
+          console.error('Erro ao atualizar o estado:', err);
+        }
+      });
+    }
   }
 
   //ÁREA DO POPUP

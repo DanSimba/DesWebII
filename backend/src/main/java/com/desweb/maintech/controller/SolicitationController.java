@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/solicitations")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class SolicitationController {
 
     @Autowired
@@ -69,5 +69,12 @@ public class SolicitationController {
             
         SolicitationDTO redirecionada = solicitationService.redirecionar(id, novoFuncionarioId);
         return ResponseEntity.ok(redirecionada);
+    }
+
+    @PatchMapping("/{id}/mudar/{novoEstado}")
+    public ResponseEntity<SolicitationDTO> updtEstado( @PathVariable Long id, @PathVariable String novoEstado) {
+            
+        SolicitationDTO mudada = solicitationService.mudarEst(id, novoEstado);
+        return ResponseEntity.ok(mudada);
     }
 }
