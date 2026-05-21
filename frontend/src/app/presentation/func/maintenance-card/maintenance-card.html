@@ -16,12 +16,14 @@
       {{req().dateTime | date:'dd/MM/yyyy'}}
     </div>
 
-    <button *ngIf="req().status === 'ABERTA' || req().status === 'APROVADA' || req().status === 'REDIRECIONADA' || req().status === 'PAGA'" 
-            (click)="onActionClick()"
-            class="bg-(--antique-ruby) hover:bg-(--solid-pink) text-(--queen-pink) text-xs font-bold py-1 px-3 rounded shadow-md transition-colors uppercase cursor-pointer">
-      <span *ngIf="req().status === 'ABERTA'">Orçar</span>
-      <span *ngIf="req().status === 'APROVADA' || req().status === 'REDIRECIONADA'">Manutenção</span>
-      <span *ngIf="req().status === 'PAGA'">Finalizar</span>
-    </button>
+    @if (req().status === 'ABERTA' || req().status === 'APROVADA' || 
+         req().status === 'REDIRECIONADA' || req().status === 'PAGA') {
+      <button (click)="onActionClick()"
+              class="bg-(--antique-ruby) hover:bg-(--solid-pink) text-(--queen-pink) text-xs font-bold py-1 px-3 rounded shadow-md transition-colors uppercase cursor-pointer">
+        @if (req().status === 'ABERTA') { Orçar }
+        @else if (req().status === 'APROVADA' || req().status === 'REDIRECIONADA') { Manutenção }
+        @else if (req().status === 'PAGA') { Finalizar }
+      </button>
+    }
   </div>
 </div>

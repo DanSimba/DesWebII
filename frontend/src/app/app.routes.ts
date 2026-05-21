@@ -67,7 +67,7 @@ export const routes: Routes = [
         loadComponent: () => import('./presentation/func/maintenance-budget/maintenance-budget.component').then(m => m.MaintenanceBudgetComponent)
       },
       {
-        path: 'task',
+        path: 'task/:id',
         loadComponent: () => import('./presentation/func/maintenance-task/maintenance-task.component').then(m => m.MaintenanceTaskComponent)
       },
     ],

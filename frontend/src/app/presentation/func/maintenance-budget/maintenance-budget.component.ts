@@ -3,6 +3,9 @@ import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Dialog } from '@angular/cdk/dialog';
 import { Popup } from '../../../shared/components/popup/popup';
+import { Solicitation } from '../../../models/solicitation-interface';
+import { ActivatedRoute } from '@angular/router';
+import { SolicitationService } from '../../../services/solicitation.service';
 
 @Component({
   selector: 'app-maintenance-budget',
@@ -12,28 +15,34 @@ import { Popup } from '../../../shared/components/popup/popup';
   styleUrl: './maintenance-budget.component.css'
 })
 export class MaintenanceBudgetComponent implements OnInit {
-  public clientName: string = 'Andriele Machado';
-  public clientCpf: string = '111.222.333-44';
-  public clientEmail: string = 'andriele_machado2006@gmail.com';
-  public clientPhone: string = '(41) 99581-7977';
-  public clientAddress: string = 'Rua Quitanda, 430 - Colombo/PR';
-
-  public equipmentCategory: string = 'Notebook';
-  public equipmentDesc: string = 'Lenovo 2026';
-  public maintenanceDesc: string = 'Tela quebrada';
-
-  public partsValue: number | null = null;
-  public laborValue: number | null = null;
-  public loggedEmployee: string = 'Mário';
+  public solicitacao : Solicitation | null = null;
+  
+  public precoPeca: number | null = null;
+  public maoDeObra: number | null = null; 
 
   private dialog = inject(Dialog);
+  private route = inject(ActivatedRoute);
+  private solicitationService = inject(SolicitationService);
 
   constructor(private location: Location) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    if(id){
+      this.solicitationService.buscarPorId(id).subscribe({
+        next: (dados) => {
+          this.solicitacao = dados;
+        },
+        error: (err) => {
+          console.error('Veio solicitação nenhuma campeão', err);
+        }
 
-  get totalValue(): number {
-    return (this.partsValue || 0) + (this.laborValue || 0);
+      });
+    }
+  }
+
+  get valorTotal(): number {
+    return (this.precoPeca || 0) + (this.maoDeObra || 0);
   }
 
   private abrirPopup(texto: string, tipo: string) {
@@ -43,33 +52,35 @@ export class MaintenanceBudgetComponent implements OnInit {
   }
 
   public submitBudget(): void {
-    if ((this.partsValue !== null && this.partsValue < 0) || (this.laborValue !== null && this.laborValue < 0)) {
+    if(!this.solicitacao)return; 
+
+    //campos de validação dessa bomba
+    if ((this.precoPeca !== null && this.precoPeca < 0) || (this.maoDeObra !== null && this.maoDeObra < 0)) {
       this.abrirPopup('O valor não pode ser negativo', 'ok');
       return;
     }
 
-    if (this.totalValue <= 0) {
+    if (this.valorTotal <= 0) {
       this.abrirPopup('O valor total deve ser maior que zero', 'ok');
       return;
     }
-    if (this.totalValue > 99999) {
+    if (this.valorTotal > 99999) {
       this.abrirPopup('Valor inválido!', 'ok');
       return;
     }
 
-    const payloadOrcamento = {
-      funcionarioResponsavel: this.loggedEmployee,
-      dataHoraRegistro: new Date().toLocaleString('pt-BR'),
-      valorPecas: this.partsValue,
-      valorMaoDeObra: this.laborValue,
-      valorTotal: this.totalValue
-    };
 
-    console.log('Orçamento registrado', payloadOrcamento);
+    const payloadOrcamento = { valorOrcamento: this.valorTotal, estado: 'ORCADA'};
+    this.solicitationService.registrarOrcamento(this.solicitacao.id, payloadOrcamento).subscribe({
+      next: () => {
+        const dialogRef = this.abrirPopup('Orçamento enviado', 'ok');
+        dialogRef.closed.subscribe(() => this.location.back());
 
-    const dialogRef = this.abrirPopup('Orçamento enviado', 'ok');
-    dialogRef.closed.subscribe(() => {
-      this.location.back();
+      },
+      error: (err) => {
+        console.error('Foi não amor', err);
+        this.abrirPopup('Erro ao enviar o orçamento', 'ok');
+      }
     });
   }
 

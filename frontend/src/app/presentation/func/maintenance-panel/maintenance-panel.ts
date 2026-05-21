@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaintenanceRequest } from '../../../models/maintenance-request.model';
 import { MaintenanceCard } from '../maintenance-card/maintenance-card';
@@ -23,25 +23,33 @@ export class MaintenancePanel implements OnInit {
   private dialog = inject(Dialog);
   private solicitationService = inject(SolicitationService);
   private authService = inject(AuthService);
+  private cdr = inject(ChangeDetectorRef);
 
   private funcLoggado: string = '';
   private IdFuncLoggado: number | null = null;
+  private filtroAtual = { type: 'ABERTAS', start: '', end: '' };
 
   public filteredRequests: MaintenanceRequest[] = [];
   public baseVisibleRequests: MaintenanceRequest[] = [];
   public allRequests: MaintenanceRequest[] = []; //eu vou puxar o pé de quem misturou inglês e português no mesmo código, vou churrascar depois
 
   ngOnInit(): void {
-    const token = this.authService.getToken();
-    if(token){
-      const decoded: any = jwtDecode(token);
-      this.funcLoggado = decoded.sub ?? '';
-    }
+    // const token = this.authService.getToken();
+    // if(token){
+    //   const decoded: any = jwtDecode(token);
+    //   this.funcLoggado = decoded.sub ?? '';
+    // } a princiṕioo resolvi no login-form isso aqui 
 
     this.carregarSolicitacoes();
   }
-
+  
   public applyFilter(event: { type: string, start: string, end: string }) {
+    this.filtroAtual = event; // salva o filtro atual
+    this.aplicarFiltro();
+  }
+  
+  private aplicarFiltro(){
+    const event = this.filtroAtual;
     if (event.type === 'ABERTAS') {
       this.filteredRequests = this.baseVisibleRequests.filter(req => req.status === 'ABERTA');
     }
@@ -57,6 +65,7 @@ export class MaintenancePanel implements OnInit {
         return reqDate >= startDate && reqDate <= endDate;
       });
     }
+
   }
 
   public handleAction(id: number): void {
@@ -64,21 +73,29 @@ export class MaintenancePanel implements OnInit {
     if (!requestClicked) return;
 
     if (requestClicked.status === 'ABERTA') {
-      this.router.navigate(['/func/budget']);
+      this.router.navigate(['/func/budget', id]);
     }
     else if (requestClicked.status === 'APROVADA' || requestClicked.status === 'REDIRECIONADA') {
-      this.router.navigate(['/func/task']);
+      this.router.navigate(['/func/task', id]);
     }
     else if (requestClicked.status === 'PAGA') {
       const dialogRef = this.dialog.open(Popup, {
-        data: { text: 'Deseja finalizar a solicitação?', typePopUp: 'option' }
+        data: { text: 'Deseja finalizar a solicitação?', typePopUp: 'opt' }
       });
 
       dialogRef.closed.subscribe(result => {
         if (result === true) {
-          requestClicked.status = 'FINALIZADA';
-          this.filteredRequests = [...this.filteredRequests];
-          this.dialog.open(Popup, { data: { text: 'Solicitação finalizada', typePopUp: 'ok' } });
+          this.solicitationService.finalizarManutencao(id).subscribe({
+            next: () => {
+              this.carregarSolicitacoes();
+              this.dialog.open(Popup, {data: {text: 'Solicitação Finalizada!', typePopUp: 'ok'}});
+            },
+            error: (err) => console.error('Finalizou não filhão', err)
+
+          });
+          // requestClicked.status = 'FINALIZADA';
+          // this.filteredRequests = [...this.filteredRequests];
+          // this.dialog.open(Popup, { data: { text: 'Solicitação finalizada', typePopUp: 'ok' } });
         }
       });
     }
@@ -99,7 +116,26 @@ export class MaintenancePanel implements OnInit {
     return mapa[estado] ?? 'ABERTA';
   }
 
-  carregarSolicitacoes() {
-    throw new Error('Method not implemented.');
+  carregarSolicitacoes() : void{
+    this.solicitationService.listarTodos().subscribe({
+      next: (dados) => {
+        this.allRequests = dados.map( s => ({
+          id: s.id,
+          dateTime: new Date(s.data),
+          clientName: s.nomeCliente ?? 'Cliente',
+          description: s.equip,
+          status: this.mapearEstado(s.est),
+          receivingEmployee: undefined,
+        }));
+        this.baseVisibleRequests = [ ...this.allRequests].sort(
+          (a,b) => a.dateTime.getTime() - b.dateTime.getTime()
+        );
+        this.aplicarFiltro();
+        this.cdr.detectChanges();
+      },
+      error: (err) =>  {
+        console.error('Erro no carregar', err);
+      }
+    });
   }
 }

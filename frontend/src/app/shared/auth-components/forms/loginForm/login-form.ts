@@ -3,6 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../../services/auth-service';
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'login-form', 
@@ -27,8 +28,9 @@ export class LoginForm {
 
   private executeLogin() {
     this.authService.login(this.email, this.password).subscribe({
-      next: (res) => {
-        const role = this.authService.getTypeUser();
+      next: (token) => {
+        const decoded :any = jwtDecode(token);
+        const role = decoded.perfil as string;
         if (role) {
           this.redirectUser(role);
         } else {

@@ -9,29 +9,29 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-b-2 border-(--parrot-pink) pb-4">
       <div class="space-y-1">
         <h3 class="font-black text-(--french-puce) uppercase text-xs">Dados do Cliente</h3>
-        <p class="text-sm"><span class="font-bold">Nome:</span> {{clientName}}</p>
-        <p class="text-sm"><span class="font-bold">CPF:</span> {{clientCpf}}</p>
+        <p class="text-sm"><span class="font-bold">Nome:</span> {{ solicitacao?.nomeCliente }}</p>
+        <!-- <p class="text-sm"><span class="font-bold">CPF:</span> {{solicitacao.}}</p> -->
       </div>
       <div class="space-y-1">
         <h3 class="font-black text-(--french-puce) uppercase text-xs">Equipamento</h3>
-        <p class="text-sm font-medium">{{equipmentCategory}}</p>
+        <p class="text-sm font-medium">{{solicitacao?.equip}}</p>
       </div>
     </div>
 
     <div class="grid grid-cols-2 gap-4">
       <div class="flex flex-col gap-1">
         <label class="text-xs font-bold text-(--french-puce) uppercase text-center">Peças (R$)</label>
-        <input type="number" [(ngModel)]="partsValue" class="p-3 rounded-lg border-2 border-(--french-puce) text-center font-bold bg-white focus:ring-2 ring-(--parrot-pink) outline-none">
+        <input type="number" [(ngModel)]="precoPeca" class="p-3 rounded-lg border-2 border-(--french-puce) text-center font-bold bg-white focus:ring-2 ring-(--parrot-pink) outline-none">
       </div>
       <div class="flex flex-col gap-1">
         <label class="text-xs font-bold text-(--french-puce) uppercase text-center">Mão de Obra (R$)</label>
-        <input type="number" [(ngModel)]="laborValue" class="p-3 rounded-lg border-2 border-(--french-puce) text-center font-bold bg-white focus:ring-2 ring-(--parrot-pink) outline-none">
+        <input type="number" [(ngModel)]="maoDeObra" class="p-3 rounded-lg border-2 border-(--french-puce) text-center font-bold bg-white focus:ring-2 ring-(--parrot-pink) outline-none">
       </div>
     </div>
 
     <div class="mt-auto bg-(--french-puce) p-4 rounded-lg flex justify-between items-center border-b-4 border-black">
       <span class="text-white font-bold uppercase">Total do Orçamento:</span>
-      <span class="text-white font-black text-2xl">R$ {{totalValue | number:'1.2-2'}}</span>
+      <span class="text-white font-black text-2xl">R$ {{valorTotal | number:'1.2-2'}}</span>
     </div>
   </div>
 

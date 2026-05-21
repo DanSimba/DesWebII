@@ -6,7 +6,7 @@ import { Funcionario } from '../models/funcionario.model';
 
 export interface OrcamentoPayload {
   valorOrcamento: number;
-  est: string; 
+  estado: string; 
 }
 
 @Injectable({
