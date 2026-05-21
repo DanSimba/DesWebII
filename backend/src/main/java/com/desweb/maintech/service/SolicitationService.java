@@ -29,6 +29,7 @@ public class SolicitationService {
         dto.setEquip(sol.getEquip());
         dto.setData(sol.getData());
         dto.setEst(sol.getEst());
+        dto.getNomeCliente(sol.getClient().getNome());
         return dto;
     }
 

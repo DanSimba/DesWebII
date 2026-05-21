@@ -28,22 +28,9 @@ export const routes: Routes = [
     component: Client,
     canActivateChild: [clientGuard],
     children: [
-      {
-        path: 'solicitation',
-        component: SolicitationFormClient, //lazy-loading??? que tal????
-      },
-      {
-        path: 'panel',
-        loadComponent: () =>
-          import('./presentation/client/solicitation-panel/solicitation-panel').then(
-            (m) => m.SolicitationPanel,
-          ),
-      },
-      {
-        path: 'view-solicitation/:id',
-        loadComponent: () =>
-          import('./presentation/client/view-sol/view-sol').then((m) => m.ViewSol),
-      },
+      { path: 'solicitation', loadComponent: () => import('./presentation/client/solicitation-form-client/solicitation-form-client'). then((m)=>m.SolicitationFormClient),},
+      { path: 'panel', loadComponent: () => import('./presentation/client/solicitation-panel/solicitation-panel').then((m) => m.SolicitationPanel),},
+      { path: 'view-solicitation/:id', loadComponent: () => import('./presentation/client/view-sol/view-sol').then((m) => m.ViewSol),},
     ],
   },
   {
@@ -53,25 +40,12 @@ export const routes: Routes = [
     children: [
       {
         path: 'panel',
-        loadComponent: () =>
-          import('./presentation/func/maintenance-panel/maintenance-panel').then(
-            (m) => m.MaintenancePanel,
-          ),
+        loadComponent: () => import('./presentation/func/maintenance-panel/maintenance-panel').then((m) => m.MaintenancePanel,),
       },
-      /*{
-        path: 'list',
-        loadComponent: () =>
-          import('./page/maintenance-list-view/maintenance-list-view').then(
-            (m) => m.MaintenanceListView,
-          ),
-      }*/
       {
         path: 'crud-cat',
         children: [
-          {
-            path: '',
-            loadComponent: () => import('./presentation/func/categoria-crud/categoria-crud').then((m) => m.CategoriaCrud),
-          },
+          { path: '', loadComponent: () => import('./presentation/func/categoria-crud/categoria-crud').then((m) => m.CategoriaCrud),},
           { path: 'new', loadComponent: () => import('./presentation/func/edit-categoria/edit-categoria.component').then((m) => m.EditCategoriaComponent) },
           { path: 'edit/:id', loadComponent: () => import('./presentation/func/edit-categoria/edit-categoria.component').then((m) => m.EditCategoriaComponent) },
         ]
@@ -86,11 +60,10 @@ export const routes: Routes = [
       },
       {
         path: 'relatorio',
-        loadComponent: () =>
-          import('./page/relatorio/relatorio.component').then((m) => m.RelatorioComponent),
+        loadComponent: () =>import('./page/relatorio/relatorio.component').then((m) => m.RelatorioComponent),
       },
       {
-        path: 'budget',
+        path: 'budget/:id',
         loadComponent: () => import('./presentation/func/maintenance-budget/maintenance-budget.component').then(m => m.MaintenanceBudgetComponent)
       },
       {

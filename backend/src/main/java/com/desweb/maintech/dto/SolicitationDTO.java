@@ -10,6 +10,15 @@ public class SolicitationDTO {
     private String desc;
     private LocalDateTime data;
     private EstadoSolicitacao estado;
+    private String nomeCliente;
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
 
     //supostamente aqui eu só preciso dos setters certo?
     public void setId(long i){
