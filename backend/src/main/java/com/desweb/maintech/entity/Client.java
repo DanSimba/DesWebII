@@ -39,7 +39,7 @@ public class Client {
     @Embedded
     private Endereco endereco;
 
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
 

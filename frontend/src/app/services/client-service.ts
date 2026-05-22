@@ -10,7 +10,7 @@ import { ClientInterface } from '../models/client-interface';
 export class ClientService {
     private apiUrl = 'http://localhost:8080/client';
     // private jsonUrl = 'assets/client-ex.json'; //VERSÃO COM JSON (CLIENTE DE EXEMPLO)
-    public sols = signal<Solicitation[]>([]); //para guardar as sols criadas no solicitation-form
+    //public sols = signal<Solicitation[]>([]); //para guardar as sols criadas no solicitation-form
     constructor(private http: HttpClient) {}
 
     getSols(id: number): Observable<Solicitation[]> {
@@ -29,7 +29,8 @@ export class ClientService {
     }
 
     addSol(newSol: Solicitation) : Observable<Solicitation>{
-      return this.http.post<Solicitation>('http://localhost:8080/api/solicitations', newSol);
+      console.log("SOL QUE TA MANDANDO PRO POST: ", newSol);
+      return this.http.post<Solicitation>(`http://localhost:8080/api/solicitations`, newSol);
        //adiciona a lista de sols que o cliente criou
     }
 

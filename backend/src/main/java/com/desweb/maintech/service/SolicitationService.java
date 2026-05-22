@@ -1,6 +1,7 @@
 package com.desweb.maintech.service;
 
 import com.desweb.maintech.dto.SolicitationDTO;
+import com.desweb.maintech.entity.Client;
 import com.desweb.maintech.entity.EstadoSolicitacao;
 import com.desweb.maintech.repository.SolicitationRepository;
 import com.desweb.maintech.entity.Funcionario;
@@ -9,6 +10,9 @@ import com.desweb.maintech.repository.ClientRepository;
 import com.desweb.maintech.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 
 import java.util.List;
@@ -23,8 +27,8 @@ public class SolicitationService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
-    //@Autowired
-    //private ClientRepository clientRepository;
+    @Autowired
+    private ClientRepository clientRepository;
 
     private SolicitationDTO toDTO(Solicitation sol) {
         SolicitationDTO dto = new SolicitationDTO();
@@ -33,16 +37,23 @@ public class SolicitationService {
         dto.setEquip(sol.getEquip());
         dto.setData(sol.getData());
         dto.setEst(sol.getEst());
-        dto.setNomeCliente(sol.getClient().getNome());
+        dto.setIdCliente(sol.getClient().getId());
+
         return dto;
     }
 
-    public SolicitationDTO inserir(SolicitationDTO dto) {
+    public SolicitationDTO inserir(SolicitationDTO dto, String email) {
+
+        Client c = clientRepository
+            .findByUserEmail(email) //acha o usuário pelo email passado no endpoint
+            .orElseThrow();
+
         Solicitation sol = new Solicitation();
         sol.setDesc(dto.getDesc());
         sol.setEquip(dto.getEquip());
         sol.setData(dto.getData());
         sol.setEst(dto.getEst());
+        sol.setClient(c);
         
         sol = repository.save(sol);
         return toDTO(sol);
