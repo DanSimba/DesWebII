@@ -47,17 +47,25 @@ export class SolicitationFormClient {
     // em algum momento isso daqui vai ir pro back, confia !!!!
       console.log(this.form); 
       let idString = new Date();
-      let dateString = `${idString.getDate()+1}/${idString.getMonth()+1}/${idString.getFullYear()}`
+      //let dateString = `${idString.getDate()+1}/${idString.getMonth()+1}/${idString.getFullYear()}`
       const sol: Solicitation={
         id: +idString, //fun fact: '+' converte pra number
         equip: this.form.value.value,
-        data: dateString,
-        est: 'aberta',
+        data: new Date().toISOString(),
+        est: 'ABERTA',
         desc: this.form.value.descDefeito,
       }
 
-      this.clientService.addSol(sol);
-      this.form.reset();
+      this.clientService.addSol(sol).subscribe({
+        next: (res) => {
+          console.log("\nCRIOU:", res);
+          this.form.reset();
+        },
+
+        error: (err) => {
+          console.error("NÃO CRIOU, ERRO: ",err);
+        }
+      });
   }
 
    //ÁREA DO POPUP

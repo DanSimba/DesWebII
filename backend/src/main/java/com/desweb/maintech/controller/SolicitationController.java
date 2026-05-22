@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.security.core.Authentication;
 import java.util.List;
 
 @RestController
@@ -18,8 +19,10 @@ public class SolicitationController {
     private SolicitationService solicitationService;
 
     @PostMapping
-    public ResponseEntity<SolicitationDTO> inserir(@RequestBody SolicitationDTO dto) {
-        SolicitationDTO criada = solicitationService.inserir(dto);
+    public ResponseEntity<SolicitationDTO> inserir(@RequestBody SolicitationDTO dto, Authentication auth) {
+
+        String email = auth.getName(); //acha o user logado
+        SolicitationDTO criada = solicitationService.inserir(dto, email); //passa pro service inserir na sol
         return ResponseEntity.status(HttpStatus.CREATED).body(criada);
     }
 

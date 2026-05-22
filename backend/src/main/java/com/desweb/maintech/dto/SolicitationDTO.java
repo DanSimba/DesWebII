@@ -10,14 +10,10 @@ public class SolicitationDTO {
     private String desc;
     private LocalDateTime data;
     private EstadoSolicitacao estado;
-    private String nomeCliente;
+    private Long idCliente; //vou trocar o nome pelo id pq no bd só pede id (mas seria interessante guardar direto o nome)
 
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
+    public void setIdCliente(Long i) {
+        this.idCliente = i;
     }
 
     //supostamente aqui eu só preciso dos setters certo?
@@ -59,5 +55,9 @@ public class SolicitationDTO {
 
     public EstadoSolicitacao getEst(){
         return this.estado;
+    }
+
+    public Long getIdCliente() {
+        return idCliente;
     }
 }

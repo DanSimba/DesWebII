@@ -3,6 +3,8 @@ package com.desweb.maintech.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -19,6 +21,7 @@ public class Solicitation {
     @Column(name = "desc_defeito")
     private String descDefeito;
 
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX") //pro spring saber como converter a string data que chega
     @Column(name = "data_hora")
     private LocalDateTime dataHora; 
 
