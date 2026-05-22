@@ -50,7 +50,7 @@ export class SolicitationFormClient {
       //let dateString = `${idString.getDate()+1}/${idString.getMonth()+1}/${idString.getFullYear()}`
       const sol: Solicitation={
         id: +idString, //fun fact: '+' converte pra number
-        equip: this.form.value.value,
+        equip: this.form.value.catID,
         data: new Date().toISOString(),
         est: 'ABERTA',
         desc: this.form.value.descDefeito,

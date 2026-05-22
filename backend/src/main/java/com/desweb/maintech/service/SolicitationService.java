@@ -45,7 +45,7 @@ public class SolicitationService {
     public SolicitationDTO inserir(SolicitationDTO dto, String email) {
 
         Client c = clientRepository
-            .findByEmail(email) //acha o usuário pelo email passado no endpoint
+            .findByUserEmail(email) //acha o usuário pelo email passado no endpoint
             .orElseThrow();
 
         Solicitation sol = new Solicitation();
