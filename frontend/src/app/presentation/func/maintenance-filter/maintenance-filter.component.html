@@ -1,6 +1,6 @@
-<div class="flex flex-col lg:flex-row justify-between items-center gap-4 w-full mb-2 bg-(--queen-pink) p-3 rounded-[10px] border-solid border-5 border-(--antique-ruby) shadow-md">
+<div class="flex flex-col lg:flex-row justify-between items-center gap-4 w-full mb-2 bg-(--queen-pink) p-3 border-3 border-(--antique-ruby) shadow-[4px_4px_0px_var(--french-puce)]">
   
-  <div class="font-black text-[20px] text-(--french-puce) uppercase tracking-tighter">
+  <div class="font-black text-xl text-(--french-puce) uppercase tracking-tighter">
     Painel Geral
   </div>
 
@@ -25,11 +25,11 @@
 
     <div class="flex items-center gap-2 bg-white/50 p-1 rounded-md border border-(--antique-ruby)/30">
       <div class="flex items-center gap-1">
-        <label class="text-[10px] font-bold text-(--french-puce) uppercase">De:</label>
+        <label class="text-xs font-bold text-(--french-puce) uppercase">De:</label>
         <input type="date" [(ngModel)]="startDate" (change)="onDateSelected()" class="bg-white border-2 border-(--antique-ruby) p-1 text-xs rounded outline-none text-(--french-puce) font-bold cursor-pointer">
       </div>
       <div class="flex items-center gap-1">
-        <label class="text-[10px] font-bold text-(--french-puce) uppercase">Até:</label>
+        <label class="text-xs font-bold text-(--french-puce) uppercase">Até:</label>
         <input type="date" [(ngModel)]="endDate" (change)="onDateSelected()" class="bg-white border-2 border-(--antique-ruby) p-1 text-xs rounded outline-none text-(--french-puce) font-bold cursor-pointer">
       </div>
     </div>

@@ -1,77 +1,67 @@
-<div class="flex flex-col w-[82vh] h-[65vh] items-center bg-[image:var(--wallpaper-kitty)] bg-cover bg-center p-3 gap-2 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto">
-    <div class="flex font-bold w-[32vh] h-[7vh] p-2 justify-center items-center text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby)">
-      Painel de Visualização
+<div class="flex flex-col w-full h-full bg-(--queen-pink) p-6 gap-4 border-4 border-(--antique-ruby) rounded-[30px] shadow-[10px_10px_0px_var(--parrot-pink)] overflow-hidden text-(--french-puce)">
+    
+    <div class="font-bold px-10 py-2 text-xl bg-(--queen-pink) border-3 border-(--antique-ruby) text-(--french-puce) shadow-sm">
+      DETALHES DA SOLICITAÇÃO
     </div>
 
-    <div class="flex font-bold w-[60vh] h-[17vh] p-2 justify-center items-center text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby)">
+    <div class="w-full max-w-[60vh] p-4 text-center text-lg bg-(--queen-pink)/95 border-2 border-(--french-puce) rounded-md text-(--french-puce) font-medium">
       {{solData()?.desc}}
     </div>
 
-    <div class="flex flex-row font-bold w-[60vh] h-[10vh] p-2 justify-around items-center text-[20px] bg-(--queen-pink) rounded-[10px] border-dashed border-5 border-(--antique-ruby)">
-            <div class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[16px] bg-(--parrot-pink) rounded-[28px] border-solid border-5 border-pink-700">
-                {{solData()?.dataHora}}
+    <div class="flex flex-row w-full max-w-[60vh] p-3 justify-around items-center bg-(--queen-pink) border-2 border-dashed border-(--antique-ruby) rounded-xl">
+            
+            <div class="px-4 py-1 text-sm font-bold bg-(--parrot-pink) text-(--french-puce) rounded-full border-2 border-(--solid-pink)">
+                {{solData()?.data}}
             </div>
 
-            <div [style.background-color]="'var(--' + solData()?.estado  + ')'"
-             class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[16px] rounded-[28px] border-solid border-5 border-(--french-puce)">
-                {{solData()?.estado}}
+            <div [style.background-color]="'var(--' + solData()?.est  + ')'"
+                 class="px-6 py-1 text-sm font-bold rounded-full border-2 border-(--french-puce) uppercase tracking-wider shadow-sm">
+                {{solData()?.est}}
             </div>
 
-            @if(solData()?.estado=="aprovada"){
-                  <div (click)="openPopup('Vai para o app do banco / gera QR code etc', 'ok'); this.updtEstado('paga')"
-                  class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[16px] bg-(--paga) rounded-[28px] border-solid border-5 border-orange-500 hover:cursor-pointer hover:bg-orange-500">
-                    Pagar
-                  </div>
-            } @else if(solData()?.estado == "orcada"){
-                  <div class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[14px] text-center bg-gray-500 rounded-[28px] border-solid border-5 border-gray-700">
-                    Aprove primeiro
-                  </div>
-            } @else if(solData()?.estado == "rejeitada"){
-              <div (click)="this.updtEstado('aberta')"
-                  class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[16px] bg-(--parrot-pink) rounded-[28px] border-solid border-5 border-pink-700 hover:cursor-pointer hover:bg-(--solid-pink)">
-                    Reabrir
-              </div>
-            } @else{
-              <div class="flex flex-row font-bold w-[15vh] h-[6vh] p-2 justify-center items-center text-[20px] text-center bg-gray-500 rounded-[28px] border-solid border-5 border-gray-700">
-                    {{solData()?.estado}}
-              </div>
+            @if(solData()?.est == "APROVADA"){
+                <button (click)="openPopup('Redirecionando para pagamento...', 'ok'); this.updtEstado('PAGA')"
+                  class="bg-orange-500 text-white px-4 py-1 rounded-full border-2 border-orange-700 font-bold hover:scale-105 transition-transform">
+                  Pagar
+                </button>
+            } @else if(solData()?.est == "REJEITADA"){
+                <button (click)="this.updtEstado('ABERTA')"
+                  class="bg-(--solid-pink) text-white px-4 py-1 rounded-full border-2 border-(--french-puce) font-bold hover:bg-(--antique-ruby)">
+                  Reabrir
+                </button>
             }
     </div>
 
-    @if(solData()?.estado == "orcada"){
-      <div class="flex flex-col font-bold w-[60vh] h-[25vh] p-2 text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby) overflow-y-auto">
-        <div class="flex justify-center items-center">
-          Orçamento
+    @if(solData()?.est == "ORCADA"){
+      <div class="flex flex-col w-full max-w-[60vh] p-5 bg-(--queen-pink) border-3 border-(--antique-ruby) rounded-lg shadow-md animate-in fade-in zoom-in duration-300">
+        <div class="text-center font-bold text-xl border-b-2 border-(--parrot-pink) mb-3 pb-1 text-(--french-puce)">
+          PROPOSTA DE ORÇAMENTO
         </div>
         
-        <div class="flex justify-left text-[15px]">
-          Valor: R$xxx.xx
-        </div>
-        <div class="flex justify-left text-[15px]">
-          Descrição: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta illum iure, praesentium quo tempora minus consequuntur amet repellendus officia error!
+        <div class="flex flex-col gap-2 mb-4">
+          <p class="text-2xl font-black text-(--antique-ruby)">Valor: R$ 150,00</p> <p class="text-sm text-justify leading-snug">
+            <span class="font-bold">Detalhes:</span> Troca de tela frontal e limpeza química dos componentes internos para garantir maior durabilidade.
+          </p>
         </div>
         
-        <div class="flex flex-row h-[10vh] justify-between pt-1">
-          <div (click)="openPopup('Aprovar este orçamento?', 'opt').then(res => res ? updtEstado('aprovada') : '')" 
-          class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-(--aprovada) rounded-[28px] border-solid border-5 border-yellow-700 hover:cursor-pointer hover:bg-yellow-600">
-                Aprovar
-          </div>
+        <div class="flex flex-row justify-between gap-4 mt-2">
+          <button (click)="openPopup('Aprovar este orçamento?', 'opt').then(res => res ? updtEstado('APROVADA') : '')" 
+                  class="flex-1 bg-green-500 text-white font-bold py-2 rounded-lg border-b-4 border-green-700 active:border-b-0 hover:bg-green-600 transition-all uppercase">
+                Aceitar
+          </button>
 
-          <div (click)="openPopup('Explique por que deseja rejeitar este orçamento', 'custom').then(res => !res ? updtEstado('rejeitada') : '')"  class="flex flex-row text-[15px] font-bold w-[15vh] h-[6vh] p-2 justify-center items-center bg-(--rejeitada) rounded-[28px] border-solid border-5 border-red-700 hover:cursor-pointer hover:bg-red-800">
+          <button (click)="openPopup('Explique o motivo da rejeição', 'custom').then(res => !res ? updtEstado('REJEITADA') : '')" 
+                  class="flex-1 bg-red-500 text-white font-bold py-2 rounded-lg border-b-4 border-red-700 active:border-b-0 hover:bg-red-600 transition-all uppercase text-xs">
                 Rejeitar
-          </div>
+          </button>
         </div>
       </div>
     }
 
-    @if(solData()?.estado == "rejeitada"){
-      <div class="flex flex-col font-bold w-[60vh] h-[25vh] p-2 text-[20px] bg-(--queen-pink) rounded-[10px] border-solid border-5 border-(--antique-ruby) overflow-y-auto">
-                  <div class="flex justify-center items-center">
-                    Motivo da rejeição
-                  </div>
-                  <div class="flex justify-left text-[15px]">
-                    {{ans}}
-                  </div>
+    @if(solData()?.est == "REJEITADA"){
+      <div class="flex flex-col w-full max-w-[60vh] p-4 bg-red-50 border-2 border-red-300 rounded-md">
+          <div class="text-red-800 font-bold text-center underline mb-2 italic">MOTIVO DA REJEIÇÃO</div>
+          <div class="text-sm text-red-900 text-center">{{ans}}</div>
       </div>
     }
 </div>

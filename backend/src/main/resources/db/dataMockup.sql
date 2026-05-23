@@ -1,13 +1,12 @@
 
 INSERT INTO usuario (email, senha, salt, perfil) VALUES
-    -- Funcionários
-    ('maria@maintec.com',    'a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7', 'salt_maria_0001', 'FUNCIONARIO'),
-    ('mario@maintec.com',    'b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8', 'salt_mario_0002', 'FUNCIONARIO'),
-    -- Clientes
-    ('joao@email.com',       'c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9', 'salt_joao_0003',  'CLIENTE'),
-    ('jose@email.com',       'd9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0', 'salt_jose_0004',  'CLIENTE'),
-    ('joana@email.com',      'e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1', 'salt_joana_0005', 'CLIENTE'),
-    ('joaquina@email.com',   'f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2', 'salt_joaq_0006',  'CLIENTE');
+
+('jose@email.com', 'VEFoxERSrb39RjzdX66zrb1O38A5BrIMAI53cU/59uU=', 'FglaIh2ZBUsnkTVi0+XStw==', 'FUNCIONARIO'),
+('joana@email.com', 'nyR9Mz7fb4VF7NPMkkqEEKd1k1KqOiHa/ilk/vTXRws=', 'Vg7O1wGLHVzDqwLu/rE8CQ==', 'FUNCIONARIO'),
+('mario@maintec.com', '7jCHtnMfa30qvgMyDFb69CAdeq3BtLZPgJI2NLQT86Y=', 'GMvISiVtM7OH7dHKSqHIag==', 'FUNCIONARIO'),
+('joao@email.com', 'kvsH2BTxLG/8Kmagr5OY5XOmhlpoJrLNlpOxcxEwBZw=', 'jOT+JORhq3xN9K7lqGH6mg==', 'FUNCIONARIO'),
+('maria@maintec.com', 'prwCj4u/D7I+CoKzlEOw9N1qs5V0OSkFAIvMP+WCVM8=', 'Dbrm5DARwEFhRRICCibiIQ==', 'FUNCIONARIO'),
+('joaquina@email.com', 'b+WpDvKYCNQKL+intc5zab9M2MjA46R3pjyBqLUucIU=', '91CXd+pjN97Fu4gnxuPjZA==', 'CLIENTE');
  
 
  
@@ -25,7 +24,9 @@ INSERT INTO funcionario (id_usuario, nome, data_nascimento) VALUES
 
  
 INSERT INTO cliente (id_usuario, cpf, nome, telefone, cep, logradouro, numero, complemento, bairro, cidade, estado) VALUES
-    (3, '12345678901', 'João Oliveira',    '41999990001', '80010000', 'Rua XV de Novembro',  '100', 'Apto 10', 'Centro',         'Curitiba',   'PR'),
+    (1, '12345678901', 'Jaime Pereira',    '41999990005', '80050000', 'Rua Minas Gerais',  '600', 'Apto 25', 'Centro',         'Curitiba',   'PR'),
+    (2, '23456789002', 'José Santos',      '41999990006', '80060000', 'Rua Capitao Rocha', '500', NULL,      'Centro',         'Curitiba',   'PR'),
+    (3, '12345678903', 'João Oliveira',    '41999990001', '80010000', 'Rua XV de Novembro',  '100', 'Apto 10', 'Centro',         'Curitiba',   'PR'),
     (4, '23456789012', 'José Santos',      '41999990002', '80020000', 'Av. Sete de Setembro', '200', NULL,      'Centro',         'Curitiba',   'PR'),
     (5, '34567890123', 'Joana Pereira',    '41999990003', '80030000', 'Rua Marechal Deodoro', '300', 'Sala 5', 'Centro',         'Curitiba',   'PR'),
     (6, '45678901234', 'Joaquina Mendes',  '41999990004', '80040000', 'Rua Amintas de Barros','400', NULL,      'Alto da Glória', 'Curitiba',   'PR');
@@ -166,15 +167,15 @@ INSERT INTO solicitacao (
  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
  
 -- 21. ARRUMADA recente
-(1, 2, 'Desktop custom', 'Placa de vídeo com artefatos',
+(6, 2, 'Desktop custom', 'Placa de vídeo com artefatos',
  'ARRUMADA', '2024-10-18 08:00:00',
  850.00, 2, '2024-10-19 09:00:00',
  'Pasta térmica reaplicada e drivers reinstalados', 'Mantenha o gabinete limpo', 2, '2024-10-22 16:00:00',
  NULL, NULL, NULL, NULL),
  
 -- 22. PAGA recente
-(2, 5, 'Teclado Bluetooth', 'Perda de conexão frequente',
- 'PAGA', '2024-10-05 11:00:00',
+(6, 5, 'Teclado Bluetooth', 'Perda de conexão frequente',
+ 'ORCADA', '2024-10-05 11:00:00',
  110.00, 1, '2024-10-06 10:00:00',
  'Módulo Bluetooth substituído', 'Mantenha dispositivos próximos', 1, '2024-10-09 14:00:00',
  '2024-10-10 09:00:00', NULL, NULL, NULL);

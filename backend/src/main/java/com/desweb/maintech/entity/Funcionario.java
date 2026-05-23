@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "funcionario")
 public class Funcionario {
     @Id
-    private Long id = new Date().getTime();
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false, length = 200)
     private String nome;
@@ -18,7 +20,7 @@ public class Funcionario {
     private LocalDate dataNascimento;
 
     @OneToMany(mappedBy = "funcionario")
-    private Historico historico;
+    private List<Historico>  historico;
 
     @OneToOne
     @JoinColumn(name = "id_usuario")
@@ -42,8 +44,8 @@ public class Funcionario {
         return dataNascimento;
     }
 
-    public Historico getHistorico() {
-        return historico;
+    public List<Historico> getHistorico() {
+        return this.historico;
     }
 
     public User getUser() {
@@ -64,7 +66,7 @@ public class Funcionario {
         this.dataNascimento = dataNascimento;
     }
 
-    public void setHistorico(Historico historico) {
+    public void setHistorico(List<Historico> historico) {
         this.historico = historico;
     }
 

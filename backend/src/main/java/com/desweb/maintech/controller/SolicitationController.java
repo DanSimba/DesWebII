@@ -1,29 +1,83 @@
 package com.desweb.maintech.controller;
 
+import com.desweb.maintech.dto.SolicitationDTO;
+import com.desweb.maintech.service.SolicitationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.security.core.Authentication;
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/solicitacoes")
-@CrossOrigin(origins = "*")
+@RequestMapping("/api/solicitations")
+@CrossOrigin(origins = "http://localhost:4200")
 public class SolicitationController {
 
-  
-    @PostMapping
-    public ResponseEntity<Void> criarSolicitacao() {
+    @Autowired
+    private SolicitationService solicitationService;
 
-        return ResponseEntity.ok().build();
+    @PostMapping
+    public ResponseEntity<SolicitationDTO> inserir(@RequestBody SolicitationDTO dto, Authentication auth) {
+
+        String email = auth.getName(); //acha o user logado
+        SolicitationDTO criada = solicitationService.inserir(dto, email); //passa pro service inserir na sol
+        return ResponseEntity.status(HttpStatus.CREATED).body(criada);
     }
 
     @GetMapping("/client/{clientId}")
-    public ResponseEntity<Void> listarPorCliente(@PathVariable Long clientId) {
+    public ResponseEntity<List<SolicitationDTO>> buscarPorCliente(@PathVariable Long clientId) {
+        List<SolicitationDTO> solicitacoes = solicitationService.buscarPorCliente(clientId);
+        return ResponseEntity.ok(solicitacoes);
+    }
 
-        return ResponseEntity.ok().build();
+    @GetMapping
+    public ResponseEntity<List<SolicitationDTO>> buscarTodos() {
+        List<SolicitationDTO> solicitacoes = solicitationService.buscarTodos();
+        return ResponseEntity.ok(solicitacoes);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Void> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<SolicitationDTO> buscarPorId(@PathVariable Long id) {
+        SolicitationDTO solicitacao = solicitationService.buscarPorId(id);
+        return ResponseEntity.ok(solicitacao);
+    }
 
-        return ResponseEntity.ok().build();
+    @PutMapping("/{id}")
+    public ResponseEntity<SolicitationDTO> atualizar(@PathVariable Long id, @RequestBody SolicitationDTO dto) {
+        SolicitationDTO atualizada = solicitationService.atualizar(id, dto);
+        return ResponseEntity.ok(atualizada);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        solicitationService.deletar(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/efetuar")
+    public ResponseEntity<SolicitationDTO> efetuarManutencao(
+            @PathVariable Long id, 
+            @RequestBody(required = false) String orientacao) {
+            
+        SolicitationDTO finalizada = solicitationService.efetuarManutencao(id, orientacao);
+        return ResponseEntity.ok(finalizada);
+    }
+
+    @PatchMapping("/{id}/redirecionar/{novoFuncionarioId}")
+    public ResponseEntity<SolicitationDTO> redirecionar(
+            @PathVariable Long id, 
+            @PathVariable Long novoFuncionarioId) {
+            
+        SolicitationDTO redirecionada = solicitationService.redirecionar(id, novoFuncionarioId);
+        return ResponseEntity.ok(redirecionada);
+    }
+
+    @PatchMapping("/{id}/mudar/{novoEstado}")
+    public ResponseEntity<SolicitationDTO> updtEstado( @PathVariable Long id, @PathVariable String novoEstado) {
+            
+        SolicitationDTO mudada = solicitationService.mudarEst(id, novoEstado);
+        return ResponseEntity.ok(mudada);
     }
 }

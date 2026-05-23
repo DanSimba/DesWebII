@@ -4,10 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriaService } from '../../../services/categoria.service';
 import { Categoria } from '../../../models/categoria.model';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-edit-categoria',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatIcon],
   templateUrl: './edit-categoria.component.html',
   styleUrl: './edit-categoria.component.css',
 })
@@ -23,7 +24,7 @@ export class EditCategoriaComponent implements OnInit {
 
   //famoso forms
   form : FormGroup = this.f.group({
-    categoryName : ['',[Validators.required, Validators.minLength(3)]]
+    nome : ['',[Validators.required, Validators.minLength(3)]]
   })  
 
   ngOnInit(): void {
@@ -34,7 +35,7 @@ export class EditCategoriaComponent implements OnInit {
       this.idEditado = Number(id); 
 
       this.catService.buscarPorId(this.idEditado).subscribe(
-        cat => this.form.patchValue({categoryName : cat?.categoryName})
+        cat => this.form.patchValue({nome : cat?.nome})
       )
     }
     
@@ -46,14 +47,24 @@ export class EditCategoriaComponent implements OnInit {
       return;
     }
 
+    const payload : Categoria = {nome : this.form.value.nome};
+    //famoso playload pra mandar essa joça pro backend 
+
     if (this.editando && this.idEditado) {
-      const atualizada: Categoria = { id: this.idEditado, ...this.form.value };
-      this.catService.atualizar(atualizada);
+      this.catService.atualizar(payload, this.idEditado!).subscribe({
+        next: () => this.router.navigate(['/func/crud-cat']),
+        error: (err) => console.error('erro na atualização', err)
+      });
+
     } else {
-      this.catService.inserir(this.form.value);
+      this.catService.inserir(payload).subscribe({
+        next: () => this.router.navigate(['/func/crud-cat']),
+        error:(err) => console.error("não foi", err)
+
+      })
     }
 
-    this.router.navigate(['/func/crud-cat']);
+    // this.router.navigate(['/func/crud-cat']);
 
   }
 

@@ -8,8 +8,8 @@ import { toObservable } from '@angular/core/rxjs-interop';
   providedIn: 'root',
 })
 export class ClientSolicitationService{
-  //private apiUrl = 'END-BACKEND';
-  private jsonUrl = 'assets/client-ex.json';
+  private apiUrl = 'http://localhost:8080';
+  //private jsonUrl = 'assets/client-ex.json';
   public sol = signal<Solicitation|null>(null);
   constructor(private http: HttpClient) {};
 
@@ -19,6 +19,11 @@ export class ClientSolicitationService{
   }
 
   setSol(newSol: Solicitation) { //adiciona a lista de sols que o cliente criou
-      this.sol.set(newSol);
+    //console.log("sol que chegou no service: ",newSol);
+    this.sol.set(newSol);
+  }
+
+  updtEst(newEst: string, id: number){
+    return this.http.patch(`${this.apiUrl}/api/solicitations/${id}/mudar/${newEst}`, {});
   }
 }

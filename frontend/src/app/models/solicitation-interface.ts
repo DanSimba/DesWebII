@@ -1,8 +1,11 @@
-
-export interface Solicitation{ 
-    id: string;
-    equipamento: string;
-    dataHora: string;
-    estado: string;
-    desc: string;
+export interface Solicitation {
+  id: number;
+  equip: string; //seria a categoria do equipamento? 
+  data: string;
+  est: string;
+  desc: string;
+  // campos adicionais para o lado func
+  nomeCliente?: string;
+  valorOrcamento?: number;
+  idCliente?: number;
 }

@@ -16,14 +16,14 @@ export class MaintenanceCard {
 
   public getStatusColor(status: string): string {
     const statusColors: Record<string, string> = {
-      'ABERTA': 'var(--aberta)', 
-      'ORÇADA': 'var(--orcada)', 
-      'REJEITADA': 'var(--rejeitada)',
-      'APROVADA': 'var(--aprovada)', 
-      'REDIRECIONADA': 'var(--redirecionada)', 
-      'ARRUMADA': 'var(--arrumada)',
-      'PAGA': 'var(--paga)', 
-      'FINALIZADA': 'var(--finalizada)'
+      'ABERTA': 'var(--ABERTA)', 
+      'ORÇADA': 'var(--ORCADA)', 
+      'REJEITADA': 'var(--REJEITADA)',
+      'APROVADA': 'var(--APROVADA)', 
+      'REDIRECIONADA': 'var(--REDIRECIONADA)', 
+      'ARRUMADA': 'var(--ARRUMADA)',
+      'PAGA': 'var(--PAGA)', 
+      'FINALIZADA': 'var(--FINALIZADA)'
     };
     return statusColors[status] || 'var(--aberta)';
   }

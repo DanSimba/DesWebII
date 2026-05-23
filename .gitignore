@@ -1,5 +1,6 @@
 # Angular specific
-/dist/
+frontend/node_modules/
+frontend/dist/
 /out-tsc/
 /tmp/
 /coverage/
@@ -26,3 +27,20 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Java / Maven
+backend/target/
+backend/*.jar
+
+# backend/src/main/resources/application-prod.properties
+# credenciais caso alguém usar 
+
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db

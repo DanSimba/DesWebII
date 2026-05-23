@@ -68,7 +68,8 @@ CREATE TABLE funcionario (
 CREATE TABLE solicitacao (
     id                    BIGSERIAL          PRIMARY KEY,
     id_cliente            BIGINT             NOT NULL REFERENCES cliente(id),
-    id_categoria          BIGINT             NOT NULL REFERENCES categoria(id),
+                                            --NOT NULL
+    id_categoria          BIGINT                        REFERENCES categoria(id),
     -- Dados do equipamento
     equipamento           VARCHAR(255)       NOT NULL,
     desc_defeito          TEXT               NOT NULL,

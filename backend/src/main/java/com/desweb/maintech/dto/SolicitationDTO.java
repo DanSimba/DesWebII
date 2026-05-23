@@ -1,11 +1,20 @@
 package com.desweb.maintech.dto;
 
+import java.time.LocalDateTime;
+
+import com.desweb.maintech.entity.EstadoSolicitacao;
+
 public class SolicitationDTO {
     private Long id;
     private String equipamento;
     private String desc;
-    private String data;
-    private String estado;
+    private LocalDateTime data;
+    private EstadoSolicitacao estado;
+    private Long idCliente; //vou trocar o nome pelo id pq no bd só pede id (mas seria interessante guardar direto o nome)
+
+    public void setIdCliente(Long i) {
+        this.idCliente = i;
+    }
 
     //supostamente aqui eu só preciso dos setters certo?
     public void setId(long i){
@@ -20,11 +29,11 @@ public class SolicitationDTO {
         this.desc = e;
     }
 
-    public void setData(String e){
+    public void setData(LocalDateTime e){
         this.data = e;
     }
 
-    public void setEst(String e){
+    public void setEst(EstadoSolicitacao e){
         this.estado = e;
     }
 
@@ -40,11 +49,15 @@ public class SolicitationDTO {
         return this.desc;
     }    
 
-    public String getData(){
+    public LocalDateTime getData(){
         return this.data;
     }
 
-    public String getEst(){
+    public EstadoSolicitacao getEst(){
         return this.estado;
+    }
+
+    public Long getIdCliente() {
+        return idCliente;
     }
 }

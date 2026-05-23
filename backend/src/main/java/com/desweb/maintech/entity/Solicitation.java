@@ -1,52 +1,94 @@
 package com.desweb.maintech.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
-import jakarta.persistence.Entity; //bd
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "solicitacao")
 public class Solicitation {
 
     @Id
-    private Long id = new Date().getTime();
-    private String equipamento;
-    private String desc;
-    private String data;
-    private String estado;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @Column(name = "desc_defeito")
+    private String descDefeito;
+
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX") //pro spring saber como converter a string data que chega
+    @Column(name = "data_hora")
+    private LocalDateTime dataHora; 
+
+    @Column(name = "orientacoes_cliente")
+    private String orientacao;
+
+    @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(name = "estado", columnDefinition = "estado_solicitacao")
+    private EstadoSolicitacao estado;
+
+    private String equipamento;
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "id_cliente")
     private Client client;
 
-    @OneToMany(mappedBy = "solicitacao")
-    private Historico historico;
+    @ManyToOne
+    @JoinColumn(name = "id_categoria")
+    private Categoria categoria;
 
-    public long getId(){
+    @ManyToOne
+    @JoinColumn(name = "id_func_destino")
+    private Funcionario funcionario;
+
+    @OneToMany(mappedBy = "solicitacao")
+    private List<Historico> historico;
+
+    //Getters
+    public Long getId(){
         return this.id;
     }
 
     public String getDesc(){
-        return this.desc;
+        return this.descDefeito;
     }
 
     public String getEquip(){
         return this.equipamento;
     }
 
-    public String getData(){
-        return this.data;
+    public LocalDateTime getData(){
+        return this.dataHora;
+    }
+    
+    public Client getClient() {
+        return client;
     }
 
-    public String getEst(){
+    public String getOrientacao() {
+        return this.orientacao;
+    }
+
+    public Funcionario getFuncionario() {
+        return this.funcionario;
+    }
+
+     public EstadoSolicitacao getEst() {
         return this.estado;
     }
 
-    public void setId(long i){
+    public List<Historico> getHistorico() {
+        return this.historico;
+    }
+
+    //Setters
+    public void setId(Long i){
         this.id = i;
     }
 
@@ -55,14 +97,30 @@ public class Solicitation {
     }
 
     public void setDesc(String e){
-        this.desc = e;
+        this.descDefeito = e;
     }
 
-    public void setData(String e){
-        this.data = e;
+    public void setData(LocalDateTime e){
+        this.dataHora = e;
     }
 
-    public void setEst(String e){
+    public void setOrientacao(String e) {
+        this.orientacao = e;
+    }
+
+    public void setEst(EstadoSolicitacao e) {
         this.estado = e;
+    }
+
+    public void setClient(Client c) {
+        this.client = c;
+    }
+
+    public void setHistorico(List<Historico> h) {
+        this.historico = h;
+    }
+
+    public void setFuncionario(Funcionario f) {
+        this.funcionario = f;
     }
 }

@@ -1,50 +1,42 @@
-<div
-  class="flex flex-col w-[80vh] justify-between h-[65vh] bg-pink-700/50 p-3 border-solid border-5 border-[#7B1D26] rounded-[22px] overflow-y-auto text-(--french-puce)"
->
-  <div class="flex flex-col gap-2">
-    <!--Titulo da guia-->
-    <div class="bg-(--queen-pink) text-2xl font-bold w-[150px] p-2 rounded-2xl justify-center flex">
-      <h3>Relatorios</h3>
-    </div>
-    <!--Area de filtros-->
-    <div class="gap-2 flex flex-col bg-(--queen-pink) items-center p-3 rounded-2xl">
-      <div class="border-b-2 w-full">
-        <h4>Filtros:</h4>
+<div class="flex flex-col w-full h-full bg-kitty-soft bg-cover bg-center p-6 gap-4 border-4 border-(--antique-ruby) rounded-4xl overflow-hidden text-(--french-puce)">
+
+  <div class="shrink-0 font-bold px-8 py-3 bg-(--queen-pink) border-3 border-(--antique-ruby) text-(--french-puce) text-xl shadow-sm w-fit">
+    RELATÓRIOS
+  </div>
+
+  <div class="flex-1 min-h-0 overflow-y-auto flex flex-col gap-4">
+    <div class="gap-2 flex flex-col bg-white/50 border-2 border-(--antique-ruby) items-center p-4 rounded-2xl">
+      <div class="border-b-2 border-(--antique-ruby) w-full pb-2">
+        <h4 class="font-bold uppercase text-sm tracking-wider">Filtros</h4>
       </div>
-      <div class="flex justify-around w-full min-h-[70px]">
+      <div class="flex justify-around w-full min-h-[70px] flex-wrap gap-4">
         <div class="min-w-[200px] content-center p-2">
-          <label for="categorias">Categoria: </label>
-          <select name="categorias" [value]="relatorioInfo.categoria">
+          <label for="categorias" class="text-sm font-bold">Categoria: </label>
+          <select name="categorias" [(ngModel)]="relatorioInfo.categoria" class="border-2 border-(--antique-ruby) rounded-md p-1 text-sm bg-white">
             <option value=""></option>
             @for (categorias of cats(); track categorias.id) {
-              <option value="{{ categorias.categoryName }}">{{ categorias.categoryName }}</option>
+              <option [value]="categorias.nome">{{ categorias.nome }}</option>
             }
           </select>
         </div>
-        <div class="border-1 rounded-4xl"></div>
         <div class="min-w-[200px] content-center">
-          <div class="flex justify-between p-2">
-            <label for="dataInicio">A partir de: </label>
-            <input type="date" name="dataInicio" id="" [value]="relatorioInfo.dataInicio" />
+          <div class="flex justify-between p-2 gap-2">
+            <label for="dataInicio" class="text-sm font-bold">A partir de:</label>
+            <input type="date" name="dataInicio" [(ngModel)]="relatorioInfo.dataInicio" class="border-2 border-(--antique-ruby) rounded-md p-1 text-sm"/>
           </div>
-          <div class="flex justify-between p-2">
-            <label for="dataFim">Até: </label>
-            <input type="date" name="dataFim" id="" [value]="relatorioInfo.dataFim" />
+          <div class="flex justify-between p-2 gap-2">
+            <label for="dataFim" class="text-sm font-bold">Até:</label>
+            <input type="date" name="dataFim" [(ngModel)]="relatorioInfo.dataFim" class="border-2 border-(--antique-ruby) rounded-md p-1 text-sm"/>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!--Dowload pdf - botão-->
-  <div
-    class="bg-(--queen-pink) text-xl font-bold w-[250px] p-2 rounded-2xl self-end hover:cursor-pointer"
-  >
-    <a
-      href="../../../assets/relatorio_receita_placeholder.pdf"
-      download
-      class="hover:cursor-pointer w-full"
-    >
-      Download em PDF
-    </a>
+
+  <div class="shrink-0 self-end">
+    <button (click)="baixarRelatorio()"
+       class="bg-(--french-puce) text-white font-bold px-6 py-3 border-b-4 border-black active:border-b-0 transition-all flex items-center gap-2 rounded-sm hover:cursor-pointer">
+      <mat-icon>download</mat-icon> Download em PDF
+    </button>
   </div>
 </div>

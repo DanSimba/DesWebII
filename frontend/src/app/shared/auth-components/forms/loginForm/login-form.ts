@@ -3,6 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../../services/auth-service';
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'login-form', 
@@ -26,24 +27,24 @@ export class LoginForm {
   }
 
   private executeLogin() {
-    this.authService.query().subscribe({
-      next: (res) => {
-        const userRole = this.authService.loginValidation(
-          this.email,
-          this.password,
-          res
-        );
-
-        this.redirectUser(userRole);
-      },
-      error: (err) => console.error('Login error:', err)
+    this.authService.login(this.email, this.password).subscribe({
+      next: (token) => {
+        const decoded :any = jwtDecode(token);
+        const role = decoded.perfil as string;
+        if (role) {
+          this.redirectUser(role);
+        } else {
+          this.redirectUser();
+        }
+        },
+      error: (err) => console.error('ERRO NO LOGIN! :(', err)
     });
   }
 
   private redirectUser(role: string | void) {
     const routes: Record<string, string> = {
-      'cliente': '/client/panel',
-      'funcionario': '/func/panel'
+      'CLIENTE': '/client/panel',
+      'FUNCIONARIO': '/func/panel'
     };
 
     const targetRoute = routes[role as string];

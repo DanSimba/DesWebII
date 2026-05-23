@@ -69,7 +69,7 @@ public class CategoriaService {
         repository.save(categoria);
     }
 
-    private CategoriaDTO converterParaDTO(Categoria categoria) {
+    public CategoriaDTO converterParaDTO(Categoria categoria) {
         CategoriaDTO dto = new CategoriaDTO();
         dto.setId(categoria.getId());
         dto.setNome(categoria.getNome());

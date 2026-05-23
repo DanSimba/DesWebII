@@ -1,35 +1,55 @@
 package com.desweb.maintech.entity;
 
 import java.util.ArrayList; //bd
-import java.util.Date;
 import java.util.List;
-import java.util.Date;
 
+import jakarta.persistence.FetchType;
+
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "cliente")
 public class Client {
+
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY) //stratégia pro bd criar id automaticamente (autoincrementa)
-    private long id = new Date().getTime(); //gera baseado na data
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String nome;
-    @OneToMany(mappedBy = "client")
+
+    private String cpf;
+
+    private String telefone;
+
+    @OneToMany(mappedBy = "client",  fetch = FetchType.EAGER) //só garante que o dto vai chegar antes da conexão fechar
     private List<Solicitation> sols = new ArrayList<>();
 
-    public long getId(){
+    @OneToOne
+    @JoinColumn(name = "id_usuario")
+    private User user;
+
+    @Embedded
+    private Endereco endereco;
+
+    public Long getId() {
         return this.id;
     }
 
-    public String getNome(){
+    public String getNome() {
         return this.nome;
     }
 
-    public List<Solicitation> getSols(){
+    public List<Solicitation> getSols() {
         return this.sols;
-    } 
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -43,7 +63,39 @@ public class Client {
         this.sols = sols;
     }
 
-    public void addToSols(Solicitation s){
+    public void addToSols(Solicitation s) {
         this.sols.add(s);
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 }

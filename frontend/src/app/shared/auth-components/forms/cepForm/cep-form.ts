@@ -17,21 +17,27 @@ export class CepForm implements OnInit {
   private cdr = inject(ChangeDetectorRef);
 
   cepInfo: CepType = {
+    cep: '',
     logradouro: '',
+    numero: '',
     uf: '',
+    cidade: '',
     bairro: '',
     complemento: '',
   };
 
+  testa(){
+    console.log(this.cepInfo);
+  }
+
   cepAlteration(cep: string) {
     //impede de gerar requisições falhas
     if (cep == '' || cep.length < 9) {
-      console.log('===IMPEDIDO===');
       return;
     }
 
     //Retira os caracteres da mascara
-    cep = cep.replace(/-/g, '');
+    cep = this.cepService.limpaCep(cep);
     let cepResponse: any;
 
     //Iludindo o usuario
@@ -40,10 +46,10 @@ export class CepForm implements OnInit {
     this.cepInfo.bairro = 'Buscando...';
     this.cepInfo.complemento = 'Buscando...';
 
-    //Retira os caracteres da mascara
     this.cepService.getCep(cep).subscribe({
       next: (res) => {
         cepResponse = res;
+        this.cepInfo.cep = cep;
         this.cepInfo.logradouro = cepResponse.logradouro;
         this.cepInfo.uf = cepResponse.uf;
         this.cepInfo.bairro = cepResponse.bairro;
