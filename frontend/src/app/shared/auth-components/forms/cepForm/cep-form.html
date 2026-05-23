@@ -10,6 +10,7 @@
       class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
       #cep
       (keyup)="cepAlteration(cep.value)"
+      [(ngModel)]="cepInfo.cep"
       mask="00000-000"
     />
     <label
@@ -26,7 +27,7 @@
       name="logradouro"
       type="text"
       placeholder=""
-      [value]="cepInfo.logradouro"
+      [(ngModel)]="cepInfo.logradouro"
       class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
     />
     <label
@@ -46,7 +47,7 @@
         type="number"
         placeholder=" "
         min="0"
-        [value]="cepInfo.numero"
+        [(ngModel)]="cepInfo.numero"
         class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
       />
       <label
@@ -63,7 +64,7 @@
         name="UF"
         type="text"
         placeholder=""
-        [value]="cepInfo.uf"
+        [(ngModel)]="cepInfo.uf"
         class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
       />
       <label
@@ -83,7 +84,7 @@
         name="bairro"
         type="text"
         placeholder=""
-        [value]="cepInfo.bairro"
+        [(ngModel)]="cepInfo.bairro"
         class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
       />
       <label
@@ -99,7 +100,7 @@
         name="cidade"
         type="text"
         placeholder=""
-        [value]="cepInfo.cidade"
+        [(ngModel)]="cepInfo.cidade"
         class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
       />
       <label
@@ -117,8 +118,7 @@
       name="complemento"
       type="text"
       placeholder=""
-      (keyup)="testa()"
-      [value]="cepInfo.complemento"
+      [(ngModel)]="cepInfo.complemento"
       class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
     />
     <label

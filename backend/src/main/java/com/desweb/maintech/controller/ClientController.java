@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.desweb.maintech.dto.ClientDTO;
 import com.desweb.maintech.service.ClientService;
 
-import org.springframework.security.core.Authentication;
-
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/auth")
 public class ClientController {
 
     public final ClientService service;

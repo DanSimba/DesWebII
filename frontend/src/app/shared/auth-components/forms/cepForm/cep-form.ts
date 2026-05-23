@@ -3,10 +3,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { CepServiceService } from '../../../../services/CEP/cep-service.service';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { CepType } from '../../../../models/cepType';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'cep-form',
-  imports: [MatIconModule, NgxMaskDirective, NgxMaskPipe],
+  imports: [MatIconModule, NgxMaskDirective, NgxMaskPipe, FormsModule],
   standalone: true,
   templateUrl: './cep-form.html',
 })
@@ -25,10 +26,6 @@ export class CepForm implements OnInit {
     bairro: '',
     complemento: '',
   };
-
-  testa(){
-    console.log(this.cepInfo);
-  }
 
   cepAlteration(cep: string) {
     //impede de gerar requisições falhas
@@ -60,5 +57,9 @@ export class CepForm implements OnInit {
         console.log('+ ERRO NO VIA CEP +' + res);
       },
     });
+  }
+
+  getData(): any {
+    return this.cepInfo;
   }
 }

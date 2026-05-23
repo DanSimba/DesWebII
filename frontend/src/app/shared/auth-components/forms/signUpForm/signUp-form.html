@@ -1,4 +1,4 @@
-<form class="p-2 w-full content-center h-full">
+<form class="p-2 w-full content-center h-full" >
   <div class="p-4 flex flex-col h-full justify-around">
     <!--CPF - id=name-->
     <div class="flex items-center justify-center">
@@ -8,7 +8,7 @@
           name="cpf"
           mask="000.000.000-00"
           placeholder=""
-          
+          [(ngModel)]="cpf"
           class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit  w-full"
         />
         <label
@@ -26,7 +26,7 @@
           id="name"
           name="name"
           type="text"
-          
+          [(ngModel)]="nome"
           placeholder=""
           class="text-(--french-puce) border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
         />
@@ -46,7 +46,7 @@
           name="email"
           type="email"
           placeholder=""
-          
+          [(ngModel)]="email"
           class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
         />
         <label
@@ -64,7 +64,7 @@
           id="phone"
           name="phone"
           type="phone"
-          
+          [(ngModel)]="telefone"
           mask="(00) 0 0000-0000"
           placeholder=""
           class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
