@@ -1,123 +1,162 @@
-<form action="" class="flex flex-col justify-around m-2 h-full">
-  <!--Campos-->
-  <!--CEP - id=cep-->
-  <div class="relative w-full">
-    <input
-      id="cep"
-      name="cep"
-      type="tel"
-      placeholder=""
-      class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
-      #cep
-      (keyup)="cepAlteration(cep.value)"
-      [(ngModel)]="cepInfo.cep"
-      mask="00000-000"
-    />
-    <label
-      for="cep"
-      class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-    >
-      CEP
-    </label>
-  </div>
-  <!--Logradouro - id=logradouro-->
-  <div class="relative w-full">
-    <input
-      id="logradouro"
-      name="logradouro"
-      type="text"
-      placeholder=""
-      [(ngModel)]="cepInfo.logradouro"
-      class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
-    />
-    <label
-      for="logradouro"
-      class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-    >
-      Logradouro
-    </label>
-  </div>
-  <!--Numero/UF - id=numero e id=uf-->
-  <div class="w-full flex gap-4">
-    <!--Numero-->
-    <div class="relative w-1/2">
+<form action="" class="flex flex-col justify-around m-2 h-full gap-4" #formEndereco="ngForm">
+  <div class="w-full">
+    <div class="relative w-full">
       <input
-        id="numero"
-        name="numero"
-        type="number"
+        id="cep"
+        name="cep"
+        type="tel"
         placeholder=" "
-        min="0"
-        [(ngModel)]="cepInfo.numero"
         class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
+        #cepInput
+        (keyup)="cepAlteration(cepInput.value)"
+        [(ngModel)]="cepInfo.cep"
+        mask="00000-000"
+        [required]="true"
+        #cepCtrl="ngModel"
       />
       <label
-        for="numero"
+        for="cep"
         class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
       >
-        Numero
+        CEP
       </label>
     </div>
-    <!--UF-->
-    <div class="relative w-1/6">
-      <input
-        id="uf"
-        name="UF"
-        type="text"
-        placeholder=""
-        [(ngModel)]="cepInfo.uf"
-        class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
-      />
-      <label
-        for="UF"
-        class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-      >
-        UF
-      </label>
-    </div>
+    @if (cepCtrl.invalid && cepCtrl.touched) {
+      <div class="text-red-500 text-xs mt-1">O CEP é obrigatório.</div>
+    }
   </div>
-  <!--Bairro Cidade-->
-  <div class="w-full flex gap-4">
-    <!--Bairro - id=bairro-->
+
+  <div class="w-full">
     <div class="relative w-full">
       <input
-        id="bairro"
-        name="bairro"
+        id="logradouro"
+        name="logradouro"
         type="text"
-        placeholder=""
-        [(ngModel)]="cepInfo.bairro"
+        placeholder=" "
+        [(ngModel)]="cepInfo.logradouro"
+        [required]="true"
+        #logradouroCtrl="ngModel"
         class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
       />
       <label
-        for="bairro"
+        for="logradouro"
         class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
       >
-        Bairro
+        Logradouro
       </label>
     </div>
-    <div class="relative w-full">
-      <input
-        id="cidade"
-        name="cidade"
-        type="text"
-        placeholder=""
-        [(ngModel)]="cepInfo.cidade"
-        class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
-      />
-      <label
-        for="cidade"
-        class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
-      >
-        Cidade
-      </label>
+    @if (logradouroCtrl.invalid && logradouroCtrl.touched) {
+      <div class="text-red-500 text-xs mt-1">O logradouro é obrigatório.</div>
+    }
+  </div>
+
+  <div class="w-full flex gap-4 items-start">
+    <div class="w-1/2">
+      <div class="relative w-full">
+        <input
+          id="numero"
+          name="numero"
+          type="number"
+          placeholder=" "
+          min="0"
+          [(ngModel)]="cepInfo.numero"
+          [required]="true"
+          #numeroCtrl="ngModel"
+          class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
+        />
+        <label
+          for="numero"
+          class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
+        >
+          Número
+        </label>
+      </div>
+      @if (numeroCtrl.invalid && numeroCtrl.touched) {
+        <div class="text-red-500 text-xs mt-1">Obrigatório.</div>
+      }
+    </div>
+    
+    <div class="w-1/6">
+      <div class="relative w-full">
+        <input
+          id="uf"
+          name="UF"
+          type="text"
+          placeholder=" "
+          [(ngModel)]="cepInfo.uf"
+          [required]="true"
+          #ufCtrl="ngModel"
+          class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
+        />
+        <label
+          for="UF"
+          class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
+        >
+          UF
+        </label>
+      </div>
+      @if (ufCtrl.invalid && ufCtrl.touched) {
+        <div class="text-red-500 text-xs mt-1">Obrigatório.</div>
+      }
     </div>
   </div>
-  <!--Complemento - id=complemento-->
+
+  <div class="w-full flex gap-4 items-start">
+    <div class="w-full">
+      <div class="relative w-full">
+        <input
+          id="bairro"
+          name="bairro"
+          type="text"
+          placeholder=" "
+          [(ngModel)]="cepInfo.bairro"
+          [required]="true"
+          #bairroCtrl="ngModel"
+          class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
+        />
+        <label
+          for="bairro"
+          class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
+        >
+          Bairro
+        </label>
+      </div>
+      @if (bairroCtrl.invalid && bairroCtrl.touched) {
+        <div class="text-red-500 text-xs mt-1">Bairro obrigatório.</div>
+      }
+    </div>
+    
+    <div class="w-full">
+      <div class="relative w-full">
+        <input
+          id="cidade"
+          name="cidade"
+          type="text"
+          placeholder=" "
+          [(ngModel)]="cepInfo.cidade"
+          [required]="true"
+          #cidadeCtrl="ngModel"
+          class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
+        />
+        <label
+          for="cidade"
+          class="text-(--french-puce) absolute -top-4 text-xs left-0 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-(--french-puce) peer-placeholder-shown:top-1 peer-placeholder-shown:text-sm"
+        >
+          Cidade
+        </label>
+      </div>
+      @if (cidadeCtrl.invalid && cidadeCtrl.touched) {
+        <div class="text-red-500 text-xs mt-1">Cidade obrigatória.</div>
+      }
+    </div>
+  </div>
+
   <div class="relative w-full">
     <input
       id="complemento"
       name="complemento"
       type="text"
-      placeholder=""
+      placeholder=" "
       [(ngModel)]="cepInfo.complemento"
       class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
     />

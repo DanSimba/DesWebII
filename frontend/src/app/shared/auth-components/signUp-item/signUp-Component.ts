@@ -32,10 +32,10 @@ export class SignUpComponent implements AfterViewInit {
         cep: enderecoData.cep,
         logradouro: enderecoData.logradouro,
         numero: enderecoData.numero,
-        complemento: enderecoData.complemento,
         bairro: enderecoData.bairro,
         cidade: enderecoData.cidade,
-        estado: enderecoData.estado,
+        estado: enderecoData.uf,
+        complemento: enderecoData.complemento,
       },
 
       sols: [],

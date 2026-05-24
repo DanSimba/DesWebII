@@ -1,5 +1,8 @@
 package com.desweb.maintech.entity;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -21,7 +24,8 @@ public class User {
     private String senha;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "perfil")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(name = "perfil", columnDefinition = "perfil_usuario")
     private TypeUser perfil;
     private String salt;
 
