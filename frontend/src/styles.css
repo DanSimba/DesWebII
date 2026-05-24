@@ -20,6 +20,10 @@
 
     --wallpaper-kitty: url('/images/hellokitty-hd.jpeg');
 
+    --kitty-glasses-icon: url('/images/hellokIcon.png');
+
+    --kitty-flower: url('/images/hkFlower.png');
+
     /* scrollbar-gutter: stable; */
 }
 
