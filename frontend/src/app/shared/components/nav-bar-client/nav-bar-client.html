@@ -9,8 +9,8 @@
       <app-nav-item class="w-full transition-all hover:translate-x-1" label="Nova Solicitação" route="solicitation"></app-nav-item>
 
       <div class="flex-1"></div>
-      <app-nav-item class="w-full opacity-80 hover:opacity-100 border-t border-(--antique-ruby) pt-2" label="Sair" route=""></app-nav-item>
 
+      <app-nav-item class="w-full opacity-80 hover:opacity-100 border-t border-(--antique-ruby) pt-2" label="Sair" (click)="logout()"></app-nav-item>
   </div>
   <div class="relative z-10 pb-4 text-center">
     <span class="text-[10px] font-bold text-(--queen-pink) uppercase tracking-tighter bg-(--french-puce) border-1 border-(--antique-ruby) rounded-md p-2">Maintec v1.0</span>

@@ -9,5 +9,5 @@ import { RouterLink } from "@angular/router";
 })
 export class NavItem {
   readonly label = input.required<string>();
-  readonly route = input.required<string>();
+  readonly route = input<string>();
 }
