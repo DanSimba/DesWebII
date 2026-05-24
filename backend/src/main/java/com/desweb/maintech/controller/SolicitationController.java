@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import org.springframework.security.core.Authentication;
 import java.util.List;
@@ -44,6 +47,25 @@ public class SolicitationController {
         return ResponseEntity.ok(solicitacao);
     }
 
+    @GetMapping("/relatorio/periodo")
+    public ResponseEntity<List<SolicitationDTO>> relatorioPeriodo(
+            @RequestParam(value = "inicio", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
+            @RequestParam(value = "fim", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fim) {
+        
+        LocalDateTime dataInicio = (inicio != null) ? inicio.atStartOfDay() : LocalDateTime.of(2000, 1, 1, 0, 0);
+        LocalDateTime dataFim = (fim != null) ? fim.atTime(23, 59, 59) : LocalDateTime.of(2100, 12, 31, 23, 59);
+
+        List<SolicitationDTO> solicitacoes = solicitationService.buscarPorPeriodo(dataInicio, dataFim);
+        return ResponseEntity.ok(solicitacoes);
+    }
+
+    @GetMapping("/relatorio/categoria")
+    public ResponseEntity<List<SolicitationDTO>> relatorioCategoria(
+            @RequestParam("categoria") String categoria) {
+        List<SolicitationDTO> solicitacoes = solicitationService.buscarPorCategoria(categoria);
+        return ResponseEntity.ok(solicitacoes);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<SolicitationDTO> atualizar(@PathVariable Long id, @RequestBody SolicitationDTO dto) {
         SolicitationDTO atualizada = solicitationService.atualizar(id, dto);
@@ -80,4 +102,6 @@ public class SolicitationController {
         SolicitationDTO mudada = solicitationService.mudarEst(id, novoEstado);
         return ResponseEntity.ok(mudada);
     }
+
+    
 }

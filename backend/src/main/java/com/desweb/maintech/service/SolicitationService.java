@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,6 +42,7 @@ public class SolicitationService {
         return dto;
     }
 
+    
     public SolicitationDTO inserir(SolicitationDTO dto, String email) {
 
         Client c = clientRepository
@@ -146,5 +147,21 @@ public class SolicitationService {
         repository.save(sol);
 
         return toDTO(sol);
+    }
+
+    //relatorios
+    public List<SolicitationDTO> buscarPorPeriodo(LocalDateTime inicio, LocalDateTime fim) {
+        return repository.findByDataHoraBetween(inicio, fim).stream()
+                .filter(sol -> sol.getEst() == EstadoSolicitacao.PAGA || sol.getEst() == EstadoSolicitacao.FINALIZADA)
+                .map(this::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<SolicitationDTO> buscarPorCategoria(String categoriaNome) {
+        return repository.findAll().stream()
+                .filter(sol -> sol.getEst() == EstadoSolicitacao.PAGA || sol.getEst() == EstadoSolicitacao.FINALIZADA)
+                .filter(sol -> sol.getEquip() != null && sol.getEquip().toLowerCase().contains(categoriaNome.toLowerCase()))
+                .map(this::toDTO)
+                .collect(Collectors.toList());
     }
 }
