@@ -24,8 +24,8 @@ export class FuncionarioService {
     return this.http.post<Funcionario>(this.apiURL, funcionario);
   }
   
-  atualizar(id: Number, funcionario : Funcionario) : Observable<Funcionario> {
-    return this.http.put<Funcionario>(`${this.apiURL}/${id}`, Funcionario);
+  atualizar(id: number, funcionario : Funcionario) : Observable<Funcionario> {
+    return this.http.put<Funcionario>(`${this.apiURL}/${id}`, funcionario);
     
   }
 

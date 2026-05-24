@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class FuncionarioDTO {
     private Long id;
     private String nome;
+    private String cargoFuncionario;
 
     // Quando o objeto for convertido para JSON, a data deve aparecer no formato brasileiro "dia/mês/ano"
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -27,6 +28,10 @@ public class FuncionarioDTO {
         return dataNascimento;
     }
 
+    public String getCargoFuncionario(){
+        return cargoFuncionario;
+    }
+
     //Setters
 
     public void setId(Long i){
@@ -39,5 +44,9 @@ public class FuncionarioDTO {
 
     public void setDataNascimento(LocalDate dn){
         this.dataNascimento = dn;
+    }
+
+    public void setCargoFuncionario(String cf){
+        this.cargoFuncionario = cf;
     }
 }

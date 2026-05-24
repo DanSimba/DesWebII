@@ -6,13 +6,12 @@
   <div class="relative z-10 flex flex-col m-3 gap-3 p-4 flex-1 min-h-0 bg-(--queen-pink)/80 backdrop-blur-sm rounded-xl border-2 border-dashed border-(--antique-ruby) overflow-y-auto">
       
       <app-nav-item class="w-full transition-all hover:translate-x-1" label="Painel Geral" route="/func/panel"></app-nav-item>
-      <!-- <app-nav-item class="w-full transition-all hover:translate-x-1" label="Solicitações Abertas" route="/func/list"></app-nav-item> -->
       <app-nav-item class="w-full transition-all hover:translate-x-1" label="Categoria (CRUD)" route="/func/crud-cat"></app-nav-item>
-      <app-nav-item class="w-full transition-all hover:translate-x-1" label="Funcionario (CRUD)" route="/func/crud-func"></app-nav-item>
-      <app-nav-item class="w-full transition-all hover:translate-x-1" label="relatorios" route="/func/relatorio"></app-nav-item>
+      <app-nav-item class="w-full transition-all hover:translate-x-1" label="Funcionário (CRUD)" route="/func/crud-func"></app-nav-item>
+      <app-nav-item class="w-full transition-all hover:translate-x-1" label="Relatórios" route="/func/relatorio"></app-nav-item>
 
       <div class="flex-1"></div>
-      <app-nav-item class="w-full opacity-80 hover:opacity-100 border-t border-(--antique-ruby) pt-2" label="Sair" route=""></app-nav-item>
+      <app-nav-item class="w-full opacity-80 hover:opacity-100 border-t border-(--antique-ruby) pt-2" label="Sair" (click)="logout()"></app-nav-item>
 
   </div>
   <div class="relative z-10 pb-4 text-center">
