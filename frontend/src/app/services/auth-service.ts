@@ -27,9 +27,13 @@ export class AuthService {
   }
 
   // aqui para auto cadastro
-  cadastrar(dados : any) : Observable<any>{
-    return this.http.post(`${this.apiURL}/cadastro`, dados );
-  }
+  cadastrar(dados: any): Observable<any> {
+  return this.http.post(
+    `${this.apiURL}/cadastro`,
+    dados,
+    { observe: 'response' }
+  );
+}
 
   salvarToken(token: string): void {
     localStorage.removeItem('token');

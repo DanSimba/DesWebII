@@ -22,6 +22,11 @@ export class SignUpComponent implements AfterViewInit {
     let userData = this.signUpForm.getData();
     let enderecoData = this.cepForm.getData();
 
+    if (userData || enderecoData) {
+      alert('Existem informações faltando, por favor atenção ao formulario');
+      return;
+    }
+
     const dados = {
       cpf: userData.cpf,
       nome: userData.nome,
@@ -44,21 +49,35 @@ export class SignUpComponent implements AfterViewInit {
     console.log(dados);
 
     this.executeCadastro(dados);
-
-    alert('cadastrado senha 1234 enviada por email');
   }
 
   executeCadastro(dados: any) {
-  this.authService.cadastrar(dados).subscribe({
-    next: (res) => {
-      console.log("Cadastro realizado", res);
-    },
+    this.authService.cadastrar(dados).subscribe({
+      next: (response) => {
+        console.log(response.status);
 
-    error: (err) => {
-      console.error("Erro ao cadastrar", err);
-    }
-  });
-}
+        if (response.status === 201) {
+          alert('Usuário cadastrado com sucesso');
+        }
+      },
+
+      error: (erro) => {
+        console.log(erro.status);
+
+        if (erro.status === 400) {
+          alert('Dados inválidos');
+        }
+
+        if (erro.status === 409) {
+          alert('Usuário já existe');
+        }
+
+        if (erro.status === 500) {
+          alert('Erro interno do servidor');
+        }
+      },
+    });
+  }
 
   ngAfterViewInit(): void {}
 }

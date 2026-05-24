@@ -7,21 +7,25 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
   selector: 'signUp-form',
   imports: [MatIconModule, NgxMaskDirective, NgxMaskPipe, FormsModule],
   standalone: true,
-  templateUrl: './signUp-form.html'
+  templateUrl: './signUp-form.html',
 })
 export class SignUpForm {
 
-  cpf : string = '';
-  nome : string = '';
-  email : string = '';
-  telefone : string = '';
+  cpf: string = '';
+  nome: string = '';
+  email: string = '';
+  telefone: string = '';
 
-  getData(): any{
+  getData(): any {
+    if (this.cpf === '' || this.nome === '' || this.email === '' || this.telefone === '') {
+      return false;
+    }
+
     return {
-    cpf: this.cpf,
-    nome: this.nome,
-    email: this.email,
-    telefone: this.telefone
-  };
+      cpf: this.cpf,
+      nome: this.nome,
+      email: this.email,
+      telefone: this.telefone,
+    };
   }
 }

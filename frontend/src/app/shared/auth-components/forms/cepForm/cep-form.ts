@@ -41,7 +41,7 @@ export class CepForm implements OnInit {
     this.cepInfo.logradouro = 'Buscando...';
     this.cepInfo.uf = '...';
     this.cepInfo.bairro = 'Buscando...';
-    this.cepInfo.complemento = 'Buscando...';
+    this.cepInfo.cidade = 'Buscando...';
 
     this.cepService.getCep(cep).subscribe({
       next: (res) => {
@@ -49,8 +49,8 @@ export class CepForm implements OnInit {
         this.cepInfo.cep = cep;
         this.cepInfo.logradouro = cepResponse.logradouro;
         this.cepInfo.uf = cepResponse.uf;
+        this.cepInfo.cidade = cepResponse.localidade;
         this.cepInfo.bairro = cepResponse.bairro;
-        this.cepInfo.complemento = cepResponse.complemento;
         this.cdr.markForCheck();
       },
       error: (res) => {
@@ -60,6 +60,12 @@ export class CepForm implements OnInit {
   }
 
   getData(): any {
+    if(Object.entries(this.cepInfo)
+      .filter(([chave]) => chave !== 'complemento')
+      .some(([, valor]) => valor.trim() === '')){
+      return false;
+    }
+
     return this.cepInfo;
   }
 }
