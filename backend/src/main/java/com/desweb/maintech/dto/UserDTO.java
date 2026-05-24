@@ -7,6 +7,7 @@ public class UserDTO {
     private Long id;
 
     private String email;
+
     private TypeUser typeUser;
 
     public void setId(Long id) {

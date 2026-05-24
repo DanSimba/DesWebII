@@ -3,10 +3,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { CepServiceService } from '../../../../services/CEP/cep-service.service';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { CepType } from '../../../../models/cepType';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'cep-form',
-  imports: [MatIconModule, NgxMaskDirective, NgxMaskPipe],
+  imports: [MatIconModule, NgxMaskDirective, NgxMaskPipe, FormsModule],
   standalone: true,
   templateUrl: './cep-form.html',
 })
@@ -26,10 +27,6 @@ export class CepForm implements OnInit {
     complemento: '',
   };
 
-  testa(){
-    console.log(this.cepInfo);
-  }
-
   cepAlteration(cep: string) {
     //impede de gerar requisições falhas
     if (cep == '' || cep.length < 9) {
@@ -44,7 +41,7 @@ export class CepForm implements OnInit {
     this.cepInfo.logradouro = 'Buscando...';
     this.cepInfo.uf = '...';
     this.cepInfo.bairro = 'Buscando...';
-    this.cepInfo.complemento = 'Buscando...';
+    this.cepInfo.cidade = 'Buscando...';
 
     this.cepService.getCep(cep).subscribe({
       next: (res) => {
@@ -52,13 +49,23 @@ export class CepForm implements OnInit {
         this.cepInfo.cep = cep;
         this.cepInfo.logradouro = cepResponse.logradouro;
         this.cepInfo.uf = cepResponse.uf;
+        this.cepInfo.cidade = cepResponse.localidade;
         this.cepInfo.bairro = cepResponse.bairro;
-        this.cepInfo.complemento = cepResponse.complemento;
         this.cdr.markForCheck();
       },
       error: (res) => {
         console.log('+ ERRO NO VIA CEP +' + res);
       },
     });
+  }
+
+  getData(): any {
+    if(Object.entries(this.cepInfo)
+      .filter(([chave]) => chave !== 'complemento')
+      .some(([, valor]) => valor.trim() === '')){
+      return false;
+    }
+
+    return this.cepInfo;
   }
 }

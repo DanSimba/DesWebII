@@ -1,15 +1,17 @@
-<form class="p-2 w-full content-center h-full">
-  <div class="p-4 flex flex-col h-full justify-around">
-    <!--CPF - id=name-->
-    <div class="flex items-center justify-center">
-      <div class="relative  w-full">
+<form class="p-2 w-full content-center h-full" #formDados="ngForm">
+  <div class="p-4 flex flex-col h-full justify-around gap-4">
+    
+    <div class="flex flex-col justify-center">
+      <div class="relative w-full">
         <input
           id="cpf"
           name="cpf"
           mask="000.000.000-00"
-          placeholder=""
-          
-          class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit  w-full"
+          placeholder=" "
+          [(ngModel)]="cpf"
+          [required]="true"
+          #cpfCtrl="ngModel"
+          class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
         />
         <label
           for="cpf"
@@ -18,16 +20,22 @@
           CPF
         </label>
       </div>
+      
+      @if (cpfCtrl.invalid && cpfCtrl.touched) {
+        <div class="text-red-500 text-xs mt-1">O CPF é obrigatório.</div>
+      }
     </div>
-    <!--Nome - id=name-->
-    <div class="flex items-center justify-center">
+
+    <div class="flex flex-col justify-center">
       <div class="relative w-full">
         <input
           id="name"
           name="name"
           type="text"
-          
-          placeholder=""
+          [(ngModel)]="nome"
+          placeholder=" "
+          [required]="true"
+          #nomeCtrl="ngModel"
           class="text-(--french-puce) border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
         />
         <label
@@ -37,16 +45,23 @@
           Nome
         </label>
       </div>
+      
+      @if (nomeCtrl.invalid && nomeCtrl.touched) {
+        <div class="text-red-500 text-xs mt-1">O nome é obrigatório.</div>
+      }
     </div>
-    <!--Email - id=email-->
-    <div class="flex items-center justify-center">
+
+    <div class="flex flex-col justify-center">
       <div class="relative w-full">
         <input
           id="email"
           name="email"
           type="email"
-          placeholder=""
-          
+          placeholder=" "
+          [(ngModel)]="email"
+          [required]="true"
+          email
+          #emailCtrl="ngModel"
           class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
         />
         <label
@@ -56,17 +71,29 @@
           Email
         </label>
       </div>
+      
+      @if (emailCtrl.invalid && emailCtrl.touched) {
+        <div class="text-red-500 text-xs mt-1">
+          @if (emailCtrl.errors?.['required']) {
+            <span>O e-mail é obrigatório.</span>
+          } @else if (emailCtrl.errors?.['email']) {
+            <span>Insira um e-mail válido.</span>
+          }
+        </div>
+      }
     </div>
-    <!--Telefone - id=phone-->
-    <div class="flex items-center justify-center">
+
+    <div class="flex flex-col justify-center">
       <div class="relative w-full">
         <input
           id="phone"
           name="phone"
-          type="phone"
-          
+          type="text"
+          [(ngModel)]="telefone"
           mask="(00) 0 0000-0000"
-          placeholder=""
+          placeholder=" "
+          [required]="true"
+          #phoneCtrl="ngModel"
           class="border-b border-(--french-puce) py-1 focus:border-b-2 focus:border-(--french-puce) transition-colors focus:outline-none peer bg-inherit w-full"
         />
         <label
@@ -76,6 +103,11 @@
           Telefone
         </label>
       </div>
+      
+      @if (phoneCtrl.invalid && phoneCtrl.touched) {
+        <div class="text-red-500 text-xs mt-1">O telefone é obrigatório.</div>
+      }
     </div>
+
   </div>
 </form>
