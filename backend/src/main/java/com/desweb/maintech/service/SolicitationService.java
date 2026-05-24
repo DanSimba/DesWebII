@@ -42,6 +42,7 @@ public class SolicitationService {
         return dto;
     }
 
+    
     public SolicitationDTO inserir(SolicitationDTO dto, String email) {
 
         Client c = clientRepository

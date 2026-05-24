@@ -12,4 +12,5 @@ public interface SolicitationRepository extends JpaRepository<Solicitation, Long
     List<Solicitation> findByClientId(Long clientId);
 
     List<Solicitation> findByDataHoraBetween(LocalDateTime dataInicio, LocalDateTime dataFim);
+    
 }
