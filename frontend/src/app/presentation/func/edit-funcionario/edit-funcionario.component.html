@@ -47,6 +47,24 @@
           }
         </div>
 
+        <div class="flex flex-col gap-2">
+          <label class="text-(--french-puce) font-bold uppercase text-xs tracking-widest">
+            Data de Nascimento
+          </label>
+          <input
+            formControlName="dataNascimento"
+            type="text"
+            placeholder="Ex: dd/mm/yyyy"
+            class="w-full p-3 bg-(--queen-pink) font-bold text-sm text-(--french-puce) placeholder-[var(--french-puce)]/40 outline-none border-2 border-(--antique-ruby)/40 rounded-xl focus:border-(--antique-ruby) transition-all"
+          />
+          @if (form.get('cargo')?.invalid && form.get('cargo')?.touched) {
+            <span class="text-red-700 text-xs font-bold flex items-center gap-1">
+              <mat-icon class="text-sm scale-75">error</mat-icon>
+              Cargo obrigatório (mínimo 3 caracteres)
+            </span>
+          }
+        </div>
+
         <div class="flex gap-3 pt-2">
           <button
             type="button"

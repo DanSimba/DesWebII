@@ -3,7 +3,6 @@ package com.desweb.maintech.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -18,6 +17,9 @@ public class Funcionario {
 
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
+
+    @Column(name = "cargo_funcionario")
+    private String cargoFuncionario;
 
     @OneToMany(mappedBy = "funcionario")
     private List<Historico>  historico;
@@ -44,6 +46,10 @@ public class Funcionario {
         return dataNascimento;
     }
 
+    public String getCargoFuncionario(){
+        return cargoFuncionario;
+    }
+
     public List<Historico> getHistorico() {
         return this.historico;
     }
@@ -64,6 +70,10 @@ public class Funcionario {
 
     public void setDataNascimento(LocalDate dataNascimento){
         this.dataNascimento = dataNascimento;
+    }
+
+    public void setCargoFuncionario(String cargoFuncionario){
+        this.cargoFuncionario = cargoFuncionario;
     }
 
     public void setHistorico(List<Historico> historico) {

@@ -62,7 +62,8 @@ CREATE TABLE funcionario (
     id               BIGSERIAL    PRIMARY KEY,
     id_usuario       BIGINT       NOT NULL UNIQUE REFERENCES usuario(id),
     nome             VARCHAR(255) NOT NULL,
-    data_nascimento  DATE         NOT NULL
+    data_nascimento  DATE         NOT NULL,
+    cargo_funcionario VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE solicitacao (

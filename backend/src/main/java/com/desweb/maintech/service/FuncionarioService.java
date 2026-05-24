@@ -22,6 +22,7 @@ public class FuncionarioService {
         dto.setId(funcionario.getId());
         dto.setNome(funcionario.getNome());
         dto.setDataNascimento(funcionario.getDataNascimento());
+        dto.setCargoFuncionario(funcionario.getCargoFuncionario());
         return dto;
     }
 
@@ -42,6 +43,7 @@ public class FuncionarioService {
         novo.setId(dto.getId());
         novo.setNome(dto.getNome());
         novo.setDataNascimento(dto.getDataNascimento());
+        novo.setCargoFuncionario(dto.getCargoFuncionario());
 
         repository.save(novo);
         return converterParaDTO(novo);
@@ -57,6 +59,7 @@ public class FuncionarioService {
 
         funcionario.setNome(dto.getNome());
         funcionario.setDataNascimento(dto.getDataNascimento());
+        funcionario.setCargoFuncionario(dto.getCargoFuncionario());
         Funcionario funcionarioAtualizado = repository.save(funcionario);
         return converterParaDTO(funcionarioAtualizado); 
     }

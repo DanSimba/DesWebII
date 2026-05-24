@@ -16,6 +16,8 @@
         <tr>
           <th class="p-4 border-b-2 border-(--french-puce)">ID</th>
           <th class="p-4 border-b-2 border-(--french-puce)">Nome / Funcionário</th>
+          <th class="p-4 border-b-2 border-(--french-puce)">Data Nascimento</th>
+          <th class="p-4 border-b-2 border-(--french-puce)">Cargo do Funcionário</th>
           <th class="p-4 border-b-2 border-(--french-puce) text-center">Ações</th>
         </tr>
       </thead>
@@ -24,6 +26,8 @@
           <tr class="border-b border-(--parrot-pink)/30 hover:bg-(--queen-pink)/50 transition-colors">
             <td class="p-4 font-mono text-xs">#{{f.id}}</td>
             <td class="p-4 font-bold">{{f.nome}}</td>
+            <td class="p-4 font-bold">{{f.dataNascimento}}</td>
+            <td class="p-4 font-bold">{{f.cargoFuncionario}}</td>
             <td class="p-4 flex justify-center gap-2">
               <button (click)="editarFunc(f.id)" 
               class="p-2 bg-(--antique-ruby) text-(--queen-pink) rounded-md border border-(--french-puce) hover:bg-rose-700">

@@ -18,9 +18,9 @@ INSERT INTO categoria (nome, ativo) VALUES
     ('Teclado',    TRUE);
  
 
-INSERT INTO funcionario (id_usuario, nome, data_nascimento) VALUES
-    (1, 'Maria Silva',    '1990-03-15'),
-    (2, 'Mário Souza',   '1985-07-22');
+INSERT INTO funcionario (id_usuario, nome, data_nascimento, cargo_funcionario) VALUES
+    (1, 'Maria Silva',    '1990-03-15', 'Tecnico'),
+    (2, 'Mario Souza',   '1985-07-22', 'Desenvolvedor');
 
  
 INSERT INTO cliente (id_usuario, cpf, nome, telefone, cep, logradouro, numero, complemento, bairro, cidade, estado) VALUES
