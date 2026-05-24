@@ -1,23 +1,29 @@
 <div
   class="w-full h-full bg-(--queen-pink) flex flex-col justify-center items-center bg-center bg-repeat bg-contain gap-1"
 >
-  <router-outlet></router-outlet>
-  <div class="flex w-[800px] justify-center gap-2 p-1 text-(--french-puce)">
-    <div class="hover:cursor-pointer flex items-center" [routerLink]="'/'">
-      <mat-icon aria-hidden="false" aria-label="setting icon" fontIcon="home" style="color: var(--french-puce);"></mat-icon>
-      <h3>HOME</h3>
-    </div>
-    <div class="border-2"></div>
-    <div class="hover:cursor-pointer flex items-center">
-      @if (router.url.includes('/login')) {
-        <div  [routerLink]="'/auth/signup'">
-          <h3>CADASTRAR-SE</h3>
-        </div>
-      } @else if (router.url.includes('/signup')) {
-        <div  [routerLink]="'/auth/login'">
-          <h3>LOGIN</h3>
-        </div>
-      }
-    </div>
+  <div class="flex flex-col w-[75vw] h-[80vh] justify-between gap-y-7 items-center bg-kitty-soft bg-repeat-y bg-top bg-contain gap-4 border-9 border-(--antique-ruby) rounded-4xl overflow-y-auto text-(--french-puce) shadow-[10px_10px_0px_var(--french-puce)]">
+      <router-outlet></router-outlet>
+      <div class="flex flex-row w-full h-[15vh] p-2 justify-around items-center bg-(--solid-pink) border-t-dashed border-t-8 border-t-(--antique-ruby)">
+            <div class="flex p-2 w-[15vw] h-[8vh] hover:cursor-pointer gap-x-2 items-center bg-pink-200 border-solid border-3 border-(--antique-ruby) hover:shadow-[4px_4px_0px_var(--french-puce)] break-words font-semibold"
+            [routerLink]="'/'">
+              <mat-icon aria-hidden="false" aria-label="setting icon" fontIcon="home" style="color: var(--french-puce);"></mat-icon>
+              <h3>HOME</h3>
+            </div>
+
+            <div class="flex w-[10vw] h-[10vh] z-10 bg-[image:var(--kitty-flower)] bg-contain bg-center bg-no-repeat"></div>
+
+            <div class="flex p-2 w-[15vw] h-[8vh] hover:cursor-pointer items-center bg-pink-200 border-solid border-3 border-(--antique-ruby) hover:shadow-[4px_4px_0px_var(--french-puce)] break-words font-semibold">
+              @if (router.url.includes('/login')) {
+                <div  [routerLink]="'/auth/signup'">
+                  <h3>CADASTRAR-SE</h3>
+                </div>
+              } @else if (router.url.includes('/signup')) {
+                <div  [routerLink]="'/auth/login'">
+                  <h3>LOGIN</h3>
+                </div>
+              }
+            </div>
+      </div>
   </div>
+  
 </div>

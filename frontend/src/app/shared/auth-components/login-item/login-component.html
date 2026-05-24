@@ -1,4 +1,4 @@
-<div class="flex gap-4 bg-(--queen-pink)">
+<div class="flex w-full h-full gap-4 bg-(--queen-pink) border-6 border-(--antique-ruby) rounded-4xl overflow-y-auto text-(--french-puce) shadow-[4px_4px_0px_var(--french-puce)]">
   <!--Imagem lateral ao formulario-->
   <div class="border-3 border-(--parrot-pink) p-4 w-[400px] h-[400px] justify-center">
     <mat-icon class="content-center justify-center"
@@ -13,7 +13,7 @@
         <mat-icon aria-hidden="false" aria-label="setting icon" fontIcon="settings" style="color: var(--french-puce); width: 60px; height: 60px; font-size: 60px;"></mat-icon>
       </div>
       <!--Titulo-->
-      <div class="border-3 border-(--parrot-pink) w-full hover:cursor-pointer " [routerLink]="'/'">
+      <div class="w-full hover:cursor-pointer " [routerLink]="'/'">
         <h3 class="text-(--french-puce) font-bold border-(--parrot-pink) p-4 text-xl">
           MAINTEC - MANUTENCAO
         </h3>
@@ -21,18 +21,18 @@
     </div>
     <!--Campos formulario-->
     <div class="flex gap-2 w-full h-4/6 ">    
-      <div class="p-6 w-4/5 content-center">
+      <div class="w-4/5 content-center">
         <h3 class="text-(--french-puce) font-bold text-xl">Login:</h3>
         <login-form/>
       </div>
-      <div class="border-3 border-(--parrot-pink) w-1/5 "></div>
+      <div class="w-1/5 "></div>
     </div>
     <!--Botões de login-->
     <div class="w-full flex gap-2 h-1/6">
-      <div class="border-3 border-(--parrot-pink) w-4/5 content-center">
+      <div class=" w-4/5 content-center">
       
       </div>
-      <button class="hover:cursor-pointer p-2 font-bold w-2/6 text-(--french-puce) text-xl"
+      <button class="hover:cursor-pointer p-2 mb-5 mr-5 font-bold w-2/6 text-(--french-puce) text-xl hover:cursor-pointer items-center bg-pink-200 border-solid border-3 border-(--antique-ruby) hover:shadow-[4px_4px_0px_var(--french-puce)] break-words font-semibold"
       (click)="botaoPai()";
       >LOGIN ></button>
     </div>
