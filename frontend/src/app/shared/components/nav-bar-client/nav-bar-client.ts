@@ -17,7 +17,7 @@ export class NavBarClient {
   private router = inject(Router);
 
   logout(){
-    console.log("saiuuuu");
+    //console.log("saiuuuu");
     this.authService.logout();
     this.router.navigate([""]);
   }
