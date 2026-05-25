@@ -11,5 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './auth.html'
 })
 export class Auth {
+  //a
   constructor(public router: Router) {}
 }
