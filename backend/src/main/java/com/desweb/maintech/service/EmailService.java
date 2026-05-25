@@ -1,29 +1,32 @@
-/*package com.desweb.maintech.service;
+package com.desweb.maintech.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-
-@Service    
+@Service
 public class EmailService {
 
     @Autowired
-    private JavaMailSender email;
+    private JavaMailSender javaMailSender;
 
-    public EmailService(JavaMailSender email) {
-        this.email = email;
+    @Value("${spring.mail.username}")
+    private String remetente;
+
+    public String enviarEmail(String para, String assunto, String corpoEmail) {
+
+        try {
+            SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+            simpleMailMessage.setFrom(remetente);
+            simpleMailMessage.setTo(para);
+            simpleMailMessage.setSubject(assunto);
+            simpleMailMessage.setText(corpoEmail);
+            javaMailSender.send(simpleMailMessage);
+            return "FOI";
+        } catch (Exception e) {
+            return "Erro ao enviar email" + e.getMessage();
+        }
     }
-
-    public void enviarEmail(String para, String assunto, String corpoEmail) {
-        SimpleMailMessage message = new SimpleMailMessage();
-
-        message.setFrom("gersonbeljr@gmail.com");
-        message.setTo(para);
-        message.setSubject(assunto);
-        message.setText(corpoEmail);
-
-        email.send(message);
-    }
-}*/
+}
