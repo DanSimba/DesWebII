@@ -60,9 +60,11 @@ export class CepForm implements OnInit {
   }
 
   getData(): any {
-    if(Object.entries(this.cepInfo)
-      .filter(([chave]) => chave !== 'complemento')
-      .some(([, valor]) => valor.trim() === '')){
+    if (
+      Object.entries(this.cepInfo)
+        .filter(([chave]) => chave !== 'complemento')
+        .some(([, valor]) => !valor || String(valor).trim() === '')
+    ) {
       return false;
     }
 
