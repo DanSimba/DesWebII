@@ -22,7 +22,7 @@ export class SignUpComponent implements AfterViewInit {
     let userData = this.signUpForm.getData();
     let enderecoData = this.cepForm.getData();
 
-    if (userData || enderecoData) {
+    if (!userData || !enderecoData) {
       alert('Existem informações faltando, por favor atenção ao formulario');
       return;
     }
