@@ -16,7 +16,7 @@ import com.desweb.maintech.dto.ClientDTO;
 import com.desweb.maintech.service.ClientService;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/client")
 public class ClientController {
 
     public final ClientService service;
