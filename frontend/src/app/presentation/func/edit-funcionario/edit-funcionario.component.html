@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <div class="flex-1 min-h-0 flex items-start justify-center">
+  <div class="flex-1 min-h-0 flex items-start justify-center overflow-y-auto custom-scrollbar">
     <div class="w-full max-w-lg bg-(--queen-pink) border-3 border-(--antique-ruby) rounded-2xl p-8 flex flex-col gap-6 shadow-inner">
 
       <form [formGroup]="form" class="flex flex-col gap-6">
@@ -34,12 +34,12 @@
             Cargo do Funcionário
           </label>
           <input
-            formControlName="cargo"
+            formControlName="cargoFuncionario"
             type="text"
             placeholder="Ex: Técnico de Suporte"
             class="w-full p-3 bg-(--queen-pink) font-bold text-sm text-(--french-puce) placeholder-[var(--french-puce)]/40 outline-none border-2 border-(--antique-ruby)/40 rounded-xl focus:border-(--antique-ruby) transition-all"
           />
-          @if (form.get('cargo')?.invalid && form.get('cargo')?.touched) {
+          @if (form.get('cargoFuncionario')?.invalid && form.get('cargoFuncionario')?.touched) {
             <span class="text-red-700 text-xs font-bold flex items-center gap-1">
               <mat-icon class="text-sm scale-75">error</mat-icon>
               Cargo obrigatório (mínimo 3 caracteres)
@@ -53,15 +53,25 @@
           </label>
           <input
             formControlName="dataNascimento"
-            type="text"
+            type="date"
             placeholder="Ex: dd/mm/yyyy"
             class="w-full p-3 bg-(--queen-pink) font-bold text-sm text-(--french-puce) placeholder-[var(--french-puce)]/40 outline-none border-2 border-(--antique-ruby)/40 rounded-xl focus:border-(--antique-ruby) transition-all"
           />
-          @if (form.get('cargo')?.invalid && form.get('cargo')?.touched) {
+          @if (form.get('dataNascimento')?.invalid && form.get('dataNascimento')?.touched) {
             <span class="text-red-700 text-xs font-bold flex items-center gap-1">
               <mat-icon class="text-sm scale-75">error</mat-icon>
-              Cargo obrigatório (mínimo 3 caracteres)
+              Data de Nascimento obrigatória
             </span>
+          }
+        </div>
+        <div class="flex flex-col gap-2">
+          @if (!editando) {
+            <label class="text-(--french-puce) font-bold uppercase text-xs tracking-widest"> Email </label>
+            <input type="email" formControlName="email" placeholder="E-mail" 
+              class="w-full p-3 bg-(--queen-pink) font-bold text-sm text-(--french-puce) placeholder-[var(--french-puce)]/40 outline-none border-2 border-(--antique-ruby)/40 rounded-xl focus:border-(--antique-ruby) transition-all"/>
+            <label class="text-(--french-puce) font-bold uppercase text-xs tracking-widest"> Senha </label>
+              <input type="number" formControlName="senha" placeholder="Senha" 
+              class="w-full p-3 bg-(--queen-pink) font-bold text-sm text-(--french-puce) placeholder-[var(--french-puce)]/40 outline-none border-2 border-(--antique-ruby)/40 rounded-xl focus:border-(--antique-ruby) transition-all"/>
           }
         </div>
 

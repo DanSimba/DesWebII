@@ -28,6 +28,8 @@ public class Funcionario {
     @JoinColumn(name = "id_usuario")
     private User user;
 
+    private boolean ativo = true; 
+
     public Funcionario(){
 
     }
@@ -82,5 +84,12 @@ public class Funcionario {
 
     public void setUser(User user) {
         this.user = user;
+    }
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 }

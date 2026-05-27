@@ -9,8 +9,14 @@ public class SolicitationDTO {
     private String equipamento;
     private String desc;
     private LocalDateTime data;
-    private EstadoSolicitacao estado;
+    private EstadoSolicitacao est; //pq no front tá tudo est pq em algum controller estava est e  esqueceram de mudar só aqui
     private Long idCliente; //vou trocar o nome pelo id pq no bd só pede id (mas seria interessante guardar direto o nome)
+
+    private String nomeCliente; // dados do nosso mano cliente pra puxar no front
+    private String cpfCliente;
+    private String emailCliente;
+
+    private String nomeCategoria; //uma solicitação sem categoria, gostoso demais 
 
     public void setIdCliente(Long i) {
         this.idCliente = i;
@@ -34,7 +40,7 @@ public class SolicitationDTO {
     }
 
     public void setEst(EstadoSolicitacao e){
-        this.estado = e;
+        this.est = e;
     }
 
     public Long getId(){
@@ -54,10 +60,20 @@ public class SolicitationDTO {
     }
 
     public EstadoSolicitacao getEst(){
-        return this.estado;
+        return this.est;
     }
 
     public Long getIdCliente() {
         return idCliente;
     }
+
+    public void setNomeCliente(String n) { this.nomeCliente = n; }
+    public void setCpfCliente(String c) { this.cpfCliente = c; }
+    public void setEmailCliente(String e) { this.emailCliente = e; }
+    public void setNomeCategoria(String n) { this.nomeCategoria = n; }
+    public String getNomeCliente() { return nomeCliente; }
+    public String getCpfCliente() { return cpfCliente; }
+    public String getEmailCliente() { return emailCliente; }
+    public String getNomeCategoria() { return nomeCategoria; }
+
 }

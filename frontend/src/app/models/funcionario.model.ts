@@ -1,11 +1,9 @@
-export class Funcionario {
-    constructor(
-        public id : number,
-        public nome : string,
-        public dataNascimento : string,
-        public cargoFuncionario : string, 
+export interface Funcionario {
+        id : number,
+        nome : string,
+        dataNascimento : string,
+        cargoFuncionario : string, 
+        email? : string,
+        senha? : string
         
-    ){
-
-    }
 }

@@ -1,20 +1,29 @@
 package com.desweb.maintech.service;
 
+import static com.desweb.maintech.entity.TypeUser.FUNCIONARIO;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.desweb.maintech.dto.FuncionarioDTO;
+import com.desweb.maintech.dto.UserDTO;
 import com.desweb.maintech.entity.Funcionario;
+import com.desweb.maintech.entity.TypeUser;
+import com.desweb.maintech.entity.User;
 import com.desweb.maintech.repository.FuncionarioRepository;
+import com.desweb.maintech.repository.UserRepository;
+import com.desweb.maintech.security.HashUtil;
 
 @Service
 public class FuncionarioService {
     private final FuncionarioRepository repository;
+    private final UserRepository userRepository;
 
-    public FuncionarioService(FuncionarioRepository repository) {
+    public FuncionarioService(FuncionarioRepository repository, UserRepository userRepository) {
         this.repository = repository;
+        this.userRepository = userRepository;
     }
 
     public FuncionarioDTO converterParaDTO(Funcionario funcionario) {
@@ -28,6 +37,7 @@ public class FuncionarioService {
 
     public List<FuncionarioDTO> listar(){
         return repository.findAll().stream()
+            .filter(Funcionario::isAtivo)
             .map(this::converterParaDTO)
             .collect(Collectors.toList());
     }
@@ -39,13 +49,22 @@ public class FuncionarioService {
     }
 
     public FuncionarioDTO salvar(FuncionarioDTO dto) {
+        User user = new User();
+        user.setEmail(dto.getEmail());
+        String salt = HashUtil.gerarSalt();
+        user.setSalt(salt);
+        user.setPassword(HashUtil.hashSenha(dto.getSenha(), salt));
+        user.setTypeUser(TypeUser.FUNCIONARIO);
+        user = userRepository.save(user);
+    
+        // 2. Cria o Funcionario vinculado ao User
         Funcionario novo = new Funcionario();
-        novo.setId(dto.getId());
         novo.setNome(dto.getNome());
         novo.setDataNascimento(dto.getDataNascimento());
         novo.setCargoFuncionario(dto.getCargoFuncionario());
-
+        novo.setUser(user); // vincula ao user criado
         repository.save(novo);
+    
         return converterParaDTO(novo);
     }
 
@@ -67,6 +86,7 @@ public class FuncionarioService {
     public void remover(Long id) {
         Funcionario funcionario = repository.findById(id)
             .orElseThrow(() -> new RuntimeException("FUNCIONARIO NÃO ENCONTRADO"));
-        repository.delete(funcionario);
+        funcionario.setAtivo(false);
+        repository.save(funcionario);
     }
 }
