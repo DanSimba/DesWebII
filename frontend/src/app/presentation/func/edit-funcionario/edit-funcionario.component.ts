@@ -27,8 +27,10 @@ export class EditFuncionarioComponent implements OnInit{
 
   form : FormGroup = this.f.group ({
     nome : ['', [Validators.required, Validators.minLength(3)]],
-    cargo : ['', [Validators.required, Validators.minLength(3)]],
-    dataNascimento : ['', [Validators.required, Validators.minLength(3)]]
+    cargoFuncionario : ['', [Validators.required, Validators.minLength(3)]],
+    dataNascimento : ['', [Validators.required]],
+    email : ['', [Validators.required, Validators.email]],
+    senha : ['', [Validators.required, Validators.minLength(4)]]
   })
 
 
@@ -39,10 +41,15 @@ export class EditFuncionarioComponent implements OnInit{
       this.editando = true;
       this.idEditado = Number(id);
 
+      this.form.get('email')?.clearValidators();
+      this.form.get('email')?.updateValueAndValidity();
+      this.form.get('senha')?.clearValidators();
+      this.form.get('senha')?.updateValueAndValidity();
+
       this.funcService.buscarPorId(this.idEditado).subscribe(
         fun => this.form.patchValue({
           nome : fun?.nome,
-          cargo : fun?.cargoFuncionario,
+          cargoFuncionario : fun?.cargoFuncionario,
           dataNascimento : fun?.dataNascimento
         })
       )
@@ -55,16 +62,24 @@ export class EditFuncionarioComponent implements OnInit{
       this.form.markAllAsTouched();
       return; 
     }
-    
+    const playload : Funcionario = {id:this.idEditado, ...this.form.value};
+    console.log(playload);
+
     if (this.editando && this.idEditado) {
-      const playload : Funcionario = {id: this.idEditado, ...this.form.value}; //quase um playload q tem no edit-cat vamo ve se roda
-      this.funcService.atualizar(this.idEditado!, playload);
+            // console.log(this.form.value); 
+      // const playload : Funcionario = {id: this.idEditado, ...this.form.value}; //quase um playload q tem no edit-cat vamo ve se roda
+      // console.log(this.form.value); 
+      this.funcService.atualizar(this.idEditado!, playload).subscribe({
+        next: () => this.router.navigate(['/func/crud-func']),
+        error: (err) => console.error('sem atualização de funcionario paizão',err)
+      });
     } else {
       console.log(this.form.value); 
-      this.funcService.inserir(this.form.value);
+      this.funcService.inserir(this.form.value).subscribe({
+        next: () => this.router.navigate(['/func/crud-func']),
+        error: (err)=> console.error('não inseriu paizão', err) 
+      });
     }
-    
-    this.router.navigate(['/func/crud-func']);
   }
 
 

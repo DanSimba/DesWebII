@@ -9,7 +9,7 @@ public class SolicitationDTO {
     private String equipamento;
     private String desc;
     private LocalDateTime data;
-    private EstadoSolicitacao estado;
+    private EstadoSolicitacao est; //pq no front tá tudo est pq em algum controller estava est e  esqueceram de mudar só aqui
     private Long idCliente; //vou trocar o nome pelo id pq no bd só pede id (mas seria interessante guardar direto o nome)
 
     public void setIdCliente(Long i) {
@@ -34,7 +34,7 @@ public class SolicitationDTO {
     }
 
     public void setEst(EstadoSolicitacao e){
-        this.estado = e;
+        this.est = e;
     }
 
     public Long getId(){
@@ -54,7 +54,7 @@ public class SolicitationDTO {
     }
 
     public EstadoSolicitacao getEst(){
-        return this.estado;
+        return this.est;
     }
 
     public Long getIdCliente() {

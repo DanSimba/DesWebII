@@ -9,9 +9,11 @@ public class FuncionarioDTO {
     private Long id;
     private String nome;
     private String cargoFuncionario;
+    private String email;
+    private String senha;
 
     // Quando o objeto for convertido para JSON, a data deve aparecer no formato brasileiro "dia/mês/ano"
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dataNascimento;
 
     //Getters
@@ -48,5 +50,21 @@ public class FuncionarioDTO {
 
     public void setCargoFuncionario(String cf){
         this.cargoFuncionario = cf;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

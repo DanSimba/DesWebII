@@ -82,9 +82,9 @@ public class SolicitationService {
       Solicitation sol = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Solicitação não encontrada"));
         
-        sol.setDesc(dto.getDesc());
-        sol.setEquip(dto.getEquip());
-        sol.setEst(dto.getEst());
+        if (dto.getDesc() != null) sol.setDesc(dto.getDesc());
+        if (dto.getEquip() != null) sol.setEquip(dto.getEquip());
+        if (dto.getEst() != null) sol.setEst(dto.getEst()); 
 
         sol = repository.save(sol);
         return toDTO(sol);

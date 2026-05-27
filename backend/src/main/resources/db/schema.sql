@@ -63,7 +63,8 @@ CREATE TABLE funcionario (
     id_usuario       BIGINT       NOT NULL UNIQUE REFERENCES usuario(id),
     nome             VARCHAR(255) NOT NULL,
     data_nascimento  DATE         NOT NULL,
-    cargo_funcionario VARCHAR(255) NOT NULL
+    cargo_funcionario VARCHAR(255) NOT NULL,
+    ativo             BOOLEAN       NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE solicitacao (
