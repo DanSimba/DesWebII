@@ -39,6 +39,15 @@ public class SolicitationService {
         dto.setEst(sol.getEst());
         dto.setIdCliente(sol.getClient().getId());
 
+        Client cliente = sol.getClient();
+        dto.setNomeCliente(cliente.getNome());
+        dto.setCpfCliente(cliente.getCpf());
+        dto.setEmailCliente(cliente.getEmail());
+
+        if(sol.getCategoria() != null){
+            dto.setNomeCategoria(sol.getCategoria().getNome());
+        }
+
         return dto;
     }
 
@@ -98,11 +107,12 @@ public class SolicitationService {
         Solicitation sol = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Solicitação não encontrada"));
         
-        if (!"PAGA".equals(sol.getEst())) {
-            throw new RuntimeException("Apenas solicitações PAGA podem ser finalizadas.");
+        EstadoSolicitacao est = sol.getEst();
+        if (est != EstadoSolicitacao.APROVADA && est != EstadoSolicitacao.REDIRECIONADA) {
+            throw new RuntimeException("Apenas solicitações APROVADA ou REDIRECIONADA podem ser executadas.");
         }
         
-        sol.setEst(EstadoSolicitacao.valueOf("FINALIZADA"));
+        sol.setEst(EstadoSolicitacao.ARRUMADA); 
         sol.setOrientacao(orientacao);
 
         sol = repository.save(sol);

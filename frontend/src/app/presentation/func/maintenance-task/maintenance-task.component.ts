@@ -1,8 +1,13 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { CommonModule, Location } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';
 import { Dialog } from '@angular/cdk/dialog';
 import { Popup } from '../../../shared/components/popup/popup'; 
+import { Solicitation } from '../../../models/solicitation-interface';
+import { Funcionario } from '../../../models/funcionario.model';
+import { ActivatedRoute } from '@angular/router';
+import { SolicitationService } from '../../../services/solicitation.service';
+import { FuncionarioService } from '../../../services/funcionario.service';
 
 @Component({
   selector: 'app-maintenance-task',
@@ -12,27 +17,44 @@ import { Popup } from '../../../shared/components/popup/popup';
   styleUrl: './maintenance-task.component.css'
 })
 export class MaintenanceTaskComponent implements OnInit {
-  public clientName: string = 'Lucas Coelho';
-  public clientCpf: string = '444.333.222-11';
-  public clientEmail: string = 'lucas2005coelho@hotmail.com';
-  public clientPhone: string = '(41) 88522-7291';
-  public clientAddress: string = 'Rua Desembargador Floriano, 275 - Curitiba/PR';
-  public equipmentCategory: string = 'Impressora';
-  public equipmentDesc: string = 'HP 4020';
-  public maintenanceDesc: string = 'Falha na impressão';
-  public actionReport: string = '';
-  public clientGuidelines: string = '';
-  public receivingEmployee: string = '';
-  public loggedEmployee: string = 'Mário'; 
-  private allEmployees: string[] = ['Maria', 'Mário', 'Glenda', 'Alex']; 
-  public availableEmployees: string[] = [];
+  public solicitacao : Solicitation | null = null;
+  public actionReport : String = '';
+  public clientGuidelines : String = '';
+  public receivingEmployeeId : number | null = null; //eu vou churrascar quem escolheu esses nomes e me fadou a eterna sian de carregá-los por preguiça de mudar em 15 partes do projeto
+  public availableEmployees : Funcionario[] = [];
 
+  private solicitacaoId : number | null =  null; 
   private dialog = inject(Dialog);
+  private route = inject(ActivatedRoute);
+  private solicitationService = inject(SolicitationService);
+  private funcService = inject(FuncionarioService);
+  private cdr = inject(ChangeDetectorRef);
 
   constructor(private location: Location) {}
 
   ngOnInit(): void {
-    this.availableEmployees = this.allEmployees.filter(emp => emp !== this.loggedEmployee);
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    if(id){
+      this.solicitacaoId = id;
+      this.carregarSolicitacao(id);
+      this.carregarFuncionarios();
+    }
+  }
+
+
+
+  private carregarSolicitacao(id: number) : void {
+    this.solicitationService.buscarPorId(id).subscribe({
+      next: (dados) =>{ this.solicitacao = dados; this.cdr.detectChanges(); },
+      error: (err) => console.error('não carregou mozão', err)
+    });
+  }
+
+  private carregarFuncionarios() {
+    this.funcService.listarTodos().subscribe({
+      next: (func) => this.availableEmployees = func,
+      error: (err) => console.error('tem ngm nesse quiosque', err)  
+    });
   }
 
   private abrirPopup(texto: string, tipo: string) {
@@ -45,28 +67,39 @@ export class MaintenanceTaskComponent implements OnInit {
   }
 
   public performMaintenance(): void {
-    if (!this.actionReport) {
+    if (!this.actionReport.trim()) {
       this.abrirPopup('Preencha a descrição da manutenção', 'ok');
       return;
     }
-    
-    const dialogRef = this.abrirPopup('A manutenção foi registrada', 'ok');
-    
-    dialogRef.closed.subscribe(() => {
-      this.location.back();
+    if (!this.clientGuidelines.trim()) {
+      this.abrirPopup('Preencha as orientações ao cliente', 'ok');
+      return;
+    }
+
+    this.solicitationService.efetuarManutencao(this.solicitacaoId!,this.clientGuidelines)
+      .subscribe({
+        next: () => {
+          const ref = this.abrirPopup('Manutenção registrada com sucesso!', 'ok');
+          ref.closed.subscribe(()=> this.location.back());
+        },
+        error: (err) => console.error('erro no registro da manutenção', err)
     });
+    
   }
 
   public redirectMaintenance(): void {
-    if (!this.receivingEmployee) {
+    if (!this.receivingEmployeeId) {
       this.abrirPopup('Informe o nome do funcionário recebedor', 'ok');
       return;
     }
 
-    const dialogRef = this.abrirPopup('A solicitação foi redirecionada', 'ok');
-    
-    dialogRef.closed.subscribe(() => {
-      this.location.back();
+    this.solicitationService.redirecionarManutencao(this.solicitacaoId!, this.receivingEmployeeId)
+      .subscribe({
+        next:() => {
+          const ref = this.abrirPopup('Manutenção redirecionada', 'ok');
+          ref.closed.subscribe(() => this.location.back());
+        },
+        error: (err) => console.error('Erro no redirecionar amor', err)
     });
   }
 

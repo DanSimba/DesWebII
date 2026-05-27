@@ -30,7 +30,7 @@ export class SolicitationService {
   }
 
   efetuarManutencao(id:number, orientacao : String): Observable<Solicitation>{
-    return this.http.patch<Solicitation>(`${this.apiURL}/${id}`, orientacao);
+    return this.http.patch<Solicitation>(`${this.apiURL}/${id}/efetuar`, orientacao);
   }
 
   redirecionarManutencao(id: number, idFuncionario: number): Observable<Solicitation>{

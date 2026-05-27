@@ -98,4 +98,8 @@ public class Client {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+    public String getEmail(){
+        return this.user.getEmail();
+    }
 }

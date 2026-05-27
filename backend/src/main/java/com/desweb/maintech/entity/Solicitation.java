@@ -123,4 +123,12 @@ public class Solicitation {
     public void setFuncionario(Funcionario f) {
         this.funcionario = f;
     }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }

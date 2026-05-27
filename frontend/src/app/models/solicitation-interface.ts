@@ -5,7 +5,10 @@ export interface Solicitation {
   est: string;
   desc: string;
   // campos adicionais para o lado func
-  nomeCliente?: string;
-  valorOrcamento?: number;
   idCliente?: number;
+  nomeCliente?: string;
+  cpfCliente?: string;
+  emailCliente?: string;
+  valorOrcamento?: number;
+  nomeCategoria?: string;
 }
