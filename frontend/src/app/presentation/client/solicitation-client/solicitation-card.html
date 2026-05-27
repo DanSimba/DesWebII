@@ -1,4 +1,4 @@
-<div class="flex flex-col text-lg w-[63vh] h-[22vh] p-2 bg-pink-200 border-solid border-3 border-(--antique-ruby) rounded-[12px] shadow-[4px_4px_0px_var(--french-puce)] break-words font-semibold">
+<div class="flex flex-col text-lg shrink-0 p-2 bg-pink-200 border-solid border-3 border-(--antique-ruby) rounded-xl shadow-[4px_4px_0px_var(--french-puce)] break-words font-semibold">
     <div class="flex flex-row justify-around">
         <div [style.background-color]="'var(--' + estado() + ')'"
         class="flex w-[13vh] h-[30px] text-sm justify-center items-center rounded-[10px]">
@@ -17,15 +17,15 @@
         
     </div>
 
-    <div class="flex w-[48] m-2 h-[13vh] text-sm bg-(--parrot-pink) p-[4px] rounded-[10px] break-words overflow-y-auto">
+    <div class="flex m-2 p-4 text-sm bg-(--parrot-pink) p-[4px] rounded-md break-words overflow-y-auto">
         {{desc()}}
     </div>
 
     <div class="flex flex-row justify-around">
-        <div class="flex w-[18vw] h-[30px] text-sm bg-(--parrot-pink) justify-center items-center rounded-[10px]">
+        <div class="flex px-4 text-sm bg-(--parrot-pink) justify-center items-center rounded-md">
             {{data()}}
         </div>
-        <div (click)="openSol()" class="flex w-[14vw] h-[30px] text-md bg-(--parrot-pink) justify-center items-center rounded-[10px] hover:cursor-pointer hover:bg-pink-600 hover:shadow-[2px_2px_0px_var(--solid-pink)] hover:w-[15vw]">
+        <div (click)="openSol()" class="flex px-4 text-md bg-(--parrot-pink) justify-center items-center rounded-md hover:cursor-pointer">
             Visualizar
         </div>
     </div>

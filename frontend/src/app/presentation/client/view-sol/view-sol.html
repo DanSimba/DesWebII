@@ -1,14 +1,14 @@
-<div class="flex flex-col w-full h-full bg-(--queen-pink) p-6 gap-4 border-4 border-(--antique-ruby) rounded-[30px] shadow-[10px_10px_0px_var(--parrot-pink)] overflow-hidden text-(--french-puce)">
+<div class="flex flex-col w-full h-full bg-kitty-soft bg-cover bg-center p-6 gap-4 border-4 border-(--antique-ruby) rounded-4xl overflow-hidden text-(--french-puce)">
     
-    <div class="font-bold px-10 py-2 text-xl bg-(--queen-pink) border-3 border-(--antique-ruby) text-(--french-puce) shadow-sm">
+  <div class="flex font-bold w-fit px-8 py-3 justify-center items-center text-xl bg-(--queen-pink) border-4 border-(--antique-ruby) text-(--french-puce) shadow-[4px_4px_0px_var(--french-puce)] self-center md:self-start">
       DETALHES DA SOLICITAÇÃO
     </div>
 
-    <div class="w-full max-w-[60vh] p-4 text-center text-lg bg-(--queen-pink)/95 border-2 border-(--french-puce) rounded-md text-(--french-puce) font-medium">
+    <div class="w-full shrink-0 p-4 text-center text-lg bg-(--queen-pink)/95 border-2 border-(--french-puce) rounded-md text-(--french-puce) font-medium">
       {{solData()?.desc}}
     </div>
 
-    <div class="flex flex-row w-full max-w-[60vh] p-3 justify-around items-center bg-(--queen-pink) border-2 border-dashed border-(--antique-ruby) rounded-xl">
+    <div class="flex flex-row w-full shrink-0 p-3 justify-around items-center bg-(--queen-pink) border-2 border-dashed border-(--antique-ruby) rounded-xl">
             
             <div class="px-4 py-1 text-sm font-bold bg-(--parrot-pink) text-(--french-puce) rounded-full border-2 border-(--solid-pink)">
                 {{solData()?.data}}

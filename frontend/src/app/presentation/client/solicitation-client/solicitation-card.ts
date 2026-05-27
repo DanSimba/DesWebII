@@ -18,7 +18,7 @@ export class SolicitationClient {
   readonly estado = input.required<string>();
   readonly desc = input.required<string>();
   readonly solId = input.required<number>();
-   readonly eqp = input.required<string>();
+  readonly eqp = input.required<string>();
 
   private sol =  computed<Solicitation>(() => ({
     id: this.solId(),
