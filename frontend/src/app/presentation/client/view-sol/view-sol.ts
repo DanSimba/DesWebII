@@ -17,14 +17,27 @@ export class ViewSol{
   private solCard = inject(ClientSolicitationService);
   solData = signal<Solicitation|null>(null);
   ans = '';
+  motivo = signal('');
 
   ngOnInit(){
     //console.log("\nestado: "+ this.est)
-    this.solCard.getSol().subscribe(
-      data => {
+    this.solCard.getSol().subscribe({
+      next: (data) =>{
         this.solData.set(data);
+
+        if(data&&data.est=='REJEITADA'){ //puxa o motivo da rejeiçao separadamente
+            this.solCard.getMotivoRej(data.id).subscribe({
+              next: (response) => {
+                console.log('motivo rej: ', response);
+                this.motivo.set(response);
+              },
+              error: (err) => {console.error('Erro ao pegar o motivoRej:', err);}
+            })
+        }
       }
-    )
+      ,error: (err)=>{console.error('Erro ao pegar a sol:', err)}
+    })
+    
     console.log("sol: ", this.solData())
   }
 
@@ -35,16 +48,14 @@ export class ViewSol{
       this.solCard.updtEst(est, currentSol.id).subscribe({
         next: (response) => {
           console.log('novo est: ', response);
-          
-          //pra mudar na tela imediatamente
+
+          //só pra mudar na tela imediatamente
           this.solData.set({
-            ...currentSol,
-            est: est
-          });
+              ...currentSol,
+              est: est,
+            });
         },
-        error: (err) => {
-          console.error('Erro ao atualizar o estado:', err);
-        }
+        error: (err) => {console.error('Erro ao atualizar o estado:', err);}
       });
     }
   }
@@ -64,6 +75,19 @@ export class ViewSol{
     if(typeof result ==='string'){
       this.ans = result;
       console.log("msg (retorna false tbm): ",result);
+
+      //se tem msg ent é rejeição
+      const currentSol = this.solData();
+      if(currentSol){
+        this.solCard.setMotivoRej(result, currentSol.id).subscribe({
+                next:(result) => {
+                    console.log("msg de rej do back: ", result.motivoRej);
+                    this.solData.set(result);
+                    this.motivo.set(result.motivoRej);
+                }, error: (err) =>{console.error('Erro ao atualizar o estado:', err);}
+        })  
+      }
+
       return false;
     }
     if(result){

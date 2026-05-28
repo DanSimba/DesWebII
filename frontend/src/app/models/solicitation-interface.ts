@@ -4,6 +4,7 @@ export interface Solicitation {
   data: string;
   est: string;
   desc: string;
+  motivoRej?: any;//campo opcional
   // campos adicionais para o lado func
   idCliente?: number;
   nomeCliente?: string;

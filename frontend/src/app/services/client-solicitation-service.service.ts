@@ -26,4 +26,12 @@ export class ClientSolicitationService{
   updtEst(newEst: string, id: number){
     return this.http.patch(`${this.apiUrl}/api/solicitations/${id}/mudar/${newEst}`, {});
   }
+
+  setMotivoRej(motivo: string, id: number):Observable<Solicitation>{
+    return this.http.patch<Solicitation>(`${this.apiUrl}/api/solicitations/${id}/rejeitar/${motivo}`, {});
+  }
+
+  getMotivoRej(id: number): Observable<string>{
+    return this.http.get(`${this.apiUrl}/api/solicitations/pegarmotivo/${id}`, {responseType: 'text'});
+  }
 }
