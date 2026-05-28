@@ -50,7 +50,7 @@
                 Aceitar
           </button>
 
-          <button (click)="openPopup('Explique o motivo da rejeição', 'custom').then(res => !res ? updtEstado('REJEITADA') : '')" 
+          <button (click)="openPopup('Explique o motivo da rejeição', 'custom')" 
                   class="flex-1 bg-red-500 text-white font-bold py-2 rounded-lg border-b-4 border-red-700 active:border-b-0 hover:bg-red-600 transition-all uppercase text-xs">
                 Rejeitar
           </button>
@@ -61,7 +61,7 @@
     @if(solData()?.est == "REJEITADA"){
       <div class="flex flex-col w-full max-w-[60vh] p-4 bg-red-50 border-2 border-red-300 rounded-md">
           <div class="text-red-800 font-bold text-center underline mb-2 italic">MOTIVO DA REJEIÇÃO</div>
-          <div class="text-sm text-red-900 text-center">{{ans}}</div>
+          <div class="text-sm text-red-900 text-center">{{motivo()}}</div>
       </div>
     }
 </div>

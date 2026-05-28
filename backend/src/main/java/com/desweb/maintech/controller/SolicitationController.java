@@ -66,6 +66,12 @@ public class SolicitationController {
         return ResponseEntity.ok(solicitacoes);
     }
 
+    @GetMapping("/pegarmotivo/{id}")
+    public ResponseEntity<String> pegarMotivo(@PathVariable Long id) {
+        String motivo = solicitationService.pegarMotivo(id);
+        return ResponseEntity.ok(motivo);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<SolicitationDTO> atualizar(@PathVariable Long id, @RequestBody SolicitationDTO dto) {
         SolicitationDTO atualizada = solicitationService.atualizar(id, dto);
@@ -103,5 +109,11 @@ public class SolicitationController {
         return ResponseEntity.ok(mudada);
     }
 
+    @PatchMapping("/{id}/rejeitar/{motivo}")
+    public ResponseEntity<SolicitationDTO> rejeitar( @PathVariable Long id, @PathVariable String motivo) {
+            
+        SolicitationDTO rejeitada = solicitationService.rejeitar(id, motivo);
+        return ResponseEntity.ok(rejeitada);
+    }
     
 }

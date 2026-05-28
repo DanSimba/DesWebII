@@ -18,6 +18,8 @@ public class SolicitationDTO {
 
     private String nomeCategoria; //uma solicitação sem categoria, gostoso demais 
 
+    private String motivoRej;
+
     public void setIdCliente(Long i) {
         this.idCliente = i;
     }
@@ -43,6 +45,10 @@ public class SolicitationDTO {
         this.est = e;
     }
 
+    public void setMotivoRej(String motivoRej) {
+        this.motivoRej = motivoRej;
+    }
+
     public Long getId(){
         return this.id;
     }
@@ -65,6 +71,10 @@ public class SolicitationDTO {
 
     public Long getIdCliente() {
         return idCliente;
+    }
+
+    public String getMotivoRej() {
+        return motivoRej;
     }
 
     public void setNomeCliente(String n) { this.nomeCliente = n; }

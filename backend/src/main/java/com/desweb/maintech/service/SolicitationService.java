@@ -39,6 +39,8 @@ public class SolicitationService {
         dto.setEst(sol.getEst());
         dto.setIdCliente(sol.getClient().getId());
 
+        if(sol.getMotivoRej()!=null) dto.setMotivoRej(sol.getMotivoRej());
+
         Client cliente = sol.getClient();
         dto.setNomeCliente(cliente.getNome());
         dto.setCpfCliente(cliente.getCpf());
@@ -159,6 +161,18 @@ public class SolicitationService {
         return toDTO(sol);
     }
 
+    public SolicitationDTO rejeitar(Long id, String motivo){
+        Solicitation sol = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Solicitação não encontrada"));
+        
+        sol.setEst(EstadoSolicitacao.REJEITADA);
+        sol.setMotivoRej(motivo);
+
+        repository.save(sol);
+
+        return toDTO(sol);
+    }
+
     //relatorios
     public List<SolicitationDTO> buscarPorPeriodo(LocalDateTime inicio, LocalDateTime fim) {
         return repository.findByDataHoraBetween(inicio, fim).stream()
@@ -173,5 +187,13 @@ public class SolicitationService {
                 .filter(sol -> sol.getEquip() != null && sol.getEquip().toLowerCase().contains(categoriaNome.toLowerCase()))
                 .map(this::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public String pegarMotivo(Long id){
+        Solicitation sol = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Solicitação não encontrada"));
+
+        //System.out.println("MOTIVO DO BANCO: " + sol.getMotivoRej());
+        return sol.getMotivoRej(); //só pega o motivo e não altera nd no banco
     }
 }

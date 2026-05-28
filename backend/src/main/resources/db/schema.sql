@@ -75,6 +75,7 @@ CREATE TABLE solicitacao (
     -- Dados do equipamento
     equipamento           VARCHAR(255)       NOT NULL,
     desc_defeito          TEXT               NOT NULL,
+    motivo_rejeicao       TEXT,
     -- Controle de estado
     estado                estado_solicitacao NOT NULL DEFAULT 'ABERTA',
     data_hora             TIMESTAMP          NOT NULL DEFAULT NOW(),
