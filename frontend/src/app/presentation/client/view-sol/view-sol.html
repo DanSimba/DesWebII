@@ -20,7 +20,7 @@
             </div>
 
             @if(solData()?.est == "APROVADA"){
-                <button (click)="openPopup('Redirecionando para pagamento...', 'ok'); this.updtEstado('PAGA')"
+                <button (click)="openPopup('Redirecionando para pagamento.', 'ok'); this.updtEstado('PAGA')"
                   class="bg-orange-500 text-white px-4 py-1 rounded-full border-2 border-orange-700 font-bold hover:scale-105 transition-transform">
                   Pagar
                 </button>
@@ -33,7 +33,7 @@
     </div>
 
     @if(solData()?.est == "ORCADA"){
-      <div class="flex flex-col w-full max-w-[60vh] p-5 bg-(--queen-pink) border-3 border-(--antique-ruby) rounded-lg shadow-md animate-in fade-in zoom-in duration-300">
+      <div class="flex flex-col w-full p-5 bg-(--queen-pink) border-3 border-(--antique-ruby) rounded-lg shadow-md animate-in fade-in zoom-in duration-300">
         <div class="text-center font-bold text-xl border-b-2 border-(--parrot-pink) mb-3 pb-1 text-(--french-puce)">
           PROPOSTA DE ORÇAMENTO
         </div>
