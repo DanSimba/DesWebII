@@ -19,6 +19,7 @@ public class SolicitationDTO {
     private String nomeCategoria; //uma solicitação sem categoria, gostoso demais 
 
     private String motivoRej;
+    private Long idFuncDestino; //pra redirecionar essa bomba depois
 
     public void setIdCliente(Long i) {
         this.idCliente = i;
@@ -85,5 +86,25 @@ public class SolicitationDTO {
     public String getCpfCliente() { return cpfCliente; }
     public String getEmailCliente() { return emailCliente; }
     public String getNomeCategoria() { return nomeCategoria; }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEquipamento() {
+        return equipamento;
+    }
+
+    public void setEquipamento(String equipamento) {
+        this.equipamento = equipamento;
+    }
+
+    public Long getIdFuncDestino() {
+        return idFuncDestino;
+    }
+
+    public void setIdFuncDestino(Long idFuncDestino) {
+        this.idFuncDestino = idFuncDestino;
+    }
 
 }

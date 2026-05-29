@@ -48,6 +48,12 @@ public class FuncionarioService {
         return this.converterParaDTO(funcionario);
     }
 
+    public FuncionarioDTO buscarPorEmail(String email){
+        Funcionario funcionario = repository.findByUserEmail(email)
+            .orElseThrow(() -> new RuntimeException("Funcionário não encontrado"));
+        return this.converterParaDTO(funcionario);
+    }
+
     public FuncionarioDTO salvar(FuncionarioDTO dto) {
         User user = new User();
         user.setEmail(dto.getEmail());

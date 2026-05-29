@@ -10,6 +10,7 @@ import { EmptyStateComponent } from '../../../shared/components/empty-state/empt
 import { SolicitationService } from '../../../services/solicitation.service';
 import { AuthService } from '../../../services/auth-service';
 import { jwtDecode } from 'jwt-decode';
+import { Solicitation } from '../../../models/solicitation-interface';
 
 @Component({
   selector: 'app-maintenance-panel',
@@ -29,16 +30,16 @@ export class MaintenancePanel implements OnInit {
   private IdFuncLoggado: number | null = null;
   private filtroAtual = { type: 'ABERTAS', start: '', end: '' };
 
-  public filteredRequests: MaintenanceRequest[] = [];
-  public baseVisibleRequests: MaintenanceRequest[] = [];
-  public allRequests: MaintenanceRequest[] = []; //eu vou puxar o pé de quem misturou inglês e português no mesmo código, vou churrascar depois
+  public filteredRequests: Solicitation[] = [];
+  public baseVisibleRequests: Solicitation[] = [];
+  public allRequests: Solicitation[] = []; //eu vou puxar o pé de quem misturou inglês e português no mesmo código, vou churrascar depois
 
   ngOnInit(): void {
-    // const token = this.authService.getToken();
-    // if(token){
-    //   const decoded: any = jwtDecode(token);
-    //   this.funcLoggado = decoded.sub ?? '';
-    // } a princiṕioo resolvi no login-form isso aqui 
+    const token = this.authService.getToken();
+    if(token){
+      const decoded: any = jwtDecode(token);
+      this.funcLoggado = decoded.sub ?? '';}
+    //  a princiṕioo resolvi no login-form isso aqui 
 
     this.carregarSolicitacoes();
   }
@@ -51,7 +52,7 @@ export class MaintenancePanel implements OnInit {
   private aplicarFiltro(){
     const event = this.filtroAtual;
     if (event.type === 'ABERTAS') {
-      this.filteredRequests = this.baseVisibleRequests.filter(req => req.status === 'ABERTA');
+      this.filteredRequests = this.baseVisibleRequests.filter(req => req.est === 'ABERTA');
     }
     else if (event.type === 'TODAS') {
       this.filteredRequests = [...this.baseVisibleRequests];
@@ -61,7 +62,7 @@ export class MaintenancePanel implements OnInit {
       const endDate = event.end ? new Date(event.end + 'T23:59:59') : new Date('9999-12-31');
 
       this.filteredRequests = this.baseVisibleRequests.filter(req => {
-        const reqDate = new Date(req.dateTime);
+        const reqDate = new Date(req.data);
         return reqDate >= startDate && reqDate <= endDate;
       });
     }
@@ -72,13 +73,13 @@ export class MaintenancePanel implements OnInit {
     const requestClicked = this.allRequests.find(req => req.id === id);
     if (!requestClicked) return;
 
-    if (requestClicked.status === 'ABERTA') {
+    if (requestClicked.est === 'ABERTA') {
       this.router.navigate(['/func/budget', id]);
     }
-    else if (requestClicked.status === 'APROVADA' || requestClicked.status === 'REDIRECIONADA') {
+    else if (requestClicked.est === 'APROVADA' || requestClicked.est === 'REDIRECIONADA') {
       this.router.navigate(['/func/task', id]);
     }
-    else if (requestClicked.status === 'PAGA') {
+    else if (requestClicked.est === 'PAGA') {
       const dialogRef = this.dialog.open(Popup, {
         data: { text: 'Deseja finalizar a solicitação?', typePopUp: 'opt' }
       });
@@ -101,35 +102,19 @@ export class MaintenancePanel implements OnInit {
     }
   }
 
-  // Mapeia estado do backend (sem acento) para o model do frontend
-  private mapearEstado(estado: string): MaintenanceRequest['status'] {
-    const mapa: Record<string, MaintenanceRequest['status']> = {
-      'ABERTA': 'ABERTA',
-      'ORCADA': 'ORÇADA',
-      'APROVADA': 'APROVADA',
-      'REJEITADA': 'REJEITADA',
-      'REDIRECIONADA': 'REDIRECIONADA',
-      'ARRUMADA': 'ARRUMADA',
-      'PAGA': 'PAGA',
-      'FINALIZADA': 'FINALIZADA',
-    };
-    return mapa[estado] ?? 'ABERTA';
-  }
 
   carregarSolicitacoes() : void{
     this.solicitationService.listarTodos().subscribe({
       next: (dados) => {
-        this.allRequests = dados.map( s => ({
-          id: s.id,
-          dateTime: new Date(s.data),
-          clientName: s.nomeCliente ?? 'Cliente',
-          description: s.equip,
-          status: this.mapearEstado(s.est),
-          receivingEmployee: undefined,
-        }));
+        this.allRequests = dados;
         this.baseVisibleRequests = [ ...this.allRequests].sort(
-          (a,b) => a.dateTime.getTime() - b.dateTime.getTime()
-        );
+          (a,b) => new Date(a.data).getTime() - new Date(b.data).getTime())
+          .filter( req => {
+            if(req.est === 'REDIRECIONADA'){
+              return req.idFuncDestino === this.IdFuncLoggado;
+            }
+            return true;
+          });
         this.aplicarFiltro();
         this.cdr.detectChanges();
       },

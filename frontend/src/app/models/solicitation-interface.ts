@@ -12,4 +12,15 @@ export interface Solicitation {
   emailCliente?: string;
   valorOrcamento?: number;
   nomeCategoria?: string;
+  idFuncDestino?: number; // pra redirecionar gostoso 
 }
+
+export interface HistoricoItem {
+  id: number;
+  dataHora: string;
+  observacao?: string;
+  estadoAnterior?: string;
+  estadoNovo: string;
+  nomeFuncionario?: string;
+}
+///eu vou colocar aqui mesmo e quem não gostou que se mate 

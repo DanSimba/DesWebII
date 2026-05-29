@@ -70,7 +70,7 @@ export class MaintenanceBudgetComponent implements OnInit {
     }
 
 
-    const payloadOrcamento = { valorOrcamento: this.valorTotal, estado: 'ORCADA'};
+    const payloadOrcamento = { valorOrcamento: this.valorTotal, est: 'ORCADA'};
     this.solicitationService.registrarOrcamento(this.solicitacao.id, payloadOrcamento).subscribe({
       next: () => {
         const dialogRef = this.abrirPopup('Orçamento enviado', 'ok');

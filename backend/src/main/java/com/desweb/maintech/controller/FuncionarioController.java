@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,17 @@ public class FuncionarioController {
     @GetMapping("/{id}")
     public ResponseEntity<FuncionarioDTO> buscarPorId(@PathVariable Long id){
         return ResponseEntity.ok(service.buscarPorId(id));
+    }
+
+    @Operation(summary = "Busca funcionario pelo email")
+    @GetMapping("/me")
+    public ResponseEntity<FuncionarioDTO> buscarPorEmail(Authentication auth) {
+        String email = auth.getName();
+        FuncionarioDTO func = service.buscarPorEmail(email);
+        System.out.println(auth);
+        System.out.println(auth.getAuthorities());
+        return ResponseEntity.ok(func);
+
     }
 
     @Operation(summary = "Salva um novo funcionario")

@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Solicitation } from '../models/solicitation-interface';
+import { HistoricoItem, Solicitation } from '../models/solicitation-interface';
 import { Observable } from 'rxjs';
 import { Funcionario } from '../models/funcionario.model';
 
 export interface OrcamentoPayload {
   valorOrcamento: number;
-  estado: string; 
+  est: string; 
 }
 
 @Injectable({
@@ -30,7 +30,7 @@ export class SolicitationService {
   }
 
   efetuarManutencao(id:number, orientacao : String): Observable<Solicitation>{
-    return this.http.patch<Solicitation>(`${this.apiURL}/${id}/efetuar`, orientacao);
+    return this.http.patch<Solicitation>(`${this.apiURL}/${id}/efetuar`, orientacao, {headers:{'Content-Type':'text/plain'}});
   }
 
   redirecionarManutencao(id: number, idFuncionario: number): Observable<Solicitation>{
@@ -39,6 +39,11 @@ export class SolicitationService {
 
   finalizarManutencao(id:number): Observable<Solicitation>{
     return this.http.put<Solicitation>(`${this.apiURL}/${id}`, {est: 'FINALIZADA'});
+  }
+
+  buscarHistorico(id:number) : Observable<HistoricoItem[]>{
+    return this.http.get<HistoricoItem[]>(`${this.apiURL}/${id}/historico`);
+
   }
 
 }
