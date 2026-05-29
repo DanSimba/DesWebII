@@ -1,6 +1,7 @@
 package com.desweb.maintech.controller;
 
 import com.desweb.maintech.dto.SolicitationDTO;
+import com.desweb.maintech.dto.HistoricoDTO;
 import com.desweb.maintech.service.SolicitationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -70,6 +71,11 @@ public class SolicitationController {
     public ResponseEntity<String> pegarMotivo(@PathVariable Long id) {
         String motivo = solicitationService.pegarMotivo(id);
         return ResponseEntity.ok(motivo);
+    }
+
+    @GetMapping("/{id}/historico")
+    public ResponseEntity<List<HistoricoDTO>> buscarHistorico(@PathVariable Long id) {
+        return ResponseEntity.ok(solicitationService.buscarHistorico(id));
     }
 
     @PutMapping("/{id}")

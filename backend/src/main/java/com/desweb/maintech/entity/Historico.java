@@ -58,4 +58,26 @@ public class Historico {
     public EstadoSolicitacao getEstadoNovo(){
         return this.estadoNovo;
     }
+    
+    public Solicitation getSolicitacao() {
+        return solicitacao;
+    }
+
+    public void setSolicitacao(Solicitation solicitacao) {
+        this.solicitacao = solicitacao;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
+    }
 }

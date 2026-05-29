@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Solicitation } from '../models/solicitation-interface';
+import { HistoricoItem, Solicitation } from '../models/solicitation-interface';
 import { Observable } from 'rxjs';
 import { Funcionario } from '../models/funcionario.model';
 
@@ -39,6 +39,11 @@ export class SolicitationService {
 
   finalizarManutencao(id:number): Observable<Solicitation>{
     return this.http.put<Solicitation>(`${this.apiURL}/${id}`, {est: 'FINALIZADA'});
+  }
+
+  buscarHistorico(id:number) : Observable<HistoricoItem[]>{
+    return this.http.get<HistoricoItem[]>(`${this.apiURL}/${id}/historico`);
+
   }
 
 }

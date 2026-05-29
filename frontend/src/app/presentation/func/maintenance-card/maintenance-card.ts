@@ -1,7 +1,8 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaintenanceRequest } from '../../../models/maintenance-request.model';
-import { Solicitation } from '../../../models/solicitation-interface';
+import { HistoricoItem, Solicitation } from '../../../models/solicitation-interface';
+import { SolicitationService } from '../../../services/solicitation.service';
 
 @Component({
   selector: 'app-maintenance-card',
@@ -14,6 +15,32 @@ export class MaintenanceCard {
   readonly req = input.required<Solicitation>();
 
   actionClick = output<number>();
+
+
+  public mostrarHistorico = false;
+  public carregandoHistorico = false;
+  public historico: HistoricoItem[] = [];
+ 
+  private solicitationService = inject(SolicitationService);
+ 
+  public toggleHistorico(): void {
+    this.mostrarHistorico = !this.mostrarHistorico;
+ 
+    // só carrega da API na primeira vez que abre
+    if (this.mostrarHistorico && this.historico.length === 0) {
+      this.carregandoHistorico = true;
+      this.solicitationService.buscarHistorico(this.req().id).subscribe({
+        next: (dados) => {
+          this.historico = dados;
+          this.carregandoHistorico = false;
+        },
+        error: (err) => {
+          console.error('Erro ao carregar histórico', err);
+          this.carregandoHistorico = false;
+        }
+      });
+    }
+  }
 
   public getStatusColor(status: string): string {
     const statusColors: Record<string, string> = {

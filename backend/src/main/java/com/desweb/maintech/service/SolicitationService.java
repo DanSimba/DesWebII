@@ -5,9 +5,11 @@ import com.desweb.maintech.entity.Client;
 import com.desweb.maintech.entity.EstadoSolicitacao;
 import com.desweb.maintech.repository.SolicitationRepository;
 import com.desweb.maintech.entity.Funcionario;
+import com.desweb.maintech.entity.Historico;
 import com.desweb.maintech.entity.Solicitation;
 import com.desweb.maintech.repository.ClientRepository;
 import com.desweb.maintech.repository.FuncionarioRepository;
+import com.desweb.maintech.repository.HistoricoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,9 @@ public class SolicitationService {
 
     @Autowired
     private SolicitationRepository repository;
+
+    @Autowired
+    private HistoricoRepository histRepository;
 
     @Autowired
     private FuncionarioRepository funcionarioRepository;
@@ -48,6 +53,10 @@ public class SolicitationService {
 
         if(sol.getCategoria() != null){
             dto.setNomeCategoria(sol.getCategoria().getNome());
+        }
+
+        if(sol.getFuncionario() != null){
+            dto.setIdFuncDestino(sol.getFuncionario().getId());
         }
 
         return dto;
@@ -109,8 +118,8 @@ public class SolicitationService {
         Solicitation sol = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Solicitação não encontrada"));
         
-        EstadoSolicitacao est = sol.getEst();
-        if (est != EstadoSolicitacao.APROVADA && est != EstadoSolicitacao.REDIRECIONADA) {
+        EstadoSolicitacao antes = sol.getEst();
+        if (antes != EstadoSolicitacao.APROVADA && antes != EstadoSolicitacao.REDIRECIONADA) {
             throw new RuntimeException("Apenas solicitações APROVADA ou REDIRECIONADA podem ser executadas.");
         }
         
@@ -118,45 +127,54 @@ public class SolicitationService {
         sol.setOrientacao(orientacao);
 
         sol = repository.save(sol);
+        registrarHistorico(sol, antes, EstadoSolicitacao.ARRUMADA, null, null);
         return toDTO(sol);
     }
 
     public SolicitationDTO redirecionar(Long id, Long novoFuncionarioId) {
         Solicitation sol = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Solicitação não encontrada"));
-        
+        EstadoSolicitacao antes = sol.getEst();
         Funcionario novoResp = funcionarioRepository.findById(novoFuncionarioId)
                 .orElseThrow(() -> new RuntimeException("Funcionário não encontrado"));
 
         sol.setFuncionario(novoResp);
+        sol.setEst(EstadoSolicitacao.REDIRECIONADA);
 
         sol = repository.save(sol);
+        registrarHistorico(sol, antes, EstadoSolicitacao.REDIRECIONADA, "Redirecionada para: "+ novoResp.getNome(), novoResp);
+
         return toDTO(sol);
     }
 
     public SolicitationDTO mudarEst(Long id, String novoEstado){
         Solicitation sol = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Solicitação não encontrada"));
-        
+        EstadoSolicitacao antes = sol.getEst();
+        EstadoSolicitacao depois = null;
+
         switch (novoEstado) {
             case "APROVADA":
-                sol.setEst(EstadoSolicitacao.APROVADA); //tem que explicar pro java que isso é da classe enum (vergonhoso)
+                depois = EstadoSolicitacao.APROVADA; //tem que explicar pro java que isso é da classe enum (vergonhoso)
                 break;
             case "REJEITADA":
-                sol.setEst(EstadoSolicitacao.REJEITADA);
+                depois = EstadoSolicitacao.REJEITADA;
                 break;
             case "PAGA":
-                sol.setEst(EstadoSolicitacao.PAGA);
+                depois = EstadoSolicitacao.PAGA;
                 break;
             case "ABERTA": //o cliente pode reabrir se ele rejeitar
-                sol.setEst(EstadoSolicitacao.ABERTA);
+                depois = EstadoSolicitacao.ABERTA;
                 break;
-        
             default:
                 break;
         }
 
-        repository.save(sol);
+        if (depois != null){
+            sol.setEst(depois);
+            sol = repository.save(sol);
+            registrarHistorico(sol, antes, depois, null, null);
+        }
 
         return toDTO(sol);
     }
@@ -165,10 +183,12 @@ public class SolicitationService {
         Solicitation sol = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Solicitação não encontrada"));
         
+        EstadoSolicitacao antes = sol.getEst();
         sol.setEst(EstadoSolicitacao.REJEITADA);
         sol.setMotivoRej(motivo);
 
         repository.save(sol);
+        registrarHistorico(sol, antes, EstadoSolicitacao.REJEITADA, motivo, null);
 
         return toDTO(sol);
     }
@@ -195,5 +215,37 @@ public class SolicitationService {
 
         //System.out.println("MOTIVO DO BANCO: " + sol.getMotivoRej());
         return sol.getMotivoRej(); //só pega o motivo e não altera nd no banco
+    }
+
+    private void registrarHistorico (Solicitation sol, EstadoSolicitacao antes, EstadoSolicitacao depois, 
+                                        String observacao, Funcionario func){
+        Historico hist = new Historico();
+        hist.setSolicitacao(sol);
+        hist.setEstadoAnterior(antes);
+        hist.setEstadoNovo(depois);
+        hist.setObservacao(observacao);
+        hist.setDataHora(LocalDateTime.now());
+        hist.setFuncionario(func);
+
+        histRepository.save(hist);
+
+    }
+
+    public List<Historico> buscaHistorico(Long solicitacaoId){
+        return histRepository.findBySolicitacaoIDOrderByDataHora(solicitacaoId)
+            .stream().map(
+                hist -> {
+                    HistoricoDTO dto = new HistoricoDTO();
+                    dto.setId(hist.getId());
+                    dto.setDataHora(hist.getDataHora());
+                    dto.setObservacao(hist.getObservacao());
+                    dto.setEstadoAnterior(hist.getEstadoAnterior() != null ? getEstadoAnterior().getNome() : null);
+                    dto.setEstadoNovo(hist.getEstadoNovo().name());
+                    if(hist.getFuncionario() != null){
+                        dto.setNomeFuncionario(hist.getFuncionario().getNome());
+                    }
+                    return dto; 
+                }
+            ).collect(Collectors.toList());
     }
 }
