@@ -1,5 +1,5 @@
 import { Component, inject, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MaintenanceRequest } from '../../../models/maintenance-request.model';
 import { HistoricoItem, Solicitation } from '../../../models/solicitation-interface';
 import { SolicitationService } from '../../../services/solicitation.service';
@@ -7,7 +7,7 @@ import { SolicitationService } from '../../../services/solicitation.service';
 @Component({
   selector: 'app-maintenance-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DatePipe],
   templateUrl: './maintenance-card.html',
   styleUrl: './maintenance-card.css'
 })

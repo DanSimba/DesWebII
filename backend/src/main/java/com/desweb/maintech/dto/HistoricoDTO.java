@@ -10,31 +10,7 @@ public class HistoricoDTO {
     private String estadoNovo;
     private String nomeFuncionario;
 
-    public String getEstadoAnterior() {
-        return estadoAnterior;
-    }
-
-    public void setEstadoAnterior(String estadoAnterior) {
-        this.estadoAnterior = estadoAnterior;
-    }
-
-    public String getEstadoNovo() {
-        return estadoNovo;
-    }
-
-    public void setEstadoNovo(String estadoNovo) {
-        this.estadoNovo = estadoNovo;
-    }
-
-    public String getNomeFuncionario() {
-        return nomeFuncionario;
-    }
-
-    public void setNomeFuncionario(String nomeFuncionario) {
-        this.nomeFuncionario = nomeFuncionario;
-    }
-
-    //Getters
+    // Getters
     public Long getId(){
         return this.id;
     }
@@ -47,4 +23,41 @@ public class HistoricoDTO {
         return this.observacao;
     }
 
+    public String getEstadoAnterior() {
+        return estadoAnterior;
+    }
+
+    public String getEstadoNovo() {
+        return estadoNovo;
+    }
+
+    public String getNomeFuncionario() {
+        return nomeFuncionario;
+    }
+
+    // Setters
+
+    public void setId(Long i){
+        this.id = i;
+    }
+
+    public void setDataHora(LocalDateTime dh){
+        this.dataHora = dh;
+    }
+
+    public void setObservacao(String o){
+        this.observacao = o;
+    }
+
+    public void setEstadoAnterior(String estadoAnterior) {
+        this.estadoAnterior = estadoAnterior;
+    }
+
+    public void setEstadoNovo(String estadoNovo) {
+        this.estadoNovo = estadoNovo;
+    }
+
+    public void setNomeFuncionario(String nomeFuncionario) {
+        this.nomeFuncionario = nomeFuncionario;
+    }
 }

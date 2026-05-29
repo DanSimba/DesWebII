@@ -1,5 +1,6 @@
 package com.desweb.maintech.service;
 
+import com.desweb.maintech.dto.HistoricoDTO;
 import com.desweb.maintech.dto.SolicitationDTO;
 import com.desweb.maintech.entity.Client;
 import com.desweb.maintech.entity.EstadoSolicitacao;
@@ -231,15 +232,15 @@ public class SolicitationService {
 
     }
 
-    public List<Historico> buscaHistorico(Long solicitacaoId){
-        return histRepository.findBySolicitacaoIDOrderByDataHora(solicitacaoId)
+    public List<HistoricoDTO> buscarHistorico(Long solicitacaoId){
+        return histRepository.findBySolicitacaoIdOrderByDataHora(solicitacaoId)
             .stream().map(
                 hist -> {
                     HistoricoDTO dto = new HistoricoDTO();
                     dto.setId(hist.getId());
                     dto.setDataHora(hist.getDataHora());
                     dto.setObservacao(hist.getObservacao());
-                    dto.setEstadoAnterior(hist.getEstadoAnterior() != null ? getEstadoAnterior().getNome() : null);
+                    dto.setEstadoAnterior(hist.getEstadoAnterior() != null ? hist.getEstadoAnterior().name() : null);
                     dto.setEstadoNovo(hist.getEstadoNovo().name());
                     if(hist.getFuncionario() != null){
                         dto.setNomeFuncionario(hist.getFuncionario().getNome());

@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HistoricoRepository extends JpaRepository<Historico, Long> {
-    List<Historico> findBySolicitacaoIDOrderByDataHora(Long soliitacaoId); 
+    List<Historico> findBySolicitacaoIdOrderByDataHora(Long solicitacaoId); 
 }
