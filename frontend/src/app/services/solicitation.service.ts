@@ -6,7 +6,7 @@ import { Funcionario } from '../models/funcionario.model';
 
 export interface OrcamentoPayload {
   valorOrcamento: number;
-  estado: string; 
+  est: string; 
 }
 
 @Injectable({
@@ -30,7 +30,7 @@ export class SolicitationService {
   }
 
   efetuarManutencao(id:number, orientacao : String): Observable<Solicitation>{
-    return this.http.patch<Solicitation>(`${this.apiURL}/${id}/efetuar`, orientacao);
+    return this.http.patch<Solicitation>(`${this.apiURL}/${id}/efetuar`, orientacao, {headers:{'Content-Type':'text/plain'}});
   }
 
   redirecionarManutencao(id: number, idFuncionario: number): Observable<Solicitation>{

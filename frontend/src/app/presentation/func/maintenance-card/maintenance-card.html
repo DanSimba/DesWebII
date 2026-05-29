@@ -1,28 +1,28 @@
 <div class="bg-(--queen-pink) border-3 border-(--antique-ruby) p-4 rounded-xl flex flex-col justify-between shadow-xl h-full">
   <div class="flex justify-between items-start mb-2">    
-    <span [style.background-color]="getStatusColor(req().status)" 
+    <span [style.background-color]="getStatusColor(req().est)" 
           class="text-xs text-gray-200 px-2 py-1 rounded uppercase font-black shadow-md border border-(--french-puce)">
-      {{req().status}}
+      {{req().est}}
     </span>
   </div>
   
-  <h3 class="font-bold text-sm text-(--french-puce) uppercase mt-2">{{req().clientName}}</h3>
-  <p class="text-xs text-(--french-puce) font-medium mt-1 mb-4 flex-1" [title]="req().description">
-    {{ req().description.length > 30 ? (req().description | slice:0:30) + '...' : req().description }}
+  <h3 class="font-bold text-sm text-(--french-puce) uppercase mt-2">{{req().nomeCliente}}</h3>
+  <p class="text-xs text-(--french-puce) font-medium mt-1 mb-4 flex-1" [title]="req().equip">
+    {{ req().equip.length > 30 ? (req().equip | slice:0:30) + '...' : req().equip }}
   </p>
   
   <div class="flex justify-between items-end border-t-2 border-(--antique-ruby)/20 pt-2">
     <div class="text-xs font-bold text-(--french-puce)">
-      {{req().dateTime | date:'dd/MM/yyyy'}}
+      {{req().data | date:'dd/MM/yyyy'}}
     </div>
 
-    @if (req().status === 'ABERTA' || req().status === 'APROVADA' || 
-         req().status === 'REDIRECIONADA' || req().status === 'PAGA') {
+    @if (req().est === 'ABERTA' || req().est === 'APROVADA' || 
+         req().est === 'REDIRECIONADA' || req().est === 'PAGA') {
       <button (click)="onActionClick()"
               class="bg-(--antique-ruby) hover:bg-(--solid-pink) text-(--queen-pink) text-xs font-bold py-1 px-3 rounded shadow-md transition-colors uppercase cursor-pointer">
-        @if (req().status === 'ABERTA') { Orçar }
-        @else if (req().status === 'APROVADA' || req().status === 'REDIRECIONADA') { Manutenção }
-        @else if (req().status === 'PAGA') { Finalizar }
+        @if (req().est === 'ABERTA') { Orçar }
+        @else if (req().est === 'APROVADA' || req().est === 'REDIRECIONADA') { Manutenção }
+        @else if (req().est === 'PAGA') { Finalizar }
       </button>
     }
   </div>

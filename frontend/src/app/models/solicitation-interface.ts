@@ -12,4 +12,5 @@ export interface Solicitation {
   emailCliente?: string;
   valorOrcamento?: number;
   nomeCategoria?: string;
+  idFuncDestino?: number; // pra redirecionar gostoso 
 }

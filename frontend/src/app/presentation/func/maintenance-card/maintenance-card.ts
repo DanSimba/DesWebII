@@ -1,6 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaintenanceRequest } from '../../../models/maintenance-request.model';
+import { Solicitation } from '../../../models/solicitation-interface';
 
 @Component({
   selector: 'app-maintenance-card',
@@ -10,7 +11,7 @@ import { MaintenanceRequest } from '../../../models/maintenance-request.model';
   styleUrl: './maintenance-card.css'
 })
 export class MaintenanceCard {
-  readonly req = input.required<MaintenanceRequest>();
+  readonly req = input.required<Solicitation>();
 
   actionClick = output<number>();
 
