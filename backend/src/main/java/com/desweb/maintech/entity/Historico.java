@@ -1,6 +1,9 @@
 package com.desweb.maintech.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 
 import java.time.LocalDateTime;
 
@@ -17,13 +20,14 @@ public class Historico {
     private String observacao;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "estado_anterior")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(name = "estado_anterior", columnDefinition = "estado_solicitacao")
     private EstadoSolicitacao estadoAnterior;
-
+    
     @Enumerated(EnumType.STRING)
-    @Column(name = "estado_novo")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(name = "estado_novo", columnDefinition = "estado_solicitacao")
     private EstadoSolicitacao estadoNovo;
-
     @ManyToOne
     @JoinColumn(name = "id_solicitacao")
     private Solicitation solicitacao;

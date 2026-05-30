@@ -240,8 +240,10 @@ public class SolicitationService {
                     dto.setId(hist.getId());
                     dto.setDataHora(hist.getDataHora());
                     dto.setObservacao(hist.getObservacao());
-                    dto.setEstadoAnterior(hist.getEstadoAnterior() != null ? hist.getEstadoAnterior().name() : null);
-                    dto.setEstadoNovo(hist.getEstadoNovo().name());
+                    if (hist.getEstadoAnterior() != null) {
+                        dto.setEstadoAnterior(hist.getEstadoAnterior());
+                    }
+                    dto.setEstadoNovo(hist.getEstadoNovo());
                     if(hist.getFuncionario() != null){
                         dto.setNomeFuncionario(hist.getFuncionario().getNome());
                     }
