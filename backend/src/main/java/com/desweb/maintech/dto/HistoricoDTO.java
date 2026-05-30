@@ -2,12 +2,14 @@ package com.desweb.maintech.dto;
 
 import java.time.LocalDateTime;
 
+import com.desweb.maintech.entity.EstadoSolicitacao;
+
 public class HistoricoDTO {
     private Long id;
     private LocalDateTime dataHora;
     private String observacao;
-    private String estadoAnterior;
-    private String estadoNovo;
+    private EstadoSolicitacao estadoAnterior;
+    private EstadoSolicitacao estadoNovo;
     private String nomeFuncionario;
 
     // Getters
@@ -23,13 +25,6 @@ public class HistoricoDTO {
         return this.observacao;
     }
 
-    public String getEstadoAnterior() {
-        return estadoAnterior;
-    }
-
-    public String getEstadoNovo() {
-        return estadoNovo;
-    }
 
     public String getNomeFuncionario() {
         return nomeFuncionario;
@@ -49,15 +44,23 @@ public class HistoricoDTO {
         this.observacao = o;
     }
 
-    public void setEstadoAnterior(String estadoAnterior) {
-        this.estadoAnterior = estadoAnterior;
-    }
-
-    public void setEstadoNovo(String estadoNovo) {
-        this.estadoNovo = estadoNovo;
-    }
-
     public void setNomeFuncionario(String nomeFuncionario) {
         this.nomeFuncionario = nomeFuncionario;
     }
+    public EstadoSolicitacao getEstadoAnterior() {
+        return estadoAnterior;
+    }
+
+    public void setEstadoAnterior(EstadoSolicitacao estadoAnterior) {
+        this.estadoAnterior = estadoAnterior;
+    }
+
+    public EstadoSolicitacao getEstadoNovo() {
+        return estadoNovo;
+    }
+
+    public void setEstadoNovo(EstadoSolicitacao estadoNovo) {
+        this.estadoNovo = estadoNovo;
+    }
+
 }
