@@ -44,6 +44,7 @@ public class SolicitationService {
         dto.setData(sol.getData());
         dto.setEst(sol.getEst());
         dto.setIdCliente(sol.getClient().getId());
+        dto.setValorOrcamento(sol.getValorOrcamento());
 
         if(sol.getMotivoRej()!=null) dto.setMotivoRej(sol.getMotivoRej());
 
@@ -202,10 +203,9 @@ public class SolicitationService {
                 .collect(Collectors.toList());
     }
 
-    public List<SolicitationDTO> buscarPorCategoria(String categoriaNome) {
+    public List<SolicitationDTO> buscarRelatorioCategorias() {
         return repository.findAll().stream()
                 .filter(sol -> sol.getEst() == EstadoSolicitacao.PAGA || sol.getEst() == EstadoSolicitacao.FINALIZADA)
-                .filter(sol -> sol.getEquip() != null && sol.getEquip().toLowerCase().contains(categoriaNome.toLowerCase()))
                 .map(this::toDTO)
                 .collect(Collectors.toList());
     }

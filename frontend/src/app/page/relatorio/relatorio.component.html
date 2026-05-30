@@ -1,42 +1,62 @@
 <div class="flex flex-col w-full h-full bg-kitty-soft bg-cover bg-center p-6 gap-4 border-4 border-(--antique-ruby) rounded-4xl overflow-hidden text-(--french-puce)">
 
-  <div class="shrink-0 font-bold px-8 py-3 bg-(--queen-pink) border-3 border-(--antique-ruby) text-(--french-puce) text-xl shadow-sm w-fit">
-    RELATÓRIOS
+  <div class="shrink-0 font-bold px-8 py-3 bg-(--queen-pink) border-3 border-(--antique-ruby) text-(--french-puce) text-xl shadow-sm w-fit uppercase">
+    Relatórios Gerenciais
   </div>
 
   <div class="flex-1 min-h-0 overflow-y-auto flex flex-col gap-4">
-    <div class="gap-2 flex flex-col bg-white/50 border-2 border-(--antique-ruby) items-center p-4 rounded-2xl">
+    
+    <div class="gap-4 flex flex-col bg-(--queen-pink) border-2 border-(--antique-ruby) p-4 rounded-2xl">
       <div class="border-b-2 border-(--antique-ruby) w-full pb-2">
-        <h4 class="font-bold uppercase text-sm tracking-wider">Filtros</h4>
+        <h4 class="font-bold uppercase text-sm tracking-wider">Escolha o tipo de relatório</h4>
       </div>
-      <div class="flex justify-around w-full min-h-[70px] flex-wrap gap-4">
-        <div class="min-w-[200px] content-center p-2">
-          <label for="categorias" class="text-sm font-bold">Categoria: </label>
-          <select name="categorias" [(ngModel)]="relatorioInfo.categoria" class="border-2 border-(--antique-ruby) rounded-md p-1 text-sm bg-white">
-            <option value=""></option>
-            @for (categorias of cats(); track categorias.id) {
-              <option [value]="categorias.nome">{{ categorias.nome }}</option>
-            }
-          </select>
+      
+      <div class="flex gap-6 items-center pl-2 flex-wrap">
+        <label class="flex items-center gap-2 font-bold text-sm cursor-pointer">
+          <input type="radio" name="tipoRelatorio" value="periodo" [(ngModel)]="relatorioInfo.tipoRelatorio" class="accent-(--antique-ruby) h-4 w-4">
+          Receitas por Período
+        </label>
+        
+        <label class="flex items-center gap-2 font-bold text-sm cursor-pointer">
+          <input type="radio" name="tipoRelatorio" value="categoria" 
+                 [(ngModel)]="relatorioInfo.tipoRelatorio" 
+                 (change)="relatorioInfo.dataInicio = ''; relatorioInfo.dataFim = ''"
+                 class="accent-(--antique-ruby) h-4 w-4">
+          Receitas por Categoria
+        </label>
+      </div>
+
+      <div class="flex justify-around w-full flex-wrap gap-4 items-center bg-white/40 p-4 rounded-xl border border-(--antique-ruby)/30 transition-opacity duration-300"
+           [class.opacity-60]="relatorioInfo.tipoRelatorio === 'categoria'">
+        <div class="flex items-center gap-2">
+          <label for="dataInicio" class="text-sm font-bold">A partir de:</label>
+          <input type="date" id="dataInicio" name="dataInicio" 
+                 [(ngModel)]="relatorioInfo.dataInicio" 
+                 [disabled]="relatorioInfo.tipoRelatorio === 'categoria'"
+                 class="border-2 border-(--antique-ruby) rounded-md p-1 text-sm bg-white disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed outline-none"/>
         </div>
-        <div class="min-w-[200px] content-center">
-          <div class="flex justify-between p-2 gap-2">
-            <label for="dataInicio" class="text-sm font-bold">A partir de:</label>
-            <input type="date" name="dataInicio" [(ngModel)]="relatorioInfo.dataInicio" class="border-2 border-(--antique-ruby) rounded-md p-1 text-sm"/>
-          </div>
-          <div class="flex justify-between p-2 gap-2">
-            <label for="dataFim" class="text-sm font-bold">Até:</label>
-            <input type="date" name="dataFim" [(ngModel)]="relatorioInfo.dataFim" class="border-2 border-(--antique-ruby) rounded-md p-1 text-sm"/>
-          </div>
+        <div class="flex items-center gap-2">
+          <label for="dataFim" class="text-sm font-bold">Até:</label>
+          <input type="date" id="dataFim" name="dataFim" 
+                 [(ngModel)]="relatorioInfo.dataFim" 
+                 [disabled]="relatorioInfo.tipoRelatorio === 'categoria'"
+                 class="border-2 border-(--antique-ruby) rounded-md p-1 text-sm bg-white disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed outline-none"/>
         </div>
       </div>
+      
+      @if (relatorioInfo.tipoRelatorio === 'categoria') {
+        <div class="text-center">
+          <p class="text-xs font-bold text-(--antique-ruby)">* Todo o histórico será exibido por categoria.</p>
+        </div>
+      }
+
     </div>
   </div>
 
   <div class="shrink-0 self-end">
     <button (click)="baixarRelatorio()"
        class="bg-(--french-puce) text-white font-bold px-6 py-3 border-b-4 border-black active:border-b-0 transition-all flex items-center gap-2 rounded-sm hover:cursor-pointer">
-      <mat-icon>download</mat-icon> Download em PDF
+      <mat-icon>download</mat-icon> Gerar PDF
     </button>
   </div>
 </div>

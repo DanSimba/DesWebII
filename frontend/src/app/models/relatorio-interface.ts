@@ -1,6 +1,5 @@
 export interface RelatorioType {
-  categoria: string;
-  dataInicio: string;
-  dataFim: string;
-  info: string;
+  tipoRelatorio: 'periodo' | 'categoria';
+  dataInicio?: string;
+  dataFim?: string;
 }

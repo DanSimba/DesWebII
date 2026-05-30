@@ -31,6 +31,9 @@ public class Solicitation {
     @Column(name = "motivo_rejeicao")
     private String motivoRej;
 
+    @Column(name = "valor_orcamento")
+    private Double valorOrcamento;
+
     @Enumerated(EnumType.STRING)
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "estado", columnDefinition = "estado_solicitacao")
@@ -82,6 +85,9 @@ public class Solicitation {
         return this.motivoRej;
     }
 
+    public Double getValorOrcamento() {
+        return this.valorOrcamento;
+    }
 
     public Funcionario getFuncionario() {
         return this.funcionario;
@@ -118,6 +124,10 @@ public class Solicitation {
 
     public void setMotivoRej(String motivoRej) {
         this.motivoRej = motivoRej;
+    }
+
+    public void setValorOrcamento(Double valorOrcamento) {
+        this.valorOrcamento = valorOrcamento;
     }
 
     public void setEst(EstadoSolicitacao e) {

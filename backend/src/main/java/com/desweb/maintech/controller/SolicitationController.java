@@ -61,9 +61,8 @@ public class SolicitationController {
     }
 
     @GetMapping("/relatorio/categoria")
-    public ResponseEntity<List<SolicitationDTO>> relatorioCategoria(
-            @RequestParam("categoria") String categoria) {
-        List<SolicitationDTO> solicitacoes = solicitationService.buscarPorCategoria(categoria);
+    public ResponseEntity<List<SolicitationDTO>> relatorioCategoria() {
+        List<SolicitationDTO> solicitacoes = solicitationService.buscarRelatorioCategorias();
         return ResponseEntity.ok(solicitacoes);
     }
 
