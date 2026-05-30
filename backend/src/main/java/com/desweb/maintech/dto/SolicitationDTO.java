@@ -20,6 +20,8 @@ public class SolicitationDTO {
 
     private String motivoRej;
     private Long idFuncDestino; //pra redirecionar essa bomba depois
+    
+    private Double valorOrcamento;
 
     public void setIdCliente(Long i) {
         this.idCliente = i;
@@ -78,6 +80,10 @@ public class SolicitationDTO {
         return motivoRej;
     }
 
+    public Double getValorOrcamento() {
+        return valorOrcamento;
+    }
+
     public void setNomeCliente(String n) { this.nomeCliente = n; }
     public void setCpfCliente(String c) { this.cpfCliente = c; }
     public void setEmailCliente(String e) { this.emailCliente = e; }
@@ -105,6 +111,10 @@ public class SolicitationDTO {
 
     public void setIdFuncDestino(Long idFuncDestino) {
         this.idFuncDestino = idFuncDestino;
+    }
+
+    public void setValorOrcamento(Double valorOrcamento) {
+        this.valorOrcamento = valorOrcamento;
     }
 
 }
