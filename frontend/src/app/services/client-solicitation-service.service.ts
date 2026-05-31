@@ -31,6 +31,7 @@ export class ClientSolicitationService{
     return this.http.patch<Solicitation>(`${this.apiUrl}/api/solicitations/${id}/rejeitar/${motivo}`, {});
   }
 
+  //codigo legado, no fim das contas serviu pra treinar
   getMotivoRej(id: number): Observable<string>{
     return this.http.get(`${this.apiUrl}/api/solicitations/pegarmotivo/${id}`, {responseType: 'text'});
   }

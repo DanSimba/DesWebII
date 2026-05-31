@@ -61,7 +61,7 @@
     @if(solData()?.est == "REJEITADA"){
       <div class="flex flex-col w-full max-w-[60vh] p-4 bg-red-50 border-2 border-red-300 rounded-md">
           <div class="text-red-800 font-bold text-center underline mb-2 italic">MOTIVO DA REJEIÇÃO</div>
-          <div class="text-sm text-red-900 text-center">{{motivo()}}</div>
+          <div class="text-sm text-red-900 text-center">"{{solData()?.motivoRej}}"</div>
       </div>
     }
 </div>

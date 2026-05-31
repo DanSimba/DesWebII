@@ -42,6 +42,7 @@ public class ClientService {
                     s.setData(sol.getData());
                     s.setEst(sol.getEst());
                     s.setValorOrcamento(sol.getValorOrcamento());
+                    s.setMotivoRej(sol.getMotivoRej());
                     return s;
                 })
                 .toList();

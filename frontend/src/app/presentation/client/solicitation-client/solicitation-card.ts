@@ -20,6 +20,7 @@ export class SolicitationClient {
   readonly solId = input.required<number>();
   readonly eqp = input.required<string>();
   readonly valorOrcamento = input<number>();
+  readonly motivoRej = input<string>();
 
   private sol =  computed<Solicitation>(() => ({
     id: this.solId(),
@@ -27,7 +28,8 @@ export class SolicitationClient {
     data: this.data(),
     est: this.estado(),
     desc: this.desc() ,
-    valorOrcamento: this.valorOrcamento()
+    valorOrcamento: this.valorOrcamento(),
+    motivoRej: this.motivoRej()
   }));
 
   openSol(){
