@@ -11,8 +11,11 @@ import com.desweb.maintech.entity.Solicitation;
 import com.desweb.maintech.repository.ClientRepository;
 import com.desweb.maintech.repository.FuncionarioRepository;
 import com.desweb.maintech.repository.HistoricoRepository;
+import com.desweb.maintech.entity.Categoria;
+import com.desweb.maintech.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,6 +38,9 @@ public class SolicitationService {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
 
     private SolicitationDTO toDTO(Solicitation sol) {
         SolicitationDTO dto = new SolicitationDTO();
@@ -77,6 +83,11 @@ public class SolicitationService {
         sol.setData(dto.getData());
         sol.setEst(dto.getEst());
         sol.setClient(c);
+
+        if (dto.getIdCategoria() != null) {
+        Categoria cat = categoriaRepository.findById(dto.getIdCategoria()).orElse(null);
+        sol.setCategoria(cat);
+        }
         
         sol = repository.save(sol);
         return toDTO(sol);
@@ -107,6 +118,7 @@ public class SolicitationService {
         if (dto.getDesc() != null) sol.setDesc(dto.getDesc());
         if (dto.getEquip() != null) sol.setEquip(dto.getEquip());
         if (dto.getEst() != null) sol.setEst(dto.getEst()); 
+        if (dto.getValorOrcamento() != null) sol.setValorOrcamento(dto.getValorOrcamento());
 
         sol = repository.save(sol);
         return toDTO(sol);
