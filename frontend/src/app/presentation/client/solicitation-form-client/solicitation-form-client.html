@@ -12,7 +12,7 @@
         <mat-label>Categoria</mat-label>
         <mat-select formControlName="catID">
           @for (cat of cats(); track cat.id) {
-            <mat-option [value]="cat.nome">{{ cat.nome }}</mat-option>
+            <mat-option [value]="cat.id">{{ cat.nome }}</mat-option>
           }      
         </mat-select>
       </mat-form-field>

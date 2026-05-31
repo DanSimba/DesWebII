@@ -5,6 +5,7 @@ export interface Solicitation {
   est: string;
   desc: string;
   motivoRej?: any;//campo opcional
+  idCategoria?: number;
   // campos adicionais para o lado func
   idCliente?: number;
   nomeCliente?: string;
@@ -13,6 +14,7 @@ export interface Solicitation {
   valorOrcamento?: number;
   nomeCategoria?: string;
   idFuncDestino?: number; // pra redirecionar gostoso 
+  
 }
 
 export interface HistoricoItem {

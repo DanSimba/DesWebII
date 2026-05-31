@@ -23,6 +23,11 @@ public class SolicitationDTO {
     
     private Double valorOrcamento;
 
+    private Long idCategoria;
+
+    
+    
+
     public void setIdCliente(Long i) {
         this.idCliente = i;
     }
@@ -51,6 +56,8 @@ public class SolicitationDTO {
     public void setMotivoRej(String motivoRej) {
         this.motivoRej = motivoRej;
     }
+
+    public void setIdCategoria(Long idCategoria) { this.idCategoria = idCategoria; }
 
     public Long getId(){
         return this.id;
@@ -83,6 +90,8 @@ public class SolicitationDTO {
     public Double getValorOrcamento() {
         return valorOrcamento;
     }
+
+    public Long getIdCategoria() { return idCategoria; }
 
     public void setNomeCliente(String n) { this.nomeCliente = n; }
     public void setCpfCliente(String c) { this.cpfCliente = c; }
