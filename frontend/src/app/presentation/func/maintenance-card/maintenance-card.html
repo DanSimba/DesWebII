@@ -10,20 +10,20 @@
    <!-- botão histórico -->
     <button (click)="toggleHistorico()"
             class="text-xs text-(--french-puce) font-bold px-2 py-1 rounded border-2 border-(--antique-ruby) hover:bg-(--antique-ruby) hover:text-(--queen-pink) transition-colors cursor-pointer">
-      {{ mostrarHistorico ? '▲ Histórico' : '▼ Histórico' }}
+      {{ mostrarHistorico() ? '▲ Histórico' : '▼ Histórico' }}
     </button>
   </div>
  
   <!-- dropdown de histórico -->
-  @if (mostrarHistorico) {
+  @if (mostrarHistorico()) {
     <div class="mt-2 mb-2 border-2 border-(--antique-ruby)/40 rounded-lg overflow-hidden">
-      @if (carregandoHistorico) {
+      @if (carregandoHistorico()) {
         <p class="text-xs text-(--french-puce) p-2 text-center">Carregando...</p>
-      } @else if (historico.length === 0) {
+      } @else if (historico().length === 0) {
         <p class="text-xs text-(--french-puce) p-2 text-center">Nenhum histórico encontrado.</p>
       } @else {
         <div class="max-h-40 overflow-y-auto custom-scrollbar">
-          @for (item of historico; track item.id) {
+          @for (item of historico(); track item.id) {
             <div class="flex flex-col gap-1 p-2 border-b border-(--antique-ruby)/20 last:border-0">
               <div class="flex justify-between items-center">
                 <span class="text-[10px] font-bold text-(--french-puce) uppercase">
