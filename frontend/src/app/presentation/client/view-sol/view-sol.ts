@@ -24,16 +24,6 @@ export class ViewSol{
     this.solCard.getSol().subscribe({
       next: (data) =>{
         this.solData.set(data);
-
-        if(data&&data.est=='REJEITADA'){ //puxa o motivo da rejeiçao separadamente
-            this.solCard.getMotivoRej(data.id).subscribe({
-              next: (response) => {
-                console.log('motivo rej: ', response);
-                this.motivo.set(response);
-              },
-              error: (err) => {console.error('Erro ao pegar o motivoRej:', err);}
-            })
-        }
       }
       ,error: (err)=>{console.error('Erro ao pegar a sol:', err)}
     })
