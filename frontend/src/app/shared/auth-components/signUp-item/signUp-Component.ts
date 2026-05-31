@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CepForm } from '../forms/cepForm/cep-form';
 import { SignUpForm } from '../forms/signUpForm/signUp-form';
-import { RouterLink } from '@angular/router';
+import { RouterLink ,Router } from '@angular/router';
 import { ViewChild, AfterViewInit } from '@angular/core';
 import { AuthService } from '../../../services/auth-service';
 
@@ -13,10 +13,11 @@ import { AuthService } from '../../../services/auth-service';
   templateUrl: './signUp-Component.html',
 })
 export class SignUpComponent implements AfterViewInit {
+
   private authService = inject(AuthService);
   @ViewChild(SignUpForm) signUpForm!: SignUpForm;
   @ViewChild(CepForm) cepForm!: CepForm;
-  constructor() {}
+  constructor(private router: Router) {}
 
   cadastrarBtn(): void {
     let userData = this.signUpForm.getData();
@@ -58,23 +59,32 @@ export class SignUpComponent implements AfterViewInit {
 
         if (response.status === 201) {
           alert('Usuário cadastrado com sucesso');
+          this.router.navigate(['/login']);
         }
+
       },
 
       error: (erro) => {
         console.log(erro.status);
+        alert('Cadastro não realizado');
 
         if (erro.status === 400) {
           alert('Dados inválidos');
         }
 
+        if (erro.status === 403) {
+          alert('Tente novamente');
+        }
+
         if (erro.status === 409) {
-          alert('Usuário já existe');
+          console.log(erro);
+          alert('Não cadastrado: '+ erro.error);
         }
 
         if (erro.status === 500) {
           alert('Erro interno do servidor');
         }
+
       },
     });
   }

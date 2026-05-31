@@ -37,7 +37,10 @@ export class LoginForm {
           this.redirectUser();
         }
         },
-      error: (err) => console.error('ERRO NO LOGIN! :(', err)
+      error: (err) => {
+        alert("Usuario não encontrado");
+        console.error('ERRO NO LOGIN! :(', err);
+      }
     });
   }
 
