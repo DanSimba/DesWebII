@@ -36,8 +36,23 @@ public class AuthController {
     }
 
     @PostMapping("/cadastro")
-    public ResponseEntity<ClientDTO> criar(@RequestBody ClientDTO dto) {
-        ClientDTO novo = clientService.save(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novo);
+    public ResponseEntity<?> criar(@RequestBody ClientDTO dto) {
+        try {
+            ClientDTO novo = clientService.save(dto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(novo);
+        } catch (Exception e) {
+
+            if (e.getMessage().contains("cliente_cpf_key")) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("CPF já cadastrado");
+            }
+
+            if (e.getMessage().contains("usuario_email_key")) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Email já cadastrado");
+            }
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Erro de integridade dos dados.");
+        }
+
     }
 }
